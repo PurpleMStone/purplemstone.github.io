@@ -257,7 +257,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/03/18/MLHW1/" class="post-title-link" itemprop="url">李弘毅ML课程作业一：PM2.5的预测</a>
+            <a href="/2020/03/18/MLHW1/" class="post-title-link" itemprop="url">MLHW1</a>
           
         </h1>
 
@@ -272,7 +272,7 @@
                 
               
 
-              <time title="创建时间：2020-03-18 12:21:09 / 修改时间：18:59:49" itemprop="dateCreated datePublished" datetime="2020-03-18T12:21:09+08:00">2020-03-18</time>
+              <time title="创建时间：2020-03-18 17:29:07 / 修改时间：19:03:22" itemprop="dateCreated datePublished" datetime="2020-03-18T17:29:07+08:00">2020-03-18</time>
             </span>
           
             
@@ -291,7 +291,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="1-作业描述"><a href="#1-作业描述" class="headerlink" title="1.    作业描述"></a>1.    作业描述</h3><p>​        给定了训练集train.csv，要求用前9小时的数据预测出第十个小时的PM2.5的值。这是linear regression的作业。</p>
+          <p>title: 李弘毅ML课程作业一：PM2.5的预测<br>date: 2020-03-18 12:21:09<br>tags: machine learning</p>
+<h3 id="1-作业描述"><a href="#1-作业描述" class="headerlink" title="1.    作业描述"></a>1.    作业描述</h3><p>​        给定了训练集train.csv，要求用前9小时的数据预测出第十个小时的PM2.5的值。这是linear regression的作业。</p>
 <h3 id="2-Feature-Selection"><a href="#2-Feature-Selection" class="headerlink" title="2.    Feature Selection"></a>2.    Feature Selection</h3><p>​        train.csv中每个小时给出了18个特征，其实有些特征与PM2.5关系不大。首先画一下相关矩阵热力图来观察一下。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">data=pd.read_csv(<span class="string">'train.csv'</span>)</span><br><span class="line">data.drop([<span class="string">'a'</span>,<span class="string">'b'</span>],axis=<span class="number">1</span>,inplace=<span class="literal">True</span>)</span><br><span class="line">column=data[<span class="string">'c'</span>].unique()</span><br><span class="line">data_new=pd.DataFrame(np.zeros([<span class="number">24</span>*<span class="number">240</span>,<span class="number">18</span>]),columns=column)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> column:</span><br><span class="line">    aa=data[data[<span class="string">'c'</span>]==i]</span><br><span class="line">    aa.drop([<span class="string">'c'</span>],axis=<span class="number">1</span>,inplace=<span class="literal">True</span>)</span><br><span class="line">    aa=np.array(aa)</span><br><span class="line">    aa[aa==<span class="string">'NR'</span>]=<span class="string">'0'</span></span><br><span class="line">    aa=aa.astype(<span class="string">'float32'</span>)</span><br><span class="line">    aa=aa.reshape(<span class="number">1</span>,<span class="number">5760</span>)</span><br><span class="line">    aa=aa.T</span><br><span class="line">    data_new[i]=aa</span><br><span class="line">label=np.array(data_new[<span class="string">'PM2.5'</span>][<span class="number">9</span>:],dtype=<span class="string">'float32'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="comment"># Draw a heatmap with the numeric values in each cell</span></span><br><span class="line">f, ax = plt.subplots(figsize=(<span class="number">9</span>, <span class="number">6</span>))</span><br><span class="line">sns.heatmap(abs(data_new.corr()), fmt=<span class="string">"d"</span>, linewidths=<span class="number">.5</span>, ax=ax, cmap=<span class="string">'Blues'</span>)</span><br><span class="line">f.savefig(<span class="string">'heatmap.png'</span>)</span><br></pre></td></tr></table></figure>
 <p>​        这里不关心是负相关还是正相关，所以对相关矩阵取了绝对值。画出来的结果是这样的：</p>
@@ -339,8 +340,8 @@
 <table>
 <thead>
 <tr>
-<th><img src="/.com//loss.png" alt="loss" style="zoom:50%;"></th>
-<th><img src="/.com//loss2.png" alt="loss2" style="zoom:50%;"></th>
+<th><img src="/.com//loss.png" alt="你想输入的替代文字"></th>
+<th><img src="/.com//loss2.png" alt="你想输入的替代文字"></th>
 </tr>
 </thead>
 <tbody>
@@ -607,7 +608,7 @@
             <a href="/tags/%20%7C%7C%20tags">
           
         
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">1</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
