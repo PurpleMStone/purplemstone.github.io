@@ -56,28 +56,55 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Stone&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="1.    作业描述​        给定了训练集train.csv，要求用前9小时的数据预测出第十个小时的PM2.5的值。这是linear regression的作业。 2.    Feature Selection​        train.csv中每个小时给出了18个特征，其实有些特征与PM2.5关系不大。首先画一下相关矩阵热力图来观察一下。 12345678910111213141516">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ML_HW1">
+<meta property="og:url" content="http://yoursite.com/2020/03/18/ML-HW1/index.html">
 <meta property="og:site_name" content="Stone&#39;s Blog">
+<meta property="og:description" content="1.    作业描述​        给定了训练集train.csv，要求用前9小时的数据预测出第十个小时的PM2.5的值。这是linear regression的作业。 2.    Feature Selection​        train.csv中每个小时给出了18个特征，其实有些特征与PM2.5关系不大。首先画一下相关矩阵热力图来观察一下。 12345678910111213141516">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/.com//Github/stone_blog/stoneblog/images/HW1/heatmap.png">
+<meta property="og:image" content="http://yoursite.com/.com//Github/stone_blog/stoneblog/images/HW1/0-th%20feature.png">
+<meta property="og:image" content="http://yoursite.com/.com//Github/stone_blog/stoneblog/images/HW1/1-th%20feature.png">
+<meta property="og:image" content="http://yoursite.com/.com//Github/stone_blog/stoneblog/images/HW1/2-th%20feature.png">
+<meta property="og:image" content="http://yoursite.com/.com//Github/stone_blog/stoneblog/images/HW1/3-th%20feature.png">
+<meta property="og:image" content="http://yoursite.com/.com//Github/stone_blog/stoneblog/images/HW1/4-th%20feature.png">
+<meta property="og:image" content="http://yoursite.com/.com//Github/stone_blog/stoneblog/images/HW1/5-th%20feature.png">
+<meta property="og:image" content="http://yoursite.com/.com//Github/stone_blog/stoneblog/images/HW1/6-th%20feature.png">
+<meta property="og:image" content="http://yoursite.com/.com//Github/stone_blog/stoneblog/images/HW1/7-th%20feature.png">
+<meta property="og:image" content="http://yoursite.com/.com//Github/stone_blog/stoneblog/images/HW1/8-th%20feature.png">
+<meta property="og:image" content="http://yoursite.com/.com//Github/stone_blog/stoneblog/images/HW1/9-th%20feature.png">
+<meta property="og:image" content="http://yoursite.com/.com//Github/stone_blog/stoneblog/images/HW1/10-th%20feature.png">
+<meta property="og:image" content="http://yoursite.com/.com//Github/stone_blog/stoneblog/images/HW1/11-th%20feature.png">
+<meta property="og:image" content="http://yoursite.com/.com//Github/stone_blog/stoneblog/images/HW1/12-th%20feature.png">
+<meta property="og:image" content="http://yoursite.com/.com//Github/stone_blog/stoneblog/images/HW1/13-th%20feature.png">
+<meta property="og:image" content="http://yoursite.com/.com//Github/stone_blog/stoneblog/images/HW1/14-th%20feature.png">
+<meta property="og:image" content="http://yoursite.com/.com//Github/stone_blog/stoneblog/images/HW1/15-th%20feature.png">
+<meta property="og:image" content="http://yoursite.com/.com//Github/stone_blog/stoneblog/images/HW1/16-th%20feature.png">
+<meta property="og:image" content="http://yoursite.com/.com//Github/stone_blog/stoneblog/images/HW1/17-th%20feature.png">
+<meta property="og:image" content="http://yoursite.com/.com//loss.png">
+<meta property="og:image" content="http://yoursite.com/.com//loss2.png">
+<meta property="article:published_time" content="2020-03-18T11:14:24.000Z">
+<meta property="article:modified_time" content="2020-03-18T11:49:25.989Z">
 <meta property="article:author" content="Purple M. Stone">
+<meta property="article:tag" content="machine learning">
 <meta name="twitter:card" content="summary">
-  <link rel="canonical" href="http://yoursite.com/">
+<meta name="twitter:image" content="http://yoursite.com/.com//Github/stone_blog/stoneblog/images/HW1/heatmap.png">
+  <link rel="canonical" href="http://yoursite.com/2020/03/18/ML-HW1/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false,
+    isHome: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>Stone's Blog</title>
+  <title>ML_HW1 | Stone's Blog</title>
   
 
 
@@ -237,12 +264,13 @@
 
           <div id="content" class="content">
             
+
   <div id="posts" class="posts-expand">
-        <article itemscope itemtype="http://schema.org/Article">
+      <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block home">
+  <div class="post-block post">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/18/ML-HW1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -255,9 +283,8 @@
       <meta itemprop="name" content="Stone's Blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2020/03/18/ML-HW1/" class="post-title-link" itemprop="url">ML_HW1</a>
+        <h1 class="post-title" itemprop="name headline">ML_HW1
+
           
         </h1>
 
@@ -281,6 +308,14 @@
           
 
           
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
         </div>
       </header>
@@ -291,7 +326,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="1-作业描述"><a href="#1-作业描述" class="headerlink" title="1.    作业描述"></a>1.    作业描述</h3><p>​        给定了训练集train.csv，要求用前9小时的数据预测出第十个小时的PM2.5的值。这是linear regression的作业。</p>
+        <h3 id="1-作业描述"><a href="#1-作业描述" class="headerlink" title="1.    作业描述"></a>1.    作业描述</h3><p>​        给定了训练集train.csv，要求用前9小时的数据预测出第十个小时的PM2.5的值。这是linear regression的作业。</p>
 <h3 id="2-Feature-Selection"><a href="#2-Feature-Selection" class="headerlink" title="2.    Feature Selection"></a>2.    Feature Selection</h3><p>​        train.csv中每个小时给出了18个特征，其实有些特征与PM2.5关系不大。首先画一下相关矩阵热力图来观察一下。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">data=pd.read_csv(<span class="string">'train.csv'</span>)</span><br><span class="line">data.drop([<span class="string">'a'</span>,<span class="string">'b'</span>],axis=<span class="number">1</span>,inplace=<span class="literal">True</span>)</span><br><span class="line">column=data[<span class="string">'c'</span>].unique()</span><br><span class="line">data_new=pd.DataFrame(np.zeros([<span class="number">24</span>*<span class="number">240</span>,<span class="number">18</span>]),columns=column)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> column:</span><br><span class="line">    aa=data[data[<span class="string">'c'</span>]==i]</span><br><span class="line">    aa.drop([<span class="string">'c'</span>],axis=<span class="number">1</span>,inplace=<span class="literal">True</span>)</span><br><span class="line">    aa=np.array(aa)</span><br><span class="line">    aa[aa==<span class="string">'NR'</span>]=<span class="string">'0'</span></span><br><span class="line">    aa=aa.astype(<span class="string">'float32'</span>)</span><br><span class="line">    aa=aa.reshape(<span class="number">1</span>,<span class="number">5760</span>)</span><br><span class="line">    aa=aa.T</span><br><span class="line">    data_new[i]=aa</span><br><span class="line">label=np.array(data_new[<span class="string">'PM2.5'</span>][<span class="number">9</span>:],dtype=<span class="string">'float32'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="comment"># Draw a heatmap with the numeric values in each cell</span></span><br><span class="line">f, ax = plt.subplots(figsize=(<span class="number">9</span>, <span class="number">6</span>))</span><br><span class="line">sns.heatmap(abs(data_new.corr()), fmt=<span class="string">"d"</span>, linewidths=<span class="number">.5</span>, ax=ax, cmap=<span class="string">'Blues'</span>)</span><br><span class="line">f.savefig(<span class="string">'heatmap.png'</span>)</span><br></pre></td></tr></table></figure>
 <p>​        这里不关心是负相关还是正相关，所以对相关矩阵取了绝对值。画出来的结果是这样的：</p>
@@ -353,337 +388,52 @@
 <p><a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML20.html" target="_blank" rel="noopener">李弘毅老师ML课程主页</a></p>
 <p><a href="https://blog.csdn.net/yinfang1252/article/details/79630222" target="_blank" rel="noopener">correlation matrix heatmap reference</a></p>
 
-        
-      
     </div>
 
     
     
     
+        
+      
+
       <footer class="post-footer">
-          <div class="post-eof"></div>
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2020/03/18/MLHW1/" rel="next" title="李弘毅ML课程作业一：PM2.5的预测">
+                  <i class="fa fa-chevron-left"></i> 李弘毅ML课程作业一：PM2.5的预测
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
         
       </footer>
+    
   </div>
   
   
   
   </article>
 
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/18/MLHW1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Purple M. Stone">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stone's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2020/03/18/MLHW1/" class="post-title-link" itemprop="url">李弘毅ML课程作业一：PM2.5的预测</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2020-03-18 12:21:09 / 修改时间：19:38:44" itemprop="dateCreated datePublished" datetime="2020-03-18T12:21:09+08:00">2020-03-18</time>
-            </span>
-          
-            
-
-            
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="1-作业描述"><a href="#1-作业描述" class="headerlink" title="1.    作业描述"></a>1.    作业描述</h3><p>​        给定了训练集train.csv，要求用前9小时的数据预测出第十个小时的PM2.5的值。这是linear regression的作业。</p>
-<h3 id="2-Feature-Selection"><a href="#2-Feature-Selection" class="headerlink" title="2.    Feature Selection"></a>2.    Feature Selection</h3><p>​        train.csv中每个小时给出了18个特征，其实有些特征与PM2.5关系不大。首先画一下相关矩阵热力图来观察一下。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">data=pd.read_csv(<span class="string">'train.csv'</span>)</span><br><span class="line">data.drop([<span class="string">'a'</span>,<span class="string">'b'</span>],axis=<span class="number">1</span>,inplace=<span class="literal">True</span>)</span><br><span class="line">column=data[<span class="string">'c'</span>].unique()</span><br><span class="line">data_new=pd.DataFrame(np.zeros([<span class="number">24</span>*<span class="number">240</span>,<span class="number">18</span>]),columns=column)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> column:</span><br><span class="line">    aa=data[data[<span class="string">'c'</span>]==i]</span><br><span class="line">    aa.drop([<span class="string">'c'</span>],axis=<span class="number">1</span>,inplace=<span class="literal">True</span>)</span><br><span class="line">    aa=np.array(aa)</span><br><span class="line">    aa[aa==<span class="string">'NR'</span>]=<span class="string">'0'</span></span><br><span class="line">    aa=aa.astype(<span class="string">'float32'</span>)</span><br><span class="line">    aa=aa.reshape(<span class="number">1</span>,<span class="number">5760</span>)</span><br><span class="line">    aa=aa.T</span><br><span class="line">    data_new[i]=aa</span><br><span class="line">label=np.array(data_new[<span class="string">'PM2.5'</span>][<span class="number">9</span>:],dtype=<span class="string">'float32'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="comment"># Draw a heatmap with the numeric values in each cell</span></span><br><span class="line">f, ax = plt.subplots(figsize=(<span class="number">9</span>, <span class="number">6</span>))</span><br><span class="line">sns.heatmap(abs(data_new.corr()), fmt=<span class="string">"d"</span>, linewidths=<span class="number">.5</span>, ax=ax, cmap=<span class="string">'Blues'</span>)</span><br><span class="line">f.savefig(<span class="string">'heatmap.png'</span>)</span><br></pre></td></tr></table></figure>
-<p>​        这里不关心是负相关还是正相关，所以对相关矩阵取了绝对值。画出来的结果是这样的：</p>
-<p><img src="/images/HW1/heatmap.png" alt="feature0"></p>
-<p>对于PM2.5来说，相关性比较高的有NO2, NO1, NOx, SO2, THC, PM10等特征。</p>
-<p>​        也可以把每个特征与PM2.5的关系绘制一下。可以观察到部分特征与PM2.5的值关系不大。</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th><img src="/images/HW1/0-th feature.png" alt="feature0"></th>
-<th><img src="/images/HW1/1-th feature.png" alt="feature0"></th>
-<th><img src="/images/HW1/2-th feature.png" alt="feature0"></th>
-<th><img src="/images/HW1/3-th feature.png" alt="feature0"></th>
-<th><img src="/images/HW1/4-th feature.png" alt="feature0"></th>
-<th><img src="/images/HW1/5-th feature.png" alt="feature0"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><img src="/images/HW1/6-th feature.png" alt="feature0"></td>
-<td><img src="/images/HW1/7-th feature.png" alt="feature0"></td>
-<td><img src="/images/HW1/8-th feature.png" alt="feature0"></td>
-<td><img src="/images/HW1/9-th feature.png" alt="feature0"></td>
-<td><img src="/images/HW1/10-th feature.png" alt="feature0"></td>
-<td><img src="/images/HW1/11-th feature.png" alt="feature0"></td>
-</tr>
-<tr>
-<td><img src="/images/HW1/12-th feature.png" alt="feature0"></td>
-<td><img src="/images/HW1/13-th feature.png" alt="feature0"></td>
-<td><img src="/images/HW1/14-th feature.png" alt="feature0"></td>
-<td><img src="/images/HW1/15-th feature.png" alt="feature0"></td>
-<td><img src="/images/HW1/16-th feature.png" alt="feature0"></td>
-<td><img src="/images/HW1/17-th feature.png" alt="feature0"></td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="3-Data-Preprocessing"><a href="#3-Data-Preprocessing" class="headerlink" title="3.    Data Preprocessing"></a>3.    Data Preprocessing</h3><p>​        这里用了作业demo给出的方法。把前9个小时的全部18个特征都作为预测第十小时PM2.5的特征。也就是说，(9*18+1) 个输入特征（加上bias）对应一个输出。输入进行了归一化。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">data = pd.read_csv(<span class="string">'../train.csv'</span>, encoding=<span class="string">'big5'</span>)</span><br><span class="line">data = data.iloc[:, <span class="number">3</span>:]</span><br><span class="line">data[data == <span class="string">'NR'</span>] = <span class="number">0</span></span><br><span class="line">raw_data = data.to_numpy()</span><br><span class="line"></span><br><span class="line">month_data = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> month <span class="keyword">in</span> range(<span class="number">12</span>):</span><br><span class="line">    sample = np.empty([<span class="number">18</span>, <span class="number">480</span>])</span><br><span class="line">    <span class="keyword">for</span> day <span class="keyword">in</span> range(<span class="number">20</span>):</span><br><span class="line">        sample[:, day*<span class="number">24</span>:(day+<span class="number">1</span>)*<span class="number">24</span>] = raw_data[<span class="number">18</span>*(<span class="number">20</span>*month+day):<span class="number">18</span>*(<span class="number">20</span>*month+day+<span class="number">1</span>)]</span><br><span class="line">    month_data[month] = sample</span><br><span class="line"></span><br><span class="line">x = np.empty([<span class="number">12</span>*<span class="number">471</span>, <span class="number">18</span>*<span class="number">9</span>], dtype=float)  <span class="comment"># training data</span></span><br><span class="line">y = np.empty([<span class="number">12</span>*<span class="number">471</span>, <span class="number">1</span>], dtype=float)     <span class="comment"># training set</span></span><br><span class="line"><span class="keyword">for</span> month <span class="keyword">in</span> range(<span class="number">12</span>):</span><br><span class="line">    <span class="keyword">for</span> day <span class="keyword">in</span> range(<span class="number">20</span>):</span><br><span class="line">        <span class="keyword">for</span> hour <span class="keyword">in</span> range(<span class="number">24</span>):</span><br><span class="line">            <span class="keyword">if</span> day == <span class="number">19</span> <span class="keyword">and</span> hour &gt; <span class="number">14</span>:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            x[month*<span class="number">471</span>+day*<span class="number">24</span>+hour, :] = month_data[month][:, day*<span class="number">24</span>+hour:day*<span class="number">24</span>+hour+<span class="number">9</span>].reshape(<span class="number">1</span>,<span class="number">-1</span>)</span><br><span class="line">            y[month*<span class="number">471</span>+day*<span class="number">24</span>+hour, <span class="number">0</span>] = month_data[month][<span class="number">9</span>, day*<span class="number">24</span>+hour+<span class="number">9</span>]   <span class="comment">#value</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Normalization</span></span><br><span class="line">mean_x = np.mean(x, axis=<span class="number">0</span>)</span><br><span class="line">std_x = np.std(x, axis=<span class="number">0</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(x)):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(len(x[<span class="number">0</span>])):</span><br><span class="line">        <span class="keyword">if</span> std_x[j] != <span class="number">0</span>:</span><br><span class="line">            x[i][j] = (x[i][j] - mean_x[j]) / std_x[j]</span><br></pre></td></tr></table></figure>
-<p>​        处理完后，张量x就是输入（前9小时的所有特征），y就是输出（第十小时PM2.5值）。</p>
-<h3 id="4-用不同的学习率训练"><a href="#4-用不同的学习率训练" class="headerlink" title="4.    用不同的学习率训练"></a>4.    用不同的学习率训练</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># training</span></span><br><span class="line">dim = <span class="number">18</span>*<span class="number">9</span> + <span class="number">1</span></span><br><span class="line">w = np.ones([dim, <span class="number">1</span>])</span><br><span class="line">x = np.concatenate((np.ones([<span class="number">12</span>*<span class="number">471</span>, <span class="number">1</span>]), x), axis = <span class="number">1</span>).astype(float)</span><br><span class="line">learning_rate = <span class="number">100</span></span><br><span class="line">iter_time = <span class="number">1000</span></span><br><span class="line">adagrad = np.zeros([dim, <span class="number">1</span>])</span><br><span class="line">eps = <span class="number">1e-10</span></span><br><span class="line"></span><br><span class="line">training_loss = []</span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> range(iter_time):</span><br><span class="line">    loss = np.sqrt(np.sum(np.power(np.dot(x, w) - y, <span class="number">2</span>))/<span class="number">471</span>/<span class="number">12</span>) <span class="comment"># rmse</span></span><br><span class="line">    training_loss.append(loss)</span><br><span class="line">    <span class="keyword">if</span> t % <span class="number">100</span> == <span class="number">0</span>:</span><br><span class="line">        print(str(t)+<span class="string">":"</span>+str(loss))</span><br><span class="line">    gradient = <span class="number">2</span> * np.dot(x.transpose(), np.dot(x, w) - y) <span class="comment"># dim*1</span></span><br><span class="line">    adagrad += gradient ** <span class="number">2</span></span><br><span class="line">    w = w - learning_rate * gradient / np.sqrt(adagrad + eps)</span><br><span class="line">np.save(<span class="string">'weight.npy'</span>, w)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Save loss data</span></span><br><span class="line">fileObject = open(<span class="string">'lr_loss_'</span>+str(learning_rate)+<span class="string">'.txt'</span>, <span class="string">'w'</span>)</span><br><span class="line"><span class="keyword">for</span> ip <span class="keyword">in</span> training_loss:</span><br><span class="line">    fileObject.write(str(ip))</span><br><span class="line">    fileObject.write(<span class="string">'\n'</span>)</span><br><span class="line">fileObject.close()</span><br></pre></td></tr></table></figure>
-<p>在相同的参数下，分别用0.1，10，100，1000的学习率训练，看一下收敛的效果。学习率为0.1时收敛非常慢，学习率太大（如1000）时又无法收敛到最小值。</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th><img src="/images/HW1/loss.png" alt="loss"></th>
-<th><img src="/images/HW1/loss2.png" alt="loss2"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML20.html" target="_blank" rel="noopener">李弘毅老师ML课程主页</a></p>
-<p><a href="https://blog.csdn.net/yinfang1252/article/details/79630222" target="_blank" rel="noopener">correlation matrix heatmap reference</a></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
   </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/27/%E6%88%91%E4%BB%AC%E7%9A%84%E6%95%85%E4%BA%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Purple M. Stone">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stone's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/09/27/%E6%88%91%E4%BB%AC%E7%9A%84%E6%95%85%E4%BA%8B/" class="post-title-link" itemprop="url">我们的故事</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-27 12:21:09" itemprop="dateCreated datePublished" datetime="2019-09-27T12:21:09+08:00">2019-09-27</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-18 16:50:32" itemprop="dateModified" datetime="2020-03-18T16:50:32+08:00">2020-03-18</time>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><p>他突然说要来看樱花的时候，我真的以为他是来看花的。 </p>
-<p>虽然在同一座城市，但是我们的联系实在少的可怜。我时常忘记，在这个离家近一千公里的地方，还有一个同乡的存在。直到他说，4年了，总该来你的学校看一次樱花🌸。当他提出要我当导游的时候，我心里是万般不乐意的。多年的内向性格令我无比抗拒和不熟悉的人往来。但是他说作为报酬，会请我吃饭。于是我应邀了。</p>
-<p>看花的那天人很多。他见到我，第一句话是：“我们多久没见了？”是的，自从大一见了两三次之后，我们这几年都没见过。虽然我们的学校只隔了一条街。那天我很拘束，后来慢慢聊开了，问了他一些我后来觉得很蠢的问题。我注意到他和大多数看花人不一样，他并没有对🌸表现出很大的兴趣。只是那时我以为，🌸不够美，不足以吸引他。</p>
-<h3 id="2"><a href="#2" class="headerlink" title="2"></a>2</h3><p>后来我们的来往突然多了起来。我去看他的篮球赛，我们去看电影看夜景。再到后来，他突然牵我的手，我慌慌张张挣脱，才明白过来，他没把我当兄弟。那段时间我经历了生活和学习上的一些挫败，对于他表现出来的心意考虑了很多。犹豫了很多天之后，在他第三次尝试牵手的时候，我没有再挣脱。</p>
-<p>只是我没想过，所有我以为的偶然，从来都不是偶然。</p>
-<p>高考放榜之后偶然问起他的去向，惊讶发现我们将要去往同一座城市。</p>
-<p>某年生日零点收到他的红包，我惊喜于他竟然记得我的生日。</p>
-<p>后来他说，“我喜欢你的时间，要比你想象中长很多。”</p>
-<h3 id="3"><a href="#3" class="headerlink" title="3"></a>3</h3><p>故事是他后来告诉我的。</p>
-<p>某天我问他，“我很好奇你是什么时候开始对我有想法的？”</p>
-<p>”如果是说那种朦胧的感情，我很早就有了。3月份见到你，发现你还是我想象中的样子，所以确定了内心的想法。”</p>
-<p>他说，在很早很早的时候，他对我就有很模糊朦胧的感情。大概是初中某年我找他爬山的时候？他说，“我还记得你当时的样子，留着短发，很可爱。”</p>
-<p>他说，后来他选择脱离大环境，到另一个地方读高中，却会偶尔想起我。</p>
-<p>他说，大二的某个夜晚，他心里很郁闷，夜里出来走走，不觉间走到我的学校。明明想叫我出来，却又害怕突然的打扰，最后只是随便寒暄了几句。</p>
-<p>他说，大学怂了四年，终于迈出一步，以看花为借口靠近我，然后约我看电影，然后尝试着牵手，在被拒绝之后心情很低落。但还是鼓起勇气试了许多次。</p>
-<p>他还说，去年看到我说要去北京，他就疯狂联系北京的学校，只是因为种种原因未成行。</p>
-<p>“从我的学校到你的学校这一步，我走了四年。很庆幸，终于走到了。”</p>
-<h3 id="4"><a href="#4" class="headerlink" title="4"></a>4</h3><p>他听着李宗盛的《鬼迷心窍》，一步一步向我走来。后知后觉的我，庆幸着自己是这个十年故事的女主角。最近听JJ的新歌，感觉有一句歌词很适合总结这篇文章：“这故事开始一个人，我认真写成了我们”。</p>
-<p>谢谢你的等待，谢谢你的认真。未来有你，于我幸甚。</p>
-<p>​      </p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/27/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Purple M. Stone">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stone's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/09/27/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-27 10:43:08" itemprop="dateCreated datePublished" datetime="2019-09-27T10:43:08+08:00">2019-09-27</time>
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-  </div>
-
-  
 
 
           </div>
@@ -702,6 +452,11 @@
 
   <aside class="sidebar">
     <div class="sidebar-inner">
+        
+        
+        
+        
+      
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
@@ -714,6 +469,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-作业描述"><span class="nav-number">1.</span> <span class="nav-text">1.    作业描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Feature-Selection"><span class="nav-number">2.</span> <span class="nav-text">2.    Feature Selection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Data-Preprocessing"><span class="nav-number">3.</span> <span class="nav-text">3.    Data Preprocessing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-用不同的学习率训练"><span class="nav-number">4.</span> <span class="nav-text">4.    用不同的学习率训练</span></a></li></ol></div>
+        
       </div>
       <!--/noindex-->
 
@@ -918,16 +675,6 @@ window.addEventListener('pjax:success', () => {
 
   
 
-  
-    
-      
-    
-      
-    
-      
-    
-      
-    
   
 
   
