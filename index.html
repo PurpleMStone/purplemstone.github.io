@@ -295,37 +295,37 @@
 <h3 id="2-Feature-Selection"><a href="#2-Feature-Selection" class="headerlink" title="2.    Feature Selection"></a>2.    Feature Selection</h3><p>​        train.csv中每个小时给出了18个特征，其实有些特征与PM2.5关系不大。首先画一下相关矩阵热力图来观察一下。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">data=pd.read_csv(<span class="string">'train.csv'</span>)</span><br><span class="line">data.drop([<span class="string">'a'</span>,<span class="string">'b'</span>],axis=<span class="number">1</span>,inplace=<span class="literal">True</span>)</span><br><span class="line">column=data[<span class="string">'c'</span>].unique()</span><br><span class="line">data_new=pd.DataFrame(np.zeros([<span class="number">24</span>*<span class="number">240</span>,<span class="number">18</span>]),columns=column)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> column:</span><br><span class="line">    aa=data[data[<span class="string">'c'</span>]==i]</span><br><span class="line">    aa.drop([<span class="string">'c'</span>],axis=<span class="number">1</span>,inplace=<span class="literal">True</span>)</span><br><span class="line">    aa=np.array(aa)</span><br><span class="line">    aa[aa==<span class="string">'NR'</span>]=<span class="string">'0'</span></span><br><span class="line">    aa=aa.astype(<span class="string">'float32'</span>)</span><br><span class="line">    aa=aa.reshape(<span class="number">1</span>,<span class="number">5760</span>)</span><br><span class="line">    aa=aa.T</span><br><span class="line">    data_new[i]=aa</span><br><span class="line">label=np.array(data_new[<span class="string">'PM2.5'</span>][<span class="number">9</span>:],dtype=<span class="string">'float32'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="comment"># Draw a heatmap with the numeric values in each cell</span></span><br><span class="line">f, ax = plt.subplots(figsize=(<span class="number">9</span>, <span class="number">6</span>))</span><br><span class="line">sns.heatmap(abs(data_new.corr()), fmt=<span class="string">"d"</span>, linewidths=<span class="number">.5</span>, ax=ax, cmap=<span class="string">'Blues'</span>)</span><br><span class="line">f.savefig(<span class="string">'heatmap.png'</span>)</span><br></pre></td></tr></table></figure>
 <p>​        这里不关心是负相关还是正相关，所以对相关矩阵取了绝对值。画出来的结果是这样的：</p>
-<p><img src="D:\Github\stone_blog\stoneblog\images\HW1\heatmap.png" alt="heatmap" style="zoom:67%;" /></p>
+<p><img src="/.com//Github\stone_blog\stoneblog\images\HW1\heatmap.png" alt="heatmap" style="zoom:67%;"></p>
 <p>对于PM2.5来说，相关性比较高的有NO2, NO1, NOx, SO2, THC, PM10等特征。</p>
 <p>​        也可以把每个特征与PM2.5的关系绘制一下。可以观察到部分特征与PM2.5的值关系不大。</p>
 <div class="table-container">
 <table>
 <thead>
 <tr>
-<th><img src="D:\Github\stone_blog\stoneblog\images\HW1\0-th feature.png" alt="0-th feature" style="zoom:25%;" /></th>
-<th><img src="D:\Github\stone_blog\stoneblog\images\HW1\1-th feature.png" alt="1-th feature" style="zoom:25%;" /></th>
-<th><img src="D:\Github\stone_blog\stoneblog\images\HW1\2-th feature.png" alt="2-th feature" style="zoom:25%;" /></th>
-<th><img src="D:\Github\stone_blog\stoneblog\images\HW1\3-th feature.png" alt="3-th feature" style="zoom:25%;" /></th>
-<th><img src="D:\Github\stone_blog\stoneblog\images\HW1\4-th feature.png" alt="4-th feature" style="zoom:25%;" /></th>
-<th><img src="D:\Github\stone_blog\stoneblog\images\HW1\5-th feature.png" alt="5-th feature" style="zoom:25%;" /></th>
+<th><img src="/.com//Github\stone_blog\stoneblog\images\HW1\0-th feature.png" alt="0-th feature" style="zoom:25%;"></th>
+<th><img src="/.com//Github\stone_blog\stoneblog\images\HW1\1-th feature.png" alt="1-th feature" style="zoom:25%;"></th>
+<th><img src="/.com//Github\stone_blog\stoneblog\images\HW1\2-th feature.png" alt="2-th feature" style="zoom:25%;"></th>
+<th><img src="/.com//Github\stone_blog\stoneblog\images\HW1\3-th feature.png" alt="3-th feature" style="zoom:25%;"></th>
+<th><img src="/.com//Github\stone_blog\stoneblog\images\HW1\4-th feature.png" alt="4-th feature" style="zoom:25%;"></th>
+<th><img src="/.com//Github\stone_blog\stoneblog\images\HW1\5-th feature.png" alt="5-th feature" style="zoom:25%;"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><img src="D:\Github\stone_blog\stoneblog\images\HW1\6-th feature.png" alt="6-th feature" style="zoom:25%;" /></td>
-<td><img src="D:\Github\stone_blog\stoneblog\images\HW1\7-th feature.png" alt="7-th feature" style="zoom:25%;" /></td>
-<td><img src="D:\Github\stone_blog\stoneblog\images\HW1\8-th feature.png" alt="8-th feature" style="zoom:25%;" /></td>
-<td><img src="D:\Github\stone_blog\stoneblog\images\HW1\9-th feature.png" alt="9-th feature" style="zoom:25%;" /></td>
-<td><img src="D:\Github\stone_blog\stoneblog\images\HW1\10-th feature.png" alt="10-th feature" style="zoom:25%;" /></td>
-<td><img src="D:\Github\stone_blog\stoneblog\images\HW1\11-th feature.png" alt="11-th feature" style="zoom:25%;" /></td>
+<td><img src="/.com//Github\stone_blog\stoneblog\images\HW1\6-th feature.png" alt="6-th feature" style="zoom:25%;"></td>
+<td><img src="/.com//Github\stone_blog\stoneblog\images\HW1\7-th feature.png" alt="7-th feature" style="zoom:25%;"></td>
+<td><img src="/.com//Github\stone_blog\stoneblog\images\HW1\8-th feature.png" alt="8-th feature" style="zoom:25%;"></td>
+<td><img src="/.com//Github\stone_blog\stoneblog\images\HW1\9-th feature.png" alt="9-th feature" style="zoom:25%;"></td>
+<td><img src="/.com//Github\stone_blog\stoneblog\images\HW1\10-th feature.png" alt="10-th feature" style="zoom:25%;"></td>
+<td><img src="/.com//Github\stone_blog\stoneblog\images\HW1\11-th feature.png" alt="11-th feature" style="zoom:25%;"></td>
 </tr>
 <tr>
-<td><img src="D:\Github\stone_blog\stoneblog\images\HW1\12-th feature.png" alt="12-th feature" style="zoom:25%;" /></td>
-<td><img src="D:\Github\stone_blog\stoneblog\images\HW1\13-th feature.png" alt="13-th feature" style="zoom:25%;" /></td>
-<td><img src="D:\Github\stone_blog\stoneblog\images\HW1\14-th feature.png" alt="14-th feature" style="zoom:25%;" /></td>
-<td><img src="D:\Github\stone_blog\stoneblog\images\HW1\15-th feature.png" alt="15-th feature" style="zoom:25%;" /></td>
-<td><img src="D:\Github\stone_blog\stoneblog\images\HW1\16-th feature.png" alt="16-th feature" style="zoom:25%;" /></td>
-<td><img src="D:\Github\stone_blog\stoneblog\images\HW1\17-th feature.png" alt="17-th feature" style="zoom:25%;" /></td>
+<td><img src="/.com//Github\stone_blog\stoneblog\images\HW1\12-th feature.png" alt="12-th feature" style="zoom:25%;"></td>
+<td><img src="/.com//Github\stone_blog\stoneblog\images\HW1\13-th feature.png" alt="13-th feature" style="zoom:25%;"></td>
+<td><img src="/.com//Github\stone_blog\stoneblog\images\HW1\14-th feature.png" alt="14-th feature" style="zoom:25%;"></td>
+<td><img src="/.com//Github\stone_blog\stoneblog\images\HW1\15-th feature.png" alt="15-th feature" style="zoom:25%;"></td>
+<td><img src="/.com//Github\stone_blog\stoneblog\images\HW1\16-th feature.png" alt="16-th feature" style="zoom:25%;"></td>
+<td><img src="/.com//Github\stone_blog\stoneblog\images\HW1\17-th feature.png" alt="17-th feature" style="zoom:25%;"></td>
 </tr>
 </tbody>
 </table>
@@ -339,8 +339,8 @@
 <table>
 <thead>
 <tr>
-<th><img src="D:\Github\stone_blog\stoneblog\images\HW1\loss.png" alt="loss" style="zoom:50%;" /></th>
-<th><img src="D:\Github\stone_blog\stoneblog\images\HW1\loss2.png" alt="loss2" style="zoom:50%;" /></th>
+<th><img src="/.com//Github\stone_blog\stoneblog\images\HW1\loss.png" alt="loss" style="zoom:50%;"></th>
+<th><img src="/.com//Github\stone_blog\stoneblog\images\HW1\loss2.png" alt="loss2" style="zoom:50%;"></th>
 </tr>
 </thead>
 <tbody>
