@@ -59,19 +59,19 @@
   <meta name="description" content="作业描述​        根据人们的个人资料，判断其年收入是否高于$50, 000。这其实是个二元分类问题，本文将以 logistic regression 和 generative model 两种方法达成分类目的。 ​        作业提供了五个文件，其中在训练过程中，只有X_train、Y_train 和 X_test 这三个经过处理的档案会被使用到，train.csv 和 test.cs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="李弘毅ML课程作业-02：线性二元分类器">
-<meta property="og:url" content="http://yoursite.com/2020/03/21/MLHW2/index.html">
+<meta property="og:url" content="http://yoursite.com/2020/03/21/MLHW2_2/index.html">
 <meta property="og:site_name" content="Stone&#39;s Blog">
 <meta property="og:description" content="作业描述​        根据人们的个人资料，判断其年收入是否高于$50, 000。这其实是个二元分类问题，本文将以 logistic regression 和 generative model 两种方法达成分类目的。 ​        作业提供了五个文件，其中在训练过程中，只有X_train、Y_train 和 X_test 这三个经过处理的档案会被使用到，train.csv 和 test.cs">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/images/HW2/train_data.png">
 <meta property="og:image" content="http://yoursite.com/images/HW2/train_label.png">
 <meta property="article:published_time" content="2020-03-21T08:48:09.000Z">
-<meta property="article:modified_time" content="2020-03-21T12:59:29.450Z">
+<meta property="article:modified_time" content="2020-03-21T13:12:53.912Z">
 <meta property="article:author" content="Purple M. Stone">
 <meta property="article:tag" content="machine learning">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/images/HW2/train_data.png">
-  <link rel="canonical" href="http://yoursite.com/2020/03/21/MLHW2/">
+  <link rel="canonical" href="http://yoursite.com/2020/03/21/MLHW2_2/">
 
 
 <script id="page-configurations">
@@ -250,7 +250,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/21/MLHW2/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/21/MLHW2_2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Purple M. Stone">
@@ -278,7 +278,7 @@
                 
               
 
-              <time title="创建时间：2020-03-21 16:48:09 / 修改时间：20:59:29" itemprop="dateCreated datePublished" datetime="2020-03-21T16:48:09+08:00">2020-03-21</time>
+              <time title="创建时间：2020-03-21 16:48:09 / 修改时间：21:12:53" itemprop="dateCreated datePublished" datetime="2020-03-21T16:48:09+08:00">2020-03-21</time>
             </span>
           
             
@@ -348,7 +348,9 @@ w_{i} \leftarrow w_{i}-\eta \sum_{i}[-(\widehat{y}^{n}-f_{w,b}(x^{n}))x_{i}^{n}]
 <h4 id="计算均值和协方差"><a href="#计算均值和协方差" class="headerlink" title="计算均值和协方差"></a>计算均值和协方差</h4><p>​        在generative model 中，需要计算出最有可能产生这个训练集的数据分布的参数，也就是均值和协方差。确定了这两个参数，分布就确定了，就可以计算出测试集中某人属于年收入高于$50, 000那一类的概率。两个类别使用同样的协方差。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Compute in-class mean</span></span><br><span class="line">X_train_0 = np.array([x <span class="keyword">for</span> x, y <span class="keyword">in</span> zip(X_train, Y_train) <span class="keyword">if</span> y == <span class="number">0</span>])</span><br><span class="line">X_train_1 = np.array([x <span class="keyword">for</span> x, y <span class="keyword">in</span> zip(X_train, Y_train) <span class="keyword">if</span> y == <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">mean_0 = np.mean(X_train_0, axis = <span class="number">0</span>)</span><br><span class="line">mean_1 = np.mean(X_train_1, axis = <span class="number">0</span>)  </span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute in-class covariance</span></span><br><span class="line">cov_0 = np.zeros((data_dim, data_dim))</span><br><span class="line">cov_1 = np.zeros((data_dim, data_dim))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> X_train_0:</span><br><span class="line">    cov_0 += np.dot(np.transpose([x - mean_0]), [x - mean_0]) / X_train_0.shape[<span class="number">0</span>]</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> X_train_1:</span><br><span class="line">    cov_1 += np.dot(np.transpose([x - mean_1]), [x - mean_1]) / X_train_1.shape[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Shared covariance is taken as a weighted average of individual in-class covariance.</span></span><br><span class="line">cov = (cov_0 * X_train_0.shape[<span class="number">0</span>] + cov_1 * X_train_1.shape[<span class="number">0</span>]) / (X_train_0.shape[<span class="number">0</span>] + X_train_1.shape[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
 <h4 id="计算权重和偏差"><a href="#计算权重和偏差" class="headerlink" title="计算权重和偏差"></a>计算权重和偏差</h4><p>​        权重矩阵和偏差向量可以直接计算出来。这里求逆矩阵用到了SVD分解。</p>
-<p><a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML20.html" target="_blank" rel="noopener">李弘毅老师ML课程主页</a></p>
+<script type="math/tex; mode=display">
+\boldsymbol{w}=\Sigma^{-1}(\mu_{1}-\mu_{2})</script><script type="math/tex; mode=display">
+b=-\frac{1}{2}\mu_{1}^{T}\Sigma^{-1}\mu_{1}+\frac{1}{2}\mu_{2}^{T}\Sigma^{-1}\mu_{2}+ln\frac{N_{1}}{N_{2}}</script><p><a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML20.html" target="_blank" rel="noopener">李弘毅老师ML课程主页</a></p>
 
     </div>
 
@@ -383,6 +385,10 @@ w_{i} \leftarrow w_{i}-\eta \sum_{i}[-(\widehat{y}^{n}-f_{w,b}(x^{n}))x_{i}^{n}]
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2020/03/21/MLHW2_1/" rel="prev" title="李弘毅ML课程作业-02：线性二元分类器">
+                  李弘毅ML课程作业-02：线性二元分类器 <i class="fa fa-chevron-right"></i>
+                </a>
               
             </div>
           </div>
@@ -446,7 +452,7 @@ w_{i} \leftarrow w_{i}-\eta \sum_{i}[-(\widehat{y}^{n}-f_{w,b}(x^{n}))x_{i}^{n}]
         
           <a href="/archives/%20%7C%7C%20archive">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
