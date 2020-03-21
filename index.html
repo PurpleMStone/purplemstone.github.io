@@ -386,7 +386,7 @@ w_{i} \leftarrow w_{i}-\eta \sum_{i}[-(\widehat{y}^{n}-f_{w,b}(x^{n}))x_{i}^{n}]
                 
               
 
-              <time title="创建时间：2020-03-21 16:48:09 / 修改时间：21:12:53" itemprop="dateCreated datePublished" datetime="2020-03-21T16:48:09+08:00">2020-03-21</time>
+              <time title="创建时间：2020-03-21 16:48:09 / 修改时间：21:15:53" itemprop="dateCreated datePublished" datetime="2020-03-21T16:48:09+08:00">2020-03-21</time>
             </span>
           
             
@@ -450,7 +450,8 @@ w_{i} \leftarrow w_{i}-\eta \sum_{i}[-(\widehat{y}^{n}-f_{w,b}(x^{n}))x_{i}^{n}]
 <h4 id="计算权重和偏差"><a href="#计算权重和偏差" class="headerlink" title="计算权重和偏差"></a>计算权重和偏差</h4><p>​        权重矩阵和偏差向量可以直接计算出来。这里求逆矩阵用到了SVD分解。</p>
 <script type="math/tex; mode=display">
 \boldsymbol{w}=\Sigma^{-1}(\mu_{1}-\mu_{2})</script><script type="math/tex; mode=display">
-b=-\frac{1}{2}\mu_{1}^{T}\Sigma^{-1}\mu_{1}+\frac{1}{2}\mu_{2}^{T}\Sigma^{-1}\mu_{2}+ln\frac{N_{1}}{N_{2}}</script><p><a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML20.html" target="_blank" rel="noopener">李弘毅老师ML课程主页</a></p>
+b=-\frac{1}{2}\mu_{1}^{T}\Sigma^{-1}\mu_{1}+\frac{1}{2}\mu_{2}^{T}\Sigma^{-1}\mu_{2}+ln\frac{N_{1}}{N_{2}}</script><p>其中$\Sigma$表示协方差，$\mu$表示均值，$N$表示样本数。</p>
+<p><a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML20.html" target="_blank" rel="noopener">李弘毅老师ML课程主页</a></p>
 
         
       
