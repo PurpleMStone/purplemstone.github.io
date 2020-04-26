@@ -497,7 +497,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-26 16:26:46" itemprop="dateModified" datetime="2020-04-26T16:26:46+08:00">2020-04-26</time>
+                <time title="修改时间：2020-04-26 16:27:45" itemprop="dateModified" datetime="2020-04-26T16:27:45+08:00">2020-04-26</time>
               </span>
             
           
@@ -534,7 +534,7 @@ x^{(j)}=\sum_{i<j}o^(i,j)(x^{(i)})</script><p>搜索空间中还包含了一个�
 <script type="math/tex; mode=display">
 \overline{o}^{(i,j)}(x)=\sum_{o\in O}\frac{exp⁡(\alpha_{o}^{(i,j)})}{\sum_{o^{'}\in O}exp⁡(\alpha_{o^{'}}^{(i,j)})}o(x)</script><p>对应于节点对$(i, j)$的操作混合权重被参数化为一个维度为|O|（候选操作总个数）的向量$\alpha^{i,j}$。架构搜索的任务就减少为学习一个连续变量集合$\alpha={\alpha^{(i,j)}}$。在搜索的最后，将每个混合操作$\overline{o}^{(i,j)}$用最大似然的操作代替，就可以得到离散化的网络架构。比如$o^(i,j)=argmax_{o\in O}\alpha_{o}^{(i,j)}$在下文中，我们用$\alpha$表示编码后的架构。</p>
 <p><img src="/images/DARTS/darts.png" alt="darts"></p>
-<p>现在目标就是将架构<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image022.png" alt="img">和所有混合操作中的权重w一起学习出来。DARTS使用梯度下降算法优化交叉检验集损失。使用<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image026.png" alt="img">和<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image028.png" alt="img">分别表示训练集loss和交叉检验集的loss，则优化目标是：</p>
+<p>现在目标就是将架构$\alpha$和所有混合操作中的权重$w$一起学习出来。DARTS使用梯度下降算法优化交叉检验集损失。使用$L_{train}$和$L_{val}$分别表示训练集loss和交叉检验集的loss，则优化目标是：</p>
 <p><img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image030.png" alt="img"></p>
 <p><img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image032.png" alt="img"></p>
 <p>即找到最优结构<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image034.png" alt="img">使得在验证集上得到最优结果，即最小化<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image036.png" alt="img">，并找到最优参数<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image038.png" alt="img">，能够在特定结构<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image034.png" alt="img">上得到最优性能，即最小化<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image040.png" alt="img">。</p>
