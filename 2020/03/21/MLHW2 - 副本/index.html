@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Stone's Blog" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: true,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="Search Space搜索cell作为网络结构的构件。cell是包含N个结点的有序序列的有向无环图。结点$x^(i)$是隐藏表达（比如卷积网络的特征图），而有向边$(i ,j)$则关联着变换的一些操作。文章中假定一个cell中有两个输入节点和一个输出节点。对于卷积cell，输入节点被定义为当前层的前面两层的cell的输出。当前cell的输出是对所有中间节点使用一个压缩操作（比如拼接）得到的。 每">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NAS：DARTS论文解读">
+<meta property="og:url" content="http://yoursite.com/2020/03/21/MLHW2%20-%20%E5%89%AF%E6%9C%AC/index.html">
+<meta property="og:site_name" content="Stone&#39;s Blog">
+<meta property="og:description" content="Search Space搜索cell作为网络结构的构件。cell是包含N个结点的有序序列的有向无环图。结点$x^(i)$是隐藏表达（比如卷积网络的特征图），而有向边$(i ,j)$则关联着变换的一些操作。文章中假定一个cell中有两个输入节点和一个输出节点。对于卷积cell，输入节点被定义为当前层的前面两层的cell的输出。当前cell的输出是对所有中间节点使用一个压缩操作（比如拼接）得到的。 每">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image004.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image006.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image008.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image010.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image012.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image014.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image016.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image018.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image020.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image022.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image024.jpg">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image022.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image026.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image028.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image030.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image032.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image034.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image036.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image038.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image034.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image040.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image042.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image044.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image046.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image048.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image050.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image052.jpg">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image054.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image056.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image058.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image060.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image062.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image022.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image064.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image066.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image068.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image046.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image066.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image070.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image072.png">
+<meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image022.png">
+<meta property="article:published_time" content="2020-03-21T08:48:09.000Z">
+<meta property="article:modified_time" content="2020-04-26T07:36:17.255Z">
+<meta property="article:author" content="Purple M. Stone">
+<meta property="article:tag" content="deep learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png">
+  <link rel="canonical" href="http://yoursite.com/2020/03/21/MLHW2%20-%20%E5%89%AF%E6%9C%AC/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>NAS：DARTS论文解读 | Stone's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stone's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/21/MLHW2%20-%20%E5%89%AF%E6%9C%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Purple M. Stone">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stone's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">NAS：DARTS论文解读
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-03-21 16:48:09" itemprop="dateCreated datePublished" datetime="2020-03-21T16:48:09+08:00">2020-03-21</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-26 15:36:17" itemprop="dateModified" datetime="2020-04-26T15:36:17+08:00">2020-04-26</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Search-Space"><a href="#Search-Space" class="headerlink" title="Search Space"></a>Search Space</h1><p>搜索cell作为网络结构的构件。cell是包含N个结点的有序序列的有向无环图。结点$x^(i)$<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png" alt="img">是隐藏表达（比如卷积网络的特征图），而有向边$(i ,j)$<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image004.png" alt="img">则关联着变换<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png" alt="img">的一些操作<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image006.png" alt="img">。文章中假定一个cell中有两个输入节点和一个输出节点。对于卷积cell，输入节点被定义为当前层的前面两层的cell的输出。当前cell的输出是对所有中间节点使用一个压缩操作（比如拼接）得到的。</p>
+<p>每一个中间结点基于其所有前向操作计算得到：</p>
+<p><img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image008.png" alt="img"></p>
+<p>搜索空间中还包含了一个特殊的零操作，表示两个节点之间没有连接。学习cell的任务缩减为学习出cell的各条边的操作类型及参数。</p>
+<h3 id="连续优化"><a href="#连续优化" class="headerlink" title="连续优化"></a>连续优化</h3><p>O是候选操作（如卷积、最大池化、零操作等）的集合，每个操作表示将一些函数<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image010.png" alt="img">施加到<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png" alt="img">上。为了让搜索空间连续，我们把一个特定操作的范畴选择松弛为所有可能的操作上的一个softmax:</p>
+<p><img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image012.png" alt="img"></p>
+<p>对应于节点对(i, j)的操作混合权重被参数化为一个维度为|O|（候选操作总个数）的向量<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image014.png" alt="img">。架构搜索的任务就减少为学习一个连续变量集合<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image016.png" alt="img">。在搜索的最后，将每个混合操作<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image018.png" alt="img">用最大似然的操作代替，就可以得到离散化的网络架构。比如，<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image020.png" alt="img">。在下文中，我们用<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image022.png" alt="img">表示编码后的架构。</p>
+<p><img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image024.jpg" alt="img"></p>
+<p>现在目标就是将架构<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image022.png" alt="img">和所有混合操作中的权重w一起学习出来。DARTS使用梯度下降算法优化交叉检验集损失。使用<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image026.png" alt="img">和<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image028.png" alt="img">分别表示训练集loss和交叉检验集的loss，则优化目标是：</p>
+<p><img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image030.png" alt="img"></p>
+<p><img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image032.png" alt="img"></p>
+<p>即找到最优结构<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image034.png" alt="img">使得在验证集上得到最优结果，即最小化<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image036.png" alt="img">，并找到最优参数<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image038.png" alt="img">，能够在特定结构<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image034.png" alt="img">上得到最优性能，即最小化<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image040.png" alt="img">。</p>
+<h3 id="网络架构梯度近似"><a href="#网络架构梯度近似" class="headerlink" title="网络架构梯度近似"></a>网络架构梯度近似</h3><p>由于昂贵的内层优化代价，精确地求出网络架构的梯度是几乎不可能的。因此，这篇文章提出了一个简单的近似方案：</p>
+<p><img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image042.png" alt="img"></p>
+<p>其中w是由近似算法得到的当前的权重，<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image044.png" alt="img">是一步内层优化的学习率。这个算法的思路是使用一步训练调整得到的w来近似<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image046.png" alt="img">，而不用训练解决内层优化问题直至收敛。如果w已经是内部优化的局部最优值，此时<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image048.png" alt="img">=0，因此等号右边的式子会退化为<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image050.png" alt="img">。</p>
+<p>算法：</p>
+<p><img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image052.jpg" alt="img"></p>
+<p>对近似的架构梯度应用链式法则可以得到：</p>
+<p><img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image054.png" alt="img"></p>
+<p>其中<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image056.png" alt="img">表示一个一步前向网络的权重值。上式的第二项中包含了一个昂贵的矩阵-向量乘法，但是使用有限差分近似可以显著降低计算复杂度。使用一个很小的数值<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image058.png" alt="img">，并令<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image060.png" alt="img">，则：</p>
+<p><img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image062.png" alt="img"></p>
+<p>计算这个有限差分式只需要权重值的两个前传项和<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image022.png" alt="img">的两个反传项，计算复杂度在<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image064.png" alt="img">。</p>
+<p>一阶近似：</p>
+<p>当<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image066.png" alt="img">时，式(7)中的二阶导数项会消失。此时，架构梯度由<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image068.png" alt="img">给出，对应着假定当前的w与<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image046.png" alt="img">相同然后优化交叉检验loss的情况。这会带来一些加速，但是根据实验结果显示，性能会变差。下文用一阶近似来指代<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image066.png" alt="img">的情形，用二阶近似来指代<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image070.png" alt="img">时的梯度公式。</p>
+<h3 id="离散架构推导"><a href="#离散架构推导" class="headerlink" title="离散架构推导"></a>离散架构推导</h3><p>为了组成离散架构中的每一个节点，文中在该节点所有的前面节点的所有的非零候选操作中保留了top-k的最强操作。一个操作的强度被定义为<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image072.png" alt="img">。</p>
+<p>其实就是两个节点之间所有候选操作都施加上去，给每个候选操作都赋予权值。权值用softmax激活之后相加起来作为节点的输出，反传学习可以更新结构权值<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image022.png" alt="img">。最后选择权重最大的（强度最强的）前k个操作作为这两个节点之间的操作。在DARTS的文章中，CNN中选择k=2</p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/deep-learning/" rel="tag"># deep learning</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2020/03/21/MLHW2/" rel="next" title="李弘毅ML课程作业-02：线性二元分类器">
+                  <i class="fa fa-chevron-left"></i> 李弘毅ML课程作业-02：线性二元分类器
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2020/03/21/%E7%BD%97%E7%BF%94%E9%87%91%E5%8F%A5%E5%90%88%E9%9B%86/" rel="prev" title="罗翔讲刑法--金句笔记">
+                  罗翔讲刑法--金句笔记 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Search-Space"><span class="nav-number">1.</span> <span class="nav-text">Search Space</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#连续优化"><span class="nav-number">1.0.1.</span> <span class="nav-text">连续优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络架构梯度近似"><span class="nav-number">1.0.2.</span> <span class="nav-text">网络架构梯度近似</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#离散架构推导"><span class="nav-number">1.0.3.</span> <span class="nav-text">离散架构推导</span></a></li></ol></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Purple M. Stone</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/%20%7C%7C%20archive">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/%20%7C%7C%20th">
+          
+        
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/%20%7C%7C%20tags">
+          
+        
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Purple M. Stone</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.0</div>
+
+        
+<div class="busuanzi-count">
+  <script pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script src="/lib/pjax/pjax.min.js?v=0.2.8"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+
+<script src="/js/utils.js?v=7.4.0.js"></script>
+
+<script src="/js/motion.js?v=7.4.0.js"></script>
+
+
+<script src="/js/schemes/pisces.js?v=7.4.0.js"></script>
+
+
+<script src="/js/next-boot.js?v=7.4.0.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var id = element.id || '';
+    var src = element.src || '';
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (id !=='') {
+      script.id = element.id;
+    }
+    if (src !== '') {
+      script.src = src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+<script src="/js/local-search.js?v=7.4.0.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        extensions: ['[mhchem]/mhchem.js'],
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+    </div>
+</body>
+</html>
