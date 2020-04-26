@@ -25,7 +25,7 @@
   <entry>
     <title><![CDATA[NAS：DARTS论文解读]]></title>
     <url>%2F2020%2F03%2F21%2FMLHW2%20-%20%E5%89%AF%E6%9C%AC%2F</url>
-    <content type="text"><![CDATA[Search Space搜索cell作为网络结构的构件。cell是包含N个结点的有序序列的有向无环图。结点$x^{(i)}$是隐藏表达（比如卷积网络的特征图），而有向边$(i ,j)$则关联着变换$x^{(i)}$的一些操作$o^(i,j)$。文章中假定一个cell中有两个输入节点和一个输出节点。对于卷积cell，输入节点被定义为当前层的前面两层的cell的输出。当前cell的输出是对所有中间节点使用一个压缩操作（比如拼接）得到的。 每一个中间结点基于其所有前向操作计算得到： x^{(j)}=\sum_{i]]></content>
+    <content type="text"><![CDATA[Search Space搜索cell作为网络结构的构件。cell是包含N个结点的有序序列的有向无环图。结点$x^{(i)}$是隐藏表达（比如卷积网络的特征图），而有向边$(i ,j)$则关联着变换$x^{(i)}$的一些操作$o^{(i,j)}$。文章中假定一个cell中有两个输入节点和一个输出节点。对于卷积cell，输入节点被定义为当前层的前面两层的cell的输出。当前cell的输出是对所有中间节点使用一个压缩操作（比如拼接）得到的。 每一个中间结点基于其所有前向操作计算得到： x^{(j)}=\sum_{i]]></content>
       <categories>
         <category>Machine Learning</category>
       </categories>
