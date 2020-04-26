@@ -63,7 +63,7 @@
 <meta property="og:site_name" content="Stone&#39;s Blog">
 <meta property="og:description" content="Search Space搜索cell作为网络结构的构件。cell是包含N个结点的有序序列的有向无环图。结点$x^{(i)}$是隐藏表达（比如卷积网络的特征图），而有向边$(i ,j)$则关联着变换$x^{(i)}$的一些操作$o^(i,j)$。文章中假定一个cell中有两个输入节点和一个输出节点。对于卷积cell，输入节点被定义为当前层的前面两层的cell的输出。当前cell的输出是对所有中间节点">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/.com//darts.png">
+<meta property="og:image" content="http://yoursite.com/images/DARTS/darts.png">
 <meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image022.png">
 <meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image026.png">
 <meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image028.png">
@@ -95,11 +95,11 @@
 <meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image072.png">
 <meta property="og:image" content="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image022.png">
 <meta property="article:published_time" content="2020-03-21T08:48:09.000Z">
-<meta property="article:modified_time" content="2020-04-26T08:22:06.721Z">
+<meta property="article:modified_time" content="2020-04-26T08:24:49.411Z">
 <meta property="article:author" content="Purple M. Stone">
 <meta property="article:tag" content="machine learning">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/.com//darts.png">
+<meta name="twitter:image" content="http://yoursite.com/images/DARTS/darts.png">
   <link rel="canonical" href="http://yoursite.com/2020/03/21/MLHW2%20-%20%E5%89%AF%E6%9C%AC/">
 
 
@@ -318,7 +318,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-26 16:22:06" itemprop="dateModified" datetime="2020-04-26T16:22:06+08:00">2020-04-26</time>
+                <time title="修改时间：2020-04-26 16:24:49" itemprop="dateModified" datetime="2020-04-26T16:24:49+08:00">2020-04-26</time>
               </span>
             
           
@@ -362,7 +362,7 @@ x^{(j)}=\sum_{i<j}o^(i,j)(x^{(i)})</script><p>搜索空间中还包含了一个�
 <h1 id="连续优化"><a href="#连续优化" class="headerlink" title="连续优化"></a>连续优化</h1><p>O是候选操作（如卷积、最大池化、零操作等）的集合，每个操作表示将一些函数$o(\cot)$施加到$x^{(i)}$上。为了让搜索空间连续，我们把一个特定操作的范畴选择松弛为所有可能的操作上的一个softmax:</p>
 <script type="math/tex; mode=display">
 \overline{o}^{(i,j)}(x)=\sum_{o\in O}\frac{exp⁡(\alpha_{o}^{(i,j)})}{\sum_{o^{'}\in O}exp⁡(\alpha_{o^{'}}^{(i,j)})}o(x)</script><p>对应于节点对$(i, j)$的操作混合权重被参数化为一个维度为|O|（候选操作总个数）的向量$\alpha^{i,j}$。架构搜索的任务就减少为学习一个连续变量集合$\alpha={\alpha^{(i,j)}}$。在搜索的最后，将每个混合操作$\overline{o}^{(i,j)}$用最大似然的操作代替，就可以得到离散化的网络架构。比如$o^(i,j)=argmax_{o\in O}\alpha_{o}^{(i,j)}$在下文中，我们用$\alpha$表示编码后的架构。</p>
-<p><img src="/.com//darts.png" alt="darts"></p>
+<p><img src="/images/DARTS/darts.png" alt="darts"></p>
 <p>现在目标就是将架构<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image022.png" alt="img">和所有混合操作中的权重w一起学习出来。DARTS使用梯度下降算法优化交叉检验集损失。使用<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image026.png" alt="img">和<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image028.png" alt="img">分别表示训练集loss和交叉检验集的loss，则优化目标是：</p>
 <p><img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image030.png" alt="img"></p>
 <p><img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image032.png" alt="img"></p>
