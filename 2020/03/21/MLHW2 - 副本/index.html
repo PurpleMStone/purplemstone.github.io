@@ -66,7 +66,7 @@
 <meta property="og:image" content="http://yoursite.com/images/DARTS/darts.png">
 <meta property="og:image" content="http://yoursite.com/images/DARTS/algorithm.png">
 <meta property="article:published_time" content="2020-03-21T08:48:09.000Z">
-<meta property="article:modified_time" content="2020-04-26T09:54:40.678Z">
+<meta property="article:modified_time" content="2020-04-26T09:57:58.974Z">
 <meta property="article:author" content="Purple M. Stone">
 <meta property="article:tag" content="machine learning">
 <meta name="twitter:card" content="summary">
@@ -289,7 +289,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-26 17:54:40" itemprop="dateModified" datetime="2020-04-26T17:54:40+08:00">2020-04-26</time>
+                <time title="修改时间：2020-04-26 17:57:58" itemprop="dateModified" datetime="2020-04-26T17:57:58+08:00">2020-04-26</time>
               </span>
             
           
@@ -352,6 +352,7 @@ s.t. w^{*}(\alpha)=argmin_{w}L_{train}(w,\alpha)</script><p>即找到最优结�
 <h3 id="离散架构推导"><a href="#离散架构推导" class="headerlink" title="离散架构推导"></a>离散架构推导</h3><p>为了组成离散架构中的每一个节点，文中在该节点所有的前面节点的所有的非零候选操作中保留了top-k的最强操作。一个操作的强度被定义为</p>
 <script type="math/tex; mode=display">
 \frac{exp(\alpha^{(i,j)}_o)}{\sum\limits_{o'\in O}exp(\alpha^{(i,j)}_{o'})}</script><p>其实就是两个节点之间所有候选操作都施加上去，给每个候选操作都赋予权值。权值用softmax激活之后相加起来作为节点的输出，反传学习可以更新结构权值$\alpha$。最后保留权重最大的（强度最强的）k个结点与本结点的连接。在DARTS的文章中，CNN中选择k=2。</p>
+<p><a href="https://arxiv.org/pdf/1806.09055.pdf" target="_blank" rel="noopener">DARTS论文</a></p>
 
     </div>
 
