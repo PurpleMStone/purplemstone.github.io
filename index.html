@@ -497,7 +497,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-26 15:39:34" itemprop="dateModified" datetime="2020-04-26T15:39:34+08:00">2020-04-26</time>
+                <time title="修改时间：2020-04-26 15:43:45" itemprop="dateModified" datetime="2020-04-26T15:43:45+08:00">2020-04-26</time>
               </span>
             
           
@@ -526,7 +526,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Search-Space"><a href="#Search-Space" class="headerlink" title="Search Space"></a>Search Space</h1><p>搜索cell作为网络结构的构件。cell是包含N个结点的有序序列的有向无环图。结点$x^{(i)}$<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png" alt="img">是隐藏表达（比如卷积网络的特征图），而有向边$(i ,j)$<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image004.png" alt="img">则关联着变换<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png" alt="img">的一些操作<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image006.png" alt="img">。文章中假定一个cell中有两个输入节点和一个输出节点。对于卷积cell，输入节点被定义为当前层的前面两层的cell的输出。当前cell的输出是对所有中间节点使用一个压缩操作（比如拼接）得到的。</p>
+          <h1 id="Search-Space"><a href="#Search-Space" class="headerlink" title="Search Space"></a>Search Space</h1><p>搜索cell作为网络结构的构件。cell是包含N个结点的有序序列的有向无环图。结点$x^{(i)}$是隐藏表达（比如卷积网络的特征图），而有向边$(i ,j)$则关联着变换$x^{(i)}<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png" alt="img">的一些操作<img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image006.png" alt="img">。文章中假定一个cell中有两个输入节点和一个输出节点。对于卷积cell，输入节点被定义为当前层的前面两层的cell的输出。当前cell的输出是对所有中间节点使用一个压缩操作（比如拼接）得到的。</p>
 <p>每一个中间结点基于其所有前向操作计算得到：</p>
 <p><img src="file:///C:/Users/shi/AppData/Local/Temp/msohtmlclip1/01/clip_image008.png" alt="img"></p>
 <p>搜索空间中还包含了一个特殊的零操作，表示两个节点之间没有连接。学习cell的任务缩减为学习出cell的各条边的操作类型及参数。</p>
