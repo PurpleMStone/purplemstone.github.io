@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[windows更改pip镜像源及解决总是timeout的情况]]></title>
+    <url>%2F2020%2F05%2F12%2Fsetup_pip%E9%95%9C%E5%83%8F%E6%BA%90%2F</url>
+    <content type="text"><![CDATA[pip安装事情的起因是我想安装PyQt5： 12pip install pyqt5pip install pyqt5-tools 当然这是最慢的方法，于是可以用镜像源安装： pip安装使用国内镜像源1234567891011清华：https://pypi.tuna.tsinghua.edu.cn/simple阿里云：http://mirrors.aliyun.com/pypi/simple/中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/华中理工大学：http://pypi.hustunique.com/山东理工大学：http://pypi.sdutlinux.org/ 豆瓣：http://pypi.douban.com/simple/ 临时使用的话加参数-i，例如： 1pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pyqt5 然而依然总是timeout，于是： 设置pip配置文件配置文件地址：（如果没有pip.ini文件，就自己新建编辑一个） 1C:\ProgramData\pip\pip.ini 配置文件内容，将召唤timeout的时长设置得长一些 12345678[global]timeout = 60index-url = http://pypi.douban.com/simpletrusted-host = pypi.douban.com[install]use-mirrors = truemirrors = http://pypi.douban.comtrusted-host = pypi.douban.com 设置好之后，再用 1pip install pyqt5 会显示现在使用的是豆瓣镜像源，速度也飞起来了。 pip安装PyQt5 pip使用国内镜像源 pip配置文件设置]]></content>
+      <categories>
+        <category>Setup</category>
+      </categories>
+      <tags>
+        <tag>setup</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Pytorch计算模型运算量的工具--torchstat]]></title>
     <url>%2F2020%2F05%2F11%2Fpytorch_torchstat%2F</url>
     <content type="text"><![CDATA[说明与安装这个包可以计算出一个网络模型的参数量和运算量，甚至给出每一层的运算量，比如： 安装方法为： 1pip install torchstat 示例12345678910111213141516171819202122232425262728import torchimport torch.nn as nnimport torch.nn.functional as Ffrom torchstat import statclass Net(nn.Module): def __init__(self): super(Net, self).__init__() self.conv1 = nn.Conv2d(3, 10, kernel_size=5) self.conv2 = nn.Conv2d(10, 20, kernel_size=5) self.conv2_drop = nn.Dropout2d() self.fc1 = nn.Linear(56180, 50) self.fc2 = nn.Linear(50, 10) def forward(self, x): x = F.relu(F.max_pool2d(self.conv1(x), 2)) x = F.relu(F.max_pool2d(self.conv2_drop(self.conv2(x)), 2)) x = x.view(-1, 56180) x = F.relu(self.fc1(x)) x = F.dropout(x, training=self.training) x = self.fc2(x) return F.log_softmax(x, dim=1)if __name__ == '__main__': model = Net() stat(model, (3, 224, 224)) 然后在命令行输入 1torchstat -f example.py -m Net 如果要更改输入图像的尺寸，只改example.py里的（3，224，224）没有起作用，于是我使用了-s选项： 1torchstat -f example.py -m Net -s &#39;3x32x32&#39; 这里选项内容是用字符串表示的，‘x’就是字母x。 另一个示例12345from torchstat import statimport torchvision.models as modelsmodel = models.resnet18()stat(model, (3, 224, 224)) torchstat的Github]]></content>
@@ -9,17 +20,6 @@
       </categories>
       <tags>
         <tag>pytorch</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[NAS：GDAS论文解读]]></title>
-    <url>%2F2020%2F04%2F26%2FNAS_GDAS%2F</url>
-    <content type="text"><![CDATA[引入GDAS在DARTS的基础上进行了改进。（1）DARTS是优化所有运算的权重，这样就会浪费很多时间，增加了训练时长。而GDAS只训练采样的运算，相较于完全训练时间更短。（2）将不同的运算同时优化可能会使得它们之间产生对抗，不同的运算可能产生相反的值，求和之后可能就会产生特征消失，导致两个相连节点之间信息流的破坏，从而破坏了优化过程。而GDAS每次只优化DAG的一部分，更加有效。 可微分模型采样GDAS的主要创新点是使用了可微分模型采样进行搜索。在结点i和结点j之间，GDAS算法是从候选函数（操作）集合F中按照离散概率分布采样出一个函数（操作）。在搜索过程中，cell中的每个结点计算方式如下： 其中是从中采样出来的，而是函数内部的权重。这个离散的概率分布可以用一个可学习的概率质量函数描述： 其中是一个K维可学习向量的第k个元素。表示F中的第k个函数（操作）。K是F的基数，即K=|F|。事实上，是和之间函数（操作）采样分布的编码。因此，一个神经cell的采样分布可以由所有进行编码，即：。 存在的困难：公式(3)需要从一个离散概率分布中采样，因此不能通过公式（4）中的来反传梯度从而优化。为了能够反传，文中使用了Gumbel-Max技巧来重新定义公式(3)变为公式(5)的形式。 其中是独立同分布的样本，服从Gumbel (0,1)分布。而是的第k个样本。是和之间的转换函数的内部权重。然后，GDAS使用softmax函数来松弛argmax函数使得公式(5)可微分： 其中是softmax温度。当时，；当 时，中的每个元素都是一样的，并且近似的分布会很平滑。文中在前传过程中使用公式(5)，使用argmax；而为了梯度可以反传，在反向传播的公式(7)中使用了softmax。 训练：迭代更新采样分布和所有函数(操作)的权重。给定一个数据样本x及其对应的标签y，loss可以由下式计算： 其中是由A编码的分布；表示网络中所有cell中所有函数(操作)内的权重参数。对于一个数据样本，首先从中采样出一个网络结构，然后基于其对应的权重计算出网络的输出。根据替代优化策略（AOS）基于交叉检验集的loss值来更新A，并基于训练集的loss来更新W。 网络架构：训练完成后，需要根据学习出来的A导出最终的结构。每个节点都和其前面的T个节点连接着。遵从DARTS的设置，在CNN中使用T=2。假定是候选的下标集合，导出最终网络结构的步骤如下： (1) 定义和之间连接的重要性为：; (2) 对于每个节点，保留其与之前结点的连接中T个重要性最高的连接。 (3) 对于和之间保留的连接，使用函数。的默认值为{1,…,K}。 加速：在公式(5)中，是一个one-hot向量。因此，在前传的时候，只需要函数（操作）。在反传过程中，只是反传在产生的梯度。这种方式可以让我们节省大量的计算时间，并且将GPU内存使用减少了大概|F|倍。 实验结果与讨论]]></content>
-      <categories>
-        <category>Deep Learning</category>
-      </categories>
-      <tags>
-        <tag>deep learning</tag>
       </tags>
   </entry>
   <entry>
