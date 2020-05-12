@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-05-12T07:57:25.720Z</updated>
+  <updated>2020-05-12T08:35:40.102Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://yoursite.com/2020/05/12/setup_pyqt%E5%9C%A8pycharm%E4%B8%8A%E9%83%A8%E7%BD%B2/"/>
     <id>http://yoursite.com/2020/05/12/setup_pyqt在pycharm上部署/</id>
     <published>2020-05-12T07:24:09.000Z</published>
-    <updated>2020-05-12T07:57:25.720Z</updated>
+    <updated>2020-05-12T08:35:40.102Z</updated>
     
     <content type="html"><![CDATA[<h1 id="PyQt5安装"><a href="#PyQt5安装" class="headerlink" title="PyQt5安装"></a>PyQt5安装</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install pyqt5</span><br><span class="line">pip install pyqt5-tools</span><br></pre></td></tr></table></figure><p>第二个命令包含了designer的安装。我的designer.exe安装路径在E:\Anaconda3\Library\bin</p><p>可以用Cotana搜索designer，然后右键打开文件所在位置，直接定位它的安装路径，后面要用到。</p><h1 id="designer在PyCharm上部署"><a href="#designer在PyCharm上部署" class="headerlink" title="designer在PyCharm上部署"></a>designer在PyCharm上部署</h1><p>File-&gt;Settings-&gt;Tools-&gt;External Tools</p><p>点击“+”来增加外部工具。</p><p>(1) 增加QT设计界面“Qt Designer” — 这个就是设计Qt界面的工具</p><ul><li><p>Program选择PyQt安装目录中 designer.exe 的路径</p></li><li><p>Work directory 使用变量 $ProjectFileDir$ （点击后面的Insert Macro…）</p><p><img src="/images/setup/pyqt/1.png" alt="1"></p></li></ul><p>(2) 增加“PyUIC” — 这个主要是用来将 Qt界面 转换成 py代码</p><ul><li><p>Program选择PyQt安装目录中 pyuic5.bat 的路径（我的依然在E:\Anaconda3\Library\bin里）</p></li><li><p>parameters设置为$FileName$ -o $FileNameWithoutExtension$.py</p></li><li><p>Work directory 设置为 $ProjectFileDir$ （点击后面的Insert Macro…）</p><p><img src="/images/setup/pyqt/2.png" alt="2"></p><p>点击确认就设置好了。返回去后通过Tools可以看到：</p><p><img src="/images/setup/pyqt/3.png" alt="3"></p></li></ul><h1 id="设计GUI"><a href="#设计GUI" class="headerlink" title="设计GUI"></a>设计GUI</h1><p>依照上图，点击PyQt Designer, 在弹出来的界面中选择Wdiget，然后点击创建。</p><p><img src="/images/setup/pyqt/4.png" alt="4"></p><p>在窗口添加控件，Lable、pushButton、checkBox、lineEdit等：</p><p><img src="/images/setup/pyqt/5.png" alt="5"></p><p>把.ui文件保存到当前项目目录中，然后右键点击.ui文件：</p><p><img src="/images/setup/pyqt/6.png" alt="6"></p><p>点击PyUIC即可将.ui转成.py文件。</p><p>在login.py中添加：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    <span class="keyword">import</span> sys</span><br><span class="line">    app=QtWidgets.QApplication(sys.argv)</span><br><span class="line">    widget=QtWidgets.QWidget()</span><br><span class="line">    ui=Ui_form()</span><br><span class="line">    ui.setupUi(widget)</span><br><span class="line">    widget.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure><p>运行login.py，就可以看到这个页面了。</p><p><a href="http://code.py40.com/2540.html" target="_blank" rel="noopener">QtDesigner的安装</a></p><p><a href="http://code.py40.com/2561.html" target="_blank" rel="noopener">设计GUI</a></p>]]></content>
     
