@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-05-12T11:06:57.492Z</updated>
+  <updated>2020-08-04T14:26:55.441Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode20--有效的括号</title>
+    <link href="http://yoursite.com/2020/08/04/7_leetcode_001/"/>
+    <id>http://yoursite.com/2020/08/04/7_leetcode_001/</id>
+    <published>2020-08-04T14:18:09.000Z</published>
+    <updated>2020-08-04T14:26:55.441Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>给定一个只包括 ‘(‘，’)’，’{‘，’}’，’[‘，’]’ 的字符串，判断字符串是否有效。</p><p>有效字符串需满足：</p><p>左括号必须用相同类型的右括号闭合。<br>左括号必须以正确的顺序闭合。<br>注意空字符串可被认为是有效字符串。</p><h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><p>示例 1:</p><p>输入: “()”<br>输出: true<br>示例 2:</p><p>输入: “()[]{}”<br>输出: true<br>示例 3:</p><p>输入: “(]”<br>输出: false<br>示例 4:</p><p>输入: “([)]”<br>输出: false<br>示例 5:</p><p>输入: “{[]}”<br>输出: true</p><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>使用先进后出的栈，左括号存放到栈中，遇到右括号则从栈中pop一个出来看看是否对应，若不对应即可判断为“false”，若对应则继续余下字符的判断。若最后栈中没有括号存在，则为“true”。字典中”?“是边界处理，防止从空栈pop元素的报错。</p><h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isValid</span><span class="params">(self, s)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type s: str</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        dic = &#123;<span class="string">'('</span>:<span class="string">')'</span>,<span class="string">'['</span>:<span class="string">']'</span>,<span class="string">'&#123;'</span>:<span class="string">'&#125;'</span>,<span class="string">'?'</span>:<span class="string">'?'</span>&#125;</span><br><span class="line">        stack = [<span class="string">'?'</span>]</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> s:</span><br><span class="line">            <span class="keyword">if</span> c <span class="keyword">in</span> dic:</span><br><span class="line">                stack.append(c)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> dic[stack.pop()] != c:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> len(stack) == <span class="number">1</span></span><br></pre></td></tr></table></figure><p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/valid-parentheses" target="_blank" rel="noopener">https://leetcode-cn.com/problems/valid-parentheses</a></p><p>题解：<a href="https://leetcode-cn.com/problems/valid-parentheses/solution/valid-parentheses-fu-zhu-zhan-fa-by-jin407891080/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/valid-parentheses/solution/valid-parentheses-fu-zhu-zhan-fa-by-jin407891080/</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h1&gt;&lt;p&gt;给定一个只包括 ‘(‘，’)’，’{‘，’}’，’[‘，’]’ 的字符串，判断字符串是否有效。&lt;/p&gt;
+&lt;p&gt;有效字符串需满足：&lt;/p&gt;
+&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="Algorithms" scheme="http://yoursite.com/categories/Algorithms/"/>
+    
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+  </entry>
   
   <entry>
     <title>PyQt的安装以及在PyCharm上的部署</title>
@@ -145,35 +173,6 @@
     
     
       <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>罗翔讲刑法--金句笔记</title>
-    <link href="http://yoursite.com/2020/03/21/%E7%BD%97%E7%BF%94%E9%87%91%E5%8F%A5%E5%90%88%E9%9B%86/"/>
-    <id>http://yoursite.com/2020/03/21/罗翔金句合集/</id>
-    <published>2020-03-21T13:30:53.000Z</published>
-    <updated>2020-03-21T13:49:35.941Z</updated>
-    
-    <content type="html"><![CDATA[<ol><li>我们之所以做一个道德的人，不是为了追求幸福，而只是因为这本身就无愧于我们已经拥有的幸福。</li><li>一个人不能处分自己最重要的利益，因为自由不能以彻底放弃自由为代价。（这样的自由一定会导致强者对弱者的剥削。）</li><li>法益作为入罪的基础，而伦理作为出罪的依据。</li><li>犯罪是可怕的，但比犯罪更可怕的是不受约束的刑罚权力。</li><li>一次不公正的审判，其恶果甚至超过十次犯罪。因为犯罪虽是无视法律——好比污染了水流，而不公正的审判则毁坏法律——好比污染水源。（培根）</li><li>自从有刑法存在国家代替受害人私刑报复时开始，国家就承担了双重责任，因此表现出它的悖论性。刑法不仅要面对犯罪人保护国家，也要面对国家保护犯罪人，不单面对犯罪人也要面对检察官保护市民，成为公民反对私法专横和错误的大宪章。（德国法学家拉德布鲁赫）</li><li>如果刑罚权不受限制，那么一切正义都有可能被架空，而且往往是以正义的名义来架空正义。</li><li>权力导致腐败，绝对权力导致绝对腐败。</li><li>刑法是一根带哨子的皮鞭。</li><li>当立法权和司法权合二为一，独裁就不可避免，自由就荡然无存。（孟德斯鸠）</li><li>法治的精神在于限权。</li><li>如果衣服上出现了褶皱，司法机关可以用熨斗把它熨平，但如果衣服上出现了一个大洞，那就必须取决于立法机关把它织补。（英国丹宁勋爵）</li><li>法律是一种平衡的艺术，要在诸多对立价值中寻找一个平衡点。</li><li>有一种鸟是永远也关不住的，因为它的每片羽翼上都沾满了自由的光辉。（《肖申克的救赎》经典台词）</li><li>法律要倾听民众的声音，但是要超越民众的偏见。</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ol&gt;
-&lt;li&gt;我们之所以做一个道德的人，不是为了追求幸福，而只是因为这本身就无愧于我们已经拥有的幸福。&lt;/li&gt;
-&lt;li&gt;一个人不能处分自己最重要的利益，因为自由不能以彻底放弃自由为代价。（这样的自由一定会导致强者对弱者的剥削。）&lt;/li&gt;
-&lt;li&gt;法益作为入罪的基础，而伦理
-      
-    
-    </summary>
-    
-    
-      <category term="Law" scheme="http://yoursite.com/categories/Law/"/>
-    
-    
-      <category term="law" scheme="http://yoursite.com/tags/law/"/>
     
   </entry>
   

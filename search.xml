@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Leetcode20--有效的括号]]></title>
+    <url>%2F2020%2F08%2F04%2F7_leetcode_001%2F</url>
+    <content type="text"><![CDATA[题目给定一个只包括 ‘(‘，’)’，’{‘，’}’，’[‘，’]’ 的字符串，判断字符串是否有效。 有效字符串需满足： 左括号必须用相同类型的右括号闭合。左括号必须以正确的顺序闭合。注意空字符串可被认为是有效字符串。 示例示例 1: 输入: “()”输出: true示例 2: 输入: “()[]{}”输出: true示例 3: 输入: “(]”输出: false示例 4: 输入: “([)]”输出: false示例 5: 输入: “{[]}”输出: true 思路使用先进后出的栈，左括号存放到栈中，遇到右括号则从栈中pop一个出来看看是否对应，若不对应即可判断为“false”，若对应则继续余下字符的判断。若最后栈中没有括号存在，则为“true”。字典中”?“是边界处理，防止从空栈pop元素的报错。 代码12345678910111213141516class Solution(object): def isValid(self, s): """ :type s: str :rtype: bool """ dic = &#123;'(':')','[':']','&#123;':'&#125;','?':'?'&#125; stack = ['?'] for c in s: if c in dic: stack.append(c) else: if dic[stack.pop()] != c: return False return len(stack) == 1 来源：力扣（LeetCode）链接：https://leetcode-cn.com/problems/valid-parentheses 题解：https://leetcode-cn.com/problems/valid-parentheses/solution/valid-parentheses-fu-zhu-zhan-fa-by-jin407891080/]]></content>
+      <categories>
+        <category>Algorithms</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[PyQt的安装以及在PyCharm上的部署]]></title>
     <url>%2F2020%2F05%2F12%2Fsetup_pyqt%E5%9C%A8pycharm%E4%B8%8A%E9%83%A8%E7%BD%B2%2F</url>
     <content type="text"><![CDATA[PyQt5安装12pip install pyqt5pip install pyqt5-tools 第二个命令包含了designer的安装。我的designer.exe安装路径在E:\Anaconda3\Library\bin 可以用Cotana搜索designer，然后右键打开文件所在位置，直接定位它的安装路径，后面要用到。 designer在PyCharm上部署File-&gt;Settings-&gt;Tools-&gt;External Tools 点击“+”来增加外部工具。 (1) 增加QT设计界面“Qt Designer” — 这个就是设计Qt界面的工具 Program选择PyQt安装目录中 designer.exe 的路径 Work directory 使用变量 $ProjectFileDir$ （点击后面的Insert Macro…） (2) 增加“PyUIC” — 这个主要是用来将 Qt界面 转换成 py代码 Program选择PyQt安装目录中 pyuic5.bat 的路径（我的依然在E:\Anaconda3\Library\bin里） parameters设置为$FileName$ -o $FileNameWithoutExtension$.py Work directory 设置为 $ProjectFileDir$ （点击后面的Insert Macro…） 点击确认就设置好了。返回去后通过Tools可以看到： 设计GUI依照上图，点击PyQt Designer, 在弹出来的界面中选择Wdiget，然后点击创建。 在窗口添加控件，Lable、pushButton、checkBox、lineEdit等： 把.ui文件保存到当前项目目录中，然后右键点击.ui文件： 点击PyUIC即可将.ui转成.py文件。 在login.py中添加： 12345678if __name__=="__main__": import sys app=QtWidgets.QApplication(sys.argv) widget=QtWidgets.QWidget() ui=Ui_form() ui.setupUi(widget) widget.show() sys.exit(app.exec_()) 运行login.py，就可以看到这个页面了。 QtDesigner的安装 设计GUI]]></content>
@@ -53,17 +64,6 @@
       </categories>
       <tags>
         <tag>machine learning</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[罗翔讲刑法--金句笔记]]></title>
-    <url>%2F2020%2F03%2F21%2F%E7%BD%97%E7%BF%94%E9%87%91%E5%8F%A5%E5%90%88%E9%9B%86%2F</url>
-    <content type="text"><![CDATA[我们之所以做一个道德的人，不是为了追求幸福，而只是因为这本身就无愧于我们已经拥有的幸福。 一个人不能处分自己最重要的利益，因为自由不能以彻底放弃自由为代价。（这样的自由一定会导致强者对弱者的剥削。） 法益作为入罪的基础，而伦理作为出罪的依据。 犯罪是可怕的，但比犯罪更可怕的是不受约束的刑罚权力。 一次不公正的审判，其恶果甚至超过十次犯罪。因为犯罪虽是无视法律——好比污染了水流，而不公正的审判则毁坏法律——好比污染水源。（培根） 自从有刑法存在国家代替受害人私刑报复时开始，国家就承担了双重责任，因此表现出它的悖论性。刑法不仅要面对犯罪人保护国家，也要面对国家保护犯罪人，不单面对犯罪人也要面对检察官保护市民，成为公民反对私法专横和错误的大宪章。（德国法学家拉德布鲁赫） 如果刑罚权不受限制，那么一切正义都有可能被架空，而且往往是以正义的名义来架空正义。 权力导致腐败，绝对权力导致绝对腐败。 刑法是一根带哨子的皮鞭。 当立法权和司法权合二为一，独裁就不可避免，自由就荡然无存。（孟德斯鸠） 法治的精神在于限权。 如果衣服上出现了褶皱，司法机关可以用熨斗把它熨平，但如果衣服上出现了一个大洞，那就必须取决于立法机关把它织补。（英国丹宁勋爵） 法律是一种平衡的艺术，要在诸多对立价值中寻找一个平衡点。 有一种鸟是永远也关不住的，因为它的每片羽翼上都沾满了自由的光辉。（《肖申克的救赎》经典台词） 法律要倾听民众的声音，但是要超越民众的偏见。]]></content>
-      <categories>
-        <category>Law</category>
-      </categories>
-      <tags>
-        <tag>law</tag>
       </tags>
   </entry>
   <entry>
