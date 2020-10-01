@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-08-04T14:26:55.441Z</updated>
+  <updated>2020-10-01T08:27:36.110Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,9 +17,35 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>庆祝双节</title>
+    <link href="http://yoursite.com/2020/10/01/10_%E5%BA%86%E7%A5%9D%E5%8F%8C%E8%8A%82/"/>
+    <id>http://yoursite.com/2020/10/01/10_庆祝双节/</id>
+    <published>2020-10-01T08:18:09.000Z</published>
+    <updated>2020-10-01T08:27:36.110Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><h1 id="祝各位国庆中秋快乐！"><a href="#祝各位国庆中秋快乐！" class="headerlink" title="祝各位国庆中秋快乐！"></a>祝各位国庆中秋快乐！</h1><p>难得的中秋节与国庆节重叠！你们吃月饼了吗？hhhhhh……</p><p><img src="/.com//03.jpg" alt></p><p>sxq猪祝你们双节快乐并甩一个大<img src="file:///C:\Users\ADMINI~1.DAD\AppData\Local\Temp\SGPicFaceTpBq\91800\8131633B.png" alt="img">^(*￣(oo)￣)^</p><p><img src="/.com//02.jpg" alt></p><p>机智美丽大方沉鱼落雁闭月羞花的szs小仙女祝爸爸妈咪事事顺心！</p><p><img src="/.com//01.jpg" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h1&gt;&lt;h1 id=&quot;示例&quot;&gt;&lt;a href=&quot;#示例&quot; class=&quot;headerlink&quot; title=&quot;示例&quot;&gt;&lt;/a&gt;示例&lt;/h1&gt;&lt;h1 id
+      
+    
+    </summary>
+    
+    
+      <category term="personal stuff" scheme="http://yoursite.com/categories/personal-stuff/"/>
+    
+    
+      <category term="family" scheme="http://yoursite.com/tags/family/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Leetcode20--有效的括号</title>
-    <link href="http://yoursite.com/2020/08/04/7_leetcode_001/"/>
-    <id>http://yoursite.com/2020/08/04/7_leetcode_001/</id>
+    <link href="http://yoursite.com/2020/08/04/09_leetcode_001/"/>
+    <id>http://yoursite.com/2020/08/04/09_leetcode_001/</id>
     <published>2020-08-04T14:18:09.000Z</published>
     <updated>2020-08-04T14:26:55.441Z</updated>
     
@@ -46,8 +72,8 @@
   
   <entry>
     <title>PyQt的安装以及在PyCharm上的部署</title>
-    <link href="http://yoursite.com/2020/05/12/setup_pyqt%E5%9C%A8pycharm%E4%B8%8A%E9%83%A8%E7%BD%B2/"/>
-    <id>http://yoursite.com/2020/05/12/setup_pyqt在pycharm上部署/</id>
+    <link href="http://yoursite.com/2020/05/12/08_setup_pyqt%E5%9C%A8pycharm%E4%B8%8A%E9%83%A8%E7%BD%B2/"/>
+    <id>http://yoursite.com/2020/05/12/08_setup_pyqt在pycharm上部署/</id>
     <published>2020-05-12T07:24:09.000Z</published>
     <updated>2020-05-12T11:06:57.492Z</updated>
     
@@ -72,8 +98,8 @@
   
   <entry>
     <title>windows更改pip镜像源及解决总是timeout的情况</title>
-    <link href="http://yoursite.com/2020/05/12/setup_pip%E9%95%9C%E5%83%8F%E6%BA%90/"/>
-    <id>http://yoursite.com/2020/05/12/setup_pip镜像源/</id>
+    <link href="http://yoursite.com/2020/05/12/07_setup_pip%E9%95%9C%E5%83%8F%E6%BA%90/"/>
+    <id>http://yoursite.com/2020/05/12/07_setup_pip镜像源/</id>
     <published>2020-05-12T03:31:09.000Z</published>
     <updated>2020-05-12T03:44:30.455Z</updated>
     
@@ -99,8 +125,8 @@
   
   <entry>
     <title>Pytorch计算模型运算量的工具--torchstat</title>
-    <link href="http://yoursite.com/2020/05/11/pytorch_torchstat/"/>
-    <id>http://yoursite.com/2020/05/11/pytorch_torchstat/</id>
+    <link href="http://yoursite.com/2020/05/11/06_pytorch_torchstat/"/>
+    <id>http://yoursite.com/2020/05/11/06_pytorch_torchstat/</id>
     <published>2020-05-10T16:48:09.000Z</published>
     <updated>2020-05-12T03:30:54.516Z</updated>
     
@@ -126,8 +152,8 @@
   
   <entry>
     <title>NAS：DARTS论文解读</title>
-    <link href="http://yoursite.com/2020/04/26/NAS_DARTS/"/>
-    <id>http://yoursite.com/2020/04/26/NAS_DARTS/</id>
+    <link href="http://yoursite.com/2020/04/26/05_NAS_DARTS/"/>
+    <id>http://yoursite.com/2020/04/26/05_NAS_DARTS/</id>
     <published>2020-04-26T10:48:09.000Z</published>
     <updated>2020-05-10T16:31:52.610Z</updated>
     
@@ -152,8 +178,8 @@
   
   <entry>
     <title>李弘毅ML课程作业-03：CNN</title>
-    <link href="http://yoursite.com/2020/04/08/MLHW3/"/>
-    <id>http://yoursite.com/2020/04/08/MLHW3/</id>
+    <link href="http://yoursite.com/2020/04/08/04_MLHW3/"/>
+    <id>http://yoursite.com/2020/04/08/04_MLHW3/</id>
     <published>2020-04-08T08:48:09.000Z</published>
     <updated>2020-04-08T12:27:00.269Z</updated>
     
@@ -178,8 +204,8 @@
   
   <entry>
     <title>李弘毅ML课程作业-02：线性二元分类器</title>
-    <link href="http://yoursite.com/2020/03/21/MLHW2/"/>
-    <id>http://yoursite.com/2020/03/21/MLHW2/</id>
+    <link href="http://yoursite.com/2020/03/21/03_MLHW2/"/>
+    <id>http://yoursite.com/2020/03/21/03_MLHW2/</id>
     <published>2020-03-21T08:48:09.000Z</published>
     <updated>2020-03-22T13:14:11.306Z</updated>
     
@@ -204,8 +230,8 @@
   
   <entry>
     <title>李弘毅ML课程作业-01：PM2.5的预测</title>
-    <link href="http://yoursite.com/2020/03/18/MLHW1/"/>
-    <id>http://yoursite.com/2020/03/18/MLHW1/</id>
+    <link href="http://yoursite.com/2020/03/18/02_MLHW1/"/>
+    <id>http://yoursite.com/2020/03/18/02_MLHW1/</id>
     <published>2020-03-18T04:21:09.000Z</published>
     <updated>2020-03-21T11:17:33.297Z</updated>
     
@@ -230,8 +256,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/2019/09/27/hello-world/"/>
-    <id>http://yoursite.com/2019/09/27/hello-world/</id>
+    <link href="http://yoursite.com/2019/09/27/01_hello-world/"/>
+    <id>http://yoursite.com/2019/09/27/01_hello-world/</id>
     <published>2019-09-27T02:43:08.000Z</published>
     <updated>2019-09-27T02:43:08.000Z</updated>
     

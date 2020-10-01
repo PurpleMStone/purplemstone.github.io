@@ -56,22 +56,19 @@
   };
 </script>
 
-  <meta name="description" content="Search Space搜索cell作为网络结构的构件。cell是包含N个结点的有序序列的有向无环图。结点$x^{(i)}$是隐藏表达（比如卷积网络的特征图），而有向边$(i ,j)$则关联着变换$x^{(i)}$的一些操作$o^{(i,j)}$。文章中假定一个cell中有两个输入节点和一个输出节点。对于卷积cell，输入节点被定义为当前层的前面两层的cell的输出。当前cell的输出是对所有中间">
+  <meta name="description" content="题目给定一个只包括 ‘(‘，’)’，’{‘，’}’，’[‘，’]’ 的字符串，判断字符串是否有效。 有效字符串需满足： 左括号必须用相同类型的右括号闭合。左括号必须以正确的顺序闭合。注意空字符串可被认为是有效字符串。 示例示例 1: 输入: “()”输出: true示例 2: 输入: “()[]{}”输出: true示例 3: 输入: “(]”输出: false示例 4: 输入: “([)]”输出">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NAS：DARTS论文解读">
-<meta property="og:url" content="http://yoursite.com/2020/04/26/NAS_DARTS/index.html">
+<meta property="og:title" content="Leetcode20--有效的括号">
+<meta property="og:url" content="http://yoursite.com/2020/08/04/09_leetcode_001/index.html">
 <meta property="og:site_name" content="Stone&#39;s Blog">
-<meta property="og:description" content="Search Space搜索cell作为网络结构的构件。cell是包含N个结点的有序序列的有向无环图。结点$x^{(i)}$是隐藏表达（比如卷积网络的特征图），而有向边$(i ,j)$则关联着变换$x^{(i)}$的一些操作$o^{(i,j)}$。文章中假定一个cell中有两个输入节点和一个输出节点。对于卷积cell，输入节点被定义为当前层的前面两层的cell的输出。当前cell的输出是对所有中间">
+<meta property="og:description" content="题目给定一个只包括 ‘(‘，’)’，’{‘，’}’，’[‘，’]’ 的字符串，判断字符串是否有效。 有效字符串需满足： 左括号必须用相同类型的右括号闭合。左括号必须以正确的顺序闭合。注意空字符串可被认为是有效字符串。 示例示例 1: 输入: “()”输出: true示例 2: 输入: “()[]{}”输出: true示例 3: 输入: “(]”输出: false示例 4: 输入: “([)]”输出">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/images/DARTS/darts.png">
-<meta property="og:image" content="http://yoursite.com/images/DARTS/algorithm.png">
-<meta property="article:published_time" content="2020-04-26T10:48:09.000Z">
-<meta property="article:modified_time" content="2020-05-10T16:31:52.610Z">
+<meta property="article:published_time" content="2020-08-04T14:18:09.000Z">
+<meta property="article:modified_time" content="2020-08-04T14:26:55.441Z">
 <meta property="article:author" content="Purple M. Stone">
-<meta property="article:tag" content="deep learning">
+<meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/images/DARTS/darts.png">
-  <link rel="canonical" href="http://yoursite.com/2020/04/26/NAS_DARTS/">
+  <link rel="canonical" href="http://yoursite.com/2020/08/04/09_leetcode_001/">
 
 
 <script id="page-configurations">
@@ -85,7 +82,7 @@
   };
 </script>
 
-  <title>NAS：DARTS论文解读 | Stone's Blog</title>
+  <title>Leetcode20--有效的括号 | Stone's Blog</title>
   
 
 
@@ -250,7 +247,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/26/NAS_DARTS/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/04/09_leetcode_001/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Purple M. Stone">
@@ -262,7 +259,7 @@
       <meta itemprop="name" content="Stone's Blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">NAS：DARTS论文解读
+        <h1 class="post-title" itemprop="name headline">Leetcode20--有效的括号
 
           
         </h1>
@@ -278,19 +275,11 @@
                 
               
 
-              <time title="创建时间：2020-04-26 18:48:09" itemprop="dateCreated datePublished" datetime="2020-04-26T18:48:09+08:00">2020-04-26</time>
+              <time title="创建时间：2020-08-04 22:18:09 / 修改时间：22:26:55" itemprop="dateCreated datePublished" datetime="2020-08-04T22:18:09+08:00">2020-08-04</time>
             </span>
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-11 00:31:52" itemprop="dateModified" datetime="2020-05-11T00:31:52+08:00">2020-05-11</time>
-              </span>
             
           
             <span class="post-meta-item">
@@ -299,7 +288,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithms/" itemprop="url" rel="index"><span itemprop="name">Algorithms</span></a></span>
 
                 
                 
@@ -326,35 +315,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Search-Space"><a href="#Search-Space" class="headerlink" title="Search Space"></a>Search Space</h1><p>搜索cell作为网络结构的构件。cell是包含N个结点的有序序列的有向无环图。结点$x^{(i)}$是隐藏表达（比如卷积网络的特征图），而有向边$(i ,j)$则关联着变换$x^{(i)}$的一些操作$o^{(i,j)}$。文章中假定一个cell中有两个输入节点和一个输出节点。对于卷积cell，输入节点被定义为当前层的前面两层的cell的输出。当前cell的输出是对所有中间节点使用一个压缩操作（比如拼接）得到的。</p>
-<p>每一个中间结点基于其所有前向操作计算得到：</p>
-<script type="math/tex; mode=display">
-x^{(j)}=\sum_{i<j}o^{(i,j)}(x^{(i)})</script><p>搜索空间中还包含了一个特殊的零操作，表示两个节点之间没有连接。学习cell的任务缩减为学习出cell的各条边的操作类型及参数。</p>
-<h1 id="连续优化"><a href="#连续优化" class="headerlink" title="连续优化"></a>连续优化</h1><p>O是候选操作（如卷积、最大池化、零操作等）的集合，每个操作表示将一些函数$o(\cdot)$施加到$x^{(i)}$上。为了让搜索空间连续，我们把一个特定操作的范畴选择松弛为所有可能的操作上的一个softmax:</p>
-<script type="math/tex; mode=display">
-\overline{o}^{(i,j)}(x)=\sum_{o\in O}\frac{exp⁡(\alpha_{o}^{(i,j)})}{\sum_{o'\in O}exp⁡(\alpha_{o'}^{(i,j)})}o(x)</script><p>对应于节点对$(i, j)$的操作混合权重被参数化为一个维度为|O|（候选操作总个数）的向量$\alpha^{i,j}$。架构搜索的任务就减少为学习一个连续变量集合$\alpha={\alpha^{(i,j)}}$。在搜索的最后，将每个混合操作$\overline{o}^{(i,j)}$用最大似然的操作代替，就可以得到离散化的网络架构。比如$o^(i,j)=argmax_{o\in O}\alpha_{o}^{(i,j)}$在下文中，用$\alpha$表示编码后的架构。</p>
-<p><img src="/images/DARTS/darts.png" alt="darts"></p>
-<p>DARTS的cell搜索过程概览如上图所示。该过程总结如下。最开始时cell的各条边的操作类型未知，但是可选的操作类型是预先定义的，候选操作集合中包含以下8种操作：（1）恒等连接；（2）零操作；（3）3×3 深度可分离卷积；(4) 3×3 空洞深度可分离卷积；（5）5×5深度可分离卷积；（6）5×5 空洞深度可分离卷积；（7）3×3平均池化；（8）3×3 最大池化。对于用DAG表示的cell的每条边施加一个候选操作的混合操作（混合操作是上述8种类型操作的混合，输入用8种操作进行处理，对得到的8个输出施以权重$\alpha^{(i.j)}_{o}$，然后松弛化为softmax），从而将分立的搜索空间用softmax函数松弛为连续空间，使得搜索可微分。然后通过求解一个置信优化问题对混合概率和网络权重进行联合优化，最后，将每个混合操作$\overline{o}^{(i,j)}$用最大似然的操作（也就是$i,j$结点的8条边中有着最大权重$\alpha^{(i.j)}_{o}$的那条边所对应的操作）代替，就可以得到离散化的网络架构。也就是说，训练的时候对于每两个结点之间，是8种操作都用到了，用softmax耦合为混合操作。训练完后，只保留了权重最大的那个操作。</p>
-<p>现在目标就是将架构$\alpha$和所有混合操作中的权重$w$一起学习出来。DARTS使用梯度下降算法优化交叉检验集损失。使用$L_{train}$和$L_{val}$分别表示训练集loss和交叉检验集的loss，则优化目标是：</p>
-<script type="math/tex; mode=display">
-\min\limits_{\alpha}L_{val}(w^{*}(\alpha),\alpha)</script><script type="math/tex; mode=display">
-s.t. w^{*}(\alpha)=argmin_{w}L_{train}(w,\alpha)</script><p>即找到最优结构$\alpha^{*}$使得在验证集上得到最优结果，即最小化$L_{val}(w^{*},\alpha^{*})$，并找到最优参数$w^{*}$，能够在特定结构$\alpha^{*}$上得到最优性能，即最小化$L_{train}(w,\alpha^{*})$。</p>
-<h1 id="网络架构梯度近似"><a href="#网络架构梯度近似" class="headerlink" title="网络架构梯度近似"></a>网络架构梯度近似</h1><p>由于昂贵的内层优化代价，精确地求出网络架构的梯度是几乎不可能的。因此，这篇文章提出了一个简单的近似方案：</p>
-<script type="math/tex; mode=display">
-\bigtriangledown_{\alpha}L_{val}(w^{*}(\alpha),\alpha)\approx\bigtriangledown_{\alpha}L_{val}(w-\xi\bigtriangledown_{w}L_{train}(w,\alpha),\alpha)</script><p>其中$w$是由近似算法得到的当前的权重，$\xi$是一步内层优化的学习率。这个算法的思路是使用一步训练调整得到的$w$来近似$w^{*}(\alpha)$，而不用训练解决内层优化问题直至收敛。如果w已经是内部优化的局部最优值，此时$\bigtriangledown_{w}L_{train}(w,\alpha)=0$，因此等号右边的式子会退化为$\bigtriangledown_{\alpha}L_{val}(w(\alpha),\alpha)$。</p>
-<p>算法：<img src="/images/DARTS/algorithm.png" alt="algorithm"></p>
-<p>对近似的架构梯度应用链式法则可以得到：</p>
-<script type="math/tex; mode=display">
-\bigtriangledown_{\alpha}L_{val}(w',\alpha)-\xi\bigtriangledown^{2}_{\alpha,w}L_{train}(w,\alpha)\bigtriangledown_{w'}L_{val}(w',\alpha)</script><p>其中$w’=w-\xi\bigtriangledown_{w}L_{train}(w,\alpha)$表示一个一步前向网络的权重值。上式的第二项中包含了一个昂贵的矩阵-向量乘法，但是使用有限差分近似可以显著降低计算复杂度。使用一个很小的数值$\epsilon$，并令$w^{\pm}=w\pm\epsilon\bigtriangledown_{w’}L_{val}(w’,\alpha)$，则：</p>
-<script type="math/tex; mode=display">
-\bigtriangledown^{2}_{\alpha,w}L_{train}(w,\alpha)\bigtriangledown_{w'}L_{val}(w',\alpha)\approx\frac{\bigtriangledown_{\alpha}L_{train}(w^{+},\alpha)-\bigtriangledown_{\alpha}L_{train}(w^{+},\alpha)}{2\epsilon}</script><p>计算这个有限差分式只需要权重值的两个前传项和$\alpha$的两个反传项，计算复杂度从$O(|\alpha||w|)$降到$O(|\alpha|+|w|)$。</p>
-<p>一阶近似：</p>
-<p>当$\xi = 0$时，式(7)中的二阶导数项会消失。此时，架构梯度由$\bigtriangledown_{\alpha}L_{val}(w,\alpha)$给出，对应着假定当前的$w$与$w^{*}(\alpha)$相同然后优化交叉检验loss的情况。这会带来一些加速，但是根据实验结果显示，性能会变差。下文用一阶近似来指代$\xi = 0$的情形，用二阶近似来指代$\xi &gt; 0$时的梯度公式。</p>
-<h1 id="离散架构推导"><a href="#离散架构推导" class="headerlink" title="离散架构推导"></a>离散架构推导</h1><p>为了组成离散架构中的每一个节点，文中在该节点所有的前面节点的所有的非零候选操作中保留了top-k的最强操作。一个操作的强度被定义为</p>
-<script type="math/tex; mode=display">
-\frac{exp(\alpha^{(i,j)}_o)}{\sum\limits_{o'\in O}exp(\alpha^{(i,j)}_{o'})}</script><p>其实就是两个节点之间所有候选操作都施加上去，给每个候选操作都赋予权值。权值用softmax激活之后相加起来作为节点的输出，反传学习可以更新结构权值$\alpha$。最后保留权重最大的（强度最强的）k个结点与本结点的连接。在DARTS的文章中，CNN中选择k=2。</p>
-<p><a href="https://arxiv.org/pdf/1806.09055.pdf" target="_blank" rel="noopener">DARTS论文</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/73037439" target="_blank" rel="noopener">具体公式推导</a></p>
+        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>给定一个只包括 ‘(‘，’)’，’{‘，’}’，’[‘，’]’ 的字符串，判断字符串是否有效。</p>
+<p>有效字符串需满足：</p>
+<p>左括号必须用相同类型的右括号闭合。<br>左括号必须以正确的顺序闭合。<br>注意空字符串可被认为是有效字符串。</p>
+<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><p>示例 1:</p>
+<p>输入: “()”<br>输出: true<br>示例 2:</p>
+<p>输入: “()[]{}”<br>输出: true<br>示例 3:</p>
+<p>输入: “(]”<br>输出: false<br>示例 4:</p>
+<p>输入: “([)]”<br>输出: false<br>示例 5:</p>
+<p>输入: “{[]}”<br>输出: true</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>使用先进后出的栈，左括号存放到栈中，遇到右括号则从栈中pop一个出来看看是否对应，若不对应即可判断为“false”，若对应则继续余下字符的判断。若最后栈中没有括号存在，则为“true”。字典中”?“是边界处理，防止从空栈pop元素的报错。</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isValid</span><span class="params">(self, s)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type s: str</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        dic = &#123;<span class="string">'('</span>:<span class="string">')'</span>,<span class="string">'['</span>:<span class="string">']'</span>,<span class="string">'&#123;'</span>:<span class="string">'&#125;'</span>,<span class="string">'?'</span>:<span class="string">'?'</span>&#125;</span><br><span class="line">        stack = [<span class="string">'?'</span>]</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> s:</span><br><span class="line">            <span class="keyword">if</span> c <span class="keyword">in</span> dic:</span><br><span class="line">                stack.append(c)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> dic[stack.pop()] != c:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> len(stack) == <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/valid-parentheses" target="_blank" rel="noopener">https://leetcode-cn.com/problems/valid-parentheses</a></p>
+<p>题解：<a href="https://leetcode-cn.com/problems/valid-parentheses/solution/valid-parentheses-fu-zhu-zhan-fa-by-jin407891080/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/valid-parentheses/solution/valid-parentheses-fu-zhu-zhan-fa-by-jin407891080/</a></p>
 
     </div>
 
@@ -370,7 +343,7 @@ s.t. w^{*}(\alpha)=argmin_{w}L_{train}(w,\alpha)</script><p>即找到最优结�
           
           <div class="post-tags">
             
-              <a href="/tags/deep-learning/" rel="tag"># deep learning</a>
+              <a href="/tags/leetcode/" rel="tag"># leetcode</a>
             
           </div>
         
@@ -380,8 +353,8 @@ s.t. w^{*}(\alpha)=argmin_{w}L_{train}(w,\alpha)</script><p>即找到最优结�
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2020/04/08/MLHW3/" rel="next" title="李弘毅ML课程作业-03：CNN">
-                  <i class="fa fa-chevron-left"></i> 李弘毅ML课程作业-03：CNN
+                <a href="/2020/05/12/08_setup_pyqt%E5%9C%A8pycharm%E4%B8%8A%E9%83%A8%E7%BD%B2/" rel="next" title="PyQt的安装以及在PyCharm上的部署">
+                  <i class="fa fa-chevron-left"></i> PyQt的安装以及在PyCharm上的部署
                 </a>
               
             </div>
@@ -390,8 +363,8 @@ s.t. w^{*}(\alpha)=argmin_{w}L_{train}(w,\alpha)</script><p>即找到最优结�
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2020/05/11/pytorch_torchstat/" rel="prev" title="Pytorch计算模型运算量的工具--torchstat">
-                  Pytorch计算模型运算量的工具--torchstat <i class="fa fa-chevron-right"></i>
+                <a href="/2020/10/01/10_%E5%BA%86%E7%A5%9D%E5%8F%8C%E8%8A%82/" rel="prev" title="庆祝双节">
+                  庆祝双节 <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -441,7 +414,7 @@ s.t. w^{*}(\alpha)=argmin_{w}L_{train}(w,\alpha)</script><p>即找到最优结�
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Search-Space"><span class="nav-number">1.</span> <span class="nav-text">Search Space</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#连续优化"><span class="nav-number">2.</span> <span class="nav-text">连续优化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络架构梯度近似"><span class="nav-number">3.</span> <span class="nav-text">网络架构梯度近似</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#离散架构推导"><span class="nav-number">4.</span> <span class="nav-text">离散架构推导</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#示例"><span class="nav-number">2.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思路"><span class="nav-number">3.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码"><span class="nav-number">4.</span> <span class="nav-text">代码</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -456,7 +429,7 @@ s.t. w^{*}(\alpha)=argmin_{w}L_{train}(w,\alpha)</script><p>即找到最优结�
         
           <a href="/archives/%20%7C%7C%20archive">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -469,7 +442,7 @@ s.t. w^{*}(\alpha)=argmin_{w}L_{train}(w,\alpha)</script><p>即找到最优结�
             <a href="/categories/%20%7C%7C%20th">
           
         
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -482,7 +455,7 @@ s.t. w^{*}(\alpha)=argmin_{w}L_{train}(w,\alpha)</script><p>即找到最优结�
             <a href="/tags/%20%7C%7C%20tags">
           
         
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -663,58 +636,6 @@ window.addEventListener('pjax:success', () => {
 
   
 
-  
-    
-      
-<script type="text/x-mathjax-config">
-    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
-
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-        extensions: ['[mhchem]/mhchem.js'],
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') {
-          next = next.nextSibling;
-        }
-        if (next && next.nodeName.toLowerCase() === 'br') {
-          next.parentNode.removeChild(next);
-        }
-      }
-    });
-  });
-
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
-      if (element.nodeName.toLowerCase() == 'li') {
-        element = element.parentNode;
-      }
-      element.classList.add('has-jax');
-    }
-  });
-</script>
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
-    MathJax.Hub.Typeset();
-  }, window.MathJax);
-</script>
-
-    
   
 
   
