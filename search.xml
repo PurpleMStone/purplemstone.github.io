@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[About Me]]></title>
-    <url>%2F2020%2F10%2F15%2FAbout%20me%2F</url>
-    <content type="text"><![CDATA[123456789101112131415&lt;div id&#x3D;&quot;container&quot;&gt;&lt;&#x2F;div&gt;&lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;https:&#x2F;&#x2F;imsun.github.io&#x2F;gitment&#x2F;style&#x2F;default.css&quot;&gt;&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;imsun.github.io&#x2F;gitment&#x2F;dist&#x2F;gitment.browser.js&quot;&gt;&lt;&#x2F;script&gt;&lt;script&gt;var gitment &#x3D; new Gitment(&#123; id: &#39;页面 ID&#39;, &#x2F;&#x2F; 可选。默认为 location.href owner: &#39;Stone&#39;, &#x2F;&#x2F;改你自己的名字 repo: &#39;Comments&#39;, &#x2F;&#x2F;专门储存评论一个GitHub仓库 oauth: &#123; client_id: &#39;977bc9ff2d5de25ea37a&#39;, &#x2F;&#x2F;改为你自己的，下同 client_secret: &#39;6b4eab3bba4e23efa8968f2d7f5de907d1626d76&#39;, &#125;,&#125;)gitment.render(&#39;container&#39;)&lt;&#x2F;script&gt;]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[在Latex中插入python代码]]></title>
     <url>%2F2020%2F10%2F15%2F11_latex_python_code%2F</url>
     <content type="text"><![CDATA[在Latex中插入Python代码，需要一个第三发的宏包pythonhighlight: https://github.com/olivierverdier/python-latex-highlighting 下载pythonhighlight.sty后，将它放到你的.tex文件所在目录下。 然后声明要使用pythonhighlight，在tex文件内的导言区： 12\usepackage&#123;graphicx&#125;\usepackage&#123;pythonhighlight&#125; 之后既可以在正文添加代码了: 12345678910\begin&#123;python&#125;import torchimport torch.nn as nnimport torch.optim as optimimport torch.nn.functional as Fimport torchvisionimport torchvision.transforms as transformsimport timeimport os\end&#123;python&#125; 效果如下：]]></content>
@@ -15,6 +10,11 @@
       <tags>
         <tag>latex</tag>
       </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[About Me]]></title>
+    <url>%2F2020%2F10%2F15%2FAbout%20me%2F</url>
+    <content type="text"><![CDATA[1I AM NOBODY.]]></content>
   </entry>
   <entry>
     <title><![CDATA[庆祝双节]]></title>
