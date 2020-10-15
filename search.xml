@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[About Me]]></title>
+    <url>%2F2020%2F10%2F15%2FAbout%20me%2F</url>
+    <content type="text"><![CDATA[1I AM NOBODY.]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[在Latex中插入python代码]]></title>
     <url>%2F2020%2F10%2F15%2F11_latex_python_code%2F</url>
     <content type="text"><![CDATA[在Latex中插入Python代码，需要一个第三发的宏包pythonhighlight: https://github.com/olivierverdier/python-latex-highlighting 下载pythonhighlight.sty后，将它放到你的.tex文件所在目录下。 然后声明要使用pythonhighlight，在tex文件内的导言区： 12\usepackage&#123;graphicx&#125;\usepackage&#123;pythonhighlight&#125; 之后既可以在正文添加代码了: 12345678910\begin&#123;python&#125;import torchimport torch.nn as nnimport torch.optim as optimimport torch.nn.functional as Fimport torchvisionimport torchvision.transforms as transformsimport timeimport os\end&#123;python&#125; 效果如下：]]></content>
@@ -21,11 +26,6 @@
       <tags>
         <tag>hexo</tag>
       </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[About Me]]></title>
-    <url>%2F2020%2F10%2F15%2FAbout%20me%2F</url>
-    <content type="text"><![CDATA[1I AM NOBODY.]]></content>
   </entry>
   <entry>
     <title><![CDATA[庆祝双节]]></title>
