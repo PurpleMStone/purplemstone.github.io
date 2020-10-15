@@ -436,6 +436,115 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/15/12_hexo_valine/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Purple M. Stone">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stone's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/10/15/12_hexo_valine/" class="post-title-link" itemprop="url">Hexo+Valine：为博客添加评论</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-10-15 19:20:09 / 修改时间：20:43:26" itemprop="dateCreated datePublished" datetime="2020-10-15T19:20:09+08:00">2020-10-15</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Setup/" itemprop="url" rel="index"><span itemprop="name">Setup</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/10/15/12_hexo_valine/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/10/15/12_hexo_valine/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>注册Leancloud账号：<a href="https://www.leancloud.cn/" target="_blank" rel="noopener">https://www.leancloud.cn</a></p>
+<p>注册完以后需要创建一个应用，名字可以随便起，然后 <strong>进入应用-&gt;设置-&gt;应用key</strong></p>
+<p>拿到你的appid和appkey之后，打开<strong>主题配置文件</strong>（我是…\themes\next_config.yml） 搜索 <strong>valine</strong>，填入appid 和 appkey</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">valine:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span> <span class="comment"># When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version</span></span><br><span class="line"><span class="attr">  appid:</span> <span class="string">XO7jV马赛克zGzoHsz</span> <span class="comment"># Your leancloud application appid</span></span><br><span class="line"><span class="attr">  appkey:</span> <span class="string">Amg1Fl马赛克2NfhcO</span> <span class="comment"># Your leancloud application appkey</span></span><br><span class="line"><span class="attr">  notify:</span> <span class="literal">false</span> <span class="comment"># Mail notifier. See: https://github.com/xCss/Valine/wiki</span></span><br><span class="line"><span class="attr">  verify:</span> <span class="literal">false</span> <span class="comment"># Verification code</span></span><br><span class="line"><span class="attr">  placeholder:</span> <span class="string">Just</span> <span class="string">go</span> <span class="string">go</span> <span class="comment"># Comment box placeholder</span></span><br><span class="line"><span class="attr">  avatar:</span> <span class="string">mm</span> <span class="comment"># Gravatar style</span></span><br><span class="line"><span class="attr">  guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment"># Custom comment header</span></span><br><span class="line"><span class="attr">  pageSize:</span> <span class="number">10</span> <span class="comment"># Pagination size</span></span><br><span class="line"><span class="attr">  language:</span> <span class="comment"># Language, available values: en, zh-cn</span></span><br><span class="line"><span class="attr">  visitor:</span> <span class="literal">false</span> <span class="comment"># leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html</span></span><br><span class="line"><span class="attr">  comment_count:</span> <span class="literal">true</span> <span class="comment"># If false, comment count will only be displayed in post page, not in home page</span></span><br><span class="line">  <span class="comment">#post_meta_order: 0</span></span><br></pre></td></tr></table></figure>
+<p>最后在Leancloud -&gt; 设置 -&gt; 安全中心 -&gt; Web 安全域名 把你的域名加进去</p>
+<p>刷新一下~ 看到评论框了</p>
+<h1 id="删除评论"><a href="#删除评论" class="headerlink" title="删除评论"></a>删除评论</h1><p><code>登录Leancloud</code>&gt;选择你创建的<code>应用</code>&gt;<code>存储</code>&gt;选择Class<code>Comment</code></p>
+<p>参考：</p>
+<p><a href="https://blog.csdn.net/blue_zy/article/details/79071414" target="_blank" rel="noopener">https://blog.csdn.net/blue_zy/article/details/79071414</a></p>
+<p><a href="https://github.com/xCss/Valine/issues/69" target="_blank" rel="noopener">https://github.com/xCss/Valine/issues/69</a></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/01/10_%E5%BA%86%E7%A5%9D%E5%8F%8C%E8%8A%82/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1283,202 +1392,6 @@ s.t. w^{*}(\alpha)=argmin_{w}L_{train}(w,\alpha)</script><p>即找到最优结�
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/21/03_MLHW2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Purple M. Stone">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stone's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2020/03/21/03_MLHW2/" class="post-title-link" itemprop="url">李弘毅ML课程作业-02：线性二元分类器</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2020-03-21 16:48:09" itemprop="dateCreated datePublished" datetime="2020-03-21T16:48:09+08:00">2020-03-21</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-22 21:14:11" itemprop="dateModified" datetime="2020-03-22T21:14:11+08:00">2020-03-22</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/03/21/03_MLHW2/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/03/21/03_MLHW2/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="作业描述"><a href="#作业描述" class="headerlink" title="作业描述"></a>作业描述</h3><p>​        根据人们的个人资料，判断其年收入是否高于$50, 000。这其实是个二元分类问题，本文将以 logistic regression 和 generative model 两种方法达成分类目的。</p>
-<p>​        作业提供了五个文件，其中在训练过程中，只有X_train、Y_train 和 X_test 这三个经过处理的档案会被使用到，train.csv 和 test.csv 是原始资料，供以参考。</p>
-<h3 id="Logistic-Regression"><a href="#Logistic-Regression" class="headerlink" title="Logistic Regression"></a>Logistic Regression</h3><h4 id="数据准备"><a href="#数据准备" class="headerlink" title="数据准备"></a>数据准备</h4><p>​        先打开看一下数据集长什么样子。训练集数据的各种属性资料都已经数字化了；训练集的标签就是二元化的标签，年收入高于$50, 000为1，否则为0。</p>
-<p><img src="/images/HW2/train_data.png" alt="train_data" style="zoom:67%;"></p>
-<p><img src="/images/HW2/train_label.png" alt="train_label" style="zoom:67%;"></p>
-<p>​        读入数据。由于第一行是数据说明，不必存到数组中，所以用next()函数跳过。数据集的第一列是id号，也不必存到数组中，所以数组存入的数据是从第二行第二列开始直到最后。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">np.random.seed(<span class="number">0</span>)</span><br><span class="line">X_train_fpath = <span class="string">'./data/X_train'</span></span><br><span class="line">Y_train_fpath = <span class="string">'./data/Y_train'</span></span><br><span class="line">X_test_fpath = <span class="string">'./data/X_test'</span></span><br><span class="line">output_fpath = <span class="string">'./output_&#123;&#125;.csv'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Parse csv files to numpy array</span></span><br><span class="line"><span class="keyword">with</span> open(X_train_fpath) <span class="keyword">as</span> f:</span><br><span class="line">    next(f)</span><br><span class="line">    X_train = np.array([line.strip(<span class="string">'\n'</span>).split(<span class="string">','</span>)[<span class="number">1</span>:] <span class="keyword">for</span> line <span class="keyword">in</span> f], dtype=float)</span><br><span class="line"><span class="keyword">with</span> open(Y_train_fpath) <span class="keyword">as</span> f:</span><br><span class="line">    next(f)</span><br><span class="line">    Y_train = np.array([line.strip(<span class="string">'\n'</span>).split(<span class="string">','</span>)[<span class="number">1</span>] <span class="keyword">for</span> line <span class="keyword">in</span> f], dtype=float)</span><br><span class="line"><span class="keyword">with</span> open(X_test_fpath) <span class="keyword">as</span> f:</span><br><span class="line">    next(f)</span><br><span class="line">    X_test = np.array([line.strip(<span class="string">'\n'</span>).split(<span class="string">','</span>)[<span class="number">1</span>:] <span class="keyword">for</span> line <span class="keyword">in</span> f], dtype=float)</span><br></pre></td></tr></table></figure>
-<p>​        先定义几个辅助函数。_normalize 函数用来对于数据集的特定列（某属性特征）进行归一化，注释有详细说明。_train_dev_split 函数用于将训练数据集划分为training set和 development set。我们拿不到 testing set 的正确标签，要用development set 来评估性能，而且也能防止过拟合。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_normalize</span><span class="params">(X, train=True, specified_column = None, X_mean = None, X_std = None)</span>:</span></span><br><span class="line">    <span class="comment"># This function normalizes specific columns of X.</span></span><br><span class="line">    <span class="comment"># The mean and standard variance of training data will be reused when processing testing data.</span></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    <span class="comment"># Arguments:</span></span><br><span class="line">    <span class="comment">#     X: data to be processed</span></span><br><span class="line">    <span class="comment">#     train: 'True' when processing training data, 'False' for testing data</span></span><br><span class="line">    <span class="comment">#     specific_column: indexes of the columns that will be normalized. If 'None', all columns</span></span><br><span class="line">    <span class="comment">#         will be normalized.</span></span><br><span class="line">    <span class="comment">#     X_mean: mean value of training data, used when train = 'False'</span></span><br><span class="line">    <span class="comment">#     X_std: standard deviation of training data, used when train = 'False'</span></span><br><span class="line">    <span class="comment"># Outputs:</span></span><br><span class="line">    <span class="comment">#     X: normalized data</span></span><br><span class="line">    <span class="comment">#     X_mean: computed mean value of training data</span></span><br><span class="line">    <span class="comment">#     X_std: computed standard deviation of training data</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> specified_column == <span class="literal">None</span>:</span><br><span class="line">        specified_column = np.arange(X.shape[<span class="number">1</span>])</span><br><span class="line">    <span class="keyword">if</span> train:</span><br><span class="line">        X_mean = np.mean(X[:, specified_column], <span class="number">0</span>).reshape(<span class="number">1</span>, <span class="number">-1</span>)</span><br><span class="line">        X_std = np.std(X[:, specified_column], <span class="number">0</span>).reshape(<span class="number">1</span>, <span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">    X[:, specified_column] = (X[:, specified_column] - X_mean) / (X_std + <span class="number">1e-8</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> X, X_mean, X_std</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_train_dev_split</span><span class="params">(X, Y, dev_ratio=<span class="number">0.25</span>)</span>:</span></span><br><span class="line">    <span class="string">"""This function splits data into training set and development set."""</span></span><br><span class="line">    train_size = int(len(X)*(<span class="number">1</span> - dev_ratio))</span><br><span class="line">    <span class="keyword">return</span> X[:train_size], Y[:train_size], X[train_size:], Y[train_size:]</span><br></pre></td></tr></table></figure>
-<p>​        进行归一化和划分训练集。training set 大小：48, 830 × 510；development set 大小：5, 426 × 510；testing set 大小：27, 622 × 510。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Normalize training and testing data</span></span><br><span class="line">X_train, X_mean, X_std = _normalize(X_train, train=<span class="literal">True</span>)</span><br><span class="line">X_test, _, _ = _normalize(X_test, train=<span class="literal">False</span>, specified_column=<span class="literal">None</span>, X_mean=X_mean, X_std=X_std)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Split data into training set and development set</span></span><br><span class="line">dev_ratio = <span class="number">0.1</span></span><br><span class="line">X_train, Y_train, X_dev, Y_dev = _train_dev_split(X_train, Y_train, dev_ratio)</span><br><span class="line"></span><br><span class="line">train_size = X_train.shape[<span class="number">0</span>]</span><br><span class="line">dev_size = X_dev.shape[<span class="number">0</span>]</span><br><span class="line">test_size = X_test.shape[<span class="number">0</span>]</span><br><span class="line">data_dim = X_train.shape[<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-<h4 id="一些辅助函数"><a href="#一些辅助函数" class="headerlink" title="一些辅助函数"></a>一些辅助函数</h4><p>​        _shuffle 方法将X和Y的所有元素同时随机排序，X中某元素依然对应着在Y中对应着原先所对应的元素（data-label pair 不变）。_f 就是 logistic 回归函数，函数输出值在0到1之间，越接近于1，表示年收入高于$50, 000的概率越大。</p>
-<script type="math/tex; mode=display">
-\sigma (z) = 1/(1+e^{-z})</script><script type="math/tex; mode=display">
-f_{w,b}=\sigma （\sum_{i}w_{i}x_{i}+b）</script><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_shuffle</span><span class="params">(X, Y)</span>:</span></span><br><span class="line">    <span class="comment"># This function shuffles two equal-length list/array, X and Y, together.</span></span><br><span class="line">    randomize = np.arange(len(X))</span><br><span class="line">    np.random.shuffle(randomize)</span><br><span class="line">    <span class="keyword">return</span> (X[randomize], Y[randomize])</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_sigmoid</span><span class="params">(z)</span>:</span></span><br><span class="line">    <span class="comment"># Sigmoid function can be used to calculate probability.</span></span><br><span class="line">    <span class="comment"># To avoid overflow, minimum/maximum output value is set.</span></span><br><span class="line">    <span class="keyword">return</span> np.clip(<span class="number">1</span> / (<span class="number">1.0</span> + np.exp(-z)), <span class="number">1e-8</span>, <span class="number">1</span> - (<span class="number">1e-8</span>))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_f</span><span class="params">(X, w, b)</span>:</span></span><br><span class="line">    <span class="comment"># This is the logistic regression function, parameterized by w and b</span></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    <span class="comment"># Arguements:</span></span><br><span class="line">    <span class="comment">#     X: input data, shape = [batch_size, data_dimension]</span></span><br><span class="line">    <span class="comment">#     w: weight vector, shape = [data_dimension, ]</span></span><br><span class="line">    <span class="comment">#     b: bias, scalar</span></span><br><span class="line">    <span class="comment"># Output:</span></span><br><span class="line">    <span class="comment">#     predicted probability of each row of X being positively labeled, shape = [batch_size, ]</span></span><br><span class="line">    <span class="keyword">return</span> _sigmoid(np.matmul(X, w) + b)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_predict</span><span class="params">(X, w, b)</span>:</span></span><br><span class="line">    <span class="comment"># This function returns a truth value prediction for each row of X </span></span><br><span class="line">    <span class="comment"># by rounding the result of logistic regression function.</span></span><br><span class="line">    <span class="keyword">return</span> np.round(_f(X, w, b)).astype(np.int)</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_accuracy</span><span class="params">(Y_pred, Y_label)</span>:</span></span><br><span class="line">    <span class="comment"># This function calculates prediction accuracy</span></span><br><span class="line">    acc = <span class="number">1</span> - np.mean(np.abs(Y_pred - Y_label))</span><br><span class="line">    <span class="keyword">return</span> acc</span><br></pre></td></tr></table></figure>
-<h4 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h4><p>​        使用的是交叉熵损失函数：</p>
-<script type="math/tex; mode=display">
-L(f)=\sum_{n}C(f(x^{n}),\widehat{y}^{n})</script><script type="math/tex; mode=display">
-C(f(x^{n}),\widehat{y}^{n})=-[\widehat{y}^{n}lnf(x^{n})+(1-\widehat{y}^{n})ln(1-f(x^{n}))]</script><p>利用损失函数对权重的梯度值，权重更新公式如下。</p>
-<script type="math/tex; mode=display">
-w_{i} \leftarrow w_{i}-\eta \sum_{i}[-(\widehat{y}^{n}-f_{w,b}(x^{n}))x_{i}^{n}]</script><p>交叉熵和梯度值计算代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_cross_entropy_loss</span><span class="params">(y_pred, Y_label)</span>:</span></span><br><span class="line">    <span class="comment"># This function computes the cross entropy.</span></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    <span class="comment"># Arguements:</span></span><br><span class="line">    <span class="comment">#     y_pred: probabilistic predictions, float vector</span></span><br><span class="line">    <span class="comment">#     Y_label: ground truth labels, bool vector</span></span><br><span class="line">    <span class="comment"># Output:</span></span><br><span class="line">    <span class="comment">#     cross entropy, scalar</span></span><br><span class="line">    cross_entropy = -np.dot(Y_label, np.log(y_pred)) - np.dot((<span class="number">1</span> - Y_label), np.log(<span class="number">1</span> - y_pred))</span><br><span class="line">    <span class="keyword">return</span> cross_entropy</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_gradient</span><span class="params">(X, Y_label, w, b)</span>:</span></span><br><span class="line">    <span class="comment"># This function computes the gradient of cross entropy loss with respect to weight w and bias b.</span></span><br><span class="line">    y_pred = _f(X, w, b)</span><br><span class="line">    pred_error = Y_label - y_pred</span><br><span class="line">    w_grad = -np.sum(pred_error * X.T, <span class="number">1</span>)</span><br><span class="line">    b_grad = -np.sum(pred_error)</span><br><span class="line">    <span class="keyword">return</span> w_grad, b_grad</span><br></pre></td></tr></table></figure>
-<p>​        使用mini-batch gradient descent 来训练。“訓練資料被分為許多小批次，針對每一個小批次，我們分別計算其梯度以及損失，並根據該批次來更新模型的參數。當一次迴圈完成，也就是整個訓練集的所有小批次都被使用過一次以後，我們將所有訓練資料打散並且重新分成新的小批次，進行下一個迴圈，直到事先設定的迴圈數量達成為止。”（来自作业demo）</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Zero initialization for weights ans bias</span></span><br><span class="line">w = np.zeros((data_dim,)) </span><br><span class="line">b = np.zeros((<span class="number">1</span>,))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Some parameters for training    </span></span><br><span class="line">max_iter = <span class="number">10</span></span><br><span class="line">batch_size = <span class="number">8</span></span><br><span class="line">learning_rate = <span class="number">0.2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Keep the loss and accuracy at every iteration for plotting</span></span><br><span class="line">train_loss = []</span><br><span class="line">dev_loss = []</span><br><span class="line">train_acc = []</span><br><span class="line">dev_acc = []</span><br><span class="line"></span><br><span class="line"><span class="comment"># Calcuate the number of parameter updates</span></span><br><span class="line">step = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Iterative training</span></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> range(max_iter):</span><br><span class="line">    <span class="comment"># Random shuffle at the begging of each epoch</span></span><br><span class="line">    X_train, Y_train = _shuffle(X_train, Y_train)</span><br><span class="line">        </span><br><span class="line">    <span class="comment"># Mini-batch training</span></span><br><span class="line">    <span class="keyword">for</span> idx <span class="keyword">in</span> range(int(np.floor(train_size / batch_size))):</span><br><span class="line">        X = X_train[idx*batch_size:(idx+<span class="number">1</span>)*batch_size]</span><br><span class="line">        Y = Y_train[idx*batch_size:(idx+<span class="number">1</span>)*batch_size]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Compute the gradient</span></span><br><span class="line">        w_grad, b_grad = _gradient(X, Y, w, b)</span><br><span class="line">            </span><br><span class="line">        <span class="comment"># gradient descent update</span></span><br><span class="line">        <span class="comment"># learning rate decay with time</span></span><br><span class="line">        w = w - learning_rate/np.sqrt(step) * w_grad</span><br><span class="line">        b = b - learning_rate/np.sqrt(step) * b_grad</span><br><span class="line"></span><br><span class="line">        step = step + <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">    <span class="comment"># Compute loss and accuracy of training set and development set</span></span><br><span class="line">    y_train_pred = _f(X_train, w, b)</span><br><span class="line">    Y_train_pred = np.round(y_train_pred)</span><br><span class="line">    train_acc.append(_accuracy(Y_train_pred, Y_train))</span><br><span class="line">    train_loss.append(_cross_entropy_loss(y_train_pred, Y_train) / train_size)</span><br><span class="line"></span><br><span class="line">    y_dev_pred = _f(X_dev, w, b)</span><br><span class="line">    Y_dev_pred = np.round(y_dev_pred)</span><br><span class="line">    dev_acc.append(_accuracy(Y_dev_pred, Y_dev))</span><br><span class="line">    dev_loss.append(_cross_entropy_loss(y_dev_pred, Y_dev) / dev_size)</span><br><span class="line"></span><br><span class="line">print(<span class="string">'Training loss: &#123;&#125;'</span>.format(train_loss[<span class="number">-1</span>]))</span><br><span class="line">print(<span class="string">'Development loss: &#123;&#125;'</span>.format(dev_loss[<span class="number">-1</span>]))</span><br><span class="line">print(<span class="string">'Training accuracy: &#123;&#125;'</span>.format(train_acc[<span class="number">-1</span>]))</span><br><span class="line">print(<span class="string">'Development accuracy: &#123;&#125;'</span>.format(dev_acc[<span class="number">-1</span>]))</span><br></pre></td></tr></table></figure>
-<h4 id="绘制-loss-和-accuracy-曲线"><a href="#绘制-loss-和-accuracy-曲线" class="headerlink" title="绘制 loss 和 accuracy 曲线"></a>绘制 loss 和 accuracy 曲线</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># Loss curve</span></span><br><span class="line">plt.plot(train_loss)</span><br><span class="line">plt.plot(dev_loss)</span><br><span class="line">plt.title(<span class="string">'Loss'</span>)</span><br><span class="line">plt.legend([<span class="string">'train'</span>, <span class="string">'dev'</span>])</span><br><span class="line">plt.savefig(<span class="string">'loss.png'</span>)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Accuracy curve</span></span><br><span class="line">plt.plot(train_acc)</span><br><span class="line">plt.plot(dev_acc)</span><br><span class="line">plt.title(<span class="string">'Accuracy'</span>)</span><br><span class="line">plt.legend([<span class="string">'train'</span>, <span class="string">'dev'</span>])</span><br><span class="line">plt.savefig(<span class="string">'acc.png'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<h4 id="保存测试集结果"><a href="#保存测试集结果" class="headerlink" title="保存测试集结果"></a>保存测试集结果</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Predict testing labels</span></span><br><span class="line">predictions = _predict(X_test, w, b)</span><br><span class="line"><span class="keyword">with</span> open(output_fpath.format(<span class="string">'logistic'</span>), <span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(<span class="string">'id,label\n'</span>)</span><br><span class="line">    <span class="keyword">for</span> i, label <span class="keyword">in</span>  enumerate(predictions):</span><br><span class="line">        f.write(<span class="string">'&#123;&#125;,&#123;&#125;\n'</span>.format(i, label))</span><br></pre></td></tr></table></figure>
-<h3 id="Probabilistic-Generative-Model"><a href="#Probabilistic-Generative-Model" class="headerlink" title="Probabilistic Generative Model"></a>Probabilistic Generative Model</h3><h4 id="数据准备-1"><a href="#数据准备-1" class="headerlink" title="数据准备"></a>数据准备</h4><p>​        训练集和测试集的读入和归一化处理方法与logistic regression 一模一样。但是generative model 有可解析的最佳解，因此不必使用development set。</p>
-<h4 id="计算均值和协方差"><a href="#计算均值和协方差" class="headerlink" title="计算均值和协方差"></a>计算均值和协方差</h4><p>​        在generative model 中，需要计算出最有可能产生这个训练集的数据分布的参数，也就是均值和协方差。确定了这两个参数，分布就确定了，就可以计算出测试集中某人属于年收入高于$50, 000那一类的概率。两个类别使用同样的协方差。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Compute in-class mean</span></span><br><span class="line">X_train_0 = np.array([x <span class="keyword">for</span> x, y <span class="keyword">in</span> zip(X_train, Y_train) <span class="keyword">if</span> y == <span class="number">0</span>])</span><br><span class="line">X_train_1 = np.array([x <span class="keyword">for</span> x, y <span class="keyword">in</span> zip(X_train, Y_train) <span class="keyword">if</span> y == <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">mean_0 = np.mean(X_train_0, axis = <span class="number">0</span>)</span><br><span class="line">mean_1 = np.mean(X_train_1, axis = <span class="number">0</span>)  </span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute in-class covariance</span></span><br><span class="line">cov_0 = np.zeros((data_dim, data_dim))</span><br><span class="line">cov_1 = np.zeros((data_dim, data_dim))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> X_train_0:</span><br><span class="line">    cov_0 += np.dot(np.transpose([x - mean_0]), [x - mean_0]) / X_train_0.shape[<span class="number">0</span>]</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> X_train_1:</span><br><span class="line">    cov_1 += np.dot(np.transpose([x - mean_1]), [x - mean_1]) / X_train_1.shape[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Shared covariance is taken as a weighted average of individual in-class covariance.</span></span><br><span class="line">cov = (cov_0 * X_train_0.shape[<span class="number">0</span>] + cov_1 * X_train_1.shape[<span class="number">0</span>]) / (X_train_0.shape[<span class="number">0</span>] + X_train_1.shape[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
-<h4 id="计算权重和偏差"><a href="#计算权重和偏差" class="headerlink" title="计算权重和偏差"></a>计算权重和偏差</h4><p>​        权重矩阵和偏差向量可以直接计算出来。这里求逆矩阵用到了SVD分解。</p>
-<script type="math/tex; mode=display">
-\boldsymbol{w}=\Sigma^{-1}(\mu_{1}-\mu_{2})</script><script type="math/tex; mode=display">
-b=-\frac{1}{2}\mu_{1}^{T}\Sigma^{-1}\mu_{1}+\frac{1}{2}\mu_{2}^{T}\Sigma^{-1}\mu_{2}+ln\frac{N_{1}}{N_{2}}</script><p>其中$\Sigma$表示协方差，$\mu$表示均值，$N$表示样本数。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Compute inverse of covariance matrix.</span></span><br><span class="line"><span class="comment"># Since covariance matrix may be nearly singular, np.linalg.inv() may give a large numerical error.</span></span><br><span class="line"><span class="comment"># Via SVD decomposition, one can get matrix inverse efficiently and accurately.</span></span><br><span class="line">u, s, v = np.linalg.svd(cov, full_matrices=<span class="literal">False</span>)</span><br><span class="line">inv = np.matmul(v.T * <span class="number">1</span> / s, u.T)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Directly compute weights and bias</span></span><br><span class="line">w = np.dot(inv, mean_0 - mean_1)</span><br><span class="line">b =  (<span class="number">-0.5</span>) * np.dot(mean_0, np.dot(inv, mean_0)) + <span class="number">0.5</span> * np.dot(mean_1, np.dot(inv, mean_1))\</span><br><span class="line">    + np.log(float(X_train_0.shape[<span class="number">0</span>]) / X_train_1.shape[<span class="number">0</span>]) </span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute accuracy on training set</span></span><br><span class="line">Y_train_pred = <span class="number">1</span> - _predict(X_train, w, b)</span><br><span class="line">print(<span class="string">'Training accuracy: &#123;&#125;'</span>.format(_accuracy(Y_train_pred, Y_train)))</span><br></pre></td></tr></table></figure>
-<h4 id="保存测试集结果-1"><a href="#保存测试集结果-1" class="headerlink" title="保存测试集结果"></a>保存测试集结果</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Predict testing labels</span></span><br><span class="line">predictions = <span class="number">1</span> - _predict(X_test, w, b)</span><br><span class="line"><span class="keyword">with</span> open(output_fpath.format(<span class="string">'generative'</span>), <span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(<span class="string">'id,label\n'</span>)</span><br><span class="line">    <span class="keyword">for</span> i, label <span class="keyword">in</span>  enumerate(predictions):</span><br><span class="line">        f.write(<span class="string">'&#123;&#125;,&#123;&#125;\n'</span>.format(i, label))</span><br></pre></td></tr></table></figure>
-<h3 id="Report"><a href="#Report" class="headerlink" title="Report"></a>Report</h3><ol>
-<li>請比較實作的 generative model 及 logistic regression 的準確率，何者較佳？<br>請解釋為何有這種情況？</li>
-</ol>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">Generative Model</th>
-<th style="text-align:center">Logistic Regression</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">train</td>
-<td style="text-align:center">87.412%</td>
-<td style="text-align:center">88.569%</td>
-</tr>
-</tbody>
-</table>
-</div>
-<ol>
-<li><p>請實作 logistic regression 的正規化 (regularization)，並討論其對於你的模型<br>準確率的影響。接著嘗試對正規項使用不同的權重 (lambda)，並討論其影響。</p>
-<p><img src="/images/HW2/lambda.png" alt="lambda" style="zoom:67%;"></p>
-</li>
-<li><p>請說明你實作的 best model，其訓練方式和準確率為何？</p>
-</li>
-<li><p>請實作輸入特徵標準化 (feature normalization)，並比較是否應用此技巧，會對<br>於你的模型有何影響。</p>
-</li>
-</ol>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">应用特征标准化</th>
-<th style="text-align:center">未应用特征标准化</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">train</td>
-<td style="text-align:center">88.569%</td>
-<td style="text-align:center">83.950%</td>
-</tr>
-<tr>
-<td style="text-align:center">dev</td>
-<td style="text-align:center">87.597%</td>
-<td style="text-align:center">83.892%</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML20.html" target="_blank" rel="noopener">李弘毅老师ML课程主页</a></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
@@ -1528,7 +1441,7 @@ b=-\frac{1}{2}\mu_{1}^{T}\Sigma^{-1}\mu_{1}+\frac{1}{2}\mu_{2}^{T}\Sigma^{-1}\mu
         
           <a href="/archives/%20%7C%7C%20archive">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1554,7 +1467,7 @@ b=-\frac{1}{2}\mu_{1}^{T}\Sigma^{-1}\mu_{1}+\frac{1}{2}\mu_{2}^{T}\Sigma^{-1}\mu
             <a href="/tags/%20%7C%7C%20tags">
           
         
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -1746,9 +1659,9 @@ window.addEventListener('pjax:success', () => {
       
     
       
-        
-      
     
+      
+        
       
     
       
