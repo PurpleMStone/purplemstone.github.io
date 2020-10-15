@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-10-15T11:26:18.398Z</updated>
+  <updated>2020-10-15T11:27:40.143Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://yoursite.com/2020/10/15/11_latex_python_code/"/>
     <id>http://yoursite.com/2020/10/15/11_latex_python_code/</id>
     <published>2020-10-15T11:20:09.000Z</published>
-    <updated>2020-10-15T11:26:18.398Z</updated>
+    <updated>2020-10-15T11:27:40.143Z</updated>
     
     <content type="html"><![CDATA[<p>在Latex中插入Python代码，需要一个第三发的宏包pythonhighlight:</p><p><a href="https://github.com/olivierverdier/python-latex-highlighting" target="_blank" rel="noopener">https://github.com/olivierverdier/python-latex-highlighting</a></p><p>下载pythonhighlight.sty后，将它放到你的.tex文件所在目录下。</p><p>然后声明要使用pythonhighlight，在tex文件内的导言区：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\usepackage&#123;graphicx&#125;</span><br><span class="line">\usepackage&#123;pythonhighlight&#125;</span><br></pre></td></tr></table></figure><p>之后既可以在正文添加代码了:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;python&#125;</span><br><span class="line">import torch</span><br><span class="line">import torch.nn as nn</span><br><span class="line">import torch.optim as optim</span><br><span class="line">import torch.nn.functional as F</span><br><span class="line">import torchvision</span><br><span class="line">import torchvision.transforms as transforms</span><br><span class="line">import time</span><br><span class="line">import os</span><br><span class="line">\end&#123;python&#125;</span><br></pre></td></tr></table></figure><p>效果如下：</p><p><img src="/images/latex/python/code.png" alt="code"></p>]]></content>
     
@@ -36,10 +36,10 @@
     </summary>
     
     
-      <category term="personal stuff" scheme="http://yoursite.com/categories/personal-stuff/"/>
+      <category term="Latex Trick" scheme="http://yoursite.com/categories/Latex-Trick/"/>
     
     
-      <category term="family" scheme="http://yoursite.com/tags/family/"/>
+      <category term="latex" scheme="http://yoursite.com/tags/latex/"/>
     
   </entry>
   
