@@ -8,18 +8,7 @@
         <category>Deep Learning</category>
       </categories>
       <tags>
-        <tag>paper notes, deep learning</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Hexo+Valine：为博客添加评论]]></title>
-    <url>%2F2020%2F10%2F15%2F12_hexo_valine%2F</url>
-    <content type="text"><![CDATA[注册Leancloud账号：https://www.leancloud.cn 注册完以后需要创建一个应用，名字可以随便起，然后 进入应用-&gt;设置-&gt;应用key 拿到你的appid和appkey之后，打开主题配置文件（我是…\themes\next_config.yml） 搜索 valine，填入appid 和 appkey 1234567891011121314valine: enable: true # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version appid: XO7jV马赛克zGzoHsz # Your leancloud application appid appkey: Amg1Fl马赛克2NfhcO # Your leancloud application appkey notify: false # Mail notifier. See: https://github.com/xCss/Valine/wiki verify: false # Verification code placeholder: Just go go # Comment box placeholder avatar: mm # Gravatar style guest_info: nick,mail,link # Custom comment header pageSize: 10 # Pagination size language: # Language, available values: en, zh-cn visitor: false # leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html comment_count: true # If false, comment count will only be displayed in post page, not in home page #post_meta_order: 0 最后在Leancloud -&gt; 设置 -&gt; 安全中心 -&gt; Web 安全域名 把你的域名加进去 刷新一下~ 看到评论框了 删除评论登录Leancloud&gt;选择你创建的应用&gt;存储&gt;选择ClassComment 参考： https://blog.csdn.net/blue_zy/article/details/79071414 https://github.com/xCss/Valine/issues/69]]></content>
-      <categories>
-        <category>Setup</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
+        <tag>paper notes-deep learning</tag>
       </tags>
   </entry>
   <entry>
@@ -31,6 +20,17 @@
       </categories>
       <tags>
         <tag>latex</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hexo+Valine：为博客添加评论]]></title>
+    <url>%2F2020%2F10%2F15%2F12_hexo_valine%2F</url>
+    <content type="text"><![CDATA[注册Leancloud账号：https://www.leancloud.cn 注册完以后需要创建一个应用，名字可以随便起，然后 进入应用-&gt;设置-&gt;应用key 拿到你的appid和appkey之后，打开主题配置文件（我是…\themes\next_config.yml） 搜索 valine，填入appid 和 appkey 1234567891011121314valine: enable: true # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version appid: XO7jV马赛克zGzoHsz # Your leancloud application appid appkey: Amg1Fl马赛克2NfhcO # Your leancloud application appkey notify: false # Mail notifier. See: https://github.com/xCss/Valine/wiki verify: false # Verification code placeholder: Just go go # Comment box placeholder avatar: mm # Gravatar style guest_info: nick,mail,link # Custom comment header pageSize: 10 # Pagination size language: # Language, available values: en, zh-cn visitor: false # leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html comment_count: true # If false, comment count will only be displayed in post page, not in home page #post_meta_order: 0 最后在Leancloud -&gt; 设置 -&gt; 安全中心 -&gt; Web 安全域名 把你的域名加进去 刷新一下~ 看到评论框了 删除评论登录Leancloud&gt;选择你创建的应用&gt;存储&gt;选择ClassComment 参考： https://blog.csdn.net/blue_zy/article/details/79071414 https://github.com/xCss/Valine/issues/69]]></content>
+      <categories>
+        <category>Setup</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
