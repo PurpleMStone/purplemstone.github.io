@@ -270,7 +270,7 @@
                 
               
 
-              <time title="创建时间：2020-12-02 19:20:09 / 修改时间：20:54:46" itemprop="dateCreated datePublished" datetime="2020-12-02T19:20:09+08:00">2020-12-02</time>
+              <time title="创建时间：2020-12-02 19:20:09 / 修改时间：21:00:53" itemprop="dateCreated datePublished" datetime="2020-12-02T19:20:09+08:00">2020-12-02</time>
             </span>
           
             
@@ -345,216 +345,19 @@ Y(m,n,t)=-\sum\limits_{i=0}^{d}\sum\limits_{j=0}^{d}\sum\limits_{k=0}^{c_{in}}|X
 Var[Y_{CNN}]=\sum\limits_{i=0}^{d}\sum\limits_{j=0}^{d}\sum\limits_{k=0}^{c_{in}}Var[X\times F]=d^{2}c_{in}Var[X]Var[F]</script><p>而AdderNet中则是</p>
 <script type="math/tex; mode=display">
 Var[Y_{AdderNet}]=\sum\limits_{i=0}^{d}\sum\limits_{j=0}^{d}\sum\limits_{k=0}^{c_{in}}Var[|X-F|]=(1-\frac{2}{\pi})d^{2}c_{in}(Var[X]+Var[F])</script><p>实际情况中Var[F]非常小，所以$Var[Y_{AdderNet}]$会比$Var[Y_{CNN}]$大。在加法层后面会接一个BN层，大方差会导致X的梯度幅值小，经过chain rule的作用，滤波器的权重梯度幅值会越来越小。</p>
-<p><img src="/images/addernet/gradient_disappear.png" alt="gradient_disappear" style="zoom: 33%;"></p>
+<p><img src="/images/addernet/gradient_disappear.png" alt="gradient_disappear" style="zoom: 80%;"></p>
 <p><strong>解决方法</strong>：adaptive learning rate</p>
 <script type="math/tex; mode=display">
-\triangle F_{l}=\gamma \times \alpha_{l}\times \triangle L(F_{l})</script><p>$l$：表示第$l$层</p>
-<p>$\gamma$：全局学习率</p>
+\triangle F_{l}=\gamma \times \alpha_{l}\times \triangle L(F_{l})</script><p>$l$：表示第$l$层；$\triangle L(F_{l})$第$l$层F的梯度；$\gamma$：全局学习率</p>
 <p>局部学习率：</p>
 <script type="math/tex; mode=display">
 \alpha_{l}=\frac{\eta \sqrt k}{||\triangle L(F_{l})||_{2}}</script><p>k：F中的元素数量，用于对L2范数求平均</p>
 <h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><p>在MNIST、CIFAR10、CIFAR100、ImageNet上达到与CNN相近的准确率。</p>
-<p><img src="/images/addernet/v1_imagenet_result.png" alt="v1_imagenet_result" style="zoom: 33%;"></p>
+<p><img src="/images/addernet/v1_imagenet_result.png" alt="v1_imagenet_result"></p>
 <p>AdderNet的权重服从拉普拉斯分布，而CNN的权重服从高斯分布。</p>
-<p><img src="/images/addernet/v1_histogram.png" alt="v1_histogram" style="zoom: 33%;"></p>
+<p><img src="/images/addernet/v1_histogram.png" alt="v1_histogram"></p>
 <p><a href="https://arxiv.org/abs/1912.13200v2" target="_blank" rel="noopener">AdderNet: DoWe Really Need Multiplications in Deep Learning?</a></p>
 <p><a href="https://github.com/huawei-noah/AdderNet" target="_blank" rel="noopener">AdderNet代码</a></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/15/About%20me/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Purple M. Stone">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stone's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2020/10/15/About%20me/" class="post-title-link" itemprop="url">About Me</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2020-10-15 19:20:09 / 修改时间：20:06:37" itemprop="dateCreated datePublished" datetime="2020-10-15T19:20:09+08:00">2020-10-15</time>
-            </span>
-          
-            
-
-            
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/10/15/About%20me/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/10/15/About%20me/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">I AM NOBODY.</span><br></pre></td></tr></table></figure>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/15/12_hexo_valine/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Purple M. Stone">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stone's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2020/10/15/12_hexo_valine/" class="post-title-link" itemprop="url">Hexo+Valine：为博客添加评论</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2020-10-15 19:20:09 / 修改时间：20:43:26" itemprop="dateCreated datePublished" datetime="2020-10-15T19:20:09+08:00">2020-10-15</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Setup/" itemprop="url" rel="index"><span itemprop="name">Setup</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/10/15/12_hexo_valine/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/10/15/12_hexo_valine/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>注册Leancloud账号：<a href="https://www.leancloud.cn/" target="_blank" rel="noopener">https://www.leancloud.cn</a></p>
-<p>注册完以后需要创建一个应用，名字可以随便起，然后 <strong>进入应用-&gt;设置-&gt;应用key</strong></p>
-<p>拿到你的appid和appkey之后，打开<strong>主题配置文件</strong>（我是…\themes\next_config.yml） 搜索 <strong>valine</strong>，填入appid 和 appkey</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">valine:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span> <span class="comment"># When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version</span></span><br><span class="line"><span class="attr">  appid:</span> <span class="string">XO7jV马赛克zGzoHsz</span> <span class="comment"># Your leancloud application appid</span></span><br><span class="line"><span class="attr">  appkey:</span> <span class="string">Amg1Fl马赛克2NfhcO</span> <span class="comment"># Your leancloud application appkey</span></span><br><span class="line"><span class="attr">  notify:</span> <span class="literal">false</span> <span class="comment"># Mail notifier. See: https://github.com/xCss/Valine/wiki</span></span><br><span class="line"><span class="attr">  verify:</span> <span class="literal">false</span> <span class="comment"># Verification code</span></span><br><span class="line"><span class="attr">  placeholder:</span> <span class="string">Just</span> <span class="string">go</span> <span class="string">go</span> <span class="comment"># Comment box placeholder</span></span><br><span class="line"><span class="attr">  avatar:</span> <span class="string">mm</span> <span class="comment"># Gravatar style</span></span><br><span class="line"><span class="attr">  guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment"># Custom comment header</span></span><br><span class="line"><span class="attr">  pageSize:</span> <span class="number">10</span> <span class="comment"># Pagination size</span></span><br><span class="line"><span class="attr">  language:</span> <span class="comment"># Language, available values: en, zh-cn</span></span><br><span class="line"><span class="attr">  visitor:</span> <span class="literal">false</span> <span class="comment"># leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html</span></span><br><span class="line"><span class="attr">  comment_count:</span> <span class="literal">true</span> <span class="comment"># If false, comment count will only be displayed in post page, not in home page</span></span><br><span class="line">  <span class="comment">#post_meta_order: 0</span></span><br></pre></td></tr></table></figure>
-<p>最后在Leancloud -&gt; 设置 -&gt; 安全中心 -&gt; Web 安全域名 把你的域名加进去</p>
-<p>刷新一下~ 看到评论框了</p>
-<h1 id="删除评论"><a href="#删除评论" class="headerlink" title="删除评论"></a>删除评论</h1><p><code>登录Leancloud</code>&gt;选择你创建的<code>应用</code>&gt;<code>存储</code>&gt;选择Class<code>Comment</code></p>
-<p>参考：</p>
-<p><a href="https://blog.csdn.net/blue_zy/article/details/79071414" target="_blank" rel="noopener">https://blog.csdn.net/blue_zy/article/details/79071414</a></p>
-<p><a href="https://github.com/xCss/Valine/issues/69" target="_blank" rel="noopener">https://github.com/xCss/Valine/issues/69</a></p>
 
         
       
@@ -687,7 +490,7 @@ Var[Y_{AdderNet}]=\sum\limits_{i=0}^{d}\sum\limits_{j=0}^{d}\sum\limits_{k=0}^{c
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/01/10_%E5%BA%86%E7%A5%9D%E5%8F%8C%E8%8A%82/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/15/12_hexo_valine/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Purple M. Stone">
@@ -701,7 +504,7 @@ Var[Y_{AdderNet}]=\sum\limits_{i=0}^{d}\sum\limits_{j=0}^{d}\sum\limits_{k=0}^{c
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/10/01/10_%E5%BA%86%E7%A5%9D%E5%8F%8C%E8%8A%82/" class="post-title-link" itemprop="url">庆祝双节</a>
+            <a href="/2020/10/15/12_hexo_valine/" class="post-title-link" itemprop="url">Hexo+Valine：为博客添加评论</a>
           
         </h1>
 
@@ -716,7 +519,7 @@ Var[Y_{AdderNet}]=\sum\limits_{i=0}^{d}\sum\limits_{j=0}^{d}\sum\limits_{k=0}^{c
                 
               
 
-              <time title="创建时间：2020-10-01 16:18:09 / 修改时间：16:55:56" itemprop="dateCreated datePublished" datetime="2020-10-01T16:18:09+08:00">2020-10-01</time>
+              <time title="创建时间：2020-10-15 19:20:09 / 修改时间：20:43:26" itemprop="dateCreated datePublished" datetime="2020-10-15T19:20:09+08:00">2020-10-15</time>
             </span>
           
             
@@ -729,7 +532,7 @@ Var[Y_{AdderNet}]=\sum\limits_{i=0}^{d}\sum\limits_{j=0}^{d}\sum\limits_{k=0}^{c
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/personal-stuff/" itemprop="url" rel="index"><span itemprop="name">personal stuff</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Setup/" itemprop="url" rel="index"><span itemprop="name">Setup</span></a></span>
 
                 
                 
@@ -748,7 +551,7 @@ Var[Y_{AdderNet}]=\sum\limits_{i=0}^{d}\sum\limits_{j=0}^{d}\sum\limits_{k=0}^{c
       
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/10/01/10_%E5%BA%86%E7%A5%9D%E5%8F%8C%E8%8A%82/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/10/01/10_%E5%BA%86%E7%A5%9D%E5%8F%8C%E8%8A%82/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/10/15/12_hexo_valine/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/10/15/12_hexo_valine/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -762,124 +565,16 @@ Var[Y_{AdderNet}]=\sum\limits_{i=0}^{d}\sum\limits_{j=0}^{d}\sum\limits_{k=0}^{c
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>难得的中秋节与国庆节重叠！你们吃月饼了吗？hhhhhh……</p>
-<p><img src="/images/GuoQing2020/03.jpg" alt="03"></p>
-<p>SXQ猪祝你们双节快乐并甩一个大biu biu ^(*￣(oo)￣)^</p>
-<p><img src="/images/GuoQing2020/02.jpg" alt="02"></p>
-<p>机智美丽大方沉鱼落雁闭月羞花的SZS祝爸爸妈咪事事顺心！</p>
-<p><img src="/images/GuoQing2020/01.jpg" alt="01"></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/04/09_leetcode_001/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Purple M. Stone">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stone's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2020/08/04/09_leetcode_001/" class="post-title-link" itemprop="url">Leetcode20--有效的括号</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2020-08-04 22:18:09 / 修改时间：22:26:55" itemprop="dateCreated datePublished" datetime="2020-08-04T22:18:09+08:00">2020-08-04</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithms/" itemprop="url" rel="index"><span itemprop="name">Algorithms</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/08/04/09_leetcode_001/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/08/04/09_leetcode_001/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>给定一个只包括 ‘(‘，’)’，’{‘，’}’，’[‘，’]’ 的字符串，判断字符串是否有效。</p>
-<p>有效字符串需满足：</p>
-<p>左括号必须用相同类型的右括号闭合。<br>左括号必须以正确的顺序闭合。<br>注意空字符串可被认为是有效字符串。</p>
-<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><p>示例 1:</p>
-<p>输入: “()”<br>输出: true<br>示例 2:</p>
-<p>输入: “()[]{}”<br>输出: true<br>示例 3:</p>
-<p>输入: “(]”<br>输出: false<br>示例 4:</p>
-<p>输入: “([)]”<br>输出: false<br>示例 5:</p>
-<p>输入: “{[]}”<br>输出: true</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>使用先进后出的栈，左括号存放到栈中，遇到右括号则从栈中pop一个出来看看是否对应，若不对应即可判断为“false”，若对应则继续余下字符的判断。若最后栈中没有括号存在，则为“true”。字典中”?“是边界处理，防止从空栈pop元素的报错。</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isValid</span><span class="params">(self, s)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type s: str</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        dic = &#123;<span class="string">'('</span>:<span class="string">')'</span>,<span class="string">'['</span>:<span class="string">']'</span>,<span class="string">'&#123;'</span>:<span class="string">'&#125;'</span>,<span class="string">'?'</span>:<span class="string">'?'</span>&#125;</span><br><span class="line">        stack = [<span class="string">'?'</span>]</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> s:</span><br><span class="line">            <span class="keyword">if</span> c <span class="keyword">in</span> dic:</span><br><span class="line">                stack.append(c)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> dic[stack.pop()] != c:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> len(stack) == <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/valid-parentheses" target="_blank" rel="noopener">https://leetcode-cn.com/problems/valid-parentheses</a></p>
-<p>题解：<a href="https://leetcode-cn.com/problems/valid-parentheses/solution/valid-parentheses-fu-zhu-zhan-fa-by-jin407891080/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/valid-parentheses/solution/valid-parentheses-fu-zhu-zhan-fa-by-jin407891080/</a></p>
+          <p>注册Leancloud账号：<a href="https://www.leancloud.cn/" target="_blank" rel="noopener">https://www.leancloud.cn</a></p>
+<p>注册完以后需要创建一个应用，名字可以随便起，然后 <strong>进入应用-&gt;设置-&gt;应用key</strong></p>
+<p>拿到你的appid和appkey之后，打开<strong>主题配置文件</strong>（我是…\themes\next_config.yml） 搜索 <strong>valine</strong>，填入appid 和 appkey</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">valine:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span> <span class="comment"># When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version</span></span><br><span class="line"><span class="attr">  appid:</span> <span class="string">XO7jV马赛克zGzoHsz</span> <span class="comment"># Your leancloud application appid</span></span><br><span class="line"><span class="attr">  appkey:</span> <span class="string">Amg1Fl马赛克2NfhcO</span> <span class="comment"># Your leancloud application appkey</span></span><br><span class="line"><span class="attr">  notify:</span> <span class="literal">false</span> <span class="comment"># Mail notifier. See: https://github.com/xCss/Valine/wiki</span></span><br><span class="line"><span class="attr">  verify:</span> <span class="literal">false</span> <span class="comment"># Verification code</span></span><br><span class="line"><span class="attr">  placeholder:</span> <span class="string">Just</span> <span class="string">go</span> <span class="string">go</span> <span class="comment"># Comment box placeholder</span></span><br><span class="line"><span class="attr">  avatar:</span> <span class="string">mm</span> <span class="comment"># Gravatar style</span></span><br><span class="line"><span class="attr">  guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment"># Custom comment header</span></span><br><span class="line"><span class="attr">  pageSize:</span> <span class="number">10</span> <span class="comment"># Pagination size</span></span><br><span class="line"><span class="attr">  language:</span> <span class="comment"># Language, available values: en, zh-cn</span></span><br><span class="line"><span class="attr">  visitor:</span> <span class="literal">false</span> <span class="comment"># leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html</span></span><br><span class="line"><span class="attr">  comment_count:</span> <span class="literal">true</span> <span class="comment"># If false, comment count will only be displayed in post page, not in home page</span></span><br><span class="line">  <span class="comment">#post_meta_order: 0</span></span><br></pre></td></tr></table></figure>
+<p>最后在Leancloud -&gt; 设置 -&gt; 安全中心 -&gt; Web 安全域名 把你的域名加进去</p>
+<p>刷新一下~ 看到评论框了</p>
+<h1 id="删除评论"><a href="#删除评论" class="headerlink" title="删除评论"></a>删除评论</h1><p><code>登录Leancloud</code>&gt;选择你创建的<code>应用</code>&gt;<code>存储</code>&gt;选择Class<code>Comment</code></p>
+<p>参考：</p>
+<p><a href="https://blog.csdn.net/blue_zy/article/details/79071414" target="_blank" rel="noopener">https://blog.csdn.net/blue_zy/article/details/79071414</a></p>
+<p><a href="https://github.com/xCss/Valine/issues/69" target="_blank" rel="noopener">https://github.com/xCss/Valine/issues/69</a></p>
 
         
       
@@ -1409,9 +1104,6 @@ s.t. w^{*}(\alpha)=argmin_{w}L_{train}(w,\alpha)</script><p>即找到最优结�
   </div>
 
   
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot; aria-label&#x3D;&quot;下一页&quot;&gt;&lt;&#x2F;i&gt;</a>
-  </nav>
 
 
           </div>
@@ -1458,7 +1150,7 @@ s.t. w^{*}(\alpha)=argmin_{w}L_{train}(w,\alpha)</script><p>即找到最优结�
         
           <a href="/archives/%20%7C%7C%20archive">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1471,7 +1163,7 @@ s.t. w^{*}(\alpha)=argmin_{w}L_{train}(w,\alpha)</script><p>即找到最优结�
             <a href="/categories/%20%7C%7C%20th">
           
         
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -1484,7 +1176,7 @@ s.t. w^{*}(\alpha)=argmin_{w}L_{train}(w,\alpha)</script><p>即找到最优结�
             <a href="/tags/%20%7C%7C%20tags">
           
         
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -1666,12 +1358,6 @@ window.addEventListener('pjax:success', () => {
   
 
   
-    
-      
-    
-      
-    
-      
     
       
     
