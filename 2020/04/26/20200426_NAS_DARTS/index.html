@@ -58,20 +58,20 @@
 
   <meta name="description" content="Search Space搜索cell作为网络结构的构件。cell是包含N个结点的有序序列的有向无环图。结点$x^{(i)}$是隐藏表达（比如卷积网络的特征图），而有向边$(i ,j)$则关联着变换$x^{(i)}$的一些操作$o^{(i,j)}$。文章中假定一个cell中有两个输入节点和一个输出节点。对于卷积cell，输入节点被定义为当前层的前面两层的cell的输出。当前cell的输出是对所有中间">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NAS：DARTS论文解读">
-<meta property="og:url" content="http://yoursite.com/2020/04/26/05_NAS_DARTS/index.html">
+<meta property="og:title" content="论文阅读笔记(1):NAS之DARTS">
+<meta property="og:url" content="http://yoursite.com/2020/04/26/20200426_NAS_DARTS/index.html">
 <meta property="og:site_name" content="Stone&#39;s Blog">
 <meta property="og:description" content="Search Space搜索cell作为网络结构的构件。cell是包含N个结点的有序序列的有向无环图。结点$x^{(i)}$是隐藏表达（比如卷积网络的特征图），而有向边$(i ,j)$则关联着变换$x^{(i)}$的一些操作$o^{(i,j)}$。文章中假定一个cell中有两个输入节点和一个输出节点。对于卷积cell，输入节点被定义为当前层的前面两层的cell的输出。当前cell的输出是对所有中间">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/images/DARTS/darts.png">
 <meta property="og:image" content="http://yoursite.com/images/DARTS/algorithm.png">
 <meta property="article:published_time" content="2020-04-26T10:48:09.000Z">
-<meta property="article:modified_time" content="2020-05-10T16:31:52.610Z">
+<meta property="article:modified_time" content="2020-12-02T13:14:44.378Z">
 <meta property="article:author" content="Purple M. Stone">
-<meta property="article:tag" content="deep learning">
+<meta property="article:tag" content="paper reading-deep learning">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/images/DARTS/darts.png">
-  <link rel="canonical" href="http://yoursite.com/2020/04/26/05_NAS_DARTS/">
+  <link rel="canonical" href="http://yoursite.com/2020/04/26/20200426_NAS_DARTS/">
 
 
 <script id="page-configurations">
@@ -85,7 +85,7 @@
   };
 </script>
 
-  <title>NAS：DARTS论文解读 | Stone's Blog</title>
+  <title>论文阅读笔记(1):NAS之DARTS | Stone's Blog</title>
   
 
 
@@ -250,7 +250,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/26/05_NAS_DARTS/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/26/20200426_NAS_DARTS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Purple M. Stone">
@@ -262,7 +262,7 @@
       <meta itemprop="name" content="Stone's Blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">NAS：DARTS论文解读
+        <h1 class="post-title" itemprop="name headline">论文阅读笔记(1):NAS之DARTS
 
           
         </h1>
@@ -289,7 +289,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-11 00:31:52" itemprop="dateModified" datetime="2020-05-11T00:31:52+08:00">2020-05-11</time>
+                <time title="修改时间：2020-12-02 21:14:44" itemprop="dateModified" datetime="2020-12-02T21:14:44+08:00">2020-12-02</time>
               </span>
             
           
@@ -326,7 +326,7 @@
       
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/04/26/05_NAS_DARTS/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/04/26/05_NAS_DARTS/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/04/26/20200426_NAS_DARTS/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/04/26/20200426_NAS_DARTS/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -384,7 +384,7 @@ s.t. w^{*}(\alpha)=argmin_{w}L_{train}(w,\alpha)</script><p>即找到最优结�
           
           <div class="post-tags">
             
-              <a href="/tags/deep-learning/" rel="tag"># deep learning</a>
+              <a href="/tags/paper-reading-deep-learning/" rel="tag"># paper reading-deep learning</a>
             
           </div>
         
