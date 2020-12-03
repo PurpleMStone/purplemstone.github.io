@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[论文阅读笔记(3)：CNN频域学习]]></title>
+    <title><![CDATA[论文阅读笔记(3)：CNN频域学习(1)]]></title>
     <url>%2F2020%2F12%2F03%2F20201203_CNNinFrequence%2F</url>
     <content type="text"><![CDATA[On using CNN with DCT based Image DataMotivation对于高分辨图像、视频，输入数据量大，CNN运算多→从图像压缩算法JPEG得到启发，经过DCT变换将空域数据转换到频域处理，压缩输入数据量。 Method Results实验数据集：CIFAR10，MNIST Discussion文章直接用DCT系数替代RGB作为CNN输入，处理方法简单直接。Motivation是数据压缩，但是没给出输入数据量减少的实验结果（只是作为future work），而准确率提升也不明显。 On using CNN with DCT based Image Data]]></content>
       <categories>
