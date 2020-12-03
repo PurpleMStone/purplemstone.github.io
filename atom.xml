@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-12-03T02:08:00.943Z</updated>
+  <updated>2020-12-03T13:52:47.145Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>论文阅读笔记(3)：CNN频域学习</title>
+    <link href="http://yoursite.com/2020/12/03/20201203_CNNinFrequence/"/>
+    <id>http://yoursite.com/2020/12/03/20201203_CNNinFrequence/</id>
+    <published>2020-12-03T13:20:09.000Z</published>
+    <updated>2020-12-03T13:52:47.145Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="On-using-CNN-with-DCT-based-Image-Data"><a href="#On-using-CNN-with-DCT-based-Image-Data" class="headerlink" title="On using CNN with DCT based Image Data"></a>On using CNN with DCT based Image Data</h2><h3 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h3><p>对于高分辨图像、视频，输入数据量大，CNN运算多→从图像压缩算法JPEG得到启发，经过DCT变换将空域数据转换到频域处理，压缩输入数据量。</p><h3 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h3><p><img src="/images/CNNinFrequence/01_method.png" alt="01_method" style="zoom:75%;"></p><h3 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h3><p>实验数据集：CIFAR10，MNIST</p><p><img src="/images/CNNinFrequence/01_result.png" alt="01_result" style="zoom:75%;"></p><h3 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h3><p>文章直接用DCT系数替代RGB作为CNN输入，处理方法简单直接。Motivation是数据压缩，但是没给出输入数据量减少的实验结果（只是作为future work），而准确率提升也不明显。</p><p><a href="https://www.scss.tcd.ie/Rozenn.Dahyot/pdf/IMVIP2017_MatejUlicny.pdf" target="_blank" rel="noopener">On using CNN with DCT based Image Data</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;On-using-CNN-with-DCT-based-Image-Data&quot;&gt;&lt;a href=&quot;#On-using-CNN-with-DCT-based-Image-Data&quot; class=&quot;headerlink&quot; title=&quot;On using CNN wit
+      
+    
+    </summary>
+    
+    
+      <category term="Deep Learning" scheme="http://yoursite.com/categories/Deep-Learning/"/>
+    
+    
+      <category term="paper notes-deep learning" scheme="http://yoursite.com/tags/paper-notes-deep-learning/"/>
+    
+  </entry>
   
   <entry>
     <title>论文阅读笔记(2)：AdderNet</title>
