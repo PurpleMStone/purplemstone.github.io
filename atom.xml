@@ -39,6 +39,29 @@
   </entry>
   
   <entry>
+    <title>论文阅读笔记(5)-The Visual Microphone Passive Recovery of Sound from Video</title>
+    <link href="http://yoursite.com/2020/12/23/VisualSound/"/>
+    <id>http://yoursite.com/2020/12/23/VisualSound/</id>
+    <published>2020-12-23T12:36:21.051Z</published>
+    <updated>2020-12-23T13:02:15.960Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>现象</strong>：声音到达物体会在物体表面引起微小振动。</p><p><strong>做法</strong>：使用物体的高速视频提取微小振动，部分恢复（造成振动的）声音。</p><p><strong>具体</strong>：1）从一系列不同特性的物体的高速连续镜头中恢复声音；</p><p>​            2）使用真实和仿真数据来评测那些影响了可视化地恢复声音的因素；</p><p>​            3）声音恢复质量评价指标：可理解性（intelligibility）、SNR；直接对比输入和恢复出来的信号；</p><p>​            4）探索如何利用普通用户相机的卷帘快门（rolling shutter）从而从标准帧率视频中恢复出声音；使用所提方法的空间分辨率来可视化声音引起的振动是如何随着物体表面变化的，以之恢复物体的振动模式。</p><p><strong>Keywords</strong>：远程声音采集；视频中的声音；可视化声学。</p><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p><strong>描述</strong>：声音到达某物品 → 1）物品表面跟随周围介质移动 OR 2）根据其振动模式发生形变。</p><p><strong>应用场景</strong>：声音引起物体振动的现象被用于远程声音采集，并在监视和安防方面有重要应用，如在远处窃听谈话。远程声音采集的现有方法本质上是积极（active）的，需要将一个激光束或pattern投射到振动表面。</p><p><strong>本文观察</strong>：只需要物体的高速视频，声音引起的物体振动通常能够产生足够的视觉信号来部分恢复出该声音。</p><p><strong>本文贡献</strong>：提出一个消极的从视频中恢复声音信号的方法。视觉上检测微小物体振动→将振动转回音频信号（使得日常物品变成潜藏的麦克风）。做法：1）使用高速摄像机将物体视频；2）在一个Complex steerable pyramid (CSP)（建立在视频上）的维度上提取<em>局部运动信号</em>；3）这些局部信号被对齐并取平均，得到一个单一的一维运动信号，该信号捕捉对象随时间的<em>全局运动</em>；4）进一步滤波和去噪，得到恢复出来的声音。</p><p><strong>对比积极方法</strong>：恢复效果不如积极方法；但是优点有 1）对于纹理物体和光照良好的场景不需要提供积极照明；2）除了高速摄像机外无需额外的传感器或检测模块；3）无需回射或反射振动表面（区别于激光麦克风）；4）没有对相对于相机的表面方向施加明显的约束；5）产生了一个声音的空间测量，可用于分析物品中声音引起的形变。</p><p><strong>讨论</strong>：虽然声音可以穿透大多数物质，但并不是所有的物体和材料都能很好地进行视觉声音恢复。声波在材料中的传播取决于多种因素，如材料的密度和可压缩性，以及物体的形状。文章进行对照实验，测量了不同物体和材料对已知和未知声音的反应，并评估文章所提技术对于从高速视频中恢复声音的能力。</p><h2 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h2><p>传统麦克风的工作原理是将内部膜片的运动转化为电信号。膜片的设计使其在声压下容易移动，因此它的运动可以被记录下来并解释为音频。<strong>激光麦克风</strong>的工作原理与此类似，但它测量的是一个遥远物体的运动，本质上是将物体作为一个外部膜片。这是通过记录激光对物体表面的反射来实现的。最基本的激光麦克风记录反射激光的相位，以激光波长作模得到物体的距离。激光多普勒测振仪(LDV)通过测量反射激光的多普勒频移来确定反射面速度，从而解决相位包裹的模糊性。这两种类型的激光麦克风都可以从很远的距离恢复高质量的音频，但依赖于激光和接收器相对于具有适当反射比的地面的精确定位。</p><p>Zalevsky等人通过使用失焦高速相机来记录反射激光散斑模式的变化，解决了其中的一些局限性。他们的工作允许接收器的定位有更大的灵活性，但仍然依赖于记录反射激光。相比之下，本文的技术不依赖于主动照明。</p><p>本文方法依赖于从视频中提取极其细微运动的能力，因而也与对这些运动进行放大和可视化的工作有关。这些工作侧重于小运动的可视化，而本文侧重于测量这些运动并利用它们来恢复声音。本文工作中使用的局部运动信号来自Simoncelli等人提出的Complex steerable pyramid (CSP)中的相位变化，因为这些变化被证明非常适合于视频中微小动作的恢复。然而，也有可能使用其他技术来计算局部运动信号。例如，经典的光流和点相关方法在之前的视觉振动传感工作中被成功地使用。由于本文方法的输出是单个振动物体的一维运动信号，因而能够对输入视频中的所有像素进行平均，并在千分之一像素的数量级上处理极其微小的运动。</p><h2 id="Recovering-Sound-from-Video"><a href="#Recovering-Sound-from-Video" class="headerlink" title="Recovering Sound from Video"></a>Recovering Sound from Video</h2><p><img src="E:/Stone/stoneblog/stoneblog/source/images/VisualSound/1.png" alt="1"></p><p><strong>输入</strong>：物体的高速视频（1kHz~20kHz）$V(x,y,t)$</p><p><strong>假设</strong>：物体和相机的相对运动是由声音信号$s(t)$引起的振动主导的</p><p><strong>目标</strong>：从$V$得到$s(t)$</p><p><strong>步骤</strong>：1）根据不同的方向$θ$和尺度$r$将$V$分解成多个空间子带；</p><p>​            2）计算每个像素、方向和尺度上的局部运动信号；通过一系列的平均和对齐操作将这些运动信号组合起来，为物体产生一个单一的全局运动信号；</p><p>​            3）对物体的运动信号使用音频去噪和滤波技术，以获得恢复出来的声音。</p><h3 id="Computing-Local-Motion-Signals"><a href="#Computing-Local-Motion-Signals" class="headerlink" title="Computing Local Motion Signals"></a>Computing Local Motion Signals</h3><p>使用$V$的CSP表示中的相位变化来计算局部运动。</p><p>CSP：将$V$中的每一帧根据不同的方向和尺度分解成复数子带的滤波器组。该变换的基础方程是带尺度和方向的兼具余弦和正弦相位的Gabor-like小波。每一对类余弦和类正弦滤波器都可以用来分离局部小波的振幅和它们的相位。具体地说，每个尺度$r$和方位$θ$是一个复数图像，可以用幅值$A$和相位$φ$表示为：</p><script type="math/tex; mode=display">A(r,\theta,x,y,t)e^{i\varphi (r,\theta,x,y,t)}</script><p>取这个等式中计算的局部相位$φ$，从参考帧$t_{0}$(通常是视频的第一帧)的局部相位中减去它们，计算相位变化</p><script type="math/tex; mode=display">\varphi_{v} (r,\theta,x,y,t)=\varphi (r,\theta,x,y,t)-\varphi (r,\theta,x,y,t_{0})</script><p>对于较小的运动，这些相位变化近似正比于图像结构在相应方向和尺度上的位移。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;现象&lt;/strong&gt;：声音到达物体会在物体表面引起微小振动。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;做法&lt;/strong&gt;：使用物
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>论文阅读笔记(4)：CNN频域学习(2)</title>
     <link href="http://yoursite.com/2020/12/04/20201204_CNNinFrequence2/"/>
     <id>http://yoursite.com/2020/12/04/20201204_CNNinFrequence2/</id>
@@ -117,33 +140,6 @@
   </entry>
   
   <entry>
-    <title>Hexo+Valine：为博客添加评论</title>
-    <link href="http://yoursite.com/2020/10/15/12_hexo_valine/"/>
-    <id>http://yoursite.com/2020/10/15/12_hexo_valine/</id>
-    <published>2020-10-15T11:20:09.000Z</published>
-    <updated>2020-10-15T12:43:26.643Z</updated>
-    
-    <content type="html"><![CDATA[<p>注册Leancloud账号：<a href="https://www.leancloud.cn/" target="_blank" rel="noopener">https://www.leancloud.cn</a></p><p>注册完以后需要创建一个应用，名字可以随便起，然后 <strong>进入应用-&gt;设置-&gt;应用key</strong></p><p>拿到你的appid和appkey之后，打开<strong>主题配置文件</strong>（我是…\themes\next_config.yml） 搜索 <strong>valine</strong>，填入appid 和 appkey</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">valine:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span> <span class="comment"># When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version</span></span><br><span class="line"><span class="attr">  appid:</span> <span class="string">XO7jV马赛克zGzoHsz</span> <span class="comment"># Your leancloud application appid</span></span><br><span class="line"><span class="attr">  appkey:</span> <span class="string">Amg1Fl马赛克2NfhcO</span> <span class="comment"># Your leancloud application appkey</span></span><br><span class="line"><span class="attr">  notify:</span> <span class="literal">false</span> <span class="comment"># Mail notifier. See: https://github.com/xCss/Valine/wiki</span></span><br><span class="line"><span class="attr">  verify:</span> <span class="literal">false</span> <span class="comment"># Verification code</span></span><br><span class="line"><span class="attr">  placeholder:</span> <span class="string">Just</span> <span class="string">go</span> <span class="string">go</span> <span class="comment"># Comment box placeholder</span></span><br><span class="line"><span class="attr">  avatar:</span> <span class="string">mm</span> <span class="comment"># Gravatar style</span></span><br><span class="line"><span class="attr">  guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment"># Custom comment header</span></span><br><span class="line"><span class="attr">  pageSize:</span> <span class="number">10</span> <span class="comment"># Pagination size</span></span><br><span class="line"><span class="attr">  language:</span> <span class="comment"># Language, available values: en, zh-cn</span></span><br><span class="line"><span class="attr">  visitor:</span> <span class="literal">false</span> <span class="comment"># leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html</span></span><br><span class="line"><span class="attr">  comment_count:</span> <span class="literal">true</span> <span class="comment"># If false, comment count will only be displayed in post page, not in home page</span></span><br><span class="line">  <span class="comment">#post_meta_order: 0</span></span><br></pre></td></tr></table></figure><p>最后在Leancloud -&gt; 设置 -&gt; 安全中心 -&gt; Web 安全域名 把你的域名加进去</p><p>刷新一下~ 看到评论框了</p><h1 id="删除评论"><a href="#删除评论" class="headerlink" title="删除评论"></a>删除评论</h1><p><code>登录Leancloud</code>&gt;选择你创建的<code>应用</code>&gt;<code>存储</code>&gt;选择Class<code>Comment</code></p><p>参考：</p><p><a href="https://blog.csdn.net/blue_zy/article/details/79071414" target="_blank" rel="noopener">https://blog.csdn.net/blue_zy/article/details/79071414</a></p><p><a href="https://github.com/xCss/Valine/issues/69" target="_blank" rel="noopener">https://github.com/xCss/Valine/issues/69</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;注册Leancloud账号：&lt;a href=&quot;https://www.leancloud.cn/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.leancloud.cn&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;注册完以后需要创建一个应用，名字可以随便
-      
-    
-    </summary>
-    
-    
-      <category term="Setup" scheme="http://yoursite.com/categories/Setup/"/>
-    
-    
-      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
-    
-  </entry>
-  
-  <entry>
     <title>在Latex中插入python代码</title>
     <link href="http://yoursite.com/2020/10/15/11_latex_python_code/"/>
     <id>http://yoursite.com/2020/10/15/11_latex_python_code/</id>
@@ -167,6 +163,33 @@
     
     
       <category term="latex" scheme="http://yoursite.com/tags/latex/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo+Valine：为博客添加评论</title>
+    <link href="http://yoursite.com/2020/10/15/12_hexo_valine/"/>
+    <id>http://yoursite.com/2020/10/15/12_hexo_valine/</id>
+    <published>2020-10-15T11:20:09.000Z</published>
+    <updated>2020-10-15T12:43:26.643Z</updated>
+    
+    <content type="html"><![CDATA[<p>注册Leancloud账号：<a href="https://www.leancloud.cn/" target="_blank" rel="noopener">https://www.leancloud.cn</a></p><p>注册完以后需要创建一个应用，名字可以随便起，然后 <strong>进入应用-&gt;设置-&gt;应用key</strong></p><p>拿到你的appid和appkey之后，打开<strong>主题配置文件</strong>（我是…\themes\next_config.yml） 搜索 <strong>valine</strong>，填入appid 和 appkey</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">valine:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span> <span class="comment"># When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version</span></span><br><span class="line"><span class="attr">  appid:</span> <span class="string">XO7jV马赛克zGzoHsz</span> <span class="comment"># Your leancloud application appid</span></span><br><span class="line"><span class="attr">  appkey:</span> <span class="string">Amg1Fl马赛克2NfhcO</span> <span class="comment"># Your leancloud application appkey</span></span><br><span class="line"><span class="attr">  notify:</span> <span class="literal">false</span> <span class="comment"># Mail notifier. See: https://github.com/xCss/Valine/wiki</span></span><br><span class="line"><span class="attr">  verify:</span> <span class="literal">false</span> <span class="comment"># Verification code</span></span><br><span class="line"><span class="attr">  placeholder:</span> <span class="string">Just</span> <span class="string">go</span> <span class="string">go</span> <span class="comment"># Comment box placeholder</span></span><br><span class="line"><span class="attr">  avatar:</span> <span class="string">mm</span> <span class="comment"># Gravatar style</span></span><br><span class="line"><span class="attr">  guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment"># Custom comment header</span></span><br><span class="line"><span class="attr">  pageSize:</span> <span class="number">10</span> <span class="comment"># Pagination size</span></span><br><span class="line"><span class="attr">  language:</span> <span class="comment"># Language, available values: en, zh-cn</span></span><br><span class="line"><span class="attr">  visitor:</span> <span class="literal">false</span> <span class="comment"># leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html</span></span><br><span class="line"><span class="attr">  comment_count:</span> <span class="literal">true</span> <span class="comment"># If false, comment count will only be displayed in post page, not in home page</span></span><br><span class="line">  <span class="comment">#post_meta_order: 0</span></span><br></pre></td></tr></table></figure><p>最后在Leancloud -&gt; 设置 -&gt; 安全中心 -&gt; Web 安全域名 把你的域名加进去</p><p>刷新一下~ 看到评论框了</p><h1 id="删除评论"><a href="#删除评论" class="headerlink" title="删除评论"></a>删除评论</h1><p><code>登录Leancloud</code>&gt;选择你创建的<code>应用</code>&gt;<code>存储</code>&gt;选择Class<code>Comment</code></p><p>参考：</p><p><a href="https://blog.csdn.net/blue_zy/article/details/79071414" target="_blank" rel="noopener">https://blog.csdn.net/blue_zy/article/details/79071414</a></p><p><a href="https://github.com/xCss/Valine/issues/69" target="_blank" rel="noopener">https://github.com/xCss/Valine/issues/69</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;注册Leancloud账号：&lt;a href=&quot;https://www.leancloud.cn/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.leancloud.cn&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;注册完以后需要创建一个应用，名字可以随便
+      
+    
+    </summary>
+    
+    
+      <category term="Setup" scheme="http://yoursite.com/categories/Setup/"/>
+    
+    
+      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
     
   </entry>
   
