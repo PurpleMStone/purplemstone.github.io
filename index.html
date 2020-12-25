@@ -270,7 +270,7 @@
                 
               
 
-              <time title="创建时间：2020-12-25 11:50:09 / 修改时间：16:42:33" itemprop="dateCreated datePublished" datetime="2020-12-25T11:50:09+08:00">2020-12-25</time>
+              <time title="创建时间：2020-12-25 11:50:09 / 修改时间：16:49:32" itemprop="dateCreated datePublished" datetime="2020-12-25T11:50:09+08:00">2020-12-25</time>
             </span>
           
             
@@ -324,7 +324,7 @@ s_{n}=D(|(w*f_{n})+jH(w*f_{n})|)^{c}</script><p>$H$是希尔伯特变换，$D$�
 <h2 id="Predicting-visually-indicated-sounds"><a href="#Predicting-visually-indicated-sounds" class="headerlink" title="Predicting visually indicated sounds"></a>Predicting visually indicated sounds</h2><p>将此任务建模为一个回归问题，目标是将一个视频帧序列映射为一个声频特征序列。使用的模型是RNN，以颜色和运动（motion）信息作为输入，预测出声频波形的子带包络。最后，从声音特征中产生波形。</p>
 <p><img src="/images/VisualIndicatedSound/1.png" alt="1" style="zoom:80%;"></p>
 <h3 id="Regressing-sound-features"><a href="#Regressing-sound-features" class="headerlink" title="Regressing sound features"></a>Regressing sound features</h3><p>输入图像序列：$I_{1}, I_{2}, …, I_{N}$</p>
-<p>输出声音特征序列：$\mathop{s}\limits ^{\rightarrow}_{1}, \mathop{s}\limits ^{\rightarrow}_{2}, \mathop{s}\limits ^{\rightarrow}_{T}, where \mathop{s}\limits ^{\rightarrow}_{t}\in \mathbb{R}^{42}$</p>
+<p>输出声音特征序列：$\mathop{s_{1}}\limits ^{\rightarrow}, \mathop{s_{2}}\limits ^{\rightarrow}, \mathop{s_{T}}\limits ^{\rightarrow}, where \mathop{s_{t}}\limits ^{\rightarrow}\in \mathbb{R}^{42}$</p>
 <p>这些声音特征对应于图4中所示的耳蜗块。文章使用循环神经网络(RNN)来解决这个回归问题，它将卷积神经网络(CNN)计算的图像特征作为输入。</p>
 <p><strong>图像表示</strong>：如何表示运动（motion）信息？计算每一帧的spacetime图像，即三个通道是上一帧、当前帧和下一帧灰度版本的图像。对于每一帧$t$，通过拼接帧$t$的spacetime图像和第1帧的颜色图像的CNN特征来构建输入特征向量$x_{t}$，即</p>
 <script type="math/tex; mode=display">
@@ -336,7 +336,7 @@ k=\lfloor T/N\rfloor</script><p>由此得到与声音特征序列等长的CNN特
 <h3 id="Generating-a-waveform"><a href="#Generating-a-waveform" class="headerlink" title="Generating a waveform"></a>Generating a waveform</h3><p>问题：如何从声音特征中产生声波？</p>
 <ol>
 <li>简单参数综合法：迭代地将子带包络加到白噪声样本上(文中只使用了一次迭代)。这种方法对于检查音频特征所捕获的信息非常有用，因为它代表了从特征到声音的直接转换。</li>
-<li>对于产生对于人耳似是而非的声音的任务，在从特征到波形的转换过程中，先施加一个强的自然声音是更有效的。因此使用基于实例的合成方法，该方法将声音特征的窗口捕捉到训练集中最接近的样本上。文中通过拼接预测的声音特征$\mathop{s}\limits ^{\rightarrow}_{1}, \mathop{s}\limits ^{\rightarrow}_{2}, \mathop{s}\limits ^{\rightarrow}_{T}$（或它们的一个子序列）形成一个查询向量，在$L_{1}$距离测量的训练集中寻找其最近的邻居，并传递相应的波形。</li>
+<li>对于产生对于人耳似是而非的声音的任务，在从特征到波形的转换过程中，先施加一个强的自然声音是更有效的。因此使用基于实例的合成方法，该方法将声音特征的窗口捕捉到训练集中最接近的样本上。文中通过拼接预测的声音特征$\mathop{s_{1}}\limits ^{\rightarrow}, \mathop{s_{2}}\limits ^{\rightarrow}, \mathop{s_{T}}\limits ^{\rightarrow}$（或它们的一个子序列）形成一个查询向量，在$L_{1}$距离测量的训练集中寻找其最近的邻居，并传递相应的波形。</li>
 </ol>
 <p><a href="http://andrewowens.com/vis/" target="_blank" rel="noopener">项目网址</a></p>
 
