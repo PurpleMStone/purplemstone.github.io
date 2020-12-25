@@ -56,23 +56,21 @@
   };
 </script>
 
-  <meta name="description" content="Motivation目标：设计更加高效的深度神经网络，可以在资源有限的移动设备运行。 现有工作的局限性：常规的卷积基于乘法，代价较高；用二值滤波器替换卷积的工作如BNN等会带来较大的识别准确率下降。 文章思路：常规卷积本质上是一种互相关（输入图像与卷积核之间的相似度度量）。可以用更高效的相似度度量方法来替换常规卷积，使得度量中只包含代价较小的加法操作→AdderNet AdderNet开局公式">
+  <meta name="description" content="任务：从输入的视频中直接预测raw声音信号 方法：编码-解码架构，即视频编码器+音频生成器（分层RNN） 建模：条件生成问题。训练一个有条件的生成模型以从输入的视频中合成raw声音波形。 估计条件概率：  p(y_{1},y_{2},...,y_{n}|x_{1},x_{2},...,x_{m})$x_{1},x_{2},…,x_{m}$是输入视频帧的表示；$y_{1},y_{2},…,y_{n}">
 <meta property="og:type" content="article">
-<meta property="og:title" content="论文阅读笔记(2)：AdderNet">
-<meta property="og:url" content="http://yoursite.com/2020/12/02/20201202_AdderNet/index.html">
+<meta property="og:title" content="论文阅读笔记(7)-Visual to Sound Generating Natural Sound for Videos in the Wild">
+<meta property="og:url" content="http://yoursite.com/2020/12/25/20201225_VisualToSound/index.html">
 <meta property="og:site_name" content="Stone&#39;s Blog">
-<meta property="og:description" content="Motivation目标：设计更加高效的深度神经网络，可以在资源有限的移动设备运行。 现有工作的局限性：常规的卷积基于乘法，代价较高；用二值滤波器替换卷积的工作如BNN等会带来较大的识别准确率下降。 文章思路：常规卷积本质上是一种互相关（输入图像与卷积核之间的相似度度量）。可以用更高效的相似度度量方法来替换常规卷积，使得度量中只包含代价较小的加法操作→AdderNet AdderNet开局公式">
+<meta property="og:description" content="任务：从输入的视频中直接预测raw声音信号 方法：编码-解码架构，即视频编码器+音频生成器（分层RNN） 建模：条件生成问题。训练一个有条件的生成模型以从输入的视频中合成raw声音波形。 估计条件概率：  p(y_{1},y_{2},...,y_{n}|x_{1},x_{2},...,x_{m})$x_{1},x_{2},…,x_{m}$是输入视频帧的表示；$y_{1},y_{2},…,y_{n}">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/images/addernet/gradient_disappear.png">
-<meta property="og:image" content="http://yoursite.com/images/addernet/v1_imagenet_result.png">
-<meta property="og:image" content="http://yoursite.com/images/addernet/v1_histogram.png">
-<meta property="article:published_time" content="2020-12-02T11:20:09.000Z">
-<meta property="article:modified_time" content="2020-12-03T02:08:00.943Z">
+<meta property="og:image" content="http://yoursite.com/images/VisualToSound/1.png">
+<meta property="article:published_time" content="2020-12-25T12:50:09.000Z">
+<meta property="article:modified_time" content="2020-12-25T13:41:47.083Z">
 <meta property="article:author" content="Purple M. Stone">
-<meta property="article:tag" content="paper notes-deep learning">
+<meta property="article:tag" content="paper notes-visual sound">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/images/addernet/gradient_disappear.png">
-  <link rel="canonical" href="http://yoursite.com/2020/12/02/20201202_AdderNet/">
+<meta name="twitter:image" content="http://yoursite.com/images/VisualToSound/1.png">
+  <link rel="canonical" href="http://yoursite.com/2020/12/25/20201225_VisualToSound/">
 
 
 <script id="page-configurations">
@@ -86,7 +84,7 @@
   };
 </script>
 
-  <title>论文阅读笔记(2)：AdderNet | Stone's Blog</title>
+  <title>论文阅读笔记(7)-Visual to Sound Generating Natural Sound for Videos in the Wild | Stone's Blog</title>
   
 
 
@@ -251,7 +249,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/02/20201202_AdderNet/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/25/20201225_VisualToSound/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Purple M. Stone">
@@ -263,7 +261,7 @@
       <meta itemprop="name" content="Stone's Blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">论文阅读笔记(2)：AdderNet
+        <h1 class="post-title" itemprop="name headline">论文阅读笔记(7)-Visual to Sound Generating Natural Sound for Videos in the Wild
 
           
         </h1>
@@ -279,19 +277,11 @@
                 
               
 
-              <time title="创建时间：2020-12-02 19:20:09" itemprop="dateCreated datePublished" datetime="2020-12-02T19:20:09+08:00">2020-12-02</time>
+              <time title="创建时间：2020-12-25 20:50:09 / 修改时间：21:41:47" itemprop="dateCreated datePublished" datetime="2020-12-25T20:50:09+08:00">2020-12-25</time>
             </span>
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-03 10:08:00" itemprop="dateModified" datetime="2020-12-03T10:08:00+08:00">2020-12-03</time>
-              </span>
             
           
             <span class="post-meta-item">
@@ -300,7 +290,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Visual-Sound/" itemprop="url" rel="index"><span itemprop="name">Visual Sound</span></a></span>
 
                 
                 
@@ -327,7 +317,7 @@
       
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/12/02/20201202_AdderNet/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/02/20201202_AdderNet/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/12/25/20201225_VisualToSound/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/25/20201225_VisualToSound/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -341,48 +331,32 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p><strong>目标</strong>：设计更加高效的深度神经网络，可以在资源有限的移动设备运行。</p>
-<p><strong>现有工作的局限性</strong>：常规的卷积基于乘法，代价较高；用二值滤波器替换卷积的工作如BNN等会带来较大的识别准确率下降。</p>
-<p><strong>文章思路</strong>：常规卷积本质上是一种互相关（输入图像与卷积核之间的相似度度量）。可以用更高效的相似度度量方法来替换常规卷积，使得度量中只包含代价较小的加法操作→AdderNet</p>
-<h2 id="AdderNet"><a href="#AdderNet" class="headerlink" title="AdderNet"></a>AdderNet</h2><p>开局公式</p>
+        <p><strong>任务</strong>：从输入的视频中直接预测raw声音信号</p>
+<p><strong>方法</strong>：编码-解码架构，即视频编码器+音频生成器（分层RNN）</p>
+<p><strong>建模</strong>：条件生成问题。训练一个有条件的生成模型以从输入的视频中合成raw声音波形。</p>
+<p>估计条件概率：</p>
 <script type="math/tex; mode=display">
-Y(m,n,t)=\sum\limits_{i=0}^{d}\sum\limits_{j=0}^{d}\sum\limits_{k=0}^{c_{in}}S(X(m+i,n+j,k),F(i,j,k,t))</script><p>F： 卷积核（滤波器）(尺寸$d×d$) 当d=1时，该公式表示全连接层的计算</p>
-<p>X：特征图</p>
-<p>S：预定义的相似度测量方法，例如互相关中$S(x,y)=x\times y$</p>
-<p>从上述公式出发，文章改变S，使用L1距离测量F和X的相似度，使得测量中只有加法没有乘法：</p>
+p(y_{1},y_{2},...,y_{n}|x_{1},x_{2},...,x_{m})</script><p>$x_{1},x_{2},…,x_{m}$是输入视频帧的表示；$y_{1},y_{2},…,y_{n}$是输出声音波形的值（取值为0~255的整数序列）。原始波形样本是范围从-1到1的实数值，文中重新缩放和线性量化它们到256个bins。通常$m&lt;&lt;n$，因为音频的采样率远高于视频的采样率。</p>
+<p><img src="/images/VisualToSound/1.png" alt="1"></p>
+<h2 id="Sound-Generator"><a href="#Sound-Generator" class="headerlink" title="Sound Generator"></a>Sound Generator</h2><p>采用的采样频率为：16kHz</p>
+<p><strong>问题</strong>：序列长度很长</p>
+<p><strong>解决方法</strong>：选用SampleRNN为声音生成器（原因：其从粗到细的结构使模型能够生成非常长的序列，每一层的循环结构捕捉到遥远样本之间的依赖关系。）</p>
+<p><strong>具体</strong>：1）细节层是多层感知机（MLP），获取下一个粗糙层（上层）的输出和前面的$k$个样本，以生成一个新样本。在训练过程中，波形样本（实数值，从-1到1）被线性量化到从0到255的整数范围，可以将最细的层的MLP看成是256-类分类器，在每个timestep预测得到一个样本（然后映射回实值，获得最终波形）。</p>
+<p>2）粗糙层可以是GRU, LSTM或其他的RNN变体。包含多个波形样本(图中为2个)的节点意味着该层基于前一个timestep以及更粗层的预测，在每个timestep共同预测多个样本。</p>
+<h2 id="Video-Encoder"><a href="#Video-Encoder" class="headerlink" title="Video Encoder"></a>Video Encoder</h2><h3 id="Frame-to-frame-method"><a href="#Frame-to-frame-method" class="headerlink" title="Frame-to-frame method"></a>Frame-to-frame method</h3><script type="math/tex; mode=display">
+x_{i}=V(f_{i})</script><p>$f_{i}$和$x_{i}$分别是视频的第$i$帧和该帧的表征。$V(.)$是在ImageNet上预先训练的VGG19网络的fc6特征提取操作，$x_{i}$是一个4096维的向量。在该模型中，将帧表征与声音生成器最粗层RNN的节点（样本）统一连接，对视觉信息进行编码，如图3(b)所示（内容以绿色虚线框表示）。</p>
+<p><strong>视频与音频采样率不同的问题解决</strong>：对于每个$x_{i}$，重复$s$次，其中</p>
 <script type="math/tex; mode=display">
-Y(m,n,t)=-\sum\limits_{i=0}^{d}\sum\limits_{j=0}^{d}\sum\limits_{k=0}^{c_{in}}|X(m+i,n+j,k)-F(i,j,k,t)|</script><h3 id="使用L1距离存在的问题及解决："><a href="#使用L1距离存在的问题及解决：" class="headerlink" title="使用L1距离存在的问题及解决："></a>使用L1距离存在的问题及解决：</h3><p><strong>问题1</strong>：加法滤波器的输出总为负数（会影响激活函数如ReLU的使用）</p>
-<p><strong>解决方法</strong>：使用Batch Normalization→输出被归一化到适当的范围→CNN中的激活函数在AdderNet中也适用            （BN中存在乘法，但是数量太少可以忽略）</p>
-<p><strong>问题2.1</strong>：优化方法中滤波器F梯度的计算</p>
-<p>AdderNet中计算偏微分：</p>
+s=\lceil \frac{sr_{audio}}{sr_{video}}\rceil,\quad (``sr"\ means\ sampling\ rate)</script><p>只将视觉特征提供给SampleRNN的最粗糙层，因为这一层很重要，因为它指导所有更细的层的生成以及提高计算效率。</p>
+<h3 id="Sequence-to-sequence-method"><a href="#Sequence-to-sequence-method" class="headerlink" title="Sequence-to-sequence method"></a>Sequence-to-sequence method</h3><p>提取VGG19网络的fc6特征作为每一帧的表征，然后用RNN处理作为视频编码器，使用视频编码器的最后一个隐藏状态初始化声音发生器的最粗层RNN的隐藏状态，然后开始声音生成。此时声音生成任务变为：</p>
 <script type="math/tex; mode=display">
-\frac{\partial Y(m,n,t)}{\partial F(i,j,k,t)}=sgn(X(m+i,n+j,k)-F(i,j,k,t))</script><p>所以梯度取值只有+1，0，-1。由此进行优化的方法为signSGD，但是，signSGD几乎永远不会沿着最陡的下降方向，并且方向性只会随着维数的增长而变差。</p>
-<p><strong>解决方法</strong>：使用另一种形式的梯度（实际上是L2范数的梯度）：</p>
+p(y_{1},y_{2},...,y_{n}|x_{1},x_{2},...,x_{m})=\prod\limits^{n}_{i=1}p(y_{i}|H,y_{1},...,y_{i-1})</script><p>$H$表示视频编码RNN的最后一个隐藏状态或等效的声音发生器最粗糙层RNN的初始隐藏状态。</p>
+<p><strong>视频与音频采样率不同的问题解决</strong>：不像上面提到的基于帧的模型中明确地强制视频帧和波形样本之间的对齐。在这个序列到序列模型中，我们期望模型通过编码和解码来学习这两种模式之间的对齐。</p>
+<h3 id="Flow-based-method"><a href="#Flow-based-method" class="headerlink" title="Flow-based method"></a>Flow-based method</h3><p>Motiv：视觉领域的运动信号，虽然有时很微小，但对于合成真实且同步良好的声音是至关重要的。</p>
+<p>方案：增加一个基于光流的深度特征以明确捕获运动信号。与序列到序列方法不同之处为</p>
 <script type="math/tex; mode=display">
-\frac{\partial Y(m,n,t)}{\partial F(i,j,k,t)}=X(m+i,n+j,k)-F(i,j,k,t)</script><p><strong>问题2.2</strong>：优化方法中特征图X梯度的计算</p>
-<p>同样使用L2范数的梯度，但是梯度值可能会在[-1，+1]的范围之外→由于chain rule，Y对X的偏导数不仅影响当前层的梯度，还会影响当前层之前的所有层的梯度→梯度爆炸</p>
-<p><strong>解决方法</strong>：使用HardTanh函数（HT(x)）将X的梯度clip到[-1,+1]的范围。</p>
-<script type="math/tex; mode=display">
-\frac{\partial Y(m,n,t)}{\partial X(i,j,k,t)}=HT(F(m+i,n+j,k)-X(i,j,k,t))</script><p><strong>问题3</strong>：AdderNet使用L1范数得到的Y方差更大，导致滤波器权重的梯度消失问题</p>
-<p>假设F和X服从正太分布</p>
-<p>CNN中有</p>
-<script type="math/tex; mode=display">
-Var[Y_{CNN}]=\sum\limits_{i=0}^{d}\sum\limits_{j=0}^{d}\sum\limits_{k=0}^{c_{in}}Var[X\times F]=d^{2}c_{in}Var[X]Var[F]</script><p>而AdderNet中则是</p>
-<script type="math/tex; mode=display">
-Var[Y_{AdderNet}]=\sum\limits_{i=0}^{d}\sum\limits_{j=0}^{d}\sum\limits_{k=0}^{c_{in}}Var[|X-F|]=(1-\frac{2}{\pi})d^{2}c_{in}(Var[X]+Var[F])</script><p>实际情况中Var[F]非常小，所以$Var[Y_{AdderNet}]$会比$Var[Y_{CNN}]$大。在加法层后面会接一个BN层，大方差会导致X的梯度幅值小，经过chain rule的作用，滤波器的权重梯度幅值会越来越小。</p>
-<p><img src="/images/addernet/gradient_disappear.png" alt="gradient_disappear" style="zoom: 33%;"></p>
-<p><strong>解决方法</strong>：adaptive learning rate</p>
-<script type="math/tex; mode=display">
-\triangle F_{l}=\gamma \times \alpha_{l}\times \triangle L(F_{l})</script><p>$l$：表示第$l$层；$\triangle L(F_{l})$第$l$层F的梯度；$\gamma$：全局学习率</p>
-<p>局部学习率：</p>
-<script type="math/tex; mode=display">
-\alpha_{l}=\frac{\eta \sqrt k}{||\triangle L(F_{l})||_{2}}</script><p>k：F中的元素数量，用于对L2范数求平均</p>
-<h2 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h2><p>在MNIST、CIFAR10、CIFAR100、ImageNet上达到与CNN相近的准确率。</p>
-<p><img src="/images/addernet/v1_imagenet_result.png" alt="v1_imagenet_result" style="zoom: 33%;"></p>
-<p>AdderNet的权重服从拉普拉斯分布，而CNN的权重服从高斯分布。</p>
-<p><img src="/images/addernet/v1_histogram.png" alt="v1_histogram" style="zoom: 33%;"></p>
-<p><a href="https://arxiv.org/abs/1912.13200v2" target="_blank" rel="noopener">AdderNet: DoWe Really Need Multiplications in Deep Learning?</a></p>
-<p><a href="https://github.com/huawei-noah/AdderNet" target="_blank" rel="noopener">AdderNet代码</a></p>
+x_{i}=cat[V(f_{i}),F(o_{i})]</script><p>$o_{i}$是第$i$帧的光流，$F(.)$是提取基于光流的深度特征的函数（非学习得到）。</p>
+<p><a href="https://arxiv.org/pdf/1712.01393.pdf" target="_blank" rel="noopener">Visual to Sound: Generating Natural Sound for Videos in the Wild</a></p>
 
     </div>
 
@@ -398,7 +372,7 @@ Var[Y_{AdderNet}]=\sum\limits_{i=0}^{d}\sum\limits_{j=0}^{d}\sum\limits_{k=0}^{c
           
           <div class="post-tags">
             
-              <a href="/tags/paper-notes-deep-learning/" rel="tag"># paper notes-deep learning</a>
+              <a href="/tags/paper-notes-visual-sound/" rel="tag"># paper notes-visual sound</a>
             
           </div>
         
@@ -408,8 +382,8 @@ Var[Y_{AdderNet}]=\sum\limits_{i=0}^{d}\sum\limits_{j=0}^{d}\sum\limits_{k=0}^{c
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2020/10/15/12_hexo_valine/" rel="next" title="Hexo+Valine：为博客添加评论">
-                  <i class="fa fa-chevron-left"></i> Hexo+Valine：为博客添加评论
+                <a href="/2020/12/25/20201225_VisuallyIndicatedSound/" rel="next" title="论文阅读笔记(6)-Visually Indicated Sounds">
+                  <i class="fa fa-chevron-left"></i> 论文阅读笔记(6)-Visually Indicated Sounds
                 </a>
               
             </div>
@@ -417,10 +391,6 @@ Var[Y_{AdderNet}]=\sum\limits_{i=0}^{d}\sum\limits_{j=0}^{d}\sum\limits_{k=0}^{c
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2020/12/03/20201203_CNNinFrequence/" rel="prev" title="论文阅读笔记(3)：CNN频域学习(1)">
-                  论文阅读笔记(3)：CNN频域学习(1) <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -472,7 +442,7 @@ Var[Y_{AdderNet}]=\sum\limits_{i=0}^{d}\sum\limits_{j=0}^{d}\sum\limits_{k=0}^{c
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Motivation"><span class="nav-number">1.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AdderNet"><span class="nav-number">2.</span> <span class="nav-text">AdderNet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用L1距离存在的问题及解决："><span class="nav-number">2.1.</span> <span class="nav-text">使用L1距离存在的问题及解决：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Results"><span class="nav-number">3.</span> <span class="nav-text">Results</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sound-Generator"><span class="nav-number">1.</span> <span class="nav-text">Sound Generator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Video-Encoder"><span class="nav-number">2.</span> <span class="nav-text">Video Encoder</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Frame-to-frame-method"><span class="nav-number">2.1.</span> <span class="nav-text">Frame-to-frame method</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sequence-to-sequence-method"><span class="nav-number">2.2.</span> <span class="nav-text">Sequence-to-sequence method</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Flow-based-method"><span class="nav-number">2.3.</span> <span class="nav-text">Flow-based method</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->

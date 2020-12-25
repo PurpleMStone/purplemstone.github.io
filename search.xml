@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[论文阅读笔记(7)-Visual to Sound Generating Natural Sound for Videos in the Wild]]></title>
+    <url>%2F2020%2F12%2F25%2F20201225_VisualToSound%2F</url>
+    <content type="text"><![CDATA[任务：从输入的视频中直接预测raw声音信号 方法：编码-解码架构，即视频编码器+音频生成器（分层RNN） 建模：条件生成问题。训练一个有条件的生成模型以从输入的视频中合成raw声音波形。 估计条件概率： p(y_{1},y_{2},...,y_{n}|x_{1},x_{2},...,x_{m})$x_{1},x_{2},…,x_{m}$是输入视频帧的表示；$y_{1},y_{2},…,y_{n}$是输出声音波形的值（取值为0~255的整数序列）。原始波形样本是范围从-1到1的实数值，文中重新缩放和线性量化它们到256个bins。通常$m&lt;&lt;n$，因为音频的采样率远高于视频的采样率。 Sound Generator采用的采样频率为：16kHz 问题：序列长度很长 解决方法：选用SampleRNN为声音生成器（原因：其从粗到细的结构使模型能够生成非常长的序列，每一层的循环结构捕捉到遥远样本之间的依赖关系。） 具体：1）细节层是多层感知机（MLP），获取下一个粗糙层（上层）的输出和前面的$k$个样本，以生成一个新样本。在训练过程中，波形样本（实数值，从-1到1）被线性量化到从0到255的整数范围，可以将最细的层的MLP看成是256-类分类器，在每个timestep预测得到一个样本（然后映射回实值，获得最终波形）。 2）粗糙层可以是GRU, LSTM或其他的RNN变体。包含多个波形样本(图中为2个)的节点意味着该层基于前一个timestep以及更粗层的预测，在每个timestep共同预测多个样本。 Video EncoderFrame-to-frame method x_{i}=V(f_{i})$f_{i}$和$x_{i}$分别是视频的第$i$帧和该帧的表征。$V(.)$是在ImageNet上预先训练的VGG19网络的fc6特征提取操作，$x_{i}$是一个4096维的向量。在该模型中，将帧表征与声音生成器最粗层RNN的节点（样本）统一连接，对视觉信息进行编码，如图3(b)所示（内容以绿色虚线框表示）。 视频与音频采样率不同的问题解决：对于每个$x_{i}$，重复$s$次，其中 s=\lceil \frac{sr_{audio}}{sr_{video}}\rceil,\quad (``sr"\ means\ sampling\ rate)只将视觉特征提供给SampleRNN的最粗糙层，因为这一层很重要，因为它指导所有更细的层的生成以及提高计算效率。 Sequence-to-sequence method提取VGG19网络的fc6特征作为每一帧的表征，然后用RNN处理作为视频编码器，使用视频编码器的最后一个隐藏状态初始化声音发生器的最粗层RNN的隐藏状态，然后开始声音生成。此时声音生成任务变为： p(y_{1},y_{2},...,y_{n}|x_{1},x_{2},...,x_{m})=\prod\limits^{n}_{i=1}p(y_{i}|H,y_{1},...,y_{i-1})$H$表示视频编码RNN的最后一个隐藏状态或等效的声音发生器最粗糙层RNN的初始隐藏状态。 视频与音频采样率不同的问题解决：不像上面提到的基于帧的模型中明确地强制视频帧和波形样本之间的对齐。在这个序列到序列模型中，我们期望模型通过编码和解码来学习这两种模式之间的对齐。 Flow-based methodMotiv：视觉领域的运动信号，虽然有时很微小，但对于合成真实且同步良好的声音是至关重要的。 方案：增加一个基于光流的深度特征以明确捕获运动信号。与序列到序列方法不同之处为 x_{i}=cat[V(f_{i}),F(o_{i})]$o_{i}$是第$i$帧的光流，$F(.)$是提取基于光流的深度特征的函数（非学习得到）。 Visual to Sound: Generating Natural Sound for Videos in the Wild]]></content>
+      <categories>
+        <category>Visual Sound</category>
+      </categories>
+      <tags>
+        <tag>paper notes-visual sound</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[论文阅读笔记(6)-Visually Indicated Sounds]]></title>
     <url>%2F2020%2F12%2F25%2F20201225_VisuallyIndicatedSound%2F</url>
-    <content type="text"><![CDATA[Sound Representation计算声音特征的方法：将声波$w(t)$分解为子带包络$s_{n}(t)$（将声波滤波然后应用非线性）。1）在等效矩形带宽(ERB)尺度上应用40个带通滤波器$f_{n}$(加上一个低通和高通滤波器)，并取响应的希尔伯特包络线；2）将包络下采到90Hz（约为3样本/帧）并压缩。 s_{n}=D(|(w*f_{n})+jH(w*f_{n})|)^{c}$H$是希尔伯特变换，$D$表示下采样，压缩常数$c=0.3$。由此产生的表示被称为耳蜗图（cochleagram）。 一般来说，撞击声如何捕捉材料的属性?为了从经验上评测这一点，文章使用子带包络作为特征向量，训练了一个线性支持向量机来预测数据库中的声音由哪个材料发出。文章对训练集重新采样，使每个类包含相同数量的撞击声(每类260个)。最终得到的材料分类器具有45.8% (chance = 5.9%)的分类平均精度(即每类精度值的平均值)，其混淆矩阵如图3(b)所示。这些结果表明，撞击声传达了有关材料的重要信息，因此，如果一个算法能够学习从图像中准确预测这些声音，它就会有关于材料类别的隐含知识。 Predicting visually indicated sounds将此任务建模为一个回归问题，目标是将一个视频帧序列映射为一个声频特征序列。使用的模型是RNN，以颜色和运动（motion）信息作为输入，预测出声频波形的子带包络。最后，从声音特征中产生波形。 Regressing sound features输入图像序列：$I_{1}, I_{2}, …, I_{N}$ 输出声音特征序列：$\mathop{s_{1}}\limits ^{\rightarrow}, \mathop{s_{2}}\limits ^{\rightarrow}, \mathop{s_{T}}\limits ^{\rightarrow}, where \mathop{s_{t}}\limits ^{\rightarrow}\in \mathbb{R}^{42}$ 这些声音特征对应于图4中所示的耳蜗块。文章使用循环神经网络(RNN)来解决这个回归问题，它将卷积神经网络(CNN)计算的图像特征作为输入。 图像表示：如何表示运动（motion）信息？计算每一帧的spacetime图像，即三个通道是上一帧、当前帧和下一帧灰度版本的图像。对于每一帧$t$，通过拼接帧$t$的spacetime图像和第1帧的颜色图像的CNN特征来构建输入特征向量$x_{t}$，即 x_{t}=[\phi(F_{t}),\phi(I_{1})]文章中训练的两种方式：1）从零开始初始化CNN，然后和RNN一起训练它；2）用一个为ImageNet分类训练的网络的权值初始化CNN。当使用预训练时，从卷积层中预计算特征，并仅对完全连接的层进行微调。 声音预测模型：使用基于LSTM的RNN模型。为了补偿视频和音频采样率之间的差异，文章中复制每个CNN特征向量$k$次（文章中使用$k=3$） k=\lfloor T/N\rfloor由此得到与声音特征序列等长的CNN特征序列$x_{1}, x_{2}, …, x_{N}$。在RNN的每个timestep，文章中使用当前图像特征向量$x_{t}$来更新隐藏变量$h_{t}$，然后通过一个仿射变换得到声音特征。为了使学习问题更简单，文中使用PCA在每个时间步长的42维特征向量投影到10维空间，然后预测这个低维向量。对网络进行评估时，反求PCA变换以获得声音特征。 文章使用随机梯度下降以Caffe共同训练RNN和CNN。它有助于收敛去除dropout和剪辑大的梯度。当从头开始训练时，文中通过对视频进行裁剪和镜像转换来增强数据。文中也使用多个LSTM层（数量取决于任务）。 Generating a waveform问题：如何从声音特征中产生声波？ 简单参数综合法：迭代地将子带包络加到白噪声样本上(文中只使用了一次迭代)。这种方法对于检查音频特征所捕获的信息非常有用，因为它代表了从特征到声音的直接转换。 对于产生对于人耳似是而非的声音的任务，在从特征到波形的转换过程中，先施加一个强的自然声音是更有效的。因此使用基于实例的合成方法，该方法将声音特征的窗口捕捉到训练集中最接近的样本上。文中通过拼接预测的声音特征$\mathop{s_{1}}\limits ^{\rightarrow}, \mathop{s_{2}}\limits ^{\rightarrow}, \mathop{s_{T}}\limits ^{\rightarrow}$（或它们的一个子序列）形成一个查询向量，在$L_{1}$距离测量的训练集中寻找其最近的邻居，并传递相应的波形。 项目网址]]></content>
+    <content type="text"><![CDATA[Sound Representation计算声音特征的方法：将声波$w(t)$分解为子带包络$s_{n}(t)$（将声波滤波然后应用非线性）。1）在等效矩形带宽(ERB)尺度上应用40个带通滤波器$f_{n}$(加上一个低通和高通滤波器)，并取响应的希尔伯特包络线；2）将包络下采到90Hz（约为3样本/帧）并压缩。 s_{n}=D(|(w*f_{n})+jH(w*f_{n})|)^{c}$H$是希尔伯特变换，$D$表示下采样，压缩常数$c=0.3$。由此产生的表示被称为耳蜗图（cochleagram）。 一般来说，撞击声如何捕捉材料的属性?为了从经验上评测这一点，文章使用子带包络作为特征向量，训练了一个线性支持向量机来预测数据库中的声音由哪个材料发出。文章对训练集重新采样，使每个类包含相同数量的撞击声(每类260个)。最终得到的材料分类器具有45.8% (chance = 5.9%)的分类平均精度(即每类精度值的平均值)，其混淆矩阵如图3(b)所示。这些结果表明，撞击声传达了有关材料的重要信息，因此，如果一个算法能够学习从图像中准确预测这些声音，它就会有关于材料类别的隐含知识。 Predicting visually indicated sounds将此任务建模为一个回归问题，目标是将一个视频帧序列映射为一个声频特征序列。使用的模型是RNN，以颜色和运动（motion）信息作为输入，预测出声频波形的子带包络。最后，从声音特征中产生波形。 Regressing sound features输入图像序列：$I_{1}, I_{2}, …, I_{N}$ 输出声音特征序列：$\mathop{s_{1}}\limits ^{\rightarrow}, \mathop{s_{2}}\limits ^{\rightarrow}, \mathop{s_{T}}\limits ^{\rightarrow}, where \mathop{s_{t}}\limits ^{\rightarrow}\in \mathbb{R}^{42}$ 这些声音特征对应于图4中所示的耳蜗块。文章使用循环神经网络(RNN)来解决这个回归问题，它将卷积神经网络(CNN)计算的图像特征作为输入。 图像表示：如何表示运动（motion）信息？计算每一帧的spacetime图像，即三个通道是上一帧、当前帧和下一帧灰度版本的图像。对于每一帧$t$，通过拼接帧$t$的spacetime图像和第1帧的颜色图像的CNN特征来构建输入特征向量$x_{t}$，即 x_{t}=[\phi(F_{t}),\phi(I_{1})]文章中训练的两种方式：1）从零开始初始化CNN，然后和RNN一起训练它；2）用一个为ImageNet分类训练的网络的权值初始化CNN。当使用预训练时，从卷积层中预计算特征，并仅对完全连接的层进行微调。 声音预测模型：使用基于LSTM的RNN模型。为了补偿视频和音频采样率之间的差异，文章中复制每个CNN特征向量$k$次（文章中使用$k=3$） k=\lfloor T/N\rfloor由此得到与声音特征序列等长的CNN特征序列$x_{1}, x_{2}, …, x_{N}$。在RNN的每个timestep，文章中使用当前图像特征向量$x_{t}$来更新隐藏变量$h_{t}$，然后通过一个仿射变换得到声音特征。为了使学习问题更简单，文中使用PCA在每个时间步长的42维特征向量投影到10维空间，然后预测这个低维向量。对网络进行评估时，反求PCA变换以获得声音特征。 文章使用随机梯度下降以Caffe共同训练RNN和CNN。它有助于收敛去除dropout和剪辑大的梯度。当从头开始训练时，文中通过对视频进行裁剪和镜像转换来增强数据。文中也使用多个LSTM层（数量取决于任务）。 Generating a waveform问题：如何从声音特征中产生声波？ 简单参数综合法：迭代地将子带包络加到白噪声样本上(文中只使用了一次迭代)。这种方法对于检查音频特征所捕获的信息非常有用，因为它代表了从特征到声音的直接转换。 对于产生对于人耳似是而非的声音的任务，在从特征到波形的转换过程中，先施加一个强的自然声音是更有效的。因此使用基于实例的合成方法，该方法将声音特征的窗口捕捉到训练集中最接近的样本上。文中通过拼接预测的声音特征$\mathop{s_{1}}\limits ^{\rightarrow}, \mathop{s_{2}}\limits ^{\rightarrow}, …, \mathop{s_{T}}\limits ^{\rightarrow}$（或它们的一个子序列）形成一个查询向量，在$L_{1}$距离测量的训练集中寻找其最近的邻居，并传递相应的波形。 项目网址]]></content>
       <categories>
         <category>Visual Sound</category>
       </categories>
@@ -56,17 +67,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[在Latex中插入python代码]]></title>
-    <url>%2F2020%2F10%2F15%2F11_latex_python_code%2F</url>
-    <content type="text"><![CDATA[在Latex中插入Python代码，需要一个第三发的宏包pythonhighlight: https://github.com/olivierverdier/python-latex-highlighting 下载pythonhighlight.sty后，将它放到你的.tex文件所在目录下。 然后声明要使用pythonhighlight，在tex文件内的导言区： 12\usepackage&#123;graphicx&#125;\usepackage&#123;pythonhighlight&#125; 之后既可以在正文添加代码了: 12345678910\begin&#123;python&#125;import torchimport torch.nn as nnimport torch.optim as optimimport torch.nn.functional as Fimport torchvisionimport torchvision.transforms as transformsimport timeimport os\end&#123;python&#125; 效果如下：]]></content>
-      <categories>
-        <category>Latex Trick</category>
-      </categories>
-      <tags>
-        <tag>latex</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Hexo+Valine：为博客添加评论]]></title>
     <url>%2F2020%2F10%2F15%2F12_hexo_valine%2F</url>
     <content type="text"><![CDATA[注册Leancloud账号：https://www.leancloud.cn 注册完以后需要创建一个应用，名字可以随便起，然后 进入应用-&gt;设置-&gt;应用key 拿到你的appid和appkey之后，打开主题配置文件（我是…\themes\next_config.yml） 搜索 valine，填入appid 和 appkey 1234567891011121314valine: enable: true # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version appid: XO7jV马赛克zGzoHsz # Your leancloud application appid appkey: Amg1Fl马赛克2NfhcO # Your leancloud application appkey notify: false # Mail notifier. See: https://github.com/xCss/Valine/wiki verify: false # Verification code placeholder: Just go go # Comment box placeholder avatar: mm # Gravatar style guest_info: nick,mail,link # Custom comment header pageSize: 10 # Pagination size language: # Language, available values: en, zh-cn visitor: false # leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html comment_count: true # If false, comment count will only be displayed in post page, not in home page #post_meta_order: 0 最后在Leancloud -&gt; 设置 -&gt; 安全中心 -&gt; Web 安全域名 把你的域名加进去 刷新一下~ 看到评论框了 删除评论登录Leancloud&gt;选择你创建的应用&gt;存储&gt;选择ClassComment 参考： https://blog.csdn.net/blue_zy/article/details/79071414 https://github.com/xCss/Valine/issues/69]]></content>
@@ -75,6 +75,17 @@
       </categories>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[在Latex中插入python代码]]></title>
+    <url>%2F2020%2F10%2F15%2F11_latex_python_code%2F</url>
+    <content type="text"><![CDATA[在Latex中插入Python代码，需要一个第三发的宏包pythonhighlight: https://github.com/olivierverdier/python-latex-highlighting 下载pythonhighlight.sty后，将它放到你的.tex文件所在目录下。 然后声明要使用pythonhighlight，在tex文件内的导言区： 12\usepackage&#123;graphicx&#125;\usepackage&#123;pythonhighlight&#125; 之后既可以在正文添加代码了: 12345678910\begin&#123;python&#125;import torchimport torch.nn as nnimport torch.optim as optimimport torch.nn.functional as Fimport torchvisionimport torchvision.transforms as transformsimport timeimport os\end&#123;python&#125; 效果如下：]]></content>
+      <categories>
+        <category>Latex Trick</category>
+      </categories>
+      <tags>
+        <tag>latex</tag>
       </tags>
   </entry>
   <entry>
