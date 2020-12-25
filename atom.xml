@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-12-24T13:49:14.261Z</updated>
+  <updated>2020-12-25T08:42:33.193Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>论文阅读笔记(6)-Visually Indicated Sounds</title>
+    <link href="http://yoursite.com/2020/12/25/20201225_VisuallyIndicatedSound/"/>
+    <id>http://yoursite.com/2020/12/25/20201225_VisuallyIndicatedSound/</id>
+    <published>2020-12-25T03:50:09.000Z</published>
+    <updated>2020-12-25T08:42:33.193Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Sound-Representation"><a href="#Sound-Representation" class="headerlink" title="Sound Representation"></a>Sound Representation</h2><p>计算声音特征的方法：将声波$w(t)$分解为子带包络$s_{n}(t)$（将声波滤波然后应用非线性）。1）在等效矩形带宽(ERB)尺度上应用40个带通滤波器$f_{n}$(加上一个低通和高通滤波器)，并取响应的希尔伯特包络线；2）将包络下采到90Hz（约为3样本/帧）并压缩。</p><script type="math/tex; mode=display">s_{n}=D(|(w*f_{n})+jH(w*f_{n})|)^{c}</script><p>$H$是希尔伯特变换，$D$表示下采样，压缩常数$c=0.3$。由此产生的表示被称为耳蜗图（cochleagram）。</p><p><img src="/images/VisualIndicatedSound/2.png" alt="2" style="zoom:80%;"></p><p>一般来说，撞击声如何捕捉材料的属性?为了从经验上评测这一点，文章使用子带包络作为特征向量，训练了一个线性支持向量机来预测数据库中的声音由哪个材料发出。文章对训练集重新采样，使每个类包含相同数量的撞击声(每类260个)。最终得到的材料分类器具有45.8% (chance = 5.9%)的分类平均精度(即每类精度值的平均值)，其混淆矩阵如图3(b)所示。这些结果表明，撞击声传达了有关材料的重要信息，因此，如果一个算法能够学习从图像中准确预测这些声音，它就会有关于材料类别的隐含知识。</p><h2 id="Predicting-visually-indicated-sounds"><a href="#Predicting-visually-indicated-sounds" class="headerlink" title="Predicting visually indicated sounds"></a>Predicting visually indicated sounds</h2><p>将此任务建模为一个回归问题，目标是将一个视频帧序列映射为一个声频特征序列。使用的模型是RNN，以颜色和运动（motion）信息作为输入，预测出声频波形的子带包络。最后，从声音特征中产生波形。</p><p><img src="/images/VisualIndicatedSound/1.png" alt="1" style="zoom:80%;"></p><h3 id="Regressing-sound-features"><a href="#Regressing-sound-features" class="headerlink" title="Regressing sound features"></a>Regressing sound features</h3><p>输入图像序列：$I_{1}, I_{2}, …, I_{N}$</p><p>输出声音特征序列：$\mathop{s}\limits ^{\rightarrow}_{1}, \mathop{s}\limits ^{\rightarrow}_{2}, \mathop{s}\limits ^{\rightarrow}_{T}, where \mathop{s}\limits ^{\rightarrow}_{t}\in \mathbb{R}^{42}$</p><p>这些声音特征对应于图4中所示的耳蜗块。文章使用循环神经网络(RNN)来解决这个回归问题，它将卷积神经网络(CNN)计算的图像特征作为输入。</p><p><strong>图像表示</strong>：如何表示运动（motion）信息？计算每一帧的spacetime图像，即三个通道是上一帧、当前帧和下一帧灰度版本的图像。对于每一帧$t$，通过拼接帧$t$的spacetime图像和第1帧的颜色图像的CNN特征来构建输入特征向量$x_{t}$，即</p><script type="math/tex; mode=display">x_{t}=[\phi(F_{t}),\phi(I_{1})]</script><p>文章中训练的两种方式：1）从零开始初始化CNN，然后和RNN一起训练它；2）用一个为ImageNet分类训练的网络的权值初始化CNN。当使用预训练时，从卷积层中预计算特征，并仅对完全连接的层进行微调。</p><p><strong>声音预测模型</strong>：使用基于LSTM的RNN模型。为了补偿视频和音频采样率之间的差异，文章中复制每个CNN特征向量$k$次（文章中使用$k=3$）</p><script type="math/tex; mode=display">k=\lfloor T/N\rfloor</script><p>由此得到与声音特征序列等长的CNN特征序列$x_{1}, x_{2}, …, x_{N}$。在RNN的每个timestep，文章中使用当前图像特征向量$x_{t}$来更新隐藏变量$h_{t}$，然后通过一个仿射变换得到声音特征。为了使学习问题更简单，文中使用PCA在每个时间步长的42维特征向量投影到10维空间，然后预测这个低维向量。对网络进行评估时，反求PCA变换以获得声音特征。</p><p>文章使用随机梯度下降以Caffe共同训练RNN和CNN。它有助于收敛去除dropout和剪辑大的梯度。当从头开始训练时，文中通过对视频进行裁剪和镜像转换来增强数据。文中也使用多个LSTM层（数量取决于任务）。</p><h3 id="Generating-a-waveform"><a href="#Generating-a-waveform" class="headerlink" title="Generating a waveform"></a>Generating a waveform</h3><p>问题：如何从声音特征中产生声波？</p><ol><li>简单参数综合法：迭代地将子带包络加到白噪声样本上(文中只使用了一次迭代)。这种方法对于检查音频特征所捕获的信息非常有用，因为它代表了从特征到声音的直接转换。</li><li>对于产生对于人耳似是而非的声音的任务，在从特征到波形的转换过程中，先施加一个强的自然声音是更有效的。因此使用基于实例的合成方法，该方法将声音特征的窗口捕捉到训练集中最接近的样本上。文中通过拼接预测的声音特征$\mathop{s}\limits ^{\rightarrow}_{1}, \mathop{s}\limits ^{\rightarrow}_{2}, \mathop{s}\limits ^{\rightarrow}_{T}$（或它们的一个子序列）形成一个查询向量，在$L_{1}$距离测量的训练集中寻找其最近的邻居，并传递相应的波形。</li></ol><p><a href="http://andrewowens.com/vis/" target="_blank" rel="noopener">项目网址</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Sound-Representation&quot;&gt;&lt;a href=&quot;#Sound-Representation&quot; class=&quot;headerlink&quot; title=&quot;Sound Representation&quot;&gt;&lt;/a&gt;Sound Representation&lt;/h2&gt;&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="Visual Sound" scheme="http://yoursite.com/categories/Visual-Sound/"/>
+    
+    
+      <category term="paper notes-visual sound" scheme="http://yoursite.com/tags/paper-notes-visual-sound/"/>
+    
+  </entry>
+  
+  <entry>
     <title>论文阅读笔记(5)-The Visual Microphone Passive Recovery of Sound from Video</title>
     <link href="http://yoursite.com/2020/12/22/20201222_VisualMicrophone/"/>
     <id>http://yoursite.com/2020/12/22/20201222_VisualMicrophone/</id>
     <published>2020-12-22T14:50:09.000Z</published>
-    <updated>2020-12-24T13:49:14.261Z</updated>
+    <updated>2020-12-25T02:40:43.378Z</updated>
     
     <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>现象</strong>：声音到达物体会在物体表面引起微小振动。</p><p><strong>做法</strong>：使用物体的高速视频提取微小振动，部分恢复（造成振动的）声音。</p><p><strong>具体</strong>：1）从一系列不同特性的物体的高速连续镜头中恢复声音；</p><p>​            2）使用真实和仿真数据来评测那些影响了可视化地恢复声音的因素；</p><p>​            3）声音恢复质量评价指标：可理解性（intelligibility）、SNR；直接对比输入和恢复出来的信号；</p><p>​            4）探索如何利用普通用户相机的卷帘快门（rolling shutter）从而从标准帧率视频中恢复出声音；使用所提方法的空间分辨率来可视化声音引起的振动是如何随着物体表面变化的，以之恢复物体的振动模式。</p><p><strong>Keywords</strong>：远程声音采集；视频中的声音；可视化声学。</p><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p><strong>描述</strong>：声音到达某物品 → 1）物品表面跟随周围介质移动 OR 2）根据其振动模式发生形变。</p><p><strong>应用场景</strong>：声音引起物体振动的现象被用于远程声音采集，并在监视和安防方面有重要应用，如在远处窃听谈话。远程声音采集的现有方法本质上是积极（active）的，需要将一个激光束或pattern投射到振动表面。</p><p><strong>本文观察</strong>：只需要物体的高速视频，声音引起的物体振动通常能够产生足够的视觉信号来部分恢复出该声音。</p><p><strong>本文贡献</strong>：提出一个消极的从视频中恢复声音信号的方法。视觉上检测微小物体振动→将振动转回音频信号（使得日常物品变成潜藏的麦克风）。做法：1）使用高速摄像机将物体视频；2）在一个Complex steerable pyramid (CSP)（建立在视频上）的维度上提取<em>局部运动信号</em>；3）这些局部信号被对齐并取平均，得到一个单一的一维运动信号，该信号捕捉对象随时间的<em>全局运动</em>；4）进一步滤波和去噪，得到恢复出来的声音。</p><p><strong>对比积极方法</strong>：恢复效果不如积极方法；但是优点有 1）对于纹理物体和光照良好的场景不需要提供积极照明；2）除了高速摄像机外无需额外的传感器或检测模块；3）无需回射或反射振动表面（区别于激光麦克风）；4）没有对相对于相机的表面方向施加明显的约束；5）产生了一个声音的空间测量，可用于分析物品中声音引起的形变。</p><p><strong>讨论</strong>：虽然声音可以穿透大多数物质，但并不是所有的物体和材料都能很好地进行视觉声音恢复。声波在材料中的传播取决于多种因素，如材料的密度和可压缩性，以及物体的形状。文章进行对照实验，测量了不同物体和材料对已知和未知声音的反应，并评估文章所提技术对于从高速视频中恢复声音的能力。</p><h2 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h2><p>传统麦克风的工作原理是将内部膜片的运动转化为电信号。膜片的设计使其在声压下容易移动，因此它的运动可以被记录下来并解释为音频。<strong>激光麦克风</strong>的工作原理与此类似，但它测量的是一个遥远物体的运动，本质上是将物体作为一个外部膜片。这是通过记录激光对物体表面的反射来实现的。最基本的激光麦克风记录反射激光的相位，以激光波长作模得到物体的距离。激光多普勒测振仪(LDV)通过测量反射激光的多普勒频移来确定反射面速度，从而解决相位包裹的模糊性。这两种类型的激光麦克风都可以从很远的距离恢复高质量的音频，但依赖于激光和接收器相对于具有适当反射比的地面的精确定位。</p><p>Zalevsky等人通过使用失焦高速相机来记录反射激光散斑模式的变化，解决了其中的一些局限性。他们的工作允许接收器的定位有更大的灵活性，但仍然依赖于记录反射激光。相比之下，本文的技术不依赖于主动照明。</p><p>本文方法依赖于从视频中提取极其细微运动的能力，因而也与对这些运动进行放大和可视化的工作有关。这些工作侧重于小运动的可视化，而本文侧重于测量这些运动并利用它们来恢复声音。本文工作中使用的局部运动信号来自Simoncelli等人提出的Complex steerable pyramid (CSP)中的相位变化，因为这些变化被证明非常适合于视频中微小动作的恢复。然而，也有可能使用其他技术来计算局部运动信号。例如，经典的光流和点相关方法在之前的视觉振动传感工作中被成功地使用。由于本文方法的输出是单个振动物体的一维运动信号，因而能够对输入视频中的所有像素进行平均，并在千分之一像素的数量级上处理极其微小的运动。</p><h2 id="Recovering-Sound-from-Video"><a href="#Recovering-Sound-from-Video" class="headerlink" title="Recovering Sound from Video"></a>Recovering Sound from Video</h2><p><img src="/images/VisualSound/1.png" alt="1"></p><p><strong>输入</strong>：物体的高速视频（1kHz~20kHz）$V(x,y,t)$</p><p><strong>假设</strong>：物体和相机的相对运动是由声音信号$s(t)$引起的振动主导的</p><p><strong>目标</strong>：从$V$得到$s(t)$</p><p><strong>步骤</strong>：1）根据不同的方向$θ$和尺度$r$将$V$分解成多个空间子带；</p><p>​            2）计算每个像素、方向和尺度上的局部运动信号；通过一系列的平均和对齐操作将这些运动信号组合起来，为物体产生一个单一的全局运动信号；</p><p>​            3）对物体的运动信号使用音频去噪和滤波技术，以获得恢复出来的声音。</p><h3 id="Computing-Local-Motion-Signals"><a href="#Computing-Local-Motion-Signals" class="headerlink" title="Computing Local Motion Signals"></a>Computing Local Motion Signals</h3><p>使用$V$的CSP表示中的相位变化来计算局部运动。</p><p>CSP：将$V$中的每一帧根据不同的方向和尺度分解成复数子带的滤波器组。该变换的基础方程是带尺度和方向的兼具余弦和正弦相位的Gabor-like小波。每一对类余弦和类正弦滤波器都可以用来分离局部小波的振幅和它们的相位。具体地说，每个尺度$r$和方位$θ$是一个复数图像，可以用幅值$A$和相位$φ$表示为：</p><script type="math/tex; mode=display">A(r,\theta,x,y,t)e^{i\varphi (r,\theta,x,y,t)}</script><p>取这个等式中计算的局部相位$φ$，从参考帧$t_{0}$(通常是视频的第一帧)的局部相位中减去它们，计算相位变化</p><script type="math/tex; mode=display">\varphi_{v} (r,\theta,x,y,t)=\varphi (r,\theta,x,y,t)-\varphi (r,\theta,x,y,t_{0})</script><p>对于较小的运动，这些相位变化近似正比于图像结构在相应方向和尺度上的位移。</p><h3 id="Computing-the-Global-Motion-Signal"><a href="#Computing-the-Global-Motion-Signal" class="headerlink" title="Computing the Global Motion Signal"></a>Computing the Global Motion Signal</h3><p>对于CSP的每个尺度$r$和方位$θ$求局部运动信号的加权平均：</p><script type="math/tex; mode=display">\Phi_{i}(r,\theta,t)=\sum\limits_{x,y}A(r,\theta,x,y)^{2}\varphi_{v} (r,\theta,x,y,t)</script><p>求加权平均的原因：局部相位在没有太多纹理的区域是模糊的，导致这些区域的运动信号是有噪声的。CSP的振幅A给出了纹理强度的度量，因此可以通过(平方)振幅来加权每个局部信号。</p><p>对齐：</p><script type="math/tex; mode=display">t_{i}=arg\max\limits_{t_{i}}\Phi_{0}(r_{0},\theta_{0},t)^{T}\Phi_{i}(r_{i},\theta_{i},t-t_{i})</script><p>得到全局运动信号：</p><script type="math/tex; mode=display">\hat{s}(t)=\sum\limits_{i}\Phi_{i}(r_{i},\theta_{i},t-t_{i})</script><p>归一化到[-1,1]的范围。</p><h3 id="Denoising"><a href="#Denoising" class="headerlink" title="Denoising"></a>Denoising</h3><p>目标：改善全局运动信号的SNR</p><p>观察到的现象：低频的高能量噪声通常与音频不一致</p><p>方法：应用高通Butterworth滤波器（截断频率为20-100Hz）</p><p>滤除加性噪声：目标是accuracy，用spectral subtraction；目标是可理解性，用感知驱动的语音增强算法（通过计算一个贝叶斯最优估计去噪信号的成本函数，考虑到人类对语音的感知）。本文的结果是自动使用二者之一的算法来去噪的。</p><p>恢复信号的不同频率可能会被记录对象不同地调制。第4.3节将展示如何使用已知测试信号来描述一个物体如何衰减不同频率，然后在新的视频中使用该信息来均衡从同一物体(或类似物体)中恢复的未知信号。</p><h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p>第一组实验测试了可以从不同物体上恢复的频率范围。通过扬声器播放线性渐变频率的声音信号，然后观察哪些频率可以通过本文技术恢复。第二组实验集中在从视频中恢复人类语言。这些实验使用了来自TIMIT数据集的几个标准语音示例，以及通过扬声器播放的人类受试者的现场语音(扬声器被一个会说话的人替换)。</p><h3 id="Sound-Recovery-from-Different-Objects-Materials"><a href="#Sound-Recovery-from-Different-Objects-Materials" class="headerlink" title="Sound Recovery from Different Objects/Materials"></a>Sound Recovery from Different Objects/Materials</h3><p><img src="/images/VisualSound/2.png" alt="2" style="zoom:67%;"></p><p>在几乎所有的结果中，恢复的信号在较高的频率中是较弱的。这是意料之中的，因为更高的频率产生更小的位移，并且被大多数材料严重衰减。然而，较高频率的功率下降不是单调的，可能是由于振动模式的刺激。毫不奇怪，较轻的物体更容易移动，比惰性的物体更容易支持更高频率的恢复。</p><h3 id="Speech-Recovery"><a href="#Speech-Recovery" class="headerlink" title="Speech Recovery"></a>Speech Recovery</h3><p>评测指标：</p><p>(1) 评测accuracy： Segmental Signal-to-Noise Ratio (SSNR) 随时间的平均局部信噪比;</p><p>(2) 评测intelligibility： perceptually-based metric</p><p>(3) 评测恢复质量：Log Likelihood Ratio (LLR)，评测恢复信号的谱形状与原始干净信号的谱形状有多接近</p><p><img src="/images/VisualSound/3.png" alt="3"></p><p>更高的帧率导致曝光时间减少，因此图像噪声更多，这就是为什么20,000FPS结果图比2200Hz时的结果噪声更大</p><p><img src="/images/VisualSound/4.png" alt="4" style="zoom:75%;"></p><p>VM和LDV结果相近，而LDV需要积极照明（必须在物体上粘上一条反反射胶带以便激光从物体上反射回来回到振动计上）</p><h3 id="Transfer-Functions-and-Equalization"><a href="#Transfer-Functions-and-Equalization" class="headerlink" title="Transfer Functions and Equalization"></a>Transfer Functions and Equalization</h3><p>可以使用第4.1节中的斜坡信号来表征物体的(可视的)频率响应，以提高从该物体的新观测中恢复的信号质量。理论上。如果认为物体是线性系统,可以使用维纳反卷积估计与该系统相关联的复数传递函数，并且传递函数可以用来以一种最优的方式(在均方误差意义上的)解卷积新的观测信号。然而，在实践中，这种方法很容易受到噪声和非线性artifacts的影响。因此，本文描述了一种更简单的方法，首先使用训练实例（线性斜坡）的短时间傅里叶变换在粗尺度上计算频率传递系数，然后使用这些传递系数使新的观测信号相等。</p><p>转移系数是从一对输入/输出的信号的短时功率谱中提取出来的。每个系数对应于观察到的训练信号的短时功率谱的一个频率，并作为随时间变化的频率幅值的加权平均被计算。每一时刻的权值由对准的输入训练信号的短时功率谱给出。由于输入信号一次只包含一个频率，这个加权方案忽略了图2(b)中所示的倍频等非线性artifacts。</p><p>一旦有了传输系数，我们就可以用它们来平衡新的信号。有很多方法可以做到这一点。将增益应用于新信号短时功率谱的频率上，然后在时域重新合成信号。应用于每个频率的增益与其相应的传递系数的倒数成正比，该系数上升到某个指数k。</p><p>表2显示了应用从薯片袋导出的均衡器到从同一物体恢复的语音序列的结果。在没有噪声的情况下，k设为1，但广谱噪声压缩了估计的传递系数的范围。使用更大的k可以弥补这一点。在其中一个女性语音示例上手动调整k值，然后将得到的均衡器应用于所有六个语音示例。由于这种均衡是为了提高恢复信号的可信度而不是语音的可理解性，因此使用谱减法来去除噪声。</p><p><img src="/images/VisualSound/5.png" alt="5" style="zoom:75%;"></p><p>注意，校准和均衡是可选的。特别是，本文中除表2之外的所有结果都假定不预先知道被记录物体的频率响应。</p><h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h2><p><strong>Object response (A)</strong>: 物体相应声音并移动，将空气压力转化为表面位移。</p><p><strong>Processing (B)</strong>: 将录制的视频转换成恢复的声音。</p><h3 id="Object-response-A"><a href="#Object-response-A" class="headerlink" title="Object response (A)"></a>Object response (A)</h3><p><img src="/images/VisualSound/6.png" alt="6"></p><p>图7(b)：300Hz纯音测试，大多数物体的运动在声压（音量）上近似呈线性。结论：A可建模为LTI系统。</p><p>图7(c)：斜坡信号（20Hz到2200Hz）测试，将A建模为LTI系统，用这个斜坡信号来恢复系统的脉冲响应。这是通过使用维纳反卷积用已知的输入对观察到的斜坡信号(这一次是由LDV记录的)进行反卷积来实现的。图7 (c)显示了从恢复的脉冲响应中得到的频率响应。从这张图中可以看到，大多数物体在低频率的响应比高频率的响应更强(正如预期的那样)，但是这种趋势不是单调的。</p><script type="math/tex; mode=display">D_{mm}(\omega)\approx \boldsymbol{A}(\omega)S(\omega)</script><p>$\boldsymbol{A}(\omega)$: 转移函数</p><p>$S(\omega)$: 声谱</p><p>$D_{mm}(\omega)$: 运动谱</p><p><a href="http://people.csail.mit.edu/mrub/VisualMic/" target="_blank" rel="noopener">项目网址</a></p>]]></content>
     
@@ -36,10 +62,10 @@
     </summary>
     
     
-      <category term="Deep Learning" scheme="http://yoursite.com/categories/Deep-Learning/"/>
+      <category term="Visual Sound" scheme="http://yoursite.com/categories/Visual-Sound/"/>
     
     
-      <category term="paper notes-deep learning" scheme="http://yoursite.com/tags/paper-notes-deep-learning/"/>
+      <category term="paper notes-visual sound" scheme="http://yoursite.com/tags/paper-notes-visual-sound/"/>
     
   </entry>
   
@@ -122,33 +148,6 @@
   </entry>
   
   <entry>
-    <title>Hexo+Valine：为博客添加评论</title>
-    <link href="http://yoursite.com/2020/10/15/12_hexo_valine/"/>
-    <id>http://yoursite.com/2020/10/15/12_hexo_valine/</id>
-    <published>2020-10-15T11:20:09.000Z</published>
-    <updated>2020-10-15T12:43:26.643Z</updated>
-    
-    <content type="html"><![CDATA[<p>注册Leancloud账号：<a href="https://www.leancloud.cn/" target="_blank" rel="noopener">https://www.leancloud.cn</a></p><p>注册完以后需要创建一个应用，名字可以随便起，然后 <strong>进入应用-&gt;设置-&gt;应用key</strong></p><p>拿到你的appid和appkey之后，打开<strong>主题配置文件</strong>（我是…\themes\next_config.yml） 搜索 <strong>valine</strong>，填入appid 和 appkey</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">valine:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span> <span class="comment"># When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version</span></span><br><span class="line"><span class="attr">  appid:</span> <span class="string">XO7jV马赛克zGzoHsz</span> <span class="comment"># Your leancloud application appid</span></span><br><span class="line"><span class="attr">  appkey:</span> <span class="string">Amg1Fl马赛克2NfhcO</span> <span class="comment"># Your leancloud application appkey</span></span><br><span class="line"><span class="attr">  notify:</span> <span class="literal">false</span> <span class="comment"># Mail notifier. See: https://github.com/xCss/Valine/wiki</span></span><br><span class="line"><span class="attr">  verify:</span> <span class="literal">false</span> <span class="comment"># Verification code</span></span><br><span class="line"><span class="attr">  placeholder:</span> <span class="string">Just</span> <span class="string">go</span> <span class="string">go</span> <span class="comment"># Comment box placeholder</span></span><br><span class="line"><span class="attr">  avatar:</span> <span class="string">mm</span> <span class="comment"># Gravatar style</span></span><br><span class="line"><span class="attr">  guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment"># Custom comment header</span></span><br><span class="line"><span class="attr">  pageSize:</span> <span class="number">10</span> <span class="comment"># Pagination size</span></span><br><span class="line"><span class="attr">  language:</span> <span class="comment"># Language, available values: en, zh-cn</span></span><br><span class="line"><span class="attr">  visitor:</span> <span class="literal">false</span> <span class="comment"># leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html</span></span><br><span class="line"><span class="attr">  comment_count:</span> <span class="literal">true</span> <span class="comment"># If false, comment count will only be displayed in post page, not in home page</span></span><br><span class="line">  <span class="comment">#post_meta_order: 0</span></span><br></pre></td></tr></table></figure><p>最后在Leancloud -&gt; 设置 -&gt; 安全中心 -&gt; Web 安全域名 把你的域名加进去</p><p>刷新一下~ 看到评论框了</p><h1 id="删除评论"><a href="#删除评论" class="headerlink" title="删除评论"></a>删除评论</h1><p><code>登录Leancloud</code>&gt;选择你创建的<code>应用</code>&gt;<code>存储</code>&gt;选择Class<code>Comment</code></p><p>参考：</p><p><a href="https://blog.csdn.net/blue_zy/article/details/79071414" target="_blank" rel="noopener">https://blog.csdn.net/blue_zy/article/details/79071414</a></p><p><a href="https://github.com/xCss/Valine/issues/69" target="_blank" rel="noopener">https://github.com/xCss/Valine/issues/69</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;注册Leancloud账号：&lt;a href=&quot;https://www.leancloud.cn/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.leancloud.cn&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;注册完以后需要创建一个应用，名字可以随便
-      
-    
-    </summary>
-    
-    
-      <category term="Setup" scheme="http://yoursite.com/categories/Setup/"/>
-    
-    
-      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
-    
-  </entry>
-  
-  <entry>
     <title>在Latex中插入python代码</title>
     <link href="http://yoursite.com/2020/10/15/11_latex_python_code/"/>
     <id>http://yoursite.com/2020/10/15/11_latex_python_code/</id>
@@ -172,6 +171,33 @@
     
     
       <category term="latex" scheme="http://yoursite.com/tags/latex/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo+Valine：为博客添加评论</title>
+    <link href="http://yoursite.com/2020/10/15/12_hexo_valine/"/>
+    <id>http://yoursite.com/2020/10/15/12_hexo_valine/</id>
+    <published>2020-10-15T11:20:09.000Z</published>
+    <updated>2020-10-15T12:43:26.643Z</updated>
+    
+    <content type="html"><![CDATA[<p>注册Leancloud账号：<a href="https://www.leancloud.cn/" target="_blank" rel="noopener">https://www.leancloud.cn</a></p><p>注册完以后需要创建一个应用，名字可以随便起，然后 <strong>进入应用-&gt;设置-&gt;应用key</strong></p><p>拿到你的appid和appkey之后，打开<strong>主题配置文件</strong>（我是…\themes\next_config.yml） 搜索 <strong>valine</strong>，填入appid 和 appkey</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">valine:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span> <span class="comment"># When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version</span></span><br><span class="line"><span class="attr">  appid:</span> <span class="string">XO7jV马赛克zGzoHsz</span> <span class="comment"># Your leancloud application appid</span></span><br><span class="line"><span class="attr">  appkey:</span> <span class="string">Amg1Fl马赛克2NfhcO</span> <span class="comment"># Your leancloud application appkey</span></span><br><span class="line"><span class="attr">  notify:</span> <span class="literal">false</span> <span class="comment"># Mail notifier. See: https://github.com/xCss/Valine/wiki</span></span><br><span class="line"><span class="attr">  verify:</span> <span class="literal">false</span> <span class="comment"># Verification code</span></span><br><span class="line"><span class="attr">  placeholder:</span> <span class="string">Just</span> <span class="string">go</span> <span class="string">go</span> <span class="comment"># Comment box placeholder</span></span><br><span class="line"><span class="attr">  avatar:</span> <span class="string">mm</span> <span class="comment"># Gravatar style</span></span><br><span class="line"><span class="attr">  guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment"># Custom comment header</span></span><br><span class="line"><span class="attr">  pageSize:</span> <span class="number">10</span> <span class="comment"># Pagination size</span></span><br><span class="line"><span class="attr">  language:</span> <span class="comment"># Language, available values: en, zh-cn</span></span><br><span class="line"><span class="attr">  visitor:</span> <span class="literal">false</span> <span class="comment"># leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html</span></span><br><span class="line"><span class="attr">  comment_count:</span> <span class="literal">true</span> <span class="comment"># If false, comment count will only be displayed in post page, not in home page</span></span><br><span class="line">  <span class="comment">#post_meta_order: 0</span></span><br></pre></td></tr></table></figure><p>最后在Leancloud -&gt; 设置 -&gt; 安全中心 -&gt; Web 安全域名 把你的域名加进去</p><p>刷新一下~ 看到评论框了</p><h1 id="删除评论"><a href="#删除评论" class="headerlink" title="删除评论"></a>删除评论</h1><p><code>登录Leancloud</code>&gt;选择你创建的<code>应用</code>&gt;<code>存储</code>&gt;选择Class<code>Comment</code></p><p>参考：</p><p><a href="https://blog.csdn.net/blue_zy/article/details/79071414" target="_blank" rel="noopener">https://blog.csdn.net/blue_zy/article/details/79071414</a></p><p><a href="https://github.com/xCss/Valine/issues/69" target="_blank" rel="noopener">https://github.com/xCss/Valine/issues/69</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;注册Leancloud账号：&lt;a href=&quot;https://www.leancloud.cn/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.leancloud.cn&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;注册完以后需要创建一个应用，名字可以随便
+      
+    
+    </summary>
+    
+    
+      <category term="Setup" scheme="http://yoursite.com/categories/Setup/"/>
+    
+    
+      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
     
   </entry>
   

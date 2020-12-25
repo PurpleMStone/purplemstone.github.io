@@ -56,27 +56,22 @@
   };
 </script>
 
-  <meta name="description" content="Faster Neural Networks Straight from JPEGMotivation1、缩短图像解码时间。大部分图片都是通过JPEG格式进行存储，JPEG格式转换为RGB需要解码。而如果通过频域学习，解码时只需要从霍夫曼编码中获取DCT系数即可，不需要完全解码得到RGB图像； 2、让模型更高效。CNN模型的优势是表达能力强（参数很多），所需先验少。但是先验少，所以需要大量参数，使">
+  <meta name="description" content="Sound Representation计算声音特征的方法：将声波$w(t)$分解为子带包络$s_{n}(t)$（将声波滤波然后应用非线性）。1）在等效矩形带宽(ERB)尺度上应用40个带通滤波器$f_{n}$(加上一个低通和高通滤波器)，并取响应的希尔伯特包络线；2）将包络下采到90Hz（约为3样本&#x2F;帧）并压缩。  s_{n}&#x3D;D(|(w*f_{n})+jH(w*f_{n})|)^{c}$H$是">
 <meta property="og:type" content="article">
-<meta property="og:title" content="论文阅读笔记(4)：CNN频域学习(2)">
-<meta property="og:url" content="http://yoursite.com/2020/12/04/20201204_CNNinFrequence2/index.html">
+<meta property="og:title" content="论文阅读笔记(6)-Visually Indicated Sounds">
+<meta property="og:url" content="http://yoursite.com/2020/12/25/20201225_VisuallyIndicatedSound/index.html">
 <meta property="og:site_name" content="Stone&#39;s Blog">
-<meta property="og:description" content="Faster Neural Networks Straight from JPEGMotivation1、缩短图像解码时间。大部分图片都是通过JPEG格式进行存储，JPEG格式转换为RGB需要解码。而如果通过频域学习，解码时只需要从霍夫曼编码中获取DCT系数即可，不需要完全解码得到RGB图像； 2、让模型更高效。CNN模型的优势是表达能力强（参数很多），所需先验少。但是先验少，所以需要大量参数，使">
+<meta property="og:description" content="Sound Representation计算声音特征的方法：将声波$w(t)$分解为子带包络$s_{n}(t)$（将声波滤波然后应用非线性）。1）在等效矩形带宽(ERB)尺度上应用40个带通滤波器$f_{n}$(加上一个低通和高通滤波器)，并取响应的希尔伯特包络线；2）将包络下采到90Hz（约为3样本&#x2F;帧）并压缩。  s_{n}&#x3D;D(|(w*f_{n})+jH(w*f_{n})|)^{c}$H$是">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/images/CNNinFrequence/02_method.png">
-<meta property="og:image" content="http://yoursite.com/images/CNNinFrequence/02_result1.png">
-<meta property="og:image" content="http://yoursite.com/images/CNNinFrequence/02_result2.png">
-<meta property="og:image" content="http://yoursite.com/images/CNNinFrequence/02_net1.png">
-<meta property="og:image" content="http://yoursite.com/images/CNNinFrequence/02_result3.png">
-<meta property="og:image" content="http://yoursite.com/images/CNNinFrequence/02_result4.png">
-<meta property="og:image" content="http://yoursite.com/images/CNNinFrequence/02_result5.png">
-<meta property="article:published_time" content="2020-12-04T03:50:09.000Z">
-<meta property="article:modified_time" content="2020-12-04T05:23:42.387Z">
+<meta property="og:image" content="http://yoursite.com/images/VisualIndicatedSound/2.png">
+<meta property="og:image" content="http://yoursite.com/images/VisualIndicatedSound/1.png">
+<meta property="article:published_time" content="2020-12-25T03:50:09.000Z">
+<meta property="article:modified_time" content="2020-12-25T08:42:33.193Z">
 <meta property="article:author" content="Purple M. Stone">
-<meta property="article:tag" content="paper notes-deep learning">
+<meta property="article:tag" content="paper notes-visual sound">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/images/CNNinFrequence/02_method.png">
-  <link rel="canonical" href="http://yoursite.com/2020/12/04/20201204_CNNinFrequence2/">
+<meta name="twitter:image" content="http://yoursite.com/images/VisualIndicatedSound/2.png">
+  <link rel="canonical" href="http://yoursite.com/2020/12/25/20201225_VisuallyIndicatedSound/">
 
 
 <script id="page-configurations">
@@ -90,7 +85,7 @@
   };
 </script>
 
-  <title>论文阅读笔记(4)：CNN频域学习(2) | Stone's Blog</title>
+  <title>论文阅读笔记(6)-Visually Indicated Sounds | Stone's Blog</title>
   
 
 
@@ -255,7 +250,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/04/20201204_CNNinFrequence2/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/25/20201225_VisuallyIndicatedSound/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Purple M. Stone">
@@ -267,7 +262,7 @@
       <meta itemprop="name" content="Stone's Blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">论文阅读笔记(4)：CNN频域学习(2)
+        <h1 class="post-title" itemprop="name headline">论文阅读笔记(6)-Visually Indicated Sounds
 
           
         </h1>
@@ -283,7 +278,7 @@
                 
               
 
-              <time title="创建时间：2020-12-04 11:50:09 / 修改时间：13:23:42" itemprop="dateCreated datePublished" datetime="2020-12-04T11:50:09+08:00">2020-12-04</time>
+              <time title="创建时间：2020-12-25 11:50:09 / 修改时间：16:42:33" itemprop="dateCreated datePublished" datetime="2020-12-25T11:50:09+08:00">2020-12-25</time>
             </span>
           
             
@@ -296,7 +291,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Visual-Sound/" itemprop="url" rel="index"><span itemprop="name">Visual Sound</span></a></span>
 
                 
                 
@@ -323,7 +318,7 @@
       
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/12/04/20201204_CNNinFrequence2/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/04/20201204_CNNinFrequence2/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/12/25/20201225_VisuallyIndicatedSound/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/25/20201225_VisuallyIndicatedSound/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -337,48 +332,29 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Faster-Neural-Networks-Straight-from-JPEG"><a href="#Faster-Neural-Networks-Straight-from-JPEG" class="headerlink" title="Faster Neural Networks Straight from JPEG"></a>Faster Neural Networks Straight from JPEG</h2><h3 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h3><p>1、缩短图像解码时间。大部分图片都是通过JPEG格式进行存储，JPEG格式转换为RGB需要解码。而如果通过频域学习，解码时只需要从霍夫曼编码中获取DCT系数即可，不需要完全解码得到RGB图像；</p>
-<p>2、让模型更高效。CNN模型的优势是表达能力强（参数很多），所需先验少。但是先验少，所以需要大量参数，使得CNN模型中存在大量冗余计算。频域学习其实是一个先验，如果数据分布和该先验一致，那么达到同样的效果，模型可以更简单，所需要的训练数据可以更少。</p>
-<h3 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h3><p><img src="/images/CNNinFrequence/02_method.png" alt="02_method"></p>
-<h3 id="Evaluation"><a href="#Evaluation" class="headerlink" title="Evaluation"></a>Evaluation</h3><p>在<strong>ImageNet</strong>上实验。目标是准确率高且运行速度快。</p>
-<h4 id="Baseline"><a href="#Baseline" class="headerlink" title="Baseline"></a>Baseline</h4><p>Vanilla ResNet-50, 输入为RGB图像。Top-5错误率7.4%左右，速度200 image/s：</p>
-<p><img src="/images/CNNinFrequence/02_result1.png" alt="02_result1" style="zoom: 33%;"></p>
-<p>以YCbCr为输入，效果与RGB差不多。期望的效果是在图中往右下发展（右：速度快；下：错误率低）。</p>
-<p>希望运行速度更快：1）shorter ResNet-50 (减少网络层数)；2）thinner ResNet-50 (减少每层的通道数)</p>
-<p><img src="/images/CNNinFrequence/02_result2.png" alt="02_result2"></p>
-<p>结论：shorter ResNet-50优于thinner ResNet-50。浅灰色的“Remove N ID Blocks”的线形成了帕累托前沿(Pareto front)，显示了“non-dominated”网络的集合，或者是那些在速度和准确性之间做出最佳权衡的网络。</p>
-<h4 id="Training-networks-on-DCT-inputs"><a href="#Training-networks-on-DCT-inputs" class="headerlink" title="Training networks on DCT inputs"></a>Training networks on DCT inputs</h4><hr>
-<p><strong>问题1</strong>：针对不同的输入尺寸如何处理？</p>
-<p>RGB图像大小：(224, 224, 3)</p>
-<p>DCT系数： 1)  Y-(28, 28, 64)；</p>
-<p>​                    2)  Cb/Cr-(14, 14, 64)</p>
-<p><strong>解决</strong>：在进入网络之前combine Y和Cb、Cr</p>
-<p><img src="/images/CNNinFrequence/02_net1.png" alt="02_net1" style="zoom:50%;"></p>
-<hr>
-<p><strong>1.    DCT Early Merge architectures</strong>：1）下采Y（“DownSampling”）；2）上采Cb、Cr（“UpSampling”）</p>
-<p><img src="/images/CNNinFrequence/02_result3.png" alt="02_result3"></p>
-<p>结论： 1）DownSampling：fast (450 image/s) but high error；</p>
-<p>​            2） UpSampling：slower but lower error; </p>
-<hr>
-<p><strong>问题2</strong>：UpSampling的错误率比baseline高</p>
-<p><strong>可能的原因</strong>：感受野过大。传到baseline ResNet-50的中间层时感受野约为70像素；而UpSampling模型的相应感受野达到了110像素。这是因为DCT输入层的[stride, receptive field]是[8, 8]，而经典输入层该值为 [1, 1]。 直观地说，要求网络学习110px宽的感受野，但没有给它足够的层或计算能力来做到这一点。</p>
-<p><strong>解决</strong>：创造了一个Receptive Field Aware (RFA) 模型→UpSampling-RFA。做法是给神经网络的前层增加额外的步长1模块。此时逐层的感受野增长变得更平滑，近似与baseline ResNet-50相匹配。</p>
-<p>如果UpSampling通过可学反卷积而非像素复制得到，则错误率可以进一步降低，达到目前为止最好的模型：Deconvolution-RFA（错误率6.98%；加速1.29倍）。</p>
-<hr>
-<p>效果：沿着DCT Early Merge线的其他模型现在形成了新的帕累托前沿，在误差和速度的权衡方面超越了以前的模型。</p>
-<p><strong>2.    DCT Late Merge architectures</strong></p>
-<p>实验发现允许亮度分支多层计算才能获得较高的准确率，而色度路径可以在较少的计算层数下不损害准确率。换句话说，1) 将Y通道放到网络的前面，而Cb/Cr信息在中途注入，其效果与 2) 从前面开始全部三个通道的运算 一样好，而方法1)节省了计算。</p>
-<p><img src="/images/CNNinFrequence/02_result4.png" alt="02_result4" style="zoom: 50%;"></p>
-<p>Late-Concat-RFA：receptive field aware version；</p>
-<p>Late-Concat-RFA-Thinner：通过使用更少过滤器而调整速度的版本。加速1.77倍，错误率相近。</p>
-<p>结论：帕累托前沿再次前移。</p>
-<h3 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h3><p>有趣的是，颜色信息在网络后期（当它与从亮度中学到的更高层次的概念相结合时）才被需要。在这一点上猜测可能是学习中级概念（例如:草或狗毛）需要在其与空间上不那么精确的颜色信息（例如:绿色或棕色）结合之前，精细的亮度边缘进行了好几层处理变成纹理。可以从ResNet-50从RGB像素学习到的更高频率的黑白边缘和更低频率（或常数）的颜色检测器中预期这个结果。</p>
-<p><img src="/images/CNNinFrequence/02_result5.png" alt="02_result5"></p>
-<p>许多边缘检测器基本上都是黑白的，在亮度空间中操作。许多颜色特征要么在空间上是恒定的，要么在频率上是较低的，它们可能只是用来将粗略的颜色信息传递给需要它的更高层次。我们从2012年就看到过这样的滤波器;我们是否应该期望直到网络后期才需要颜色?</p>
-<p><strong>速度与准确率</strong>：速度的提升是由于输入层和后续层上的数据量较小。准确率提升的主要原因是 DCT 表示的具体使用，结果对图像分类非常有效。只需将 ResNet-50 的第一个卷积层替换为stride为 8 的DCT 变换，即可获得更好的性能。它甚至比完全相同形状的学习得到的变换（learned transform）效果更好。使用更大的感受野和stride（8）表现更好，而硬编码第一层比学习得到第一层效果更好。残差网络在 2015 年得到 ImageNet 上最先进的性能，只需用DCT 替换第一层，就会进一步提高SOTA。</p>
-<p><a href="https://zhuanlan.zhihu.com/p/115584408" target="_blank" rel="noopener">CNN频域学习博客讲解</a></p>
-<p><a href="https://papers.nips.cc/paper/2018/file/7af6266cc52234b5aa339b16695f7fc4-Paper.pdf" target="_blank" rel="noopener">Faster Neural Networks Straight from JPEG</a></p>
-<p><a href="https://eng.uber.com/neural-networks-jpeg/?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="noopener">Faster Neural Networks Straight from JPEG 博客讲解</a></p>
+        <h2 id="Sound-Representation"><a href="#Sound-Representation" class="headerlink" title="Sound Representation"></a>Sound Representation</h2><p>计算声音特征的方法：将声波$w(t)$分解为子带包络$s_{n}(t)$（将声波滤波然后应用非线性）。1）在等效矩形带宽(ERB)尺度上应用40个带通滤波器$f_{n}$(加上一个低通和高通滤波器)，并取响应的希尔伯特包络线；2）将包络下采到90Hz（约为3样本/帧）并压缩。</p>
+<script type="math/tex; mode=display">
+s_{n}=D(|(w*f_{n})+jH(w*f_{n})|)^{c}</script><p>$H$是希尔伯特变换，$D$表示下采样，压缩常数$c=0.3$。由此产生的表示被称为耳蜗图（cochleagram）。</p>
+<p><img src="/images/VisualIndicatedSound/2.png" alt="2" style="zoom:80%;"></p>
+<p>一般来说，撞击声如何捕捉材料的属性?为了从经验上评测这一点，文章使用子带包络作为特征向量，训练了一个线性支持向量机来预测数据库中的声音由哪个材料发出。文章对训练集重新采样，使每个类包含相同数量的撞击声(每类260个)。最终得到的材料分类器具有45.8% (chance = 5.9%)的分类平均精度(即每类精度值的平均值)，其混淆矩阵如图3(b)所示。这些结果表明，撞击声传达了有关材料的重要信息，因此，如果一个算法能够学习从图像中准确预测这些声音，它就会有关于材料类别的隐含知识。</p>
+<h2 id="Predicting-visually-indicated-sounds"><a href="#Predicting-visually-indicated-sounds" class="headerlink" title="Predicting visually indicated sounds"></a>Predicting visually indicated sounds</h2><p>将此任务建模为一个回归问题，目标是将一个视频帧序列映射为一个声频特征序列。使用的模型是RNN，以颜色和运动（motion）信息作为输入，预测出声频波形的子带包络。最后，从声音特征中产生波形。</p>
+<p><img src="/images/VisualIndicatedSound/1.png" alt="1" style="zoom:80%;"></p>
+<h3 id="Regressing-sound-features"><a href="#Regressing-sound-features" class="headerlink" title="Regressing sound features"></a>Regressing sound features</h3><p>输入图像序列：$I_{1}, I_{2}, …, I_{N}$</p>
+<p>输出声音特征序列：$\mathop{s}\limits ^{\rightarrow}_{1}, \mathop{s}\limits ^{\rightarrow}_{2}, \mathop{s}\limits ^{\rightarrow}_{T}, where \mathop{s}\limits ^{\rightarrow}_{t}\in \mathbb{R}^{42}$</p>
+<p>这些声音特征对应于图4中所示的耳蜗块。文章使用循环神经网络(RNN)来解决这个回归问题，它将卷积神经网络(CNN)计算的图像特征作为输入。</p>
+<p><strong>图像表示</strong>：如何表示运动（motion）信息？计算每一帧的spacetime图像，即三个通道是上一帧、当前帧和下一帧灰度版本的图像。对于每一帧$t$，通过拼接帧$t$的spacetime图像和第1帧的颜色图像的CNN特征来构建输入特征向量$x_{t}$，即</p>
+<script type="math/tex; mode=display">
+x_{t}=[\phi(F_{t}),\phi(I_{1})]</script><p>文章中训练的两种方式：1）从零开始初始化CNN，然后和RNN一起训练它；2）用一个为ImageNet分类训练的网络的权值初始化CNN。当使用预训练时，从卷积层中预计算特征，并仅对完全连接的层进行微调。</p>
+<p><strong>声音预测模型</strong>：使用基于LSTM的RNN模型。为了补偿视频和音频采样率之间的差异，文章中复制每个CNN特征向量$k$次（文章中使用$k=3$）</p>
+<script type="math/tex; mode=display">
+k=\lfloor T/N\rfloor</script><p>由此得到与声音特征序列等长的CNN特征序列$x_{1}, x_{2}, …, x_{N}$。在RNN的每个timestep，文章中使用当前图像特征向量$x_{t}$来更新隐藏变量$h_{t}$，然后通过一个仿射变换得到声音特征。为了使学习问题更简单，文中使用PCA在每个时间步长的42维特征向量投影到10维空间，然后预测这个低维向量。对网络进行评估时，反求PCA变换以获得声音特征。</p>
+<p>文章使用随机梯度下降以Caffe共同训练RNN和CNN。它有助于收敛去除dropout和剪辑大的梯度。当从头开始训练时，文中通过对视频进行裁剪和镜像转换来增强数据。文中也使用多个LSTM层（数量取决于任务）。</p>
+<h3 id="Generating-a-waveform"><a href="#Generating-a-waveform" class="headerlink" title="Generating a waveform"></a>Generating a waveform</h3><p>问题：如何从声音特征中产生声波？</p>
+<ol>
+<li>简单参数综合法：迭代地将子带包络加到白噪声样本上(文中只使用了一次迭代)。这种方法对于检查音频特征所捕获的信息非常有用，因为它代表了从特征到声音的直接转换。</li>
+<li>对于产生对于人耳似是而非的声音的任务，在从特征到波形的转换过程中，先施加一个强的自然声音是更有效的。因此使用基于实例的合成方法，该方法将声音特征的窗口捕捉到训练集中最接近的样本上。文中通过拼接预测的声音特征$\mathop{s}\limits ^{\rightarrow}_{1}, \mathop{s}\limits ^{\rightarrow}_{2}, \mathop{s}\limits ^{\rightarrow}_{T}$（或它们的一个子序列）形成一个查询向量，在$L_{1}$距离测量的训练集中寻找其最近的邻居，并传递相应的波形。</li>
+</ol>
+<p><a href="http://andrewowens.com/vis/" target="_blank" rel="noopener">项目网址</a></p>
 
     </div>
 
@@ -394,7 +370,7 @@
           
           <div class="post-tags">
             
-              <a href="/tags/paper-notes-deep-learning/" rel="tag"># paper notes-deep learning</a>
+              <a href="/tags/paper-notes-visual-sound/" rel="tag"># paper notes-visual sound</a>
             
           </div>
         
@@ -404,8 +380,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2020/12/03/20201203_CNNinFrequence/" rel="next" title="论文阅读笔记(3)：CNN频域学习(1)">
-                  <i class="fa fa-chevron-left"></i> 论文阅读笔记(3)：CNN频域学习(1)
+                <a href="/2020/12/22/20201222_VisualMicrophone/" rel="next" title="论文阅读笔记(5)-The Visual Microphone Passive Recovery of Sound from Video">
+                  <i class="fa fa-chevron-left"></i> 论文阅读笔记(5)-The Visual Microphone Passive Recovery of Sound from Video
                 </a>
               
             </div>
@@ -413,10 +389,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2020/12/22/20201222_VisualMicrophone/" rel="prev" title="论文阅读笔记(5)-The Visual Microphone Passive Recovery of Sound from Video">
-                  论文阅读笔记(5)-The Visual Microphone Passive Recovery of Sound from Video <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -468,7 +440,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Faster-Neural-Networks-Straight-from-JPEG"><span class="nav-number">1.</span> <span class="nav-text">Faster Neural Networks Straight from JPEG</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Motivation"><span class="nav-number">1.1.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Method"><span class="nav-number">1.2.</span> <span class="nav-text">Method</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Evaluation"><span class="nav-number">1.3.</span> <span class="nav-text">Evaluation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Baseline"><span class="nav-number">1.3.1.</span> <span class="nav-text">Baseline</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Training-networks-on-DCT-inputs"><span class="nav-number">1.3.2.</span> <span class="nav-text">Training networks on DCT inputs</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Discussion"><span class="nav-number">1.4.</span> <span class="nav-text">Discussion</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sound-Representation"><span class="nav-number">1.</span> <span class="nav-text">Sound Representation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Predicting-visually-indicated-sounds"><span class="nav-number">2.</span> <span class="nav-text">Predicting visually indicated sounds</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Regressing-sound-features"><span class="nav-number">2.1.</span> <span class="nav-text">Regressing sound features</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generating-a-waveform"><span class="nav-number">2.2.</span> <span class="nav-text">Generating a waveform</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
