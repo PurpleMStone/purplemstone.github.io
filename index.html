@@ -270,7 +270,7 @@
                 
               
 
-              <time title="创建时间：2021-04-20 19:50:09 / 修改时间：17:34:59" itemprop="dateCreated datePublished" datetime="2021-04-20T19:50:09+08:00">2021-04-20</time>
+              <time title="创建时间：2021-04-20 19:50:09 / 修改时间：18:56:33" itemprop="dateCreated datePublished" datetime="2021-04-20T19:50:09+08:00">2021-04-20</time>
             </span>
           
             
@@ -316,7 +316,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="SELECT子句"><a href="#SELECT子句" class="headerlink" title="SELECT子句"></a>SELECT子句</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">	first_name, </span><br><span class="line">    last_name, </span><br><span class="line">    points, </span><br><span class="line">    points * <span class="number">10</span> + <span class="number">100</span> <span class="keyword">AS</span> <span class="string">"discount factor"</span>   <span class="comment">-- 可以进行数学运算,AS来rename</span></span><br><span class="line"><span class="keyword">FROM</span> customers</span><br></pre></td></tr></table></figure>
+          <h1 id="SELECT子句"><a href="#SELECT子句" class="headerlink" title="SELECT子句"></a>SELECT子句</h1><p>从一张表中选取某些列</p>
+<p><img src="/images/SQL1/001.png" alt></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	first_name, </span><br><span class="line">    last_name, </span><br><span class="line">    points, </span><br><span class="line">    points * <span class="number">10</span> + <span class="number">100</span> <span class="keyword">AS</span> <span class="string">"discount factor"</span>   <span class="comment">-- 可以进行数学运算,AS来rename</span></span><br><span class="line"><span class="keyword">FROM</span> customers</span><br></pre></td></tr></table></figure>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> state <span class="comment">-- DISTINCT 只保留重复项中的一项</span></span><br><span class="line"><span class="keyword">FROM</span> customers</span><br></pre></td></tr></table></figure>
 
         

@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[MySQL笔记(1)]]></title>
     <url>%2F2021%2F04%2F20%2F20210420_SQL001%2F</url>
-    <content type="text"><![CDATA[SELECT子句123456SELECT first_name, last_name, points, points * 10 + 100 AS "discount factor" -- 可以进行数学运算,AS来renameFROM customers 12SELECT DISTINCT state -- DISTINCT 只保留重复项中的一项FROM customers]]></content>
+    <content type="text"><![CDATA[SELECT子句从一张表中选取某些列 123456SELECT first_name, last_name, points, points * 10 + 100 AS "discount factor" -- 可以进行数学运算,AS来renameFROM customers 12SELECT DISTINCT state -- DISTINCT 只保留重复项中的一项FROM customers]]></content>
       <categories>
         <category>Database</category>
       </categories>
