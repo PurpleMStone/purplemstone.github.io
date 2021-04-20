@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[MySQL笔记(1)]]></title>
+    <url>%2F2021%2F04%2F20%2F20210420_SQL001%2F</url>
+    <content type="text"><![CDATA[SELECT子句123456SELECT first_name, last_name, points, points * 10 + 100 AS "discount factor" -- 可以进行数学运算,AS来renameFROM customers 12SELECT DISTINCT state -- DISTINCT 只保留重复项中的一项FROM customers]]></content>
+      <categories>
+        <category>Database</category>
+      </categories>
+      <tags>
+        <tag>job notes-database</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[数据结构与算法笔记(1)]]></title>
+    <url>%2F2021%2F03%2F12%2F20210312_DongAlgNote%2F</url>
+    <content type="text"><![CDATA[数组与链表数据结构的存储方式只有两种：数组（顺序存储）和链表（链式存储）。 那些多样化的数据结构，究其源头，都是在链表或者数组上的特殊操作，API 不同而已 数组由于是紧凑连续存储,可以随机访问，通过索引快速找到对应元素，而且相对节约存储空间。但正因为连续存储，内存空间必须一次性分配够，所以说数组如果要扩容，需要重新分配一块更大的空间，再把数据全部复制过去，时间复杂度 O(N)；而且你如果想在数组中间进行插入和删除，每次必须搬移后面的所有数据以保持连续，时间复杂度 O(N)。 链表因为元素不连续，而是靠指针指向下一个元素的位置，所以不存在数组的扩容问题；如果知道某一元素的前驱和后驱，操作指针即可删除该元素或者插入新元素，时间复杂度 O(1)。但是正因为存储空间不连续，你无法根据一个索引算出对应元素的地址，所以不能随机访问；而且由于每个元素必须存储指向前后元素位置的指针，会消耗相对更多的储存空间。 数据结构基本操作遍历 + 访问：增删查改（在不同的应用场景，尽可能高效地增删查改） 方式：线性-for/while；非线性-递归]]></content>
+      <categories>
+        <category>Algorithm</category>
+      </categories>
+      <tags>
+        <tag>job notes-algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[论文阅读笔记(7)-Visual to Sound Generating Natural Sound for Videos in the Wild]]></title>
     <url>%2F2020%2F12%2F25%2F20201225_VisualToSound%2F</url>
     <content type="text"><![CDATA[任务：从输入的视频中直接预测raw声音信号 方法：编码-解码架构，即视频编码器+音频生成器（分层RNN） 建模：条件生成问题。训练一个有条件的生成模型以从输入的视频中合成raw声音波形。 估计条件概率： p(y_{1},y_{2},...,y_{n}|x_{1},x_{2},...,x_{m})$x_{1},x_{2},…,x_{m}$是输入视频帧的表示；$y_{1},y_{2},…,y_{n}$是输出声音波形的值（取值为0~255的整数序列）。原始波形样本是范围从-1到1的实数值，文中重新缩放和线性量化它们到256个bins。通常$m&lt;&lt;n$，因为音频的采样率远高于视频的采样率。 Sound Generator采用的采样频率为：16kHz 问题：序列长度很长 解决方法：选用SampleRNN为声音生成器（原因：其从粗到细的结构使模型能够生成非常长的序列，每一层的循环结构捕捉到遥远样本之间的依赖关系。） 具体：1）细节层是多层感知机（MLP），获取下一个粗糙层（上层）的输出和前面的$k$个样本，以生成一个新样本。在训练过程中，波形样本（实数值，从-1到1）被线性量化到从0到255的整数范围，可以将最细的层的MLP看成是256-类分类器，在每个timestep预测得到一个样本（然后映射回实值，获得最终波形）。 2）粗糙层可以是GRU, LSTM或其他的RNN变体。包含多个波形样本(图中为2个)的节点意味着该层基于前一个timestep以及更粗层的预测，在每个timestep共同预测多个样本。 Video EncoderFrame-to-frame method x_{i}=V(f_{i})$f_{i}$和$x_{i}$分别是视频的第$i$帧和该帧的表征。$V(.)$是在ImageNet上预先训练的VGG19网络的fc6特征提取操作，$x_{i}$是一个4096维的向量。在该模型中，将帧表征与声音生成器最粗层RNN的节点（样本）统一连接，对视觉信息进行编码，如图3(b)所示（内容以绿色虚线框表示）。 视频与音频采样率不同的问题解决：对于每个$x_{i}$，重复$s$次，其中 s=\lceil \frac{sr_{audio}}{sr_{video}}\rceil,\quad (``sr"\ means\ sampling\ rate)只将视觉特征提供给SampleRNN的最粗糙层，因为这一层很重要，因为它指导所有更细的层的生成以及提高计算效率。 Sequence-to-sequence method提取VGG19网络的fc6特征作为每一帧的表征，然后用RNN处理作为视频编码器，使用视频编码器的最后一个隐藏状态初始化声音发生器的最粗层RNN的隐藏状态，然后开始声音生成。此时声音生成任务变为： p(y_{1},y_{2},...,y_{n}|x_{1},x_{2},...,x_{m})=\prod\limits^{n}_{i=1}p(y_{i}|H,y_{1},...,y_{i-1})$H$表示视频编码RNN的最后一个隐藏状态或等效的声音发生器最粗糙层RNN的初始隐藏状态。 视频与音频采样率不同的问题解决：不像上面提到的基于帧的模型中明确地强制视频帧和波形样本之间的对齐。在这个序列到序列模型中，我们期望模型通过编码和解码来学习这两种模式之间的对齐。 Flow-based methodMotiv：视觉领域的运动信号，虽然有时很微小，但对于合成真实且同步良好的声音是至关重要的。 方案：增加一个基于光流的深度特征以明确捕获运动信号。与序列到序列方法不同之处为 x_{i}=cat[V(f_{i}),F(o_{i})]$o_{i}$是第$i$帧的光流，$F(.)$是提取基于光流的深度特征的函数（非学习得到）。 Visual to Sound: Generating Natural Sound for Videos in the Wild]]></content>
@@ -67,17 +89,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Hexo+Valine：为博客添加评论]]></title>
-    <url>%2F2020%2F10%2F15%2F12_hexo_valine%2F</url>
-    <content type="text"><![CDATA[注册Leancloud账号：https://www.leancloud.cn 注册完以后需要创建一个应用，名字可以随便起，然后 进入应用-&gt;设置-&gt;应用key 拿到你的appid和appkey之后，打开主题配置文件（我是…\themes\next_config.yml） 搜索 valine，填入appid 和 appkey 1234567891011121314valine: enable: true # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version appid: XO7jV马赛克zGzoHsz # Your leancloud application appid appkey: Amg1Fl马赛克2NfhcO # Your leancloud application appkey notify: false # Mail notifier. See: https://github.com/xCss/Valine/wiki verify: false # Verification code placeholder: Just go go # Comment box placeholder avatar: mm # Gravatar style guest_info: nick,mail,link # Custom comment header pageSize: 10 # Pagination size language: # Language, available values: en, zh-cn visitor: false # leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html comment_count: true # If false, comment count will only be displayed in post page, not in home page #post_meta_order: 0 最后在Leancloud -&gt; 设置 -&gt; 安全中心 -&gt; Web 安全域名 把你的域名加进去 刷新一下~ 看到评论框了 删除评论登录Leancloud&gt;选择你创建的应用&gt;存储&gt;选择ClassComment 参考： https://blog.csdn.net/blue_zy/article/details/79071414 https://github.com/xCss/Valine/issues/69]]></content>
-      <categories>
-        <category>Setup</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[在Latex中插入python代码]]></title>
     <url>%2F2020%2F10%2F15%2F11_latex_python_code%2F</url>
     <content type="text"><![CDATA[在Latex中插入Python代码，需要一个第三发的宏包pythonhighlight: https://github.com/olivierverdier/python-latex-highlighting 下载pythonhighlight.sty后，将它放到你的.tex文件所在目录下。 然后声明要使用pythonhighlight，在tex文件内的导言区： 12\usepackage&#123;graphicx&#125;\usepackage&#123;pythonhighlight&#125; 之后既可以在正文添加代码了: 12345678910\begin&#123;python&#125;import torchimport torch.nn as nnimport torch.optim as optimimport torch.nn.functional as Fimport torchvisionimport torchvision.transforms as transformsimport timeimport os\end&#123;python&#125; 效果如下：]]></content>
@@ -86,6 +97,17 @@
       </categories>
       <tags>
         <tag>latex</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hexo+Valine：为博客添加评论]]></title>
+    <url>%2F2020%2F10%2F15%2F12_hexo_valine%2F</url>
+    <content type="text"><![CDATA[注册Leancloud账号：https://www.leancloud.cn 注册完以后需要创建一个应用，名字可以随便起，然后 进入应用-&gt;设置-&gt;应用key 拿到你的appid和appkey之后，打开主题配置文件（我是…\themes\next_config.yml） 搜索 valine，填入appid 和 appkey 1234567891011121314valine: enable: true # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version appid: XO7jV马赛克zGzoHsz # Your leancloud application appid appkey: Amg1Fl马赛克2NfhcO # Your leancloud application appkey notify: false # Mail notifier. See: https://github.com/xCss/Valine/wiki verify: false # Verification code placeholder: Just go go # Comment box placeholder avatar: mm # Gravatar style guest_info: nick,mail,link # Custom comment header pageSize: 10 # Pagination size language: # Language, available values: en, zh-cn visitor: false # leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html comment_count: true # If false, comment count will only be displayed in post page, not in home page #post_meta_order: 0 最后在Leancloud -&gt; 设置 -&gt; 安全中心 -&gt; Web 安全域名 把你的域名加进去 刷新一下~ 看到评论框了 删除评论登录Leancloud&gt;选择你创建的应用&gt;存储&gt;选择ClassComment 参考： https://blog.csdn.net/blue_zy/article/details/79071414 https://github.com/xCss/Valine/issues/69]]></content>
+      <categories>
+        <category>Setup</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>

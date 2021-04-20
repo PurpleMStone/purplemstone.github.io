@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-12-25T13:41:47.083Z</updated>
+  <updated>2021-04-20T09:34:59.216Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,59 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MySQL笔记(1)</title>
+    <link href="http://yoursite.com/2021/04/20/20210420_SQL001/"/>
+    <id>http://yoursite.com/2021/04/20/20210420_SQL001/</id>
+    <published>2021-04-20T11:50:09.000Z</published>
+    <updated>2021-04-20T09:34:59.216Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="SELECT子句"><a href="#SELECT子句" class="headerlink" title="SELECT子句"></a>SELECT子句</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">first_name, </span><br><span class="line">    last_name, </span><br><span class="line">    points, </span><br><span class="line">    points * <span class="number">10</span> + <span class="number">100</span> <span class="keyword">AS</span> <span class="string">"discount factor"</span>   <span class="comment">-- 可以进行数学运算,AS来rename</span></span><br><span class="line"><span class="keyword">FROM</span> customers</span><br></pre></td></tr></table></figure><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> state <span class="comment">-- DISTINCT 只保留重复项中的一项</span></span><br><span class="line"><span class="keyword">FROM</span> customers</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;SELECT子句&quot;&gt;&lt;a href=&quot;#SELECT子句&quot; class=&quot;headerlink&quot; title=&quot;SELECT子句&quot;&gt;&lt;/a&gt;SELECT子句&lt;/h1&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td clas
+      
+    
+    </summary>
+    
+    
+      <category term="Database" scheme="http://yoursite.com/categories/Database/"/>
+    
+    
+      <category term="job notes-database" scheme="http://yoursite.com/tags/job-notes-database/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据结构与算法笔记(1)</title>
+    <link href="http://yoursite.com/2021/03/12/20210312_DongAlgNote/"/>
+    <id>http://yoursite.com/2021/03/12/20210312_DongAlgNote/</id>
+    <published>2021-03-12T02:50:09.000Z</published>
+    <updated>2021-03-12T02:49:37.248Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="数组与链表"><a href="#数组与链表" class="headerlink" title="数组与链表"></a>数组与链表</h1><p><strong>数据结构的存储方式只有两种：数组（顺序存储）和链表（链式存储）</strong>。</p><p>那些多样化的数据结构，究其源头，都是在链表或者数组上的特殊操作，API 不同而已</p><p><strong>数组</strong>由于是紧凑连续存储,可以随机访问，通过索引快速找到对应元素，而且相对节约存储空间。但正因为连续存储，内存空间必须一次性分配够，所以说数组如果要扩容，需要重新分配一块更大的空间，再把数据全部复制过去，时间复杂度 O(N)；而且你如果想在数组中间进行插入和删除，每次必须搬移后面的所有数据以保持连续，时间复杂度 O(N)。</p><p><strong>链表</strong>因为元素不连续，而是靠指针指向下一个元素的位置，所以不存在数组的扩容问题；如果知道某一元素的前驱和后驱，操作指针即可删除该元素或者插入新元素，时间复杂度 O(1)。但是正因为存储空间不连续，你无法根据一个索引算出对应元素的地址，所以不能随机访问；而且由于每个元素必须存储指向前后元素位置的指针，会消耗相对更多的储存空间。</p><h1 id="数据结构基本操作"><a href="#数据结构基本操作" class="headerlink" title="数据结构基本操作"></a>数据结构基本操作</h1><p>遍历 + 访问：增删查改（<strong>在不同的应用场景，尽可能高效地增删查改</strong>）</p><p>方式：线性-for/while；非线性-递归</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;数组与链表&quot;&gt;&lt;a href=&quot;#数组与链表&quot; class=&quot;headerlink&quot; title=&quot;数组与链表&quot;&gt;&lt;/a&gt;数组与链表&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;数据结构的存储方式只有两种：数组（顺序存储）和链表（链式存储）&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;那
+      
+    
+    </summary>
+    
+    
+      <category term="Algorithm" scheme="http://yoursite.com/categories/Algorithm/"/>
+    
+    
+      <category term="job notes-algorithm" scheme="http://yoursite.com/tags/job-notes-algorithm/"/>
+    
+  </entry>
   
   <entry>
     <title>论文阅读笔记(7)-Visual to Sound Generating Natural Sound for Videos in the Wild</title>
@@ -176,33 +229,6 @@
   </entry>
   
   <entry>
-    <title>Hexo+Valine：为博客添加评论</title>
-    <link href="http://yoursite.com/2020/10/15/12_hexo_valine/"/>
-    <id>http://yoursite.com/2020/10/15/12_hexo_valine/</id>
-    <published>2020-10-15T11:20:09.000Z</published>
-    <updated>2020-10-15T12:43:26.643Z</updated>
-    
-    <content type="html"><![CDATA[<p>注册Leancloud账号：<a href="https://www.leancloud.cn/" target="_blank" rel="noopener">https://www.leancloud.cn</a></p><p>注册完以后需要创建一个应用，名字可以随便起，然后 <strong>进入应用-&gt;设置-&gt;应用key</strong></p><p>拿到你的appid和appkey之后，打开<strong>主题配置文件</strong>（我是…\themes\next_config.yml） 搜索 <strong>valine</strong>，填入appid 和 appkey</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">valine:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span> <span class="comment"># When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version</span></span><br><span class="line"><span class="attr">  appid:</span> <span class="string">XO7jV马赛克zGzoHsz</span> <span class="comment"># Your leancloud application appid</span></span><br><span class="line"><span class="attr">  appkey:</span> <span class="string">Amg1Fl马赛克2NfhcO</span> <span class="comment"># Your leancloud application appkey</span></span><br><span class="line"><span class="attr">  notify:</span> <span class="literal">false</span> <span class="comment"># Mail notifier. See: https://github.com/xCss/Valine/wiki</span></span><br><span class="line"><span class="attr">  verify:</span> <span class="literal">false</span> <span class="comment"># Verification code</span></span><br><span class="line"><span class="attr">  placeholder:</span> <span class="string">Just</span> <span class="string">go</span> <span class="string">go</span> <span class="comment"># Comment box placeholder</span></span><br><span class="line"><span class="attr">  avatar:</span> <span class="string">mm</span> <span class="comment"># Gravatar style</span></span><br><span class="line"><span class="attr">  guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment"># Custom comment header</span></span><br><span class="line"><span class="attr">  pageSize:</span> <span class="number">10</span> <span class="comment"># Pagination size</span></span><br><span class="line"><span class="attr">  language:</span> <span class="comment"># Language, available values: en, zh-cn</span></span><br><span class="line"><span class="attr">  visitor:</span> <span class="literal">false</span> <span class="comment"># leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html</span></span><br><span class="line"><span class="attr">  comment_count:</span> <span class="literal">true</span> <span class="comment"># If false, comment count will only be displayed in post page, not in home page</span></span><br><span class="line">  <span class="comment">#post_meta_order: 0</span></span><br></pre></td></tr></table></figure><p>最后在Leancloud -&gt; 设置 -&gt; 安全中心 -&gt; Web 安全域名 把你的域名加进去</p><p>刷新一下~ 看到评论框了</p><h1 id="删除评论"><a href="#删除评论" class="headerlink" title="删除评论"></a>删除评论</h1><p><code>登录Leancloud</code>&gt;选择你创建的<code>应用</code>&gt;<code>存储</code>&gt;选择Class<code>Comment</code></p><p>参考：</p><p><a href="https://blog.csdn.net/blue_zy/article/details/79071414" target="_blank" rel="noopener">https://blog.csdn.net/blue_zy/article/details/79071414</a></p><p><a href="https://github.com/xCss/Valine/issues/69" target="_blank" rel="noopener">https://github.com/xCss/Valine/issues/69</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;注册Leancloud账号：&lt;a href=&quot;https://www.leancloud.cn/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.leancloud.cn&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;注册完以后需要创建一个应用，名字可以随便
-      
-    
-    </summary>
-    
-    
-      <category term="Setup" scheme="http://yoursite.com/categories/Setup/"/>
-    
-    
-      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
-    
-  </entry>
-  
-  <entry>
     <title>在Latex中插入python代码</title>
     <link href="http://yoursite.com/2020/10/15/11_latex_python_code/"/>
     <id>http://yoursite.com/2020/10/15/11_latex_python_code/</id>
@@ -226,6 +252,33 @@
     
     
       <category term="latex" scheme="http://yoursite.com/tags/latex/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo+Valine：为博客添加评论</title>
+    <link href="http://yoursite.com/2020/10/15/12_hexo_valine/"/>
+    <id>http://yoursite.com/2020/10/15/12_hexo_valine/</id>
+    <published>2020-10-15T11:20:09.000Z</published>
+    <updated>2020-10-15T12:43:26.643Z</updated>
+    
+    <content type="html"><![CDATA[<p>注册Leancloud账号：<a href="https://www.leancloud.cn/" target="_blank" rel="noopener">https://www.leancloud.cn</a></p><p>注册完以后需要创建一个应用，名字可以随便起，然后 <strong>进入应用-&gt;设置-&gt;应用key</strong></p><p>拿到你的appid和appkey之后，打开<strong>主题配置文件</strong>（我是…\themes\next_config.yml） 搜索 <strong>valine</strong>，填入appid 和 appkey</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">valine:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span> <span class="comment"># When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version</span></span><br><span class="line"><span class="attr">  appid:</span> <span class="string">XO7jV马赛克zGzoHsz</span> <span class="comment"># Your leancloud application appid</span></span><br><span class="line"><span class="attr">  appkey:</span> <span class="string">Amg1Fl马赛克2NfhcO</span> <span class="comment"># Your leancloud application appkey</span></span><br><span class="line"><span class="attr">  notify:</span> <span class="literal">false</span> <span class="comment"># Mail notifier. See: https://github.com/xCss/Valine/wiki</span></span><br><span class="line"><span class="attr">  verify:</span> <span class="literal">false</span> <span class="comment"># Verification code</span></span><br><span class="line"><span class="attr">  placeholder:</span> <span class="string">Just</span> <span class="string">go</span> <span class="string">go</span> <span class="comment"># Comment box placeholder</span></span><br><span class="line"><span class="attr">  avatar:</span> <span class="string">mm</span> <span class="comment"># Gravatar style</span></span><br><span class="line"><span class="attr">  guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment"># Custom comment header</span></span><br><span class="line"><span class="attr">  pageSize:</span> <span class="number">10</span> <span class="comment"># Pagination size</span></span><br><span class="line"><span class="attr">  language:</span> <span class="comment"># Language, available values: en, zh-cn</span></span><br><span class="line"><span class="attr">  visitor:</span> <span class="literal">false</span> <span class="comment"># leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html</span></span><br><span class="line"><span class="attr">  comment_count:</span> <span class="literal">true</span> <span class="comment"># If false, comment count will only be displayed in post page, not in home page</span></span><br><span class="line">  <span class="comment">#post_meta_order: 0</span></span><br></pre></td></tr></table></figure><p>最后在Leancloud -&gt; 设置 -&gt; 安全中心 -&gt; Web 安全域名 把你的域名加进去</p><p>刷新一下~ 看到评论框了</p><h1 id="删除评论"><a href="#删除评论" class="headerlink" title="删除评论"></a>删除评论</h1><p><code>登录Leancloud</code>&gt;选择你创建的<code>应用</code>&gt;<code>存储</code>&gt;选择Class<code>Comment</code></p><p>参考：</p><p><a href="https://blog.csdn.net/blue_zy/article/details/79071414" target="_blank" rel="noopener">https://blog.csdn.net/blue_zy/article/details/79071414</a></p><p><a href="https://github.com/xCss/Valine/issues/69" target="_blank" rel="noopener">https://github.com/xCss/Valine/issues/69</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;注册Leancloud账号：&lt;a href=&quot;https://www.leancloud.cn/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.leancloud.cn&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;注册完以后需要创建一个应用，名字可以随便
+      
+    
+    </summary>
+    
+    
+      <category term="Setup" scheme="http://yoursite.com/categories/Setup/"/>
+    
+    
+      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
     
   </entry>
   

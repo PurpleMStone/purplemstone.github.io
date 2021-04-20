@@ -241,6 +241,258 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/12/08_setup_pyqt%E5%9C%A8pycharm%E4%B8%8A%E9%83%A8%E7%BD%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Purple M. Stone">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stone's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/05/12/08_setup_pyqt%E5%9C%A8pycharm%E4%B8%8A%E9%83%A8%E7%BD%B2/" class="post-title-link" itemprop="url">PyQt的安装以及在PyCharm上的部署</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-05-12 15:24:09 / 修改时间：19:06:57" itemprop="dateCreated datePublished" datetime="2020-05-12T15:24:09+08:00">2020-05-12</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Setup/" itemprop="url" rel="index"><span itemprop="name">Setup</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/05/12/08_setup_pyqt%E5%9C%A8pycharm%E4%B8%8A%E9%83%A8%E7%BD%B2/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/05/12/08_setup_pyqt%E5%9C%A8pycharm%E4%B8%8A%E9%83%A8%E7%BD%B2/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="PyQt5安装"><a href="#PyQt5安装" class="headerlink" title="PyQt5安装"></a>PyQt5安装</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install pyqt5</span><br><span class="line">pip install pyqt5-tools</span><br></pre></td></tr></table></figure>
+<p>第二个命令包含了designer的安装。我的designer.exe安装路径在E:\Anaconda3\Library\bin</p>
+<p>可以用Cotana搜索designer，然后右键打开文件所在位置，直接定位它的安装路径，后面要用到。</p>
+<h1 id="designer在PyCharm上部署"><a href="#designer在PyCharm上部署" class="headerlink" title="designer在PyCharm上部署"></a>designer在PyCharm上部署</h1><p>File-&gt;Settings-&gt;Tools-&gt;External Tools</p>
+<p>点击“+”来增加外部工具。</p>
+<p>(1) 增加QT设计界面“Qt Designer” — 这个就是设计Qt界面的工具</p>
+<ul>
+<li><p>Program选择PyQt安装目录中 designer.exe 的路径</p>
+</li>
+<li><p>Work directory 使用变量 $ProjectFileDir$ （点击后面的Insert Macro…）</p>
+<p><img src="/images/setup/pyqt/1.png" alt="1"></p>
+</li>
+</ul>
+<p>(2) 增加“PyUIC” — 这个主要是用来将 Qt界面 转换成 py代码</p>
+<ul>
+<li><p>Program选择PyQt安装目录中 pyuic5.bat 的路径（我的依然在E:\Anaconda3\Library\bin里）</p>
+</li>
+<li><p>parameters设置为$FileName$ -o $FileNameWithoutExtension$.py</p>
+</li>
+<li><p>Work directory 设置为 $ProjectFileDir$ （点击后面的Insert Macro…）</p>
+<p><img src="/images/setup/pyqt/2.png" alt="2"></p>
+<p>点击确认就设置好了。返回去后通过Tools可以看到：</p>
+<p><img src="/images/setup/pyqt/3.png" alt="3"></p>
+</li>
+</ul>
+<h1 id="设计GUI"><a href="#设计GUI" class="headerlink" title="设计GUI"></a>设计GUI</h1><p>依照上图，点击PyQt Designer, 在弹出来的界面中选择Wdiget，然后点击创建。</p>
+<p><img src="/images/setup/pyqt/4.png" alt="4"></p>
+<p>在窗口添加控件，Lable、pushButton、checkBox、lineEdit等：</p>
+<p><img src="/images/setup/pyqt/5.png" alt="5"></p>
+<p>把.ui文件保存到当前项目目录中，然后右键点击.ui文件：</p>
+<p><img src="/images/setup/pyqt/6.png" alt="6"></p>
+<p>点击PyUIC即可将.ui转成.py文件。</p>
+<p>在login.py中添加：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    <span class="keyword">import</span> sys</span><br><span class="line">    app=QtWidgets.QApplication(sys.argv)</span><br><span class="line">    widget=QtWidgets.QWidget()</span><br><span class="line">    ui=Ui_form()</span><br><span class="line">    ui.setupUi(widget)</span><br><span class="line">    widget.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
+<p>运行login.py，就可以看到这个页面了。</p>
+<p><a href="http://code.py40.com/2540.html" target="_blank" rel="noopener">QtDesigner的安装</a></p>
+<p><a href="http://code.py40.com/2561.html" target="_blank" rel="noopener">设计GUI</a></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/12/07_setup_pip%E9%95%9C%E5%83%8F%E6%BA%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Purple M. Stone">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stone's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/05/12/07_setup_pip%E9%95%9C%E5%83%8F%E6%BA%90/" class="post-title-link" itemprop="url">windows更改pip镜像源及解决总是timeout的情况</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-05-12 11:31:09 / 修改时间：11:44:30" itemprop="dateCreated datePublished" datetime="2020-05-12T11:31:09+08:00">2020-05-12</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Setup/" itemprop="url" rel="index"><span itemprop="name">Setup</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/05/12/07_setup_pip%E9%95%9C%E5%83%8F%E6%BA%90/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/05/12/07_setup_pip%E9%95%9C%E5%83%8F%E6%BA%90/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="pip安装"><a href="#pip安装" class="headerlink" title="pip安装"></a>pip安装</h1><p>事情的起因是我想安装PyQt5：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install pyqt5</span><br><span class="line">pip install pyqt5-tools</span><br></pre></td></tr></table></figure>
+<p>当然这是最慢的方法，于是可以用镜像源安装：</p>
+<h1 id="pip安装使用国内镜像源"><a href="#pip安装使用国内镜像源" class="headerlink" title="pip安装使用国内镜像源"></a>pip安装使用国内镜像源</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">清华：https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"></span><br><span class="line">阿里云：http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line"></span><br><span class="line">中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/</span><br><span class="line"></span><br><span class="line">华中理工大学：http://pypi.hustunique.com/</span><br><span class="line"></span><br><span class="line">山东理工大学：http://pypi.sdutlinux.org/ </span><br><span class="line"></span><br><span class="line">豆瓣：http://pypi.douban.com/simple/</span><br></pre></td></tr></table></figure>
+<p>临时使用的话加参数-i，例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pyqt5</span><br></pre></td></tr></table></figure>
+<p>然而依然总是timeout，于是：</p>
+<h1 id="设置pip配置文件"><a href="#设置pip配置文件" class="headerlink" title="设置pip配置文件"></a>设置pip配置文件</h1><p>配置文件地址：（如果没有pip.ini文件，就自己新建编辑一个）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\ProgramData\pip\pip.ini</span><br></pre></td></tr></table></figure>
+<p>配置文件内容，将召唤timeout的时长设置得长一些</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">global</span>]</span><br><span class="line">timeout = <span class="number">60</span></span><br><span class="line">index-url = http://pypi.douban.com/simple</span><br><span class="line">trusted-host = pypi.douban.com</span><br><span class="line">[install]</span><br><span class="line">use-mirrors = true</span><br><span class="line">mirrors = http://pypi.douban.com</span><br><span class="line">trusted-host = pypi.douban.com</span><br></pre></td></tr></table></figure>
+<p>设置好之后，再用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pyqt5</span><br></pre></td></tr></table></figure>
+<p>会显示现在使用的是豆瓣镜像源，速度也飞起来了。</p>
+<p><a href="https://blog.csdn.net/azuremouse/article/details/90338961" target="_blank" rel="noopener">pip安装PyQt5</a></p>
+<p><a href="https://www.cnblogs.com/cqliu/p/11131092.html" target="_blank" rel="noopener">pip使用国内镜像源</a></p>
+<p><a href="https://blog.csdn.net/weixin_30439067/article/details/98455723" target="_blank" rel="noopener">pip配置文件设置</a></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/11/06_pytorch_torchstat/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -543,7 +795,7 @@ s.t. w^{*}(\alpha)=argmin_{w}L_{train}(w,\alpha)</script><p>即找到最优结�
         
           <a href="/archives/%20%7C%7C%20archive">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -556,7 +808,7 @@ s.t. w^{*}(\alpha)=argmin_{w}L_{train}(w,\alpha)</script><p>即找到最优结�
             <a href="/categories/%20%7C%7C%20th">
           
         
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -569,7 +821,7 @@ s.t. w^{*}(\alpha)=argmin_{w}L_{train}(w,\alpha)</script><p>即找到最优结�
             <a href="/tags/%20%7C%7C%20tags">
           
         
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -595,7 +847,7 @@ s.t. w^{*}(\alpha)=argmin_{w}L_{train}(w,\alpha)</script><p>即找到最优结�
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -754,6 +1006,10 @@ window.addEventListener('pjax:success', () => {
     
       
         
+      
+    
+      
+    
       
     
       
