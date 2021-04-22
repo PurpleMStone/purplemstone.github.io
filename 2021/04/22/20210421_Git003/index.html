@@ -56,15 +56,14 @@
   };
 </script>
 
-  <meta name="description" content="初始化一个仓库123mkdir Mooncd Moongit init 在目录Moon下有一个.git隐藏文件夹，可以用以下命令看到： 1ls -a 删除.git： 1rm -rf .git Git Workflow本地directory→staging area (index)→repository Staging Files 用 1git status 查看，标红是因为新建的两个txt文件还没">
+  <meta name="description" content="Viewing the History基本命令： 1$ git log 用 —oneline 查看简略信息，—stat 显示每个文件增删的行数： 1$ git log --oneline --stat —patch 查看每个文件具体的内容更改： 1$ git log --oneline --patch Filtering the History用 -3 表示只查看前三条历史commit： 1234">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git笔记(2)--Creating Snapshots">
-<meta property="og:url" content="http://yoursite.com/2021/04/21/20210421_Git002/index.html">
+<meta property="og:title" content="Git笔记(3)--Browsing History">
+<meta property="og:url" content="http://yoursite.com/2021/04/22/20210421_Git003/index.html">
 <meta property="og:site_name" content="Stone&#39;s Blog">
-<meta property="og:description" content="初始化一个仓库123mkdir Mooncd Moongit init 在目录Moon下有一个.git隐藏文件夹，可以用以下命令看到： 1ls -a 删除.git： 1rm -rf .git Git Workflow本地directory→staging area (index)→repository Staging Files 用 1git status 查看，标红是因为新建的两个txt文件还没">
+<meta property="og:description" content="Viewing the History基本命令： 1$ git log 用 —oneline 查看简略信息，—stat 显示每个文件增删的行数： 1$ git log --oneline --stat —patch 查看每个文件具体的内容更改： 1$ git log --oneline --patch Filtering the History用 -3 表示只查看前三条历史commit： 1234">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/images/Git/01.png">
-<meta property="og:image" content="http://yoursite.com/images/Git/02.png">
+<meta property="og:image" content="http://yoursite.com/images/Git/3_01.png">
 <meta property="og:image" content="http://yoursite.com/images/Git/03.png">
 <meta property="og:image" content="http://yoursite.com/images/Git/04.png">
 <meta property="og:image" content="http://yoursite.com/images/Git/06.png">
@@ -73,13 +72,13 @@
 <meta property="og:image" content="http://yoursite.com/images/Git/08.png">
 <meta property="og:image" content="http://yoursite.com/images/Git/09.png">
 <meta property="og:image" content="http://yoursite.com/images/Git/10.png">
-<meta property="article:published_time" content="2021-04-21T13:50:09.000Z">
-<meta property="article:modified_time" content="2021-04-22T11:08:47.508Z">
+<meta property="article:published_time" content="2021-04-22T13:50:09.000Z">
+<meta property="article:modified_time" content="2021-04-22T13:26:00.446Z">
 <meta property="article:author" content="Purple M. Stone">
 <meta property="article:tag" content="job notes-git">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/images/Git/01.png">
-  <link rel="canonical" href="http://yoursite.com/2021/04/21/20210421_Git002/">
+<meta name="twitter:image" content="http://yoursite.com/images/Git/3_01.png">
+  <link rel="canonical" href="http://yoursite.com/2021/04/22/20210421_Git003/">
 
 
 <script id="page-configurations">
@@ -93,7 +92,7 @@
   };
 </script>
 
-  <title>Git笔记(2)--Creating Snapshots | Stone's Blog</title>
+  <title>Git笔记(3)--Browsing History | Stone's Blog</title>
   
 
 
@@ -258,7 +257,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/21/20210421_Git002/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/22/20210421_Git003/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Purple M. Stone">
@@ -270,7 +269,7 @@
       <meta itemprop="name" content="Stone's Blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">Git笔记(2)--Creating Snapshots
+        <h1 class="post-title" itemprop="name headline">Git笔记(3)--Browsing History
 
           
         </h1>
@@ -286,19 +285,11 @@
                 
               
 
-              <time title="创建时间：2021-04-21 21:50:09" itemprop="dateCreated datePublished" datetime="2021-04-21T21:50:09+08:00">2021-04-21</time>
+              <time title="创建时间：2021-04-22 21:50:09 / 修改时间：21:26:00" itemprop="dateCreated datePublished" datetime="2021-04-22T21:50:09+08:00">2021-04-22</time>
             </span>
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-22 19:08:47" itemprop="dateModified" datetime="2021-04-22T19:08:47+08:00">2021-04-22</time>
-              </span>
             
           
             <span class="post-meta-item">
@@ -334,7 +325,7 @@
       
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/04/21/20210421_Git002/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/04/21/20210421_Git002/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2021/04/22/20210421_Git003/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/04/22/20210421_Git003/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -348,51 +339,40 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="初始化一个仓库"><a href="#初始化一个仓库" class="headerlink" title="初始化一个仓库"></a>初始化一个仓库</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir Moon</span><br><span class="line"><span class="built_in">cd</span> Moon</span><br><span class="line">git init</span><br></pre></td></tr></table></figure>
-<p>在目录Moon下有一个.git隐藏文件夹，可以用以下命令看到：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -a</span><br></pre></td></tr></table></figure>
-<p>删除.git：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf .git</span><br></pre></td></tr></table></figure>
-<h1 id="Git-Workflow"><a href="#Git-Workflow" class="headerlink" title="Git Workflow"></a>Git Workflow</h1><p>本地directory→staging area (index)→repository</p>
-<h2 id="Staging-Files"><a href="#Staging-Files" class="headerlink" title="Staging Files"></a>Staging Files</h2><p><img src="/images/Git/01.png" alt="01"></p>
-<p>用</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
-<p>查看，标红是因为新建的两个txt文件还没在staging area中。</p>
-<p>使用下面的命令将两个文件的<strong>变化</strong>（新建/删除文件，文件内容更改）存入staging area中：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add file1.txt file2.txt</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add *.txt</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
-<p>上面三种方式，（1）就add这两个文件;（2）add所有txt文件;（3）add所有文件</p>
-<p>然后再查看，就绿了：</p>
-<p><img src="/images/Git/02.png" alt="02"></p>
-<h2 id="Committing-Changes"><a href="#Committing-Changes" class="headerlink" title="Committing Changes"></a>Committing Changes</h2><p>提交到仓库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">"Initial commit."</span></span><br></pre></td></tr></table></figure>
-<h2 id="Committing-Best-Practices"><a href="#Committing-Best-Practices" class="headerlink" title="Committing Best Practices"></a>Committing Best Practices</h2><ul>
-<li>commit的时候文件的变化量应该适中（不要太多，也不要太少）</li>
-<li>Commit often: 想要记录下某个状态时，就commit</li>
-<li>Make it mean something</li>
-</ul>
-<p>例如：对于两个改变 (1) Bug Fix,  (2) Typo 最好不要一起commit，不然不知道改了啥，最好分开commit</p>
-<h2 id="Skipping-the-Staging-Area"><a href="#Skipping-the-Staging-Area" class="headerlink" title="Skipping the Staging Area"></a>Skipping the Staging Area</h2><p>使用 -a 选项跳过git add</p>
-<p>可以将两个选项 -a 和 -m 合并写成 -am</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -am <span class="string">"Fix the bug"</span></span><br></pre></td></tr></table></figure>
-<h1 id="Remove-Files"><a href="#Remove-Files" class="headerlink" title="Remove Files"></a>Remove Files</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ rm file1.txt</span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes not staged <span class="keyword">for</span> commit:</span><br><span class="line">  (use <span class="string">"git add/rm &lt;file&gt;..."</span> to update what will be committed)</span><br><span class="line">  (use <span class="string">"git restore &lt;file&gt;..."</span> to discard changes <span class="keyword">in</span> working directory)</span><br><span class="line">        deleted:    file1.txt</span><br><span class="line"></span><br><span class="line">no changes added to commit (use <span class="string">"git add"</span> and/or <span class="string">"git commit -a"</span>)</span><br><span class="line"></span><br><span class="line">$ git ls-files</span><br><span class="line">file1.txt</span><br><span class="line">file2.txt</span><br></pre></td></tr></table></figure>
-<p>在本地目录下删除file1.txt，但是用git ls-files查看staging area中的文件会发现file1.txt还在其中。使用git add更新staging area然后commit：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ git add file1.txt</span><br><span class="line"></span><br><span class="line">$ git ls-files</span><br><span class="line">file2.txt</span><br><span class="line"></span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git restore --staged &lt;file&gt;..."</span> to unstage)</span><br><span class="line">        deleted:    file1.txt</span><br><span class="line"></span><br><span class="line">$ git commit -m <span class="string">"Remove unused code"</span></span><br><span class="line">[master b184de1] Remove unused code</span><br><span class="line"> 1 file changed, 7 deletions(-)</span><br><span class="line"> delete mode 100644 file1.txt</span><br></pre></td></tr></table></figure>
-<p>除了上面的方法，也可以使用以下方法（git rm）一次性删除本地目录和staging area中的文件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ git rm file2.txt</span><br><span class="line">rm <span class="string">'file2.txt'</span></span><br><span class="line"></span><br><span class="line">$ git ls-files</span><br><span class="line"></span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git restore --staged &lt;file&gt;..."</span> to unstage)</span><br><span class="line">        deleted:    file2.txt</span><br><span class="line"></span><br><span class="line">$ git commit -m <span class="string">"Remove unused code"</span></span><br><span class="line">[master 3fd1e3e] Remove unused code</span><br><span class="line"> 1 file changed, 1 deletion(-)</span><br><span class="line"> delete mode 100644 file2.txt</span><br></pre></td></tr></table></figure>
-<h1 id="Renaming-and-Moving-Files"><a href="#Renaming-and-Moving-Files" class="headerlink" title="Renaming and Moving Files"></a>Renaming and Moving Files</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">$ mv file1.txt main.js</span><br><span class="line"></span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes not staged <span class="keyword">for</span> commit:</span><br><span class="line">  (use <span class="string">"git add/rm &lt;file&gt;..."</span> to update what will be committed)</span><br><span class="line">  (use <span class="string">"git restore &lt;file&gt;..."</span> to discard changes <span class="keyword">in</span> working directory)</span><br><span class="line">        deleted:    file1.txt</span><br><span class="line"></span><br><span class="line">Untracked files:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to include <span class="keyword">in</span> what will be committed)</span><br><span class="line">        main.js</span><br><span class="line"></span><br><span class="line">no changes added to commit (use <span class="string">"git add"</span> and/or <span class="string">"git commit -a"</span>)</span><br><span class="line"></span><br><span class="line">$ git add file1.txt</span><br><span class="line"></span><br><span class="line">$ git add main.js</span><br><span class="line">warning: LF will be replaced by CRLF <span class="keyword">in</span> main.js.</span><br><span class="line">The file will have its original line endings <span class="keyword">in</span> your working directory</span><br><span class="line"></span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git restore --staged &lt;file&gt;..."</span> to unstage)</span><br><span class="line">        renamed:    file1.txt -&gt; main.js</span><br></pre></td></tr></table></figure>
-<p>文件的更名涉及到两个变化，原文件file1.txt删除，以及新文件main.js的创建。</p>
-<p>当然，也可以使用便捷的方式：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ git mv file1.txt main.js</span><br><span class="line"></span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git restore --staged &lt;file&gt;..."</span> to unstage)</span><br><span class="line">        renamed:    file1.txt -&gt; main.js</span><br><span class="line"></span><br><span class="line">$ git commit -m <span class="string">"Refactor code"</span></span><br><span class="line">[master 70800e8] Refactor code</span><br><span class="line"> 1 file changed, 0 insertions(+), 0 deletions(-)</span><br><span class="line"> rename file1.txt =&gt; main.js (100%)</span><br></pre></td></tr></table></figure>
-<p>注意到0 insertions(+), 0 deletions(-)，改名而已。</p>
-<h1 id="Ignoring-Files"><a href="#Ignoring-Files" class="headerlink" title="Ignoring Files"></a>Ignoring Files</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir logs</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> hello &gt; logs/dev.log</span><br><span class="line"></span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Untracked files:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to include <span class="keyword">in</span> what will be committed)</span><br><span class="line">        logs/</span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use <span class="string">"git add"</span> to track)</span><br></pre></td></tr></table></figure>
-<p>但是事实上我们并不想将log文件提交。方法：将 logs/ 写入.gitignore中</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> logs/ &gt; .gitignore</span><br></pre></td></tr></table></figure>
-<p>用vscode打开文件.gitignore</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ code .gitignore</span><br></pre></td></tr></table></figure>
-<p>可以在 .gitignore 中的下一行写上*.log表示要忽略的文件类型。然后提交 .gitignore</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Untracked files:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to include <span class="keyword">in</span> what will be committed)</span><br><span class="line">        .gitignore</span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use <span class="string">"git add"</span> to track)</span><br><span class="line"></span><br><span class="line">$ git add .gitignore</span><br><span class="line">warning: LF will be replaced by CRLF <span class="keyword">in</span> .gitignore.</span><br><span class="line">The file will have its original line endings <span class="keyword">in</span> your working directory</span><br><span class="line"></span><br><span class="line">$ git commit -m <span class="string">"Add gitignore"</span></span><br><span class="line">[master 9ed82f0] Add gitignore</span><br><span class="line"> 1 file changed, 2 insertions(+)</span><br><span class="line"> create mode 100644 .gitignore</span><br></pre></td></tr></table></figure>
+        <h1 id="Viewing-the-History"><a href="#Viewing-the-History" class="headerlink" title="Viewing the History"></a>Viewing the History</h1><p>基本命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<p>用 —oneline 查看简略信息，—stat 显示每个文件增删的行数：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --oneline --<span class="built_in">stat</span></span><br></pre></td></tr></table></figure>
+<p>—patch 查看每个文件具体的内容更改：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --oneline --patch</span><br></pre></td></tr></table></figure>
+<h1 id="Filtering-the-History"><a href="#Filtering-the-History" class="headerlink" title="Filtering the History"></a>Filtering the History</h1><p>用 -3 表示只查看前三条历史commit：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --oneline</span><br><span class="line">d7d9bfb (HEAD -&gt; master) refactor file1</span><br><span class="line">d2acf0e Refactor code</span><br><span class="line">9b82d1b Add file1.js</span><br><span class="line">78daaab Delete file1.js</span><br><span class="line">133904b commit file1.ls</span><br><span class="line">0f62ff0 remove all js files</span><br><span class="line">fdb7fb6 add data</span><br><span class="line">62416e2 add files</span><br><span class="line">fde6777 modified</span><br><span class="line">f264740 modified</span><br><span class="line">9ed82f0 Add gitignore</span><br><span class="line">70800e8 Refactor code</span><br><span class="line">d6f4cc6 Initial commit</span><br><span class="line">3fd1e3e Remove unused code</span><br><span class="line">b184de1 Remove unused code</span><br><span class="line">dd03e4e Fix the bug</span><br><span class="line">3b634ca add Lines</span><br><span class="line">a787fca add line</span><br><span class="line">568c0fc Initial commit.</span><br><span class="line"></span><br><span class="line">$ git <span class="built_in">log</span> --oneline -3</span><br><span class="line">d7d9bfb (HEAD -&gt; master) refactor file1</span><br><span class="line">d2acf0e Refactor code</span><br><span class="line">9b82d1b Add file1.js</span><br></pre></td></tr></table></figure>
+<p>用 author 名字过滤：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --oneline --author=<span class="string">"Stone"</span></span><br></pre></td></tr></table></figure>
+<p>用时间过滤：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --oneline --after=<span class="string">"2021-04-21"</span></span><br><span class="line">$ git <span class="built_in">log</span> --oneline --after=<span class="string">"yesterday"</span></span><br><span class="line">$ git <span class="built_in">log</span> --oneline --after=<span class="string">"one week ago"</span></span><br></pre></td></tr></table></figure>
+<p>用 commit 时的 message 过滤：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --oneline --grep=<span class="string">"add"</span></span><br><span class="line">fdb7fb6 add data</span><br><span class="line">62416e2 add files</span><br><span class="line">3b634ca add Lines</span><br><span class="line">a787fca add line</span><br></pre></td></tr></table></figure>
+<p>用具体更改的内容过滤：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --oneline -S<span class="string">"world"</span> --patch</span><br><span class="line">0f62ff0 remove all js files</span><br><span class="line">diff --git a/file1.js b/file1.js</span><br><span class="line">deleted file mode 100644</span><br><span class="line">index 29887f9..0000000</span><br><span class="line">--- a/file1.js</span><br><span class="line">+++ /dev/null</span><br><span class="line">@@ -1,3 +0,0 @@</span><br><span class="line">-hello world</span><br><span class="line">-sky</span><br><span class="line">-sun</span><br></pre></td></tr></table></figure>
+<p>根据 ID 选取某区间的 commit 历史：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --oneline</span><br><span class="line">d7d9bfb (HEAD -&gt; master) refactor file1</span><br><span class="line">d2acf0e Refactor code</span><br><span class="line">9b82d1b Add file1.js            //----------到此为止--------------</span><br><span class="line">78daaab Delete file1.js</span><br><span class="line">133904b commit file1.ls</span><br><span class="line">0f62ff0 remove all js files</span><br><span class="line">fdb7fb6 add data</span><br><span class="line">62416e2 add files              //---------从这上一行往上-----------</span><br><span class="line">fde6777 modified</span><br><span class="line">f264740 modified</span><br><span class="line">9ed82f0 Add gitignore</span><br><span class="line">70800e8 Refactor code</span><br><span class="line">d6f4cc6 Initial commit</span><br><span class="line">3fd1e3e Remove unused code</span><br><span class="line">b184de1 Remove unused code</span><br><span class="line">dd03e4e Fix the bug</span><br><span class="line">3b634ca add Lines</span><br><span class="line">a787fca add line</span><br><span class="line">568c0fc Initial commit.</span><br><span class="line"></span><br><span class="line">$ git <span class="built_in">log</span> --oneline 62416e2..9b82d1b</span><br><span class="line">9b82d1b Add file1.js</span><br><span class="line">78daaab Delete file1.js</span><br><span class="line">133904b commit file1.ls</span><br><span class="line">0f62ff0 remove all js files</span><br><span class="line">fdb7fb6 add data</span><br></pre></td></tr></table></figure>
+<p>查看某个文件的修改 commit 历史：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --oneline file1.js</span><br><span class="line">d7d9bfb (HEAD -&gt; master) refactor file1</span><br><span class="line">d2acf0e Refactor code</span><br><span class="line">9b82d1b Add file1.js</span><br><span class="line">78daaab Delete file1.js</span><br><span class="line">133904b commit file1.ls</span><br><span class="line">0f62ff0 remove all js files</span><br><span class="line">fdb7fb6 add data</span><br><span class="line">62416e2 add files</span><br><span class="line">fde6777 modified</span><br><span class="line">f264740 modified</span><br></pre></td></tr></table></figure>
+<p>如果报错说不清楚，就在文件名之前加—</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --oneline -- file1.js</span><br></pre></td></tr></table></figure>
+<p>查看该文件的具体内容修改：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --oneline --patch -- file1.js</span><br></pre></td></tr></table></figure>
+<h1 id="Formatting-the-Log-Output"><a href="#Formatting-the-Log-Output" class="headerlink" title="Formatting the Log Output"></a>Formatting the Log Output</h1><p>调整 log 格式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --pretty=format:<span class="string">"%Cgreen%an%Creset committed %h on %cd"</span></span><br></pre></td></tr></table></figure>
+<p><img src="/images/Git/3_01.png" alt="3_01"></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%Cgreen</span></span><br><span class="line"><span class="keyword">switch</span> color to green</span><br><span class="line"></span><br><span class="line"><span class="comment">%an</span></span><br><span class="line">author name</span><br><span class="line"></span><br><span class="line"><span class="comment">%Creset</span></span><br><span class="line">reset color</span><br><span class="line"></span><br><span class="line"><span class="comment">%H</span></span><br><span class="line">commit hash</span><br><span class="line"></span><br><span class="line"><span class="comment">%h</span></span><br><span class="line">abbreviated commit hash</span><br><span class="line"></span><br><span class="line"><span class="comment">%cd</span></span><br><span class="line">committer date (format respects --date= option)</span><br></pre></td></tr></table></figure>
+<h1 id="Creating-Aliases"><a href="#Creating-Aliases" class="headerlink" title="Creating Aliases"></a>Creating Aliases</h1><p>给加格式的 log 命令起个别名： </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global alias.lg <span class="string">"log --pretty=format:'%an committed %h'"</span></span><br></pre></td></tr></table></figure>
+<p>就可以方便地使用啦：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git lg</span><br><span class="line">Stone committed d7d9bfb</span><br><span class="line">Stone committed d2acf0e</span><br><span class="line">Stone committed 9b82d1b</span><br><span class="line">Stone committed 78daaab</span><br></pre></td></tr></table></figure>
+<p>起别名的另一个例子：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global alias.unstage <span class="string">"restore --staged ."</span></span><br><span class="line"></span><br><span class="line">$ git unstage</span><br></pre></td></tr></table></figure>
 <p>之后log文件的改变都会被staging area忽略了：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> hello &gt; logs/main.log</span><br><span class="line"></span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">nothing to commit, working tree clean</span><br></pre></td></tr></table></figure>
 <p>可以看到nothing to commit。</p>
@@ -425,7 +405,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git difftool --staged</span><br><span class="line"></span><br><span class="line">Viewing (1/2): <span class="string">'file1.js'</span></span><br><span class="line">Launch <span class="string">'vscode'</span> [Y/n]? y</span><br><span class="line"></span><br><span class="line">Viewing (2/2): <span class="string">'file2.js'</span></span><br><span class="line">Launch <span class="string">'vscode'</span> [Y/n]? y</span><br></pre></td></tr></table></figure>
 <p><img src="/images/Git/05.png" alt="05"></p>
 <p><img src="/images/Git/07.png" alt="07"></p>
-<h1 id="Viewing-the-History"><a href="#Viewing-the-History" class="headerlink" title="Viewing the History"></a>Viewing the History</h1><p>用以下命令查看提交历史：</p>
+<h1 id="Viewing-the-History-1"><a href="#Viewing-the-History-1" class="headerlink" title="Viewing the History"></a>Viewing the History</h1><p>用以下命令查看提交历史：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
 <p>查看简短描述 (最近更改显示在上面)：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --oneline</span><br></pre></td></tr></table></figure>
@@ -488,8 +468,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2021/04/20/20210420_SQL002/" rel="next" title="MySQL笔记(2)--连接">
-                  <i class="fa fa-chevron-left"></i> MySQL笔记(2)--连接
+                <a href="/2021/04/21/20210421_Git002/" rel="next" title="Git笔记(2)--Creating Snapshots">
+                  <i class="fa fa-chevron-left"></i> Git笔记(2)--Creating Snapshots
                 </a>
               
             </div>
@@ -497,10 +477,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2021/04/22/20210421_Git003/" rel="prev" title="Git笔记(3)--Browsing History">
-                  Git笔记(3)--Browsing History <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -552,7 +528,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#初始化一个仓库"><span class="nav-number">1.</span> <span class="nav-text">初始化一个仓库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git-Workflow"><span class="nav-number">2.</span> <span class="nav-text">Git Workflow</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Staging-Files"><span class="nav-number">2.1.</span> <span class="nav-text">Staging Files</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Committing-Changes"><span class="nav-number">2.2.</span> <span class="nav-text">Committing Changes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Committing-Best-Practices"><span class="nav-number">2.3.</span> <span class="nav-text">Committing Best Practices</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Skipping-the-Staging-Area"><span class="nav-number">2.4.</span> <span class="nav-text">Skipping the Staging Area</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Remove-Files"><span class="nav-number">3.</span> <span class="nav-text">Remove Files</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Renaming-and-Moving-Files"><span class="nav-number">4.</span> <span class="nav-text">Renaming and Moving Files</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ignoring-Files"><span class="nav-number">5.</span> <span class="nav-text">Ignoring Files</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Short-Status"><span class="nav-number">6.</span> <span class="nav-text">Short Status</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Viewing-the-Staged-amp-Unstaged-Changes"><span class="nav-number">7.</span> <span class="nav-text">Viewing the Staged &amp; Unstaged Changes</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Visual-Diff-Tools"><span class="nav-number">7.1.</span> <span class="nav-text">Visual Diff Tools</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Viewing-the-History"><span class="nav-number">8.</span> <span class="nav-text">Viewing the History</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Viewing-a-Commit"><span class="nav-number">9.</span> <span class="nav-text">Viewing a Commit</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Unstaging-Files"><span class="nav-number">10.</span> <span class="nav-text">Unstaging Files</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Discarding-Local-Changes"><span class="nav-number">11.</span> <span class="nav-text">Discarding Local Changes</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Restoring-a-File-to-an-Earlier-Version"><span class="nav-number">12.</span> <span class="nav-text">Restoring a File to an Earlier Version</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Viewing-the-History"><span class="nav-number">1.</span> <span class="nav-text">Viewing the History</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Filtering-the-History"><span class="nav-number">2.</span> <span class="nav-text">Filtering the History</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Formatting-the-Log-Output"><span class="nav-number">3.</span> <span class="nav-text">Formatting the Log Output</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Creating-Aliases"><span class="nav-number">4.</span> <span class="nav-text">Creating Aliases</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Short-Status"><span class="nav-number">5.</span> <span class="nav-text">Short Status</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Viewing-the-Staged-amp-Unstaged-Changes"><span class="nav-number">6.</span> <span class="nav-text">Viewing the Staged &amp; Unstaged Changes</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Visual-Diff-Tools"><span class="nav-number">6.1.</span> <span class="nav-text">Visual Diff Tools</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Viewing-the-History-1"><span class="nav-number">7.</span> <span class="nav-text">Viewing the History</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Viewing-a-Commit"><span class="nav-number">8.</span> <span class="nav-text">Viewing a Commit</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Unstaging-Files"><span class="nav-number">9.</span> <span class="nav-text">Unstaging Files</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Discarding-Local-Changes"><span class="nav-number">10.</span> <span class="nav-text">Discarding Local Changes</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Restoring-a-File-to-an-Earlier-Version"><span class="nav-number">11.</span> <span class="nav-text">Restoring a File to an Earlier Version</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
