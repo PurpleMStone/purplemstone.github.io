@@ -241,6 +241,111 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/03/20201203_CNNinFrequence/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Purple M. Stone">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stone's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/12/03/20201203_CNNinFrequence/" class="post-title-link" itemprop="url">论文阅读笔记(3)：CNN频域学习(1)</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-12-03 21:20:09 / 修改时间：21:53:54" itemprop="dateCreated datePublished" datetime="2020-12-03T21:20:09+08:00">2020-12-03</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/12/03/20201203_CNNinFrequence/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/03/20201203_CNNinFrequence/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="On-using-CNN-with-DCT-based-Image-Data"><a href="#On-using-CNN-with-DCT-based-Image-Data" class="headerlink" title="On using CNN with DCT based Image Data"></a>On using CNN with DCT based Image Data</h2><h3 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h3><p>对于高分辨图像、视频，输入数据量大，CNN运算多→从图像压缩算法JPEG得到启发，经过DCT变换将空域数据转换到频域处理，压缩输入数据量。</p>
+<h3 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h3><p><img src="/images/CNNinFrequence/01_method.png" alt="01_method" style="zoom:75%;"></p>
+<h3 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h3><p>实验数据集：CIFAR10，MNIST</p>
+<p><img src="/images/CNNinFrequence/01_result.png" alt="01_result" style="zoom:75%;"></p>
+<h3 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h3><p>文章直接用DCT系数替代RGB作为CNN输入，处理方法简单直接。Motivation是数据压缩，但是没给出输入数据量减少的实验结果（只是作为future work），而准确率提升也不明显。</p>
+<p><a href="https://www.scss.tcd.ie/Rozenn.Dahyot/pdf/IMVIP2017_MatejUlicny.pdf" target="_blank" rel="noopener">On using CNN with DCT based Image Data</a></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/02/20201202_AdderNet/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1161,7 +1266,7 @@ s.t. w^{*}(\alpha)=argmin_{w}L_{train}(w,\alpha)</script><p>即找到最优结�
         
           <a href="/archives/%20%7C%7C%20archive">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1372,6 +1477,8 @@ window.addEventListener('pjax:success', () => {
     
       
         
+      
+    
       
     
       

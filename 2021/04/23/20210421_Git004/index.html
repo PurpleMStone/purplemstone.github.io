@@ -56,19 +56,21 @@
   };
 </script>
 
-  <meta name="description" content="数组与链表数据结构的存储方式只有两种：数组（顺序存储）和链表（链式存储）。 那些多样化的数据结构，究其源头，都是在链表或者数组上的特殊操作，API 不同而已 数组由于是紧凑连续存储,可以随机访问，通过索引快速找到对应元素，而且相对节约存储空间。但正因为连续存储，内存空间必须一次性分配够，所以说数组如果要扩容，需要重新分配一块更大的空间，再把数据全部复制过去，时间复杂度 O(N)；而且你如果想在数组">
+  <meta name="description" content="What are Branches? master分支一般存着stable的commit版本，另一个分支如feature存着还不stable的版本，等到改到完善了，才将feature分支merge到master中。 MASTER指针指向master分支中最近commit的版本，其他分支同理。 HEAD指针可以指向master，也可以指向feature，用于方便地调整working branch。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构与算法笔记(1)">
-<meta property="og:url" content="http://yoursite.com/2021/03/12/20210312_DongAlgNote/index.html">
+<meta property="og:title" content="Git笔记(4)--Branching">
+<meta property="og:url" content="http://yoursite.com/2021/04/23/20210421_Git004/index.html">
 <meta property="og:site_name" content="Stone&#39;s Blog">
-<meta property="og:description" content="数组与链表数据结构的存储方式只有两种：数组（顺序存储）和链表（链式存储）。 那些多样化的数据结构，究其源头，都是在链表或者数组上的特殊操作，API 不同而已 数组由于是紧凑连续存储,可以随机访问，通过索引快速找到对应元素，而且相对节约存储空间。但正因为连续存储，内存空间必须一次性分配够，所以说数组如果要扩容，需要重新分配一块更大的空间，再把数据全部复制过去，时间复杂度 O(N)；而且你如果想在数组">
+<meta property="og:description" content="What are Branches? master分支一般存着stable的commit版本，另一个分支如feature存着还不stable的版本，等到改到完善了，才将feature分支merge到master中。 MASTER指针指向master分支中最近commit的版本，其他分支同理。 HEAD指针可以指向master，也可以指向feature，用于方便地调整working branch。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-03-12T02:50:09.000Z">
-<meta property="article:modified_time" content="2021-03-12T02:49:37.248Z">
+<meta property="og:image" content="http://yoursite.com/images/Git/4_01.png">
+<meta property="article:published_time" content="2021-04-23T13:50:09.000Z">
+<meta property="article:modified_time" content="2021-04-23T14:26:12.773Z">
 <meta property="article:author" content="Purple M. Stone">
-<meta property="article:tag" content="job notes-algorithm">
+<meta property="article:tag" content="job notes-git">
 <meta name="twitter:card" content="summary">
-  <link rel="canonical" href="http://yoursite.com/2021/03/12/20210312_DongAlgNote/">
+<meta name="twitter:image" content="http://yoursite.com/images/Git/4_01.png">
+  <link rel="canonical" href="http://yoursite.com/2021/04/23/20210421_Git004/">
 
 
 <script id="page-configurations">
@@ -82,7 +84,7 @@
   };
 </script>
 
-  <title>数据结构与算法笔记(1) | Stone's Blog</title>
+  <title>Git笔记(4)--Branching | Stone's Blog</title>
   
 
 
@@ -247,7 +249,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/12/20210312_DongAlgNote/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/23/20210421_Git004/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Purple M. Stone">
@@ -259,7 +261,7 @@
       <meta itemprop="name" content="Stone's Blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">数据结构与算法笔记(1)
+        <h1 class="post-title" itemprop="name headline">Git笔记(4)--Branching
 
           
         </h1>
@@ -275,7 +277,7 @@
                 
               
 
-              <time title="创建时间：2021-03-12 10:50:09 / 修改时间：10:49:37" itemprop="dateCreated datePublished" datetime="2021-03-12T10:50:09+08:00">2021-03-12</time>
+              <time title="创建时间：2021-04-23 21:50:09 / 修改时间：22:26:12" itemprop="dateCreated datePublished" datetime="2021-04-23T21:50:09+08:00">2021-04-23</time>
             </span>
           
             
@@ -288,7 +290,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a></span>
 
                 
                 
@@ -315,7 +317,7 @@
       
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/03/12/20210312_DongAlgNote/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/03/12/20210312_DongAlgNote/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2021/04/23/20210421_Git004/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/04/23/20210421_Git004/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -329,12 +331,48 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="数组与链表"><a href="#数组与链表" class="headerlink" title="数组与链表"></a>数组与链表</h1><p><strong>数据结构的存储方式只有两种：数组（顺序存储）和链表（链式存储）</strong>。</p>
-<p>那些多样化的数据结构，究其源头，都是在链表或者数组上的特殊操作，API 不同而已</p>
-<p><strong>数组</strong>由于是紧凑连续存储,可以随机访问，通过索引快速找到对应元素，而且相对节约存储空间。但正因为连续存储，内存空间必须一次性分配够，所以说数组如果要扩容，需要重新分配一块更大的空间，再把数据全部复制过去，时间复杂度 O(N)；而且你如果想在数组中间进行插入和删除，每次必须搬移后面的所有数据以保持连续，时间复杂度 O(N)。</p>
-<p><strong>链表</strong>因为元素不连续，而是靠指针指向下一个元素的位置，所以不存在数组的扩容问题；如果知道某一元素的前驱和后驱，操作指针即可删除该元素或者插入新元素，时间复杂度 O(1)。但是正因为存储空间不连续，你无法根据一个索引算出对应元素的地址，所以不能随机访问；而且由于每个元素必须存储指向前后元素位置的指针，会消耗相对更多的储存空间。</p>
-<h1 id="数据结构基本操作"><a href="#数据结构基本操作" class="headerlink" title="数据结构基本操作"></a>数据结构基本操作</h1><p>遍历 + 访问：增删查改（<strong>在不同的应用场景，尽可能高效地增删查改</strong>）</p>
-<p>方式：线性-for/while；非线性-递归</p>
+        <h1 id="What-are-Branches"><a href="#What-are-Branches" class="headerlink" title="What are Branches?"></a>What are Branches?</h1><ul>
+<li>master分支一般存着stable的commit版本，另一个分支如feature存着还不stable的版本，等到改到完善了，才将feature分支merge到master中。</li>
+<li>MASTER指针指向master分支中最近commit的版本，其他分支同理。</li>
+<li>HEAD指针可以指向master，也可以指向feature，用于方便地调整working branch。</li>
+</ul>
+<p><img src="/images/Git/4_01.png" alt="4_01" style="zoom: 50%;"></p>
+<h1 id="Working-with-Branches"><a href="#Working-with-Branches" class="headerlink" title="Working with Branches"></a>Working with Branches</h1><p>创建分支：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch bugfix</span><br></pre></td></tr></table></figure>
+<p>查看现有分支，其中标*的表示当前working branch：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git branch</span><br><span class="line">  bugfix</span><br><span class="line">* master</span><br></pre></td></tr></table></figure>
+<p>也可以这样查看当前working branch：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">nothing to commit, working tree clean</span><br></pre></td></tr></table></figure>
+<p>切换到bugfix branch：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git switch bugfix</span><br><span class="line">Switched to branch <span class="string">'bugfix'</span></span><br></pre></td></tr></table></figure>
+<p>重命名分支：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(bugfix)$ git branch -m bugfix bugfix-signup-form</span><br><span class="line"></span><br><span class="line">(bugfix-signup-form)$</span><br></pre></td></tr></table></figure>
+<p>假如在创建这个bugfix-signup-form分支之前，在master创建了一个audience.txt文件，内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">AUDIENCE</span><br><span class="line"></span><br><span class="line">This course is <span class="keyword">for</span> anyone who wants to learn Git.</span><br><span class="line">No prior experience is required.</span><br></pre></td></tr></table></figure>
+<p>创建并切换当前分支为bugfix-signup-form分支之后将该文件的内容改为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">WHO THIS COURSE IS FOR </span><br><span class="line">======================</span><br><span class="line">This course is <span class="keyword">for</span> anyone who wants to learn Git.</span><br></pre></td></tr></table></figure>
+<p>并提交更改：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(bugfix-signup-form)$ code audience.txt</span><br><span class="line"></span><br><span class="line">(bugfix-signup-form)$ git add .</span><br><span class="line"></span><br><span class="line">(bugfix-signup-form)$ git commit -m <span class="string">"fix the bug that prevented the users from signing up"</span></span><br><span class="line">[bugfix-signup-form 7a5cdb3] fix the bug that prevented the users from signing up</span><br><span class="line"> 1 file changed, 3 insertions(+), 4 deletions(-)</span><br></pre></td></tr></table></figure>
+<p>查看一下，HEAD指向当前分支：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(bugfix-signup-form)$ git <span class="built_in">log</span> --oneline</span><br><span class="line">7a5cdb3 (HEAD -&gt; bugfix-signup-form) fix the bug that prevented the users from signing up</span><br><span class="line">82ca774 (master) add audience.txt</span><br></pre></td></tr></table></figure>
+<p>切换回master分支并查看audience.txt内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(bugfix-signup-form)$ git switch master</span><br><span class="line">Switched to branch <span class="string">'master‘</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">(master)$ code audience.txt</span></span><br></pre></td></tr></table></figure>
+<p>发现audience.txt内容依然是旧版的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">AUDIENCE</span><br><span class="line"></span><br><span class="line">This course is <span class="keyword">for</span> anyone who wants to learn Git.</span><br><span class="line">No prior experience is required.</span><br></pre></td></tr></table></figure>
+<p>查看修改log，会发现看不到bugfix-signup-form分支的更改log：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git <span class="built_in">log</span> --oneline</span><br><span class="line">82ca774 (HEAD -&gt; master) add audience.txt</span><br></pre></td></tr></table></figure>
+<p>除非用—all：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all</span><br><span class="line">7a5cdb3 (bugfix-signup-form) fix the bug that prevented the users from signing up</span><br><span class="line">82ca774 (HEAD -&gt; master) add audience.txt</span><br></pre></td></tr></table></figure>
+<p>如果想删除bugfix-signup-form分支，由于还没merge，所以会报错。若确定真的要删，用-D：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git branch -d bugfix-signup-form</span><br><span class="line">error: The branch <span class="string">'bugfix-signup-form'</span> is not fully merged.</span><br><span class="line">If you are sure you want to delete it, run <span class="string">'git branch -D bugfix-signup-form'</span>.</span><br></pre></td></tr></table></figure>
+<h1 id="Comparing-Branches"><a href="#Comparing-Branches" class="headerlink" title="Comparing Branches"></a>Comparing Branches</h1><p>在将分支merge到master之前，先看看改了啥：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git <span class="built_in">log</span> master..bugfix-signup-form</span><br><span class="line">commit 7a5cdb3ea29a72530f598fa7fee1358a6c4dcb23 (bugfix-signup-form)</span><br><span class="line">Author: Stone &lt;1140525895@qq.com&gt;</span><br><span class="line">Date:   Fri Apr 23 21:56:15 2021 +0800</span><br><span class="line"></span><br><span class="line">    fix the bug that prevented the users from signing up</span><br></pre></td></tr></table></figure>
+<p>查看具体改了啥内容（由于当前分支就是master, master..也可以省略不写）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git diff master..bugfix-signup-form</span><br><span class="line">diff --git a/audience.txt b/audience.txt</span><br><span class="line">index 01fd2e1..ecbc229 100644</span><br><span class="line">--- a/audience.txt</span><br><span class="line">+++ b/audience.txt</span><br><span class="line">@@ -1,4 +1,3 @@</span><br><span class="line">-AUDIENCE</span><br><span class="line">-</span><br><span class="line">-This course is <span class="keyword">for</span> anyone who wants to learn Git.</span><br><span class="line">-No prior experience is required.</span><br><span class="line">\ No newline at end of file</span><br><span class="line">+WHO THIS COURSE IS FOR</span><br><span class="line">+======================</span><br><span class="line">+This course is <span class="keyword">for</span> anyone who wants to learn Git.</span><br><span class="line">\ No newline at end of file</span><br></pre></td></tr></table></figure>
+<p>看简略的修改状态信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git diff --name-status bugfix-signup-form</span><br><span class="line">M       audience.txt</span><br></pre></td></tr></table></figure>
+<h1 id="Stashing"><a href="#Stashing" class="headerlink" title="Stashing"></a>Stashing</h1><p>bugfix-signup-form分支对audience.txt修改后，该分支尚未merge到master分支，此时master分支却又对audience.txt进行了修改：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git switch bugfix-signup-form</span><br><span class="line">error: Your <span class="built_in">local</span> changes to the following files would be overwritten by checkout:</span><br><span class="line">        audience.txt</span><br><span class="line">Please commit your changes or stash them before you switch branches.</span><br><span class="line">Aborting</span><br><span class="line"></span><br><span class="line">(master)$</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -350,7 +388,7 @@
           
           <div class="post-tags">
             
-              <a href="/tags/job-notes-algorithm/" rel="tag"># job notes-algorithm</a>
+              <a href="/tags/job-notes-git/" rel="tag"># job notes-git</a>
             
           </div>
         
@@ -360,8 +398,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2020/12/25/20201225_VisualToSound/" rel="next" title="论文阅读笔记(7)-Visual to Sound Generating Natural Sound for Videos in the Wild">
-                  <i class="fa fa-chevron-left"></i> 论文阅读笔记(7)-Visual to Sound Generating Natural Sound for Videos in the Wild
+                <a href="/2021/04/22/20210421_Git003/" rel="next" title="Git笔记(3)--Browsing History">
+                  <i class="fa fa-chevron-left"></i> Git笔记(3)--Browsing History
                 </a>
               
             </div>
@@ -369,10 +407,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2021/04/20/20210420_SQL001/" rel="prev" title="MySQL笔记(1)--基础语句">
-                  MySQL笔记(1)--基础语句 <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -424,7 +458,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数组与链表"><span class="nav-number">1.</span> <span class="nav-text">数组与链表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据结构基本操作"><span class="nav-number">2.</span> <span class="nav-text">数据结构基本操作</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#What-are-Branches"><span class="nav-number">1.</span> <span class="nav-text">What are Branches?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Working-with-Branches"><span class="nav-number">2.</span> <span class="nav-text">Working with Branches</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Comparing-Branches"><span class="nav-number">3.</span> <span class="nav-text">Comparing Branches</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Stashing"><span class="nav-number">4.</span> <span class="nav-text">Stashing</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
