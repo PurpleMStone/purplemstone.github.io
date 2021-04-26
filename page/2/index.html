@@ -241,6 +241,323 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/20201222_VisualMicrophone/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Purple M. Stone">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stone's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/12/22/20201222_VisualMicrophone/" class="post-title-link" itemprop="url">论文阅读笔记(5)-The Visual Microphone Passive Recovery of Sound from Video</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-12-22 22:50:09" itemprop="dateCreated datePublished" datetime="2020-12-22T22:50:09+08:00">2020-12-22</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-25 10:40:43" itemprop="dateModified" datetime="2020-12-25T10:40:43+08:00">2020-12-25</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Visual-Sound/" itemprop="url" rel="index"><span itemprop="name">Visual Sound</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/12/22/20201222_VisualMicrophone/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/20201222_VisualMicrophone/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>现象</strong>：声音到达物体会在物体表面引起微小振动。</p>
+<p><strong>做法</strong>：使用物体的高速视频提取微小振动，部分恢复（造成振动的）声音。</p>
+<p><strong>具体</strong>：1）从一系列不同特性的物体的高速连续镜头中恢复声音；</p>
+<p>​            2）使用真实和仿真数据来评测那些影响了可视化地恢复声音的因素；</p>
+<p>​            3）声音恢复质量评价指标：可理解性（intelligibility）、SNR；直接对比输入和恢复出来的信号；</p>
+<p>​            4）探索如何利用普通用户相机的卷帘快门（rolling shutter）从而从标准帧率视频中恢复出声音；使用所提方法的空间分辨率来可视化声音引起的振动是如何随着物体表面变化的，以之恢复物体的振动模式。</p>
+<p><strong>Keywords</strong>：远程声音采集；视频中的声音；可视化声学。</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p><strong>描述</strong>：声音到达某物品 → 1）物品表面跟随周围介质移动 OR 2）根据其振动模式发生形变。</p>
+<p><strong>应用场景</strong>：声音引起物体振动的现象被用于远程声音采集，并在监视和安防方面有重要应用，如在远处窃听谈话。远程声音采集的现有方法本质上是积极（active）的，需要将一个激光束或pattern投射到振动表面。</p>
+<p><strong>本文观察</strong>：只需要物体的高速视频，声音引起的物体振动通常能够产生足够的视觉信号来部分恢复出该声音。</p>
+<p><strong>本文贡献</strong>：提出一个消极的从视频中恢复声音信号的方法。视觉上检测微小物体振动→将振动转回音频信号（使得日常物品变成潜藏的麦克风）。做法：1）使用高速摄像机将物体视频；2）在一个Complex steerable pyramid (CSP)（建立在视频上）的维度上提取<em>局部运动信号</em>；3）这些局部信号被对齐并取平均，得到一个单一的一维运动信号，该信号捕捉对象随时间的<em>全局运动</em>；4）进一步滤波和去噪，得到恢复出来的声音。</p>
+<p><strong>对比积极方法</strong>：恢复效果不如积极方法；但是优点有 1）对于纹理物体和光照良好的场景不需要提供积极照明；2）除了高速摄像机外无需额外的传感器或检测模块；3）无需回射或反射振动表面（区别于激光麦克风）；4）没有对相对于相机的表面方向施加明显的约束；5）产生了一个声音的空间测量，可用于分析物品中声音引起的形变。</p>
+<p><strong>讨论</strong>：虽然声音可以穿透大多数物质，但并不是所有的物体和材料都能很好地进行视觉声音恢复。声波在材料中的传播取决于多种因素，如材料的密度和可压缩性，以及物体的形状。文章进行对照实验，测量了不同物体和材料对已知和未知声音的反应，并评估文章所提技术对于从高速视频中恢复声音的能力。</p>
+<h2 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h2><p>传统麦克风的工作原理是将内部膜片的运动转化为电信号。膜片的设计使其在声压下容易移动，因此它的运动可以被记录下来并解释为音频。<strong>激光麦克风</strong>的工作原理与此类似，但它测量的是一个遥远物体的运动，本质上是将物体作为一个外部膜片。这是通过记录激光对物体表面的反射来实现的。最基本的激光麦克风记录反射激光的相位，以激光波长作模得到物体的距离。激光多普勒测振仪(LDV)通过测量反射激光的多普勒频移来确定反射面速度，从而解决相位包裹的模糊性。这两种类型的激光麦克风都可以从很远的距离恢复高质量的音频，但依赖于激光和接收器相对于具有适当反射比的地面的精确定位。</p>
+<p>Zalevsky等人通过使用失焦高速相机来记录反射激光散斑模式的变化，解决了其中的一些局限性。他们的工作允许接收器的定位有更大的灵活性，但仍然依赖于记录反射激光。相比之下，本文的技术不依赖于主动照明。</p>
+<p>本文方法依赖于从视频中提取极其细微运动的能力，因而也与对这些运动进行放大和可视化的工作有关。这些工作侧重于小运动的可视化，而本文侧重于测量这些运动并利用它们来恢复声音。本文工作中使用的局部运动信号来自Simoncelli等人提出的Complex steerable pyramid (CSP)中的相位变化，因为这些变化被证明非常适合于视频中微小动作的恢复。然而，也有可能使用其他技术来计算局部运动信号。例如，经典的光流和点相关方法在之前的视觉振动传感工作中被成功地使用。由于本文方法的输出是单个振动物体的一维运动信号，因而能够对输入视频中的所有像素进行平均，并在千分之一像素的数量级上处理极其微小的运动。</p>
+<h2 id="Recovering-Sound-from-Video"><a href="#Recovering-Sound-from-Video" class="headerlink" title="Recovering Sound from Video"></a>Recovering Sound from Video</h2><p><img src="/images/VisualSound/1.png" alt="1"></p>
+<p><strong>输入</strong>：物体的高速视频（1kHz~20kHz）$V(x,y,t)$</p>
+<p><strong>假设</strong>：物体和相机的相对运动是由声音信号$s(t)$引起的振动主导的</p>
+<p><strong>目标</strong>：从$V$得到$s(t)$</p>
+<p><strong>步骤</strong>：1）根据不同的方向$θ$和尺度$r$将$V$分解成多个空间子带；</p>
+<p>​            2）计算每个像素、方向和尺度上的局部运动信号；通过一系列的平均和对齐操作将这些运动信号组合起来，为物体产生一个单一的全局运动信号；</p>
+<p>​            3）对物体的运动信号使用音频去噪和滤波技术，以获得恢复出来的声音。</p>
+<h3 id="Computing-Local-Motion-Signals"><a href="#Computing-Local-Motion-Signals" class="headerlink" title="Computing Local Motion Signals"></a>Computing Local Motion Signals</h3><p>使用$V$的CSP表示中的相位变化来计算局部运动。</p>
+<p>CSP：将$V$中的每一帧根据不同的方向和尺度分解成复数子带的滤波器组。该变换的基础方程是带尺度和方向的兼具余弦和正弦相位的Gabor-like小波。每一对类余弦和类正弦滤波器都可以用来分离局部小波的振幅和它们的相位。具体地说，每个尺度$r$和方位$θ$是一个复数图像，可以用幅值$A$和相位$φ$表示为：</p>
+<script type="math/tex; mode=display">
+A(r,\theta,x,y,t)e^{i\varphi (r,\theta,x,y,t)}</script><p>取这个等式中计算的局部相位$φ$，从参考帧$t_{0}$(通常是视频的第一帧)的局部相位中减去它们，计算相位变化</p>
+<script type="math/tex; mode=display">
+\varphi_{v} (r,\theta,x,y,t)=\varphi (r,\theta,x,y,t)-\varphi (r,\theta,x,y,t_{0})</script><p>对于较小的运动，这些相位变化近似正比于图像结构在相应方向和尺度上的位移。</p>
+<h3 id="Computing-the-Global-Motion-Signal"><a href="#Computing-the-Global-Motion-Signal" class="headerlink" title="Computing the Global Motion Signal"></a>Computing the Global Motion Signal</h3><p>对于CSP的每个尺度$r$和方位$θ$求局部运动信号的加权平均：</p>
+<script type="math/tex; mode=display">
+\Phi_{i}(r,\theta,t)=\sum\limits_{x,y}A(r,\theta,x,y)^{2}\varphi_{v} (r,\theta,x,y,t)</script><p>求加权平均的原因：局部相位在没有太多纹理的区域是模糊的，导致这些区域的运动信号是有噪声的。CSP的振幅A给出了纹理强度的度量，因此可以通过(平方)振幅来加权每个局部信号。</p>
+<p>对齐：</p>
+<script type="math/tex; mode=display">
+t_{i}=arg\max\limits_{t_{i}}\Phi_{0}(r_{0},\theta_{0},t)^{T}\Phi_{i}(r_{i},\theta_{i},t-t_{i})</script><p>得到全局运动信号：</p>
+<script type="math/tex; mode=display">
+\hat{s}(t)=\sum\limits_{i}\Phi_{i}(r_{i},\theta_{i},t-t_{i})</script><p>归一化到[-1,1]的范围。</p>
+<h3 id="Denoising"><a href="#Denoising" class="headerlink" title="Denoising"></a>Denoising</h3><p>目标：改善全局运动信号的SNR</p>
+<p>观察到的现象：低频的高能量噪声通常与音频不一致</p>
+<p>方法：应用高通Butterworth滤波器（截断频率为20-100Hz）</p>
+<p>滤除加性噪声：目标是accuracy，用spectral subtraction；目标是可理解性，用感知驱动的语音增强算法（通过计算一个贝叶斯最优估计去噪信号的成本函数，考虑到人类对语音的感知）。本文的结果是自动使用二者之一的算法来去噪的。</p>
+<p>恢复信号的不同频率可能会被记录对象不同地调制。第4.3节将展示如何使用已知测试信号来描述一个物体如何衰减不同频率，然后在新的视频中使用该信息来均衡从同一物体(或类似物体)中恢复的未知信号。</p>
+<h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p>第一组实验测试了可以从不同物体上恢复的频率范围。通过扬声器播放线性渐变频率的声音信号，然后观察哪些频率可以通过本文技术恢复。第二组实验集中在从视频中恢复人类语言。这些实验使用了来自TIMIT数据集的几个标准语音示例，以及通过扬声器播放的人类受试者的现场语音(扬声器被一个会说话的人替换)。</p>
+<h3 id="Sound-Recovery-from-Different-Objects-Materials"><a href="#Sound-Recovery-from-Different-Objects-Materials" class="headerlink" title="Sound Recovery from Different Objects/Materials"></a>Sound Recovery from Different Objects/Materials</h3><p><img src="/images/VisualSound/2.png" alt="2" style="zoom:67%;"></p>
+<p>在几乎所有的结果中，恢复的信号在较高的频率中是较弱的。这是意料之中的，因为更高的频率产生更小的位移，并且被大多数材料严重衰减。然而，较高频率的功率下降不是单调的，可能是由于振动模式的刺激。毫不奇怪，较轻的物体更容易移动，比惰性的物体更容易支持更高频率的恢复。</p>
+<h3 id="Speech-Recovery"><a href="#Speech-Recovery" class="headerlink" title="Speech Recovery"></a>Speech Recovery</h3><p>评测指标：</p>
+<p>(1) 评测accuracy： Segmental Signal-to-Noise Ratio (SSNR) 随时间的平均局部信噪比;</p>
+<p>(2) 评测intelligibility： perceptually-based metric</p>
+<p>(3) 评测恢复质量：Log Likelihood Ratio (LLR)，评测恢复信号的谱形状与原始干净信号的谱形状有多接近</p>
+<p><img src="/images/VisualSound/3.png" alt="3"></p>
+<p>更高的帧率导致曝光时间减少，因此图像噪声更多，这就是为什么20,000FPS结果图比2200Hz时的结果噪声更大</p>
+<p><img src="/images/VisualSound/4.png" alt="4" style="zoom:75%;"></p>
+<p>VM和LDV结果相近，而LDV需要积极照明（必须在物体上粘上一条反反射胶带以便激光从物体上反射回来回到振动计上）</p>
+<h3 id="Transfer-Functions-and-Equalization"><a href="#Transfer-Functions-and-Equalization" class="headerlink" title="Transfer Functions and Equalization"></a>Transfer Functions and Equalization</h3><p>可以使用第4.1节中的斜坡信号来表征物体的(可视的)频率响应，以提高从该物体的新观测中恢复的信号质量。理论上。如果认为物体是线性系统,可以使用维纳反卷积估计与该系统相关联的复数传递函数，并且传递函数可以用来以一种最优的方式(在均方误差意义上的)解卷积新的观测信号。然而，在实践中，这种方法很容易受到噪声和非线性artifacts的影响。因此，本文描述了一种更简单的方法，首先使用训练实例（线性斜坡）的短时间傅里叶变换在粗尺度上计算频率传递系数，然后使用这些传递系数使新的观测信号相等。</p>
+<p>转移系数是从一对输入/输出的信号的短时功率谱中提取出来的。每个系数对应于观察到的训练信号的短时功率谱的一个频率，并作为随时间变化的频率幅值的加权平均被计算。每一时刻的权值由对准的输入训练信号的短时功率谱给出。由于输入信号一次只包含一个频率，这个加权方案忽略了图2(b)中所示的倍频等非线性artifacts。</p>
+<p>一旦有了传输系数，我们就可以用它们来平衡新的信号。有很多方法可以做到这一点。将增益应用于新信号短时功率谱的频率上，然后在时域重新合成信号。应用于每个频率的增益与其相应的传递系数的倒数成正比，该系数上升到某个指数k。</p>
+<p>表2显示了应用从薯片袋导出的均衡器到从同一物体恢复的语音序列的结果。在没有噪声的情况下，k设为1，但广谱噪声压缩了估计的传递系数的范围。使用更大的k可以弥补这一点。在其中一个女性语音示例上手动调整k值，然后将得到的均衡器应用于所有六个语音示例。由于这种均衡是为了提高恢复信号的可信度而不是语音的可理解性，因此使用谱减法来去除噪声。</p>
+<p><img src="/images/VisualSound/5.png" alt="5" style="zoom:75%;"></p>
+<p>注意，校准和均衡是可选的。特别是，本文中除表2之外的所有结果都假定不预先知道被记录物体的频率响应。</p>
+<h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h2><p><strong>Object response (A)</strong>: 物体相应声音并移动，将空气压力转化为表面位移。</p>
+<p><strong>Processing (B)</strong>: 将录制的视频转换成恢复的声音。</p>
+<h3 id="Object-response-A"><a href="#Object-response-A" class="headerlink" title="Object response (A)"></a>Object response (A)</h3><p><img src="/images/VisualSound/6.png" alt="6"></p>
+<p>图7(b)：300Hz纯音测试，大多数物体的运动在声压（音量）上近似呈线性。结论：A可建模为LTI系统。</p>
+<p>图7(c)：斜坡信号（20Hz到2200Hz）测试，将A建模为LTI系统，用这个斜坡信号来恢复系统的脉冲响应。这是通过使用维纳反卷积用已知的输入对观察到的斜坡信号(这一次是由LDV记录的)进行反卷积来实现的。图7 (c)显示了从恢复的脉冲响应中得到的频率响应。从这张图中可以看到，大多数物体在低频率的响应比高频率的响应更强(正如预期的那样)，但是这种趋势不是单调的。</p>
+<script type="math/tex; mode=display">
+D_{mm}(\omega)\approx \boldsymbol{A}(\omega)S(\omega)</script><p>$\boldsymbol{A}(\omega)$: 转移函数</p>
+<p>$S(\omega)$: 声谱</p>
+<p>$D_{mm}(\omega)$: 运动谱</p>
+<p><a href="http://people.csail.mit.edu/mrub/VisualMic/" target="_blank" rel="noopener">项目网址</a></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/04/20201204_CNNinFrequence2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Purple M. Stone">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stone's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/12/04/20201204_CNNinFrequence2/" class="post-title-link" itemprop="url">论文阅读笔记(4)：CNN频域学习(2)</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-12-04 11:50:09 / 修改时间：13:23:42" itemprop="dateCreated datePublished" datetime="2020-12-04T11:50:09+08:00">2020-12-04</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/12/04/20201204_CNNinFrequence2/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/04/20201204_CNNinFrequence2/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Faster-Neural-Networks-Straight-from-JPEG"><a href="#Faster-Neural-Networks-Straight-from-JPEG" class="headerlink" title="Faster Neural Networks Straight from JPEG"></a>Faster Neural Networks Straight from JPEG</h2><h3 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h3><p>1、缩短图像解码时间。大部分图片都是通过JPEG格式进行存储，JPEG格式转换为RGB需要解码。而如果通过频域学习，解码时只需要从霍夫曼编码中获取DCT系数即可，不需要完全解码得到RGB图像；</p>
+<p>2、让模型更高效。CNN模型的优势是表达能力强（参数很多），所需先验少。但是先验少，所以需要大量参数，使得CNN模型中存在大量冗余计算。频域学习其实是一个先验，如果数据分布和该先验一致，那么达到同样的效果，模型可以更简单，所需要的训练数据可以更少。</p>
+<h3 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h3><p><img src="/images/CNNinFrequence/02_method.png" alt="02_method"></p>
+<h3 id="Evaluation"><a href="#Evaluation" class="headerlink" title="Evaluation"></a>Evaluation</h3><p>在<strong>ImageNet</strong>上实验。目标是准确率高且运行速度快。</p>
+<h4 id="Baseline"><a href="#Baseline" class="headerlink" title="Baseline"></a>Baseline</h4><p>Vanilla ResNet-50, 输入为RGB图像。Top-5错误率7.4%左右，速度200 image/s：</p>
+<p><img src="/images/CNNinFrequence/02_result1.png" alt="02_result1" style="zoom: 33%;"></p>
+<p>以YCbCr为输入，效果与RGB差不多。期望的效果是在图中往右下发展（右：速度快；下：错误率低）。</p>
+<p>希望运行速度更快：1）shorter ResNet-50 (减少网络层数)；2）thinner ResNet-50 (减少每层的通道数)</p>
+<p><img src="/images/CNNinFrequence/02_result2.png" alt="02_result2"></p>
+<p>结论：shorter ResNet-50优于thinner ResNet-50。浅灰色的“Remove N ID Blocks”的线形成了帕累托前沿(Pareto front)，显示了“non-dominated”网络的集合，或者是那些在速度和准确性之间做出最佳权衡的网络。</p>
+<h4 id="Training-networks-on-DCT-inputs"><a href="#Training-networks-on-DCT-inputs" class="headerlink" title="Training networks on DCT inputs"></a>Training networks on DCT inputs</h4><hr>
+<p><strong>问题1</strong>：针对不同的输入尺寸如何处理？</p>
+<p>RGB图像大小：(224, 224, 3)</p>
+<p>DCT系数： 1)  Y-(28, 28, 64)；</p>
+<p>​                    2)  Cb/Cr-(14, 14, 64)</p>
+<p><strong>解决</strong>：在进入网络之前combine Y和Cb、Cr</p>
+<p><img src="/images/CNNinFrequence/02_net1.png" alt="02_net1" style="zoom:50%;"></p>
+<hr>
+<p><strong>1.    DCT Early Merge architectures</strong>：1）下采Y（“DownSampling”）；2）上采Cb、Cr（“UpSampling”）</p>
+<p><img src="/images/CNNinFrequence/02_result3.png" alt="02_result3"></p>
+<p>结论： 1）DownSampling：fast (450 image/s) but high error；</p>
+<p>​            2） UpSampling：slower but lower error; </p>
+<hr>
+<p><strong>问题2</strong>：UpSampling的错误率比baseline高</p>
+<p><strong>可能的原因</strong>：感受野过大。传到baseline ResNet-50的中间层时感受野约为70像素；而UpSampling模型的相应感受野达到了110像素。这是因为DCT输入层的[stride, receptive field]是[8, 8]，而经典输入层该值为 [1, 1]。 直观地说，要求网络学习110px宽的感受野，但没有给它足够的层或计算能力来做到这一点。</p>
+<p><strong>解决</strong>：创造了一个Receptive Field Aware (RFA) 模型→UpSampling-RFA。做法是给神经网络的前层增加额外的步长1模块。此时逐层的感受野增长变得更平滑，近似与baseline ResNet-50相匹配。</p>
+<p>如果UpSampling通过可学反卷积而非像素复制得到，则错误率可以进一步降低，达到目前为止最好的模型：Deconvolution-RFA（错误率6.98%；加速1.29倍）。</p>
+<hr>
+<p>效果：沿着DCT Early Merge线的其他模型现在形成了新的帕累托前沿，在误差和速度的权衡方面超越了以前的模型。</p>
+<p><strong>2.    DCT Late Merge architectures</strong></p>
+<p>实验发现允许亮度分支多层计算才能获得较高的准确率，而色度路径可以在较少的计算层数下不损害准确率。换句话说，1) 将Y通道放到网络的前面，而Cb/Cr信息在中途注入，其效果与 2) 从前面开始全部三个通道的运算 一样好，而方法1)节省了计算。</p>
+<p><img src="/images/CNNinFrequence/02_result4.png" alt="02_result4" style="zoom: 50%;"></p>
+<p>Late-Concat-RFA：receptive field aware version；</p>
+<p>Late-Concat-RFA-Thinner：通过使用更少过滤器而调整速度的版本。加速1.77倍，错误率相近。</p>
+<p>结论：帕累托前沿再次前移。</p>
+<h3 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h3><p>有趣的是，颜色信息在网络后期（当它与从亮度中学到的更高层次的概念相结合时）才被需要。在这一点上猜测可能是学习中级概念（例如:草或狗毛）需要在其与空间上不那么精确的颜色信息（例如:绿色或棕色）结合之前，精细的亮度边缘进行了好几层处理变成纹理。可以从ResNet-50从RGB像素学习到的更高频率的黑白边缘和更低频率（或常数）的颜色检测器中预期这个结果。</p>
+<p><img src="/images/CNNinFrequence/02_result5.png" alt="02_result5"></p>
+<p>许多边缘检测器基本上都是黑白的，在亮度空间中操作。许多颜色特征要么在空间上是恒定的，要么在频率上是较低的，它们可能只是用来将粗略的颜色信息传递给需要它的更高层次。我们从2012年就看到过这样的滤波器;我们是否应该期望直到网络后期才需要颜色?</p>
+<p><strong>速度与准确率</strong>：速度的提升是由于输入层和后续层上的数据量较小。准确率提升的主要原因是 DCT 表示的具体使用，结果对图像分类非常有效。只需将 ResNet-50 的第一个卷积层替换为stride为 8 的DCT 变换，即可获得更好的性能。它甚至比完全相同形状的学习得到的变换（learned transform）效果更好。使用更大的感受野和stride（8）表现更好，而硬编码第一层比学习得到第一层效果更好。残差网络在 2015 年得到 ImageNet 上最先进的性能，只需用DCT 替换第一层，就会进一步提高SOTA。</p>
+<p><a href="https://zhuanlan.zhihu.com/p/115584408" target="_blank" rel="noopener">CNN频域学习博客讲解</a></p>
+<p><a href="https://papers.nips.cc/paper/2018/file/7af6266cc52234b5aa339b16695f7fc4-Paper.pdf" target="_blank" rel="noopener">Faster Neural Networks Straight from JPEG</a></p>
+<p><a href="https://eng.uber.com/neural-networks-jpeg/?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="noopener">Faster Neural Networks Straight from JPEG 博客讲解</a></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/03/20201203_CNNinFrequence/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1266,7 +1583,7 @@ s.t. w^{*}(\alpha)=argmin_{w}L_{train}(w,\alpha)</script><p>即找到最优结�
         
           <a href="/archives/%20%7C%7C%20archive">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1279,7 +1596,7 @@ s.t. w^{*}(\alpha)=argmin_{w}L_{train}(w,\alpha)</script><p>即找到最优结�
             <a href="/categories/%20%7C%7C%20th">
           
         
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -1292,7 +1609,7 @@ s.t. w^{*}(\alpha)=argmin_{w}L_{train}(w,\alpha)</script><p>即找到最优结�
             <a href="/tags/%20%7C%7C%20tags">
           
         
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -1477,6 +1794,10 @@ window.addEventListener('pjax:success', () => {
     
       
         
+      
+    
+      
+    
       
     
       
