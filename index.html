@@ -241,6 +241,178 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/27/20210426_Git005/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Purple M. Stone">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stone's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2021/04/27/20210426_Git005/" class="post-title-link" itemprop="url">Mosh的Git课程笔记(5)--Collaboration</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2021-04-27 21:50:09 / 修改时间：16:54:35" itemprop="dateCreated datePublished" datetime="2021-04-27T21:50:09+08:00">2021-04-27</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/04/27/20210426_Git005/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/04/27/20210426_Git005/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="https://codewithmosh.com/" target="_blank" rel="noopener">Mosh的课程网址</a></p>
+<h1 id="Workflows"><a href="#Workflows" class="headerlink" title="Workflows"></a>Workflows</h1><p>👉 Centralized: a single repository<br><strong>👉 Distributed：every developer has a repository √</strong></p>
+<h2 id="Centralized-Workflow"><a href="#Centralized-Workflow" class="headerlink" title="Centralized Workflow"></a>Centralized Workflow</h2><p>平时与中央服务器交互，万一中央服务器瘫痪，各repository之间可以交互。</p>
+<p><img src="/images/Git/5_01.png" alt="5_01" style="zoom: 33%;"></p>
+<p><img src="/images/Git/5_02.png" alt="5_02" style="zoom: 33%;"></p>
+<p>中央服务器放在哪？</p>
+<p>👉 private server</p>
+<p>👉 cloud, 如 GitHub，GitLab</p>
+<p>具体场景：</p>
+<ol>
+<li>John 和 Amy 都将 repository 拷贝到本地</li>
+</ol>
+<p><img src="/images/Git/5_03.png" alt="5_03" style="zoom:50%;"></p>
+<ol>
+<li>John commit了一些内容，想 share 给 Amy，就从本地 repository 拷贝到中央 repository</li>
+</ol>
+<p><img src="/images/Git/5_04.png" alt="5_04" style="zoom:50%;"></p>
+<ol>
+<li>Amy 将这些 commit 从中央 repository pull 到本地</li>
+</ol>
+<p><img src="/images/Git/5_05.png" alt="5_05" style="zoom:50%;"></p>
+<ol>
+<li>如果和 Amy 自己的 commit 有 conflict，Amy 解决之后 push 到中央 repository</li>
+</ol>
+<p><img src="/images/Git/5_06.png" alt="5_06" style="zoom:50%;"></p>
+<h2 id="Integration-Manager"><a href="#Integration-Manager" class="headerlink" title="Integration-Manager"></a>Integration-Manager</h2><p>多用于Open-source project。通常有 maintainer 管理 project repository，其他的 contributors 不能直接 commit 到 project repository。</p>
+<ol>
+<li>Fork  project repository 到自己的 repository，然后拷贝到本地</li>
+</ol>
+<p><img src="/images/Git/5_07.png" alt="5_07" style="zoom:50%;"></p>
+<ol>
+<li>Contributor 将自己的 commit push 到  repository</li>
+</ol>
+<p><img src="/images/Git/5_08.png" alt="5_08" style="zoom:50%;"></p>
+<ol>
+<li>Contributor 向 maintainer 发出 pull request，希望在 project repository commit 自己的贡献</li>
+</ol>
+<p><img src="/images/Git/5_09.png" alt="5_09" style="zoom:50%;"></p>
+<ol>
+<li>Maintainer 同意的话就从 contributor 的 repository pull 到自己的本地目录</li>
+</ol>
+<p><img src="/images/Git/5_10.png" alt="5_10" style="zoom:50%;"></p>
+<ol>
+<li>Maintainer review 过这些 commit 觉得没问题，就可以 push 到 project repository 了。</li>
+</ol>
+<p><img src="/images/Git/5_11.png" alt="5_11" style="zoom:50%;"></p>
+<h1 id="Cloning-a-Repository"><a href="#Cloning-a-Repository" class="headerlink" title="Cloning a Repository"></a>Cloning a Repository</h1><p>拷贝远程仓库到本地，仓库目前只有一个commit：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/PurpleMStone/Mars.git MarsProject</span><br><span class="line">Cloning into <span class="string">'MarsProject'</span>...</span><br><span class="line">remote: Enumerating objects: 3, <span class="keyword">done</span>.</span><br><span class="line">remote: Counting objects: 100% (3/3), <span class="keyword">done</span>.</span><br><span class="line">remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0</span><br><span class="line">Receiving objects: 100% (3/3), <span class="keyword">done</span>.</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cd</span> MarsProject/</span><br><span class="line"></span><br><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* 7216ded (HEAD -&gt; master, origin/master, origin/HEAD) Initial commit</span><br></pre></td></tr></table></figure>
+<p>origin 指代的是远程仓库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git remote -v</span><br><span class="line">origin  https:&#x2F;&#x2F;github.com&#x2F;PurpleMStone&#x2F;Mars.git (fetch)</span><br><span class="line">origin  https:&#x2F;&#x2F;github.com&#x2F;PurpleMStone&#x2F;Mars.git (push)</span><br></pre></td></tr></table></figure>
+<h1 id="Fetching"><a href="#Fetching" class="headerlink" title="Fetching"></a>Fetching</h1><p><img src="/images/Git/5_12.png" alt="5_12" style="zoom: 33%;"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* 7216ded (HEAD -&gt; master, origin/master, origin/HEAD) Initial commit</span><br></pre></td></tr></table></figure>
+<p>在 remote repository 进行修改（update README.md，增加了第二行）:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Mars</span><br><span class="line">A new line of code</span><br></pre></td></tr></table></figure>
+<p>用 git fetch 获取到本地，此时 origin/master 前进了，但是本地 master 还没动：</p>
+<p><img src="/images/Git/5_13.png" alt="5_13" style="zoom:33%;"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git fetch</span><br><span class="line">remote: Enumerating objects: 5, <span class="keyword">done</span>.</span><br><span class="line">remote: Counting objects: 100% (5/5), <span class="keyword">done</span>.</span><br><span class="line">remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0</span><br><span class="line">Unpacking objects: 100% (3/3), 645 bytes | 1024 bytes/s, <span class="keyword">done</span>.</span><br><span class="line">From https://github.com/PurpleMStone/Mars</span><br><span class="line">   7216ded..e27337b  master     -&gt; origin/master</span><br><span class="line"></span><br><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* e27337b (origin/master, origin/HEAD) Update README.md</span><br><span class="line">* 7216ded (HEAD -&gt; master) Initial commit</span><br><span class="line"></span><br><span class="line">(master)$ git branch -vv</span><br><span class="line">* master 7216ded [origin/master: behind 1] Initial commit</span><br></pre></td></tr></table></figure>
+<p>由于没有diverse branch， 直接让本地 master fast-forward merge origin/master 就行了：</p>
+<p><img src="/images/Git/5_14.png" alt="5_14" style="zoom:33%;"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git merge origin/master</span><br><span class="line">Updating 7216ded..e27337b</span><br><span class="line">Fast-forward</span><br><span class="line"> README.md | 3 ++-</span><br><span class="line"> 1 file changed, 2 insertions(+), 1 deletion(-)</span><br><span class="line"></span><br><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* e27337b (HEAD -&gt; master, origin/master, origin/HEAD) Update README.md</span><br><span class="line">* 7216ded Initial commit</span><br><span class="line"></span><br><span class="line">(master)$ git branch -vv</span><br><span class="line">* master e27337b [origin/master] Update README.md</span><br><span class="line"></span><br><span class="line">(master)$ cat README.md</span><br><span class="line"><span class="comment"># Mars</span></span><br><span class="line">A new line of code</span><br></pre></td></tr></table></figure>
+<p>而如果有 diverse branch，可能 merge 的时候会有 conflict，解决了再 merge 就行了。 </p>
+<h1 id="Pulling"><a href="#Pulling" class="headerlink" title="Pulling"></a>Pulling</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pull &#x3D; fetch + merge</span><br></pre></td></tr></table></figure>
+<p>比如在本地有个commit B, 在 remote repository 有个 commit C：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">(master)$ <span class="built_in">echo</span> hello &gt; file1.txt</span><br><span class="line"></span><br><span class="line">(master)$ git add .</span><br><span class="line">warning: LF will be replaced by CRLF <span class="keyword">in</span> file1.txt.</span><br><span class="line">The file will have its original line endings <span class="keyword">in</span> your working directory</span><br><span class="line"></span><br><span class="line">(master)$ git commit -m <span class="string">"Add file1.txt"</span></span><br><span class="line">[master ce83c2f] Add file1.txt</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 file1.txt</span><br><span class="line"></span><br><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* ce83c2f (HEAD -&gt; master) Add file1.txt</span><br><span class="line">* e27337b (origin/master, origin/HEAD) Update README.md</span><br><span class="line">* 7216ded Initial commit</span><br></pre></td></tr></table></figure>
+<p>在 remote repository 将 README.md update 了两次（commit C ）。</p>
+<p>现在可以用 git pull 获取 commit C 并进行 3-way merge:</p>
+<p><img src="/images/Git/5_15.png" alt="5_15" style="zoom: 33%;"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git pull</span><br><span class="line">remote: Enumerating objects: 8, <span class="keyword">done</span>.</span><br><span class="line">remote: Counting objects: 100% (8/8), <span class="keyword">done</span>.</span><br><span class="line">remote: Compressing objects: 100% (4/4), <span class="keyword">done</span>.</span><br><span class="line">remote: Total 6 (delta 0), reused 0 (delta 0), pack-reused 0</span><br><span class="line">Unpacking objects: 100% (6/6), 1.28 KiB | 1024 bytes/s, <span class="keyword">done</span>.</span><br><span class="line">From https://github.com/PurpleMStone/Mars</span><br><span class="line">   e27337b..4085604  master     -&gt; origin/master</span><br><span class="line">Merge made by the <span class="string">'recursive'</span> strategy.</span><br><span class="line"> README.md | 2 ++</span><br><span class="line"> 1 file changed, 2 insertions(+)</span><br><span class="line"></span><br><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">*   b6e7d23 (HEAD -&gt; master) Merge branch <span class="string">'master'</span> of https://github.com/PurpleMStone/Mars</span><br><span class="line">|\</span><br><span class="line">| * 4085604 (origin/master, origin/HEAD) Update README.md</span><br><span class="line">| * 3e40ffc Update README.md</span><br><span class="line">* | ce83c2f Add file1.txt</span><br><span class="line">|/</span><br><span class="line">* e27337b Update README.md</span><br><span class="line">* 7216ded Initial commit</span><br></pre></td></tr></table></figure>
+<p>也可以用 git pull —rebase 将 B rebase，然后就是 linear history 了：</p>
+<p><img src="/images/Git/5_16.png" alt="5_16" style="zoom:33%;"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* ce83c2f (HEAD -&gt; master) Add file1.txt</span><br><span class="line">| * 4085604 (origin/master, origin/HEAD) Update README.md</span><br><span class="line">| * 3e40ffc Update README.md</span><br><span class="line">|/</span><br><span class="line">* e27337b Update README.md</span><br><span class="line">* 7216ded Initial commit</span><br><span class="line"></span><br><span class="line">(master)$ git pull --rebase</span><br><span class="line">Successfully rebased and updated refs/heads/master.</span><br><span class="line"></span><br><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* ec68ae1 (HEAD -&gt; master) Add file1.txt</span><br><span class="line">* 4085604 (origin/master, origin/HEAD) Update README.md</span><br><span class="line">* 3e40ffc Update README.md</span><br><span class="line">* e27337b Update README.md</span><br><span class="line">* 7216ded Initial commit</span><br></pre></td></tr></table></figure>
+<h1 id="Pushing"><a href="#Pushing" class="headerlink" title="Pushing"></a>Pushing</h1><p>将本地的 commit push 到 remote repository，然后 remote repository 的 master 会 move forward，然后 origin/master 会 move forward.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git push</span><br></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/26/20210426_Python001/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -343,7 +515,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/26/20210421_Git004%20(copy)/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/26/20210426_Git004/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Purple M. Stone">
@@ -357,7 +529,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2021/04/26/20210421_Git004%20(copy)/" class="post-title-link" itemprop="url">20210421_Git004 (copy)</a>
+            <a href="/2021/04/26/20210426_Git004/" class="post-title-link" itemprop="url">Mosh的Git课程笔记(4)--Branching</a>
           
         </h1>
 
@@ -372,89 +544,7 @@
                 
               
 
-              <time title="创建时间：2021-04-26 21:17:32" itemprop="dateCreated datePublished" datetime="2021-04-26T21:17:32+08:00">2021-04-26</time>
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/04/26/20210421_Git004%20(copy)/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/04/26/20210421_Git004%20(copy)/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/23/20210426_Git004/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Purple M. Stone">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stone's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2021/04/23/20210426_Git004/" class="post-title-link" itemprop="url">Mosh的Git课程笔记(4)--Branching</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2021-04-23 21:50:09" itemprop="dateCreated datePublished" datetime="2021-04-23T21:50:09+08:00">2021-04-23</time>
+              <time title="创建时间：2021-04-26 21:50:09" itemprop="dateCreated datePublished" datetime="2021-04-26T21:50:09+08:00">2021-04-26</time>
             </span>
           
             
@@ -465,7 +555,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-26 22:28:15" itemprop="dateModified" datetime="2021-04-26T22:28:15+08:00">2021-04-26</time>
+                <time title="修改时间：2021-04-27 09:09:57" itemprop="dateModified" datetime="2021-04-27T09:09:57+08:00">2021-04-27</time>
               </span>
             
           
@@ -494,7 +584,7 @@
       
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/04/23/20210426_Git004/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/04/23/20210426_Git004/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2021/04/26/20210426_Git004/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/04/26/20210426_Git004/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -724,7 +814,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/22/20210423_Git003/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/23/20210423_Git003/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Purple M. Stone">
@@ -738,7 +828,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2021/04/22/20210423_Git003/" class="post-title-link" itemprop="url">Mosh的Git课程笔记(3)--Browsing History</a>
+            <a href="/2021/04/23/20210423_Git003/" class="post-title-link" itemprop="url">Mosh的Git课程笔记(3)--Browsing History</a>
           
         </h1>
 
@@ -753,7 +843,7 @@
                 
               
 
-              <time title="创建时间：2021-04-22 21:50:09" itemprop="dateCreated datePublished" datetime="2021-04-22T21:50:09+08:00">2021-04-22</time>
+              <time title="创建时间：2021-04-23 21:50:09" itemprop="dateCreated datePublished" datetime="2021-04-23T21:50:09+08:00">2021-04-23</time>
             </span>
           
             
@@ -764,7 +854,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-26 21:18:20" itemprop="dateModified" datetime="2021-04-26T21:18:20+08:00">2021-04-26</time>
+                <time title="修改时间：2021-04-27 09:10:03" itemprop="dateModified" datetime="2021-04-27T09:10:03+08:00">2021-04-27</time>
               </span>
             
           
@@ -793,7 +883,7 @@
       
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/04/22/20210423_Git003/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/04/22/20210423_Git003/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2021/04/23/20210423_Git003/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/04/23/20210423_Git003/" itemprop="commentCount"></span></a>
   </span>
   
   
