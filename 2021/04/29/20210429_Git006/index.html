@@ -56,22 +56,19 @@
   };
 </script>
 
-  <meta name="description" content="Sound Representation计算声音特征的方法：将声波$w(t)$分解为子带包络$s_{n}(t)$（将声波滤波然后应用非线性）。1）在等效矩形带宽(ERB)尺度上应用40个带通滤波器$f_{n}$(加上一个低通和高通滤波器)，并取响应的希尔伯特包络线；2）将包络下采到90Hz（约为3样本&#x2F;帧）并压缩。  s_{n}&#x3D;D(|(w*f_{n})+jH(w*f_{n})|)^{c}$H$是">
+  <meta name="description" content="Mosh的课程网址 Why Rewrite History?1234------ Bad History ------👉 Poor commit messages👉 Large commits👉 Small commits 我们想要 clean history， 知道我们改了啥 123456------------- Tools -------------👉 Squash small, r">
 <meta property="og:type" content="article">
-<meta property="og:title" content="论文阅读笔记(6)-Visually Indicated Sounds">
-<meta property="og:url" content="http://yoursite.com/2020/12/25/20201225_VisuallyIndicatedSound/index.html">
+<meta property="og:title" content="Mosh的Git课程笔记(6)--Rewriting History">
+<meta property="og:url" content="http://yoursite.com/2021/04/29/20210429_Git006/index.html">
 <meta property="og:site_name" content="Stone&#39;s Blog">
-<meta property="og:description" content="Sound Representation计算声音特征的方法：将声波$w(t)$分解为子带包络$s_{n}(t)$（将声波滤波然后应用非线性）。1）在等效矩形带宽(ERB)尺度上应用40个带通滤波器$f_{n}$(加上一个低通和高通滤波器)，并取响应的希尔伯特包络线；2）将包络下采到90Hz（约为3样本&#x2F;帧）并压缩。  s_{n}&#x3D;D(|(w*f_{n})+jH(w*f_{n})|)^{c}$H$是">
+<meta property="og:description" content="Mosh的课程网址 Why Rewrite History?1234------ Bad History ------👉 Poor commit messages👉 Large commits👉 Small commits 我们想要 clean history， 知道我们改了啥 123456------------- Tools -------------👉 Squash small, r">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/images/VisualIndicatedSound/2.png">
-<meta property="og:image" content="http://yoursite.com/images/VisualIndicatedSound/1.png">
-<meta property="article:published_time" content="2020-12-25T03:50:09.000Z">
-<meta property="article:modified_time" content="2020-12-25T08:51:11.151Z">
+<meta property="article:published_time" content="2021-04-29T13:50:09.000Z">
+<meta property="article:modified_time" content="2021-04-29T08:30:39.495Z">
 <meta property="article:author" content="Purple M. Stone">
-<meta property="article:tag" content="paper notes-visual sound">
+<meta property="article:tag" content="job notes-git">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/images/VisualIndicatedSound/2.png">
-  <link rel="canonical" href="http://yoursite.com/2020/12/25/20201225_VisuallyIndicatedSound/">
+  <link rel="canonical" href="http://yoursite.com/2021/04/29/20210429_Git006/">
 
 
 <script id="page-configurations">
@@ -85,7 +82,7 @@
   };
 </script>
 
-  <title>论文阅读笔记(6)-Visually Indicated Sounds | Stone's Blog</title>
+  <title>Mosh的Git课程笔记(6)--Rewriting History | Stone's Blog</title>
   
 
 
@@ -250,7 +247,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/25/20201225_VisuallyIndicatedSound/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/29/20210429_Git006/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Purple M. Stone">
@@ -262,7 +259,7 @@
       <meta itemprop="name" content="Stone's Blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">论文阅读笔记(6)-Visually Indicated Sounds
+        <h1 class="post-title" itemprop="name headline">Mosh的Git课程笔记(6)--Rewriting History
 
           
         </h1>
@@ -278,7 +275,7 @@
                 
               
 
-              <time title="创建时间：2020-12-25 11:50:09 / 修改时间：16:51:11" itemprop="dateCreated datePublished" datetime="2020-12-25T11:50:09+08:00">2020-12-25</time>
+              <time title="创建时间：2021-04-29 21:50:09 / 修改时间：16:30:39" itemprop="dateCreated datePublished" datetime="2021-04-29T21:50:09+08:00">2021-04-29</time>
             </span>
           
             
@@ -291,7 +288,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Visual-Sound/" itemprop="url" rel="index"><span itemprop="name">Visual Sound</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a></span>
 
                 
                 
@@ -318,7 +315,7 @@
       
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/12/25/20201225_VisuallyIndicatedSound/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/25/20201225_VisuallyIndicatedSound/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2021/04/29/20210429_Git006/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/04/29/20210429_Git006/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -332,29 +329,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Sound-Representation"><a href="#Sound-Representation" class="headerlink" title="Sound Representation"></a>Sound Representation</h2><p>计算声音特征的方法：将声波$w(t)$分解为子带包络$s_{n}(t)$（将声波滤波然后应用非线性）。1）在等效矩形带宽(ERB)尺度上应用40个带通滤波器$f_{n}$(加上一个低通和高通滤波器)，并取响应的希尔伯特包络线；2）将包络下采到90Hz（约为3样本/帧）并压缩。</p>
-<script type="math/tex; mode=display">
-s_{n}=D(|(w*f_{n})+jH(w*f_{n})|)^{c}</script><p>$H$是希尔伯特变换，$D$表示下采样，压缩常数$c=0.3$。由此产生的表示被称为耳蜗图（cochleagram）。</p>
-<p><img src="/images/VisualIndicatedSound/2.png" alt="2" style="zoom:80%;"></p>
-<p>一般来说，撞击声如何捕捉材料的属性?为了从经验上评测这一点，文章使用子带包络作为特征向量，训练了一个线性支持向量机来预测数据库中的声音由哪个材料发出。文章对训练集重新采样，使每个类包含相同数量的撞击声(每类260个)。最终得到的材料分类器具有45.8% (chance = 5.9%)的分类平均精度(即每类精度值的平均值)，其混淆矩阵如图3(b)所示。这些结果表明，撞击声传达了有关材料的重要信息，因此，如果一个算法能够学习从图像中准确预测这些声音，它就会有关于材料类别的隐含知识。</p>
-<h2 id="Predicting-visually-indicated-sounds"><a href="#Predicting-visually-indicated-sounds" class="headerlink" title="Predicting visually indicated sounds"></a>Predicting visually indicated sounds</h2><p>将此任务建模为一个回归问题，目标是将一个视频帧序列映射为一个声频特征序列。使用的模型是RNN，以颜色和运动（motion）信息作为输入，预测出声频波形的子带包络。最后，从声音特征中产生波形。</p>
-<p><img src="/images/VisualIndicatedSound/1.png" alt="1" style="zoom:80%;"></p>
-<h3 id="Regressing-sound-features"><a href="#Regressing-sound-features" class="headerlink" title="Regressing sound features"></a>Regressing sound features</h3><p>输入图像序列：$I_{1}, I_{2}, …, I_{N}$</p>
-<p>输出声音特征序列：$\mathop{s_{1}}\limits ^{\rightarrow}, \mathop{s_{2}}\limits ^{\rightarrow}, \mathop{s_{T}}\limits ^{\rightarrow}, where \mathop{s_{t}}\limits ^{\rightarrow}\in \mathbb{R}^{42}$</p>
-<p>这些声音特征对应于图4中所示的耳蜗块。文章使用循环神经网络(RNN)来解决这个回归问题，它将卷积神经网络(CNN)计算的图像特征作为输入。</p>
-<p><strong>图像表示</strong>：如何表示运动（motion）信息？计算每一帧的spacetime图像，即三个通道是上一帧、当前帧和下一帧灰度版本的图像。对于每一帧$t$，通过拼接帧$t$的spacetime图像和第1帧的颜色图像的CNN特征来构建输入特征向量$x_{t}$，即</p>
-<script type="math/tex; mode=display">
-x_{t}=[\phi(F_{t}),\phi(I_{1})]</script><p>文章中训练的两种方式：1）从零开始初始化CNN，然后和RNN一起训练它；2）用一个为ImageNet分类训练的网络的权值初始化CNN。当使用预训练时，从卷积层中预计算特征，并仅对完全连接的层进行微调。</p>
-<p><strong>声音预测模型</strong>：使用基于LSTM的RNN模型。为了补偿视频和音频采样率之间的差异，文章中复制每个CNN特征向量$k$次（文章中使用$k=3$）</p>
-<script type="math/tex; mode=display">
-k=\lfloor T/N\rfloor</script><p>由此得到与声音特征序列等长的CNN特征序列$x_{1}, x_{2}, …, x_{N}$。在RNN的每个timestep，文章中使用当前图像特征向量$x_{t}$来更新隐藏变量$h_{t}$，然后通过一个仿射变换得到声音特征。为了使学习问题更简单，文中使用PCA在每个时间步长的42维特征向量投影到10维空间，然后预测这个低维向量。对网络进行评估时，反求PCA变换以获得声音特征。</p>
-<p>文章使用随机梯度下降以Caffe共同训练RNN和CNN。它有助于收敛去除dropout和剪辑大的梯度。当从头开始训练时，文中通过对视频进行裁剪和镜像转换来增强数据。文中也使用多个LSTM层（数量取决于任务）。</p>
-<h3 id="Generating-a-waveform"><a href="#Generating-a-waveform" class="headerlink" title="Generating a waveform"></a>Generating a waveform</h3><p>问题：如何从声音特征中产生声波？</p>
-<ol>
-<li>简单参数综合法：迭代地将子带包络加到白噪声样本上(文中只使用了一次迭代)。这种方法对于检查音频特征所捕获的信息非常有用，因为它代表了从特征到声音的直接转换。</li>
-<li>对于产生对于人耳似是而非的声音的任务，在从特征到波形的转换过程中，先施加一个强的自然声音是更有效的。因此使用基于实例的合成方法，该方法将声音特征的窗口捕捉到训练集中最接近的样本上。文中通过拼接预测的声音特征$\mathop{s_{1}}\limits ^{\rightarrow}, \mathop{s_{2}}\limits ^{\rightarrow}, …, \mathop{s_{T}}\limits ^{\rightarrow}$（或它们的一个子序列）形成一个查询向量，在$L_{1}$距离测量的训练集中寻找其最近的邻居，并传递相应的波形。</li>
-</ol>
-<p><a href="http://andrewowens.com/vis/" target="_blank" rel="noopener">项目网址</a></p>
+        <p><a href="https://codewithmosh.com/" target="_blank" rel="noopener">Mosh的课程网址</a></p>
+<h1 id="Why-Rewrite-History"><a href="#Why-Rewrite-History" class="headerlink" title="Why Rewrite History?"></a>Why Rewrite History?</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">------ Bad History ------</span><br><span class="line">👉 Poor commit messages</span><br><span class="line">👉 Large commits</span><br><span class="line">👉 Small commits</span><br></pre></td></tr></table></figure>
+<p>我们想要 clean history， 知道我们改了啥</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">------------- Tools -------------</span><br><span class="line">👉 Squash small, related commits</span><br><span class="line">👉 Split large commits</span><br><span class="line">👉 Reword commit messages</span><br><span class="line">👉 Drop unwanted commits</span><br><span class="line">👉 Modify commits</span><br></pre></td></tr></table></figure>
+<h1 id="The-Golden-Rule-of-Rewriting-History"><a href="#The-Golden-Rule-of-Rewriting-History" class="headerlink" title="The Golden Rule of Rewriting History"></a>The Golden Rule of Rewriting History</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DON&#39;T REWRITE PUBLIC HISTORY!</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -370,7 +349,7 @@ k=\lfloor T/N\rfloor</script><p>由此得到与声音特征序列等长的CNN特
           
           <div class="post-tags">
             
-              <a href="/tags/paper-notes-visual-sound/" rel="tag"># paper notes-visual sound</a>
+              <a href="/tags/job-notes-git/" rel="tag"># job notes-git</a>
             
           </div>
         
@@ -380,8 +359,8 @@ k=\lfloor T/N\rfloor</script><p>由此得到与声音特征序列等长的CNN特
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2020/12/22/20201222_VisualMicrophone/" rel="next" title="论文阅读笔记(5)-The Visual Microphone Passive Recovery of Sound from Video">
-                  <i class="fa fa-chevron-left"></i> 论文阅读笔记(5)-The Visual Microphone Passive Recovery of Sound from Video
+                <a href="/2021/04/27/20210427_Git005/" rel="next" title="Mosh的Git课程笔记(5)--Collaboration">
+                  <i class="fa fa-chevron-left"></i> Mosh的Git课程笔记(5)--Collaboration
                 </a>
               
             </div>
@@ -389,10 +368,6 @@ k=\lfloor T/N\rfloor</script><p>由此得到与声音特征序列等长的CNN特
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2020/12/25/20201225_VisualToSound/" rel="prev" title="论文阅读笔记(7)-Visual to Sound Generating Natural Sound for Videos in the Wild">
-                  论文阅读笔记(7)-Visual to Sound Generating Natural Sound for Videos in the Wild <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -444,7 +419,7 @@ k=\lfloor T/N\rfloor</script><p>由此得到与声音特征序列等长的CNN特
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sound-Representation"><span class="nav-number">1.</span> <span class="nav-text">Sound Representation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Predicting-visually-indicated-sounds"><span class="nav-number">2.</span> <span class="nav-text">Predicting visually indicated sounds</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Regressing-sound-features"><span class="nav-number">2.1.</span> <span class="nav-text">Regressing sound features</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generating-a-waveform"><span class="nav-number">2.2.</span> <span class="nav-text">Generating a waveform</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Why-Rewrite-History"><span class="nav-number">1.</span> <span class="nav-text">Why Rewrite History?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-Golden-Rule-of-Rewriting-History"><span class="nav-number">2.</span> <span class="nav-text">The Golden Rule of Rewriting History</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
