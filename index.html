@@ -241,6 +241,380 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/05/06/20210506_Python004/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Purple M. Stone">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stone's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2021/05/06/20210506_Python004/" class="post-title-link" itemprop="url">Mosh的Python课程笔记(4)--Functions</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2021-05-06 17:50:09 / 修改时间：21:02:52" itemprop="dateCreated datePublished" datetime="2021-05-06T17:50:09+08:00">2021-05-06</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/05/06/20210506_Python004/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/05/06/20210506_Python004/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="https://codewithmosh.com/" target="_blank" rel="noopener">Mosh的课程网址</a></p>
+<h1 id="Arguments"><a href="#Arguments" class="headerlink" title="Arguments"></a>Arguments</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">greet</span><span class="params">(first_name, last_name)</span>:</span></span><br><span class="line">    print(<span class="string">f"Hi <span class="subst">&#123;first_name&#125;</span> <span class="subst">&#123;last_name&#125;</span>"</span>)</span><br><span class="line">    print(<span class="string">"Welcome aboard"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">greet(<span class="string">"Stone"</span>, <span class="string">"Purple"</span>)</span><br><span class="line">greet(<span class="string">"Stephen"</span>, <span class="string">"Curry"</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="Types-of-Functions"><a href="#Types-of-Functions" class="headerlink" title="Types of Functions"></a>Types of Functions</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">👉 <span class="number">1</span> - Perform a task</span><br><span class="line">👉 <span class="number">2</span> - Return a value</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">greet</span><span class="params">(name)</span>:</span></span><br><span class="line">    <span class="string">""" Type 1 function """</span></span><br><span class="line">    print(<span class="string">f"Hi <span class="subst">&#123;name&#125;</span>"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_greeting</span><span class="params">(name)</span>:</span></span><br><span class="line">    <span class="string">""" Type 2 function """</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">f"Hi <span class="subst">&#123;name&#125;</span>"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">message = get_greeting(<span class="string">"Stone"</span>)</span><br><span class="line">file = open(<span class="string">"content.txt"</span>, <span class="string">"w"</span>)</span><br><span class="line">file.write(message)</span><br></pre></td></tr></table></figure>
+<p>python return <strong>None</strong> by default.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(greet(<span class="string">"Stone"</span>))</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">None</span><br></pre></td></tr></table></figure>
+<h1 id="Types-of-Arguments"><a href="#Types-of-Arguments" class="headerlink" title="Types of Arguments"></a>Types of Arguments</h1><h2 id="Keyword-Arguments"><a href="#Keyword-Arguments" class="headerlink" title="Keyword Arguments"></a>Keyword Arguments</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">increment</span><span class="params">(number, by)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> number + by</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># more readable: by=...</span></span><br><span class="line">print(increment(<span class="number">2</span>, by=<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="Default-Arguments"><a href="#Default-Arguments" class="headerlink" title="Default Arguments"></a>Default Arguments</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">increment</span><span class="params">(number, by=<span class="number">1</span>)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> number + by</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(increment(<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<p>所有 optional arguments 应该在无 default value 的 argument 后面</p>
+<h2 id="args"><a href="#args" class="headerlink" title="*args"></a>*args</h2><p>输入参数数量可变(存成一个tuple，且iterable)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">multiply</span><span class="params">(*numbers)</span>:</span></span><br><span class="line">    total = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> numbers:</span><br><span class="line">        total *= number</span><br><span class="line">    <span class="keyword">return</span> total</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(multiply(<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>))</span><br><span class="line">print(multiply(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">120</span><br><span class="line">1200</span><br></pre></td></tr></table></figure>
+<h2 id="args-1"><a href="#args-1" class="headerlink" title="**args"></a>**args</h2><p>打包 keyword arguments 成 dict 给函数体调用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">save_user</span><span class="params">(**user)</span>:</span></span><br><span class="line">    print(user)</span><br><span class="line">    print(user[<span class="string">"name"</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">save_user(id=<span class="number">1</span>, name=<span class="string">"John"</span>, age=<span class="number">22</span>)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#39;id&#39;: 1, &#39;name&#39;: &#39;John&#39;, &#39;age&#39;: 22&#125;</span><br><span class="line">John</span><br></pre></td></tr></table></figure>
+<h1 id="Scope"><a href="#Scope" class="headerlink" title="Scope"></a>Scope</h1><p>局部变量局部可见</p>
+<p>全局变量全局可见</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">message = <span class="string">"a"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">greet</span><span class="params">(name)</span>:</span></span><br><span class="line">    message = <span class="string">"b"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">greet(<span class="string">"Stone"</span>)</span><br><span class="line">print(message)</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a</span><br></pre></td></tr></table></figure>
+<p>因为 Python 将 greet 函数内的 message 视为 local variable，尽管它与全局变量同名。</p>
+<h1 id="Debugging"><a href="#Debugging" class="headerlink" title="Debugging"></a>Debugging</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">👉 F9 			-- 设置断点</span><br><span class="line">👉 F5 			-- 开始调试</span><br><span class="line">👉 F10 			-- 下一步</span><br><span class="line">👉 F11 			-- 进入 function 内单步 debug</span><br><span class="line">👉 Shift+F11 	-- 退出 function 内单步 debug</span><br></pre></td></tr></table></figure>
+<h1 id="VSCode-Tricks-Windows"><a href="#VSCode-Tricks-Windows" class="headerlink" title="VSCode Tricks (Windows)"></a>VSCode Tricks (Windows)</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">👉 Home 光标移到行首</span><br><span class="line">👉 End 光标移到行尾</span><br><span class="line">👉 Ctrl+Home 光标移到文件头</span><br><span class="line">👉 Ctrl+End 光标移到文件尾</span><br><span class="line">👉 Ctrl+L 选择当前行</span><br><span class="line">👉 Alt+↑&#x2F;↓ 代码上移&#x2F;下移</span><br></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/05/06/20210506_Python003/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Purple M. Stone">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stone's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2021/05/06/20210506_Python003/" class="post-title-link" itemprop="url">Mosh的Python课程笔记(3)--Control Flow</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2021-05-06 16:50:09 / 修改时间：16:03:04" itemprop="dateCreated datePublished" datetime="2021-05-06T16:50:09+08:00">2021-05-06</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/05/06/20210506_Python003/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/05/06/20210506_Python003/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="https://codewithmosh.com/" target="_blank" rel="noopener">Mosh的课程网址</a></p>
+<h1 id="Comparison-Operators"><a href="#Comparison-Operators" class="headerlink" title="Comparison Operators"></a>Comparison Operators</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">10</span> &gt; <span class="number">3</span></span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">10</span> &gt;= <span class="number">3</span></span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">10</span> &lt; <span class="number">20</span></span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">10</span> == <span class="number">10</span></span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">10</span> == <span class="string">"10"</span> </span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">10</span> != <span class="string">"10"</span> </span><br><span class="line"><span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">"bag"</span> &gt; <span class="string">"apple"</span> </span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">"bag"</span> == <span class="string">"BAG"</span>  </span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ord(<span class="string">"b"</span>) </span><br><span class="line"><span class="number">98</span>  </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ord(<span class="string">"B"</span>) </span><br><span class="line"><span class="number">66</span></span><br></pre></td></tr></table></figure>
+<h2 id="Chaining-Comparison-Operators"><a href="#Chaining-Comparison-Operators" class="headerlink" title="Chaining Comparison Operators"></a>Chaining Comparison Operators</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># age should be between 18 and 65</span></span><br><span class="line">age = <span class="number">22</span></span><br><span class="line"><span class="keyword">if</span> <span class="number">18</span> &lt;= age &lt; <span class="number">65</span>:</span><br><span class="line">    print(<span class="string">"Eligible"</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="Conditional-Statements"><a href="#Conditional-Statements" class="headerlink" title="Conditional Statements"></a>Conditional Statements</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">temperature = <span class="number">15</span></span><br><span class="line"><span class="keyword">if</span> temperature &gt; <span class="number">30</span>:</span><br><span class="line">    print(<span class="string">"It is warm"</span>)</span><br><span class="line">    print(<span class="string">"Drink water"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">elif</span> temperature &gt; <span class="number">20</span>:</span><br><span class="line">    print(<span class="string">"It's nice"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"It's cold"</span>)</span><br><span class="line">    </span><br><span class="line">print(<span class="string">"Done"</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="Ternary-Operator"><a href="#Ternary-Operator" class="headerlink" title="Ternary Operator"></a>Ternary Operator</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">age = <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># if age &gt;= 18:</span></span><br><span class="line"><span class="comment">#     message = "Eligible"</span></span><br><span class="line"><span class="comment"># else:</span></span><br><span class="line"><span class="comment">#     message = "Not eligible"</span></span><br><span class="line"></span><br><span class="line">message = <span class="string">"Eligible"</span> <span class="keyword">if</span> age &gt;= <span class="number">18</span> <span class="keyword">else</span> <span class="string">"Not eligible"</span></span><br><span class="line"></span><br><span class="line">print(message)</span><br></pre></td></tr></table></figure>
+<h1 id="Logical-Operators"><a href="#Logical-Operators" class="headerlink" title="Logical Operators"></a>Logical Operators</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># logical operators: and, or, not</span></span><br><span class="line"></span><br><span class="line">high_income = <span class="literal">True</span></span><br><span class="line">good_credit = <span class="literal">False</span></span><br><span class="line">student = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (high_income <span class="keyword">or</span> good_credit) <span class="keyword">and</span> <span class="keyword">not</span> student:</span><br><span class="line">    print(<span class="string">"Eligible"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"Not eligible"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="Short-circuit-Evaluation"><a href="#Short-circuit-Evaluation" class="headerlink" title="Short-circuit Evaluation"></a>Short-circuit Evaluation</h2><p>多条件判断时：</p>
+<p>and 前面的 expression 为 False, 则不再(执行)判断后面的expression</p>
+<p>or 前面的 expression 为 True, 则不再(执行)判断后面的expression</p>
+<h1 id="For-Loops"><a href="#For-Loops" class="headerlink" title="For Loops"></a>For Loops</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> number <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">10</span>, <span class="number">2</span>):		<span class="comment"># step: 2</span></span><br><span class="line">    print(<span class="string">"Attempt"</span>, number, number * <span class="string">"."</span>)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Attempt 1 .</span><br><span class="line">Attempt 3 ...</span><br><span class="line">Attempt 5 .....</span><br><span class="line">Attempt 7 .......</span><br><span class="line">Attempt 9 .........</span><br></pre></td></tr></table></figure>
+<h2 id="For…Else"><a href="#For…Else" class="headerlink" title="For…Else"></a>For…Else</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">successful = <span class="literal">False</span></span><br><span class="line"><span class="keyword">for</span> number <span class="keyword">in</span> range(<span class="number">3</span>):</span><br><span class="line">    print(<span class="string">"Attempt"</span>)</span><br><span class="line">    <span class="keyword">if</span> successful:</span><br><span class="line">        print(<span class="string">"Successful"</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"Attempted 3 times and failed."</span>)</span><br></pre></td></tr></table></figure>
+<p>如果一直没有执行break，就执行下面的else</p>
+<p>输出结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Attempt</span><br><span class="line">Attempt</span><br><span class="line">Attempt</span><br><span class="line">Attempted <span class="number">3</span> times <span class="keyword">and</span> failed</span><br></pre></td></tr></table></figure>
+<h2 id="Nested-Loops"><a href="#Nested-Loops" class="headerlink" title="Nested Loops"></a>Nested Loops</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> range(<span class="number">3</span>):</span><br><span class="line">        print(<span class="string">f"(<span class="subst">&#123;x&#125;</span>, <span class="subst">&#123;y&#125;</span>)"</span>)</span><br></pre></td></tr></table></figure>
+<p>输出结果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">(<span class="number">0</span>, <span class="number">2</span>)</span><br><span class="line">(<span class="number">1</span>, <span class="number">0</span>)</span><br><span class="line">(<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">(<span class="number">2</span>, <span class="number">0</span>)</span><br><span class="line">(<span class="number">2</span>, <span class="number">1</span>)</span><br><span class="line">(<span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line">(<span class="number">3</span>, <span class="number">0</span>)</span><br><span class="line">(<span class="number">3</span>, <span class="number">1</span>)</span><br><span class="line">(<span class="number">3</span>, <span class="number">2</span>)</span><br><span class="line">(<span class="number">4</span>, <span class="number">0</span>)</span><br><span class="line">(<span class="number">4</span>, <span class="number">1</span>)</span><br><span class="line">(<span class="number">4</span>, <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="Iterables"><a href="#Iterables" class="headerlink" title="Iterables"></a>Iterables</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Iterable : range(), string, list...</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> <span class="string">"Python"</span>:</span><br><span class="line">    print(x)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]:</span><br><span class="line">    print(x)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">P</span><br><span class="line">y</span><br><span class="line">t</span><br><span class="line">h</span><br><span class="line">o</span><br><span class="line">n</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+<h1 id="While-Loops"><a href="#While-Loops" class="headerlink" title="While Loops"></a>While Loops</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">command = <span class="string">""</span></span><br><span class="line"><span class="keyword">while</span> command.lower() != <span class="string">"quit"</span>:</span><br><span class="line">    command = input(<span class="string">"&gt;"</span>)</span><br><span class="line">    print(<span class="string">"ECHO"</span>, command)</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="number">2</span>+<span class="number">2</span></span><br><span class="line">ECHO <span class="number">2</span>+<span class="number">2</span></span><br><span class="line">&gt;<span class="number">3</span>*<span class="number">4</span>    </span><br><span class="line">ECHO <span class="number">3</span>*<span class="number">4</span></span><br><span class="line">&gt;quit   </span><br><span class="line">ECHO quit</span><br></pre></td></tr></table></figure>
+<h1 id="Infinite-Loops"><a href="#Infinite-Loops" class="headerlink" title="Infinite Loops"></a>Infinite Loops</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    command = input(<span class="string">"&gt;"</span>)</span><br><span class="line">    print(<span class="string">"ECHO"</span>, command)</span><br><span class="line">    <span class="keyword">if</span> command.lower() == <span class="string">"quit"</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<h1 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h1><p>编写一段code，输出1~10之间（不含10）的偶数，如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">8</span></span><br><span class="line">We have <span class="number">4</span> even numbers</span><br></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/05/06/20210506_Python002/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Purple M. Stone">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stone's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2021/05/06/20210506_Python002/" class="post-title-link" itemprop="url">Mosh的Python课程笔记(2)--基本类型</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2021-05-06 14:25:09 / 修改时间：16:02:40" itemprop="dateCreated datePublished" datetime="2021-05-06T14:25:09+08:00">2021-05-06</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/05/06/20210506_Python002/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/05/06/20210506_Python002/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="https://codewithmosh.com/" target="_blank" rel="noopener">Mosh的课程网址</a></p>
+<h1 id="Primitive-Types"><a href="#Primitive-Types" class="headerlink" title="Primitive Types"></a>Primitive Types</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">students_count = <span class="number">1000</span></span><br><span class="line">rating = <span class="number">4.99</span></span><br><span class="line">is_published = <span class="literal">False</span>    <span class="comment"># case sensitive (区分大小写)</span></span><br><span class="line">course_name = <span class="string">"Python Programming"</span></span><br></pre></td></tr></table></figure>
+<h1 id="String"><a href="#String" class="headerlink" title="String"></a>String</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">course_name = <span class="string">"Python Programming"</span></span><br><span class="line">message = <span class="string">"""</span></span><br><span class="line"><span class="string">Hi John</span></span><br><span class="line"><span class="string">This is Stone from China</span></span><br><span class="line"><span class="string">blablabla</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">course_name = <span class="string">"Python Programming"</span></span><br><span class="line">print(len(course_name))		<span class="comment"># 18</span></span><br><span class="line">print(course_name[<span class="number">0</span>])		<span class="comment"># P</span></span><br><span class="line">print(course_name[<span class="number">-1</span>])		<span class="comment"># g</span></span><br><span class="line">print(course_name[<span class="number">0</span>:<span class="number">3</span>])		<span class="comment"># Pyt</span></span><br><span class="line">print(course_name[<span class="number">0</span>:])		<span class="comment"># Python Programming</span></span><br><span class="line">print(course_name[:<span class="number">3</span>])		<span class="comment"># Pyt</span></span><br><span class="line">print(course_name[:])		<span class="comment"># Python Programming</span></span><br></pre></td></tr></table></figure>
+<h2 id="Escape-Sequences"><a href="#Escape-Sequences" class="headerlink" title="Escape Sequences"></a>Escape Sequences</h2><p>转义字符</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">course_name = <span class="string">"Python \"Programming"</span></span><br><span class="line">print(course_name) 	<span class="comment"># Python "Programming</span></span><br><span class="line"><span class="comment"># \"    \'   \\   \n</span></span><br></pre></td></tr></table></figure>
+<h2 id="Formatted-Strings"><a href="#Formatted-Strings" class="headerlink" title="Formatted Strings"></a>Formatted Strings</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">first = <span class="string">"Stone"</span></span><br><span class="line">last = <span class="string">"Purple"</span></span><br><span class="line">full = <span class="string">f"<span class="subst">&#123;first&#125;</span> <span class="subst">&#123;last&#125;</span>"</span></span><br><span class="line">print(full)						<span class="comment"># Stone Purple</span></span><br><span class="line">print(<span class="string">f"<span class="subst">&#123;len(first)&#125;</span> <span class="subst">&#123;<span class="number">2</span> + <span class="number">2</span>&#125;</span>"</span>)	<span class="comment"># 5 4</span></span><br></pre></td></tr></table></figure>
+<h2 id="String-Methods"><a href="#String-Methods" class="headerlink" title="String Methods"></a>String Methods</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">course = <span class="string">"  Python Programming"</span></span><br><span class="line">print(course.upper())</span><br><span class="line">print(course.lower())</span><br><span class="line">print(course.title())</span><br><span class="line">print(course.strip())  <span class="comment"># lstrip, rstrip</span></span><br><span class="line">print(course.find(<span class="string">"Pro"</span>))</span><br><span class="line">print(course.replace(<span class="string">"P"</span>, <span class="string">"J"</span>))</span><br><span class="line">print(<span class="string">"Pro"</span> <span class="keyword">in</span> course)</span><br><span class="line">print(<span class="string">"swift"</span> <span class="keyword">not</span> <span class="keyword">in</span> course)</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  PYTHON PROGRAMMING</span><br><span class="line">  python programming</span><br><span class="line">  Python Programming</span><br><span class="line">Python Programming</span><br><span class="line"><span class="number">9</span></span><br><span class="line">  Jython Jrogramming</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<h1 id="Numbers"><a href="#Numbers" class="headerlink" title="Numbers"></a>Numbers</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">1</span></span><br><span class="line">x = <span class="number">1.1</span></span><br><span class="line">x = <span class="number">1</span> + <span class="number">2j</span>  <span class="comment"># complex number</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 	+	 -	 *	 /	 %	 //		 **</span></span><br><span class="line">print(<span class="number">10</span> / <span class="number">3</span>)   	<span class="comment"># 3.3333333333333335</span></span><br><span class="line">print(<span class="number">10</span> // <span class="number">3</span>)		<span class="comment"># 3</span></span><br><span class="line">print(<span class="number">10</span> ** <span class="number">3</span>)		<span class="comment"># 1000</span></span><br><span class="line"></span><br><span class="line">x = <span class="number">10</span></span><br><span class="line">x = x + <span class="number">3</span></span><br><span class="line">x += <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<h2 id="Working-with-Numbers"><a href="#Working-with-Numbers" class="headerlink" title="Working with Numbers"></a>Working with Numbers</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line">print(round(<span class="number">2.9</span>))		<span class="comment"># 3</span></span><br><span class="line">print(abs(<span class="number">-2.9</span>))		<span class="comment"># 2.9</span></span><br><span class="line"></span><br><span class="line">print(math.ceil(<span class="number">2.2</span>))	<span class="comment"># 3</span></span><br></pre></td></tr></table></figure>
+<h2 id="Type-Conversion"><a href="#Type-Conversion" class="headerlink" title="Type Conversion"></a>Type Conversion</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = input(<span class="string">"x: "</span>)</span><br><span class="line">print(type(x))</span><br><span class="line">y = int(x) + <span class="number">1</span>		<span class="comment"># type conversion</span></span><br><span class="line">print(<span class="string">f"x: <span class="subst">&#123;x&#125;</span>, y: <span class="subst">&#123;y&#125;</span>"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x: <span class="number">2</span></span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">str</span>'&gt;</span></span><br><span class="line"><span class="class"><span class="title">x</span>:</span> <span class="number">2</span>, y: <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<p>对于bool(x)，为 False 的情况<strong>只有</strong>：“”，0，None</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(bool(<span class="string">""</span>))			<span class="comment"># False</span></span><br></pre></td></tr></table></figure>
+<h1 id="Quiz"><a href="#Quiz" class="headerlink" title="Quiz"></a>Quiz</h1><p>👉 What are the primitive types in Python?</p>
+<p>👉 What are the results?</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fruit = <span class="string">"Apple"</span></span><br><span class="line">print(fruit[<span class="number">1</span>])</span><br><span class="line">print(fruit[<span class="number">1</span>:<span class="number">-1</span>])</span><br></pre></td></tr></table></figure>
+<p>👉 What are the results?</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="number">10</span> % <span class="number">3</span>)</span><br><span class="line">print(bool(<span class="string">"False"</span>))</span><br></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/05/06/20210506_Python001/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -270,7 +644,7 @@
                 
               
 
-              <time title="创建时间：2021-05-06 21:50:09 / 修改时间：11:04:22" itemprop="dateCreated datePublished" datetime="2021-05-06T21:50:09+08:00">2021-05-06</time>
+              <time title="创建时间：2021-05-06 12:50:09 / 修改时间：14:25:57" itemprop="dateCreated datePublished" datetime="2021-05-06T12:50:09+08:00">2021-05-06</time>
             </span>
           
             
@@ -352,126 +726,6 @@
 <h1 id="Quiz"><a href="#Quiz" class="headerlink" title="Quiz"></a>Quiz</h1><p>👉 What is an expression?</p>
 <p>👉 What is an syntax error?</p>
 <p>👉 What does a linter do?</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/05/06/20210506_Python002/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Purple M. Stone">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stone's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2021/05/06/20210506_Python002/" class="post-title-link" itemprop="url">Mosh的Python课程笔记(2)--基本类型</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2021-05-06 21:50:09 / 修改时间：14:25:07" itemprop="dateCreated datePublished" datetime="2021-05-06T21:50:09+08:00">2021-05-06</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/05/06/20210506_Python002/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/05/06/20210506_Python002/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a href="https://codewithmosh.com/" target="_blank" rel="noopener">Mosh的课程网址</a></p>
-<h1 id="Primitive-Types"><a href="#Primitive-Types" class="headerlink" title="Primitive Types"></a>Primitive Types</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">students_count = <span class="number">1000</span></span><br><span class="line">rating = <span class="number">4.99</span></span><br><span class="line">is_published = <span class="literal">False</span>    <span class="comment"># case sensitive (区分大小写)</span></span><br><span class="line">course_name = <span class="string">"Python Programming"</span></span><br></pre></td></tr></table></figure>
-<h1 id="String"><a href="#String" class="headerlink" title="String"></a>String</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">course_name = <span class="string">"Python Programming"</span></span><br><span class="line">message = <span class="string">"""</span></span><br><span class="line"><span class="string">Hi John</span></span><br><span class="line"><span class="string">This is Stone from China</span></span><br><span class="line"><span class="string">blablabla</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">course_name = <span class="string">"Python Programming"</span></span><br><span class="line">print(len(course_name))		<span class="comment"># 18</span></span><br><span class="line">print(course_name[<span class="number">0</span>])		<span class="comment"># P</span></span><br><span class="line">print(course_name[<span class="number">-1</span>])		<span class="comment"># g</span></span><br><span class="line">print(course_name[<span class="number">0</span>:<span class="number">3</span>])		<span class="comment"># Pyt</span></span><br><span class="line">print(course_name[<span class="number">0</span>:])		<span class="comment"># Python Programming</span></span><br><span class="line">print(course_name[:<span class="number">3</span>])		<span class="comment"># Pyt</span></span><br><span class="line">print(course_name[:])		<span class="comment"># Python Programming</span></span><br></pre></td></tr></table></figure>
-<h2 id="Escape-Sequences"><a href="#Escape-Sequences" class="headerlink" title="Escape Sequences"></a>Escape Sequences</h2><p>转义字符</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">course_name = <span class="string">"Python \"Programming"</span></span><br><span class="line">print(course_name) 	<span class="comment"># Python "Programming</span></span><br><span class="line"><span class="comment"># \"    \'   \\   \n</span></span><br></pre></td></tr></table></figure>
-<h2 id="Formatted-Strings"><a href="#Formatted-Strings" class="headerlink" title="Formatted Strings"></a>Formatted Strings</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">first = <span class="string">"Stone"</span></span><br><span class="line">last = <span class="string">"Purple"</span></span><br><span class="line">full = <span class="string">f"<span class="subst">&#123;first&#125;</span> <span class="subst">&#123;last&#125;</span>"</span></span><br><span class="line">print(full)						<span class="comment"># Stone Purple</span></span><br><span class="line">print(<span class="string">f"<span class="subst">&#123;len(first)&#125;</span> <span class="subst">&#123;<span class="number">2</span> + <span class="number">2</span>&#125;</span>"</span>)	<span class="comment"># 5 4</span></span><br></pre></td></tr></table></figure>
-<h2 id="String-Methods"><a href="#String-Methods" class="headerlink" title="String Methods"></a>String Methods</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">course = <span class="string">"  Python Programming"</span></span><br><span class="line">print(course.upper())</span><br><span class="line">print(course.lower())</span><br><span class="line">print(course.title())</span><br><span class="line">print(course.strip())  <span class="comment"># lstrip, rstrip</span></span><br><span class="line">print(course.find(<span class="string">"Pro"</span>))</span><br><span class="line">print(course.replace(<span class="string">"P"</span>, <span class="string">"J"</span>))</span><br><span class="line">print(<span class="string">"Pro"</span> <span class="keyword">in</span> course)</span><br><span class="line">print(<span class="string">"swift"</span> <span class="keyword">not</span> <span class="keyword">in</span> course)</span><br></pre></td></tr></table></figure>
-<p>输出结果：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  PYTHON PROGRAMMING</span><br><span class="line">  python programming</span><br><span class="line">  Python Programming</span><br><span class="line">Python Programming</span><br><span class="line"><span class="number">9</span></span><br><span class="line">  Jython Jrogramming</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="literal">True</span></span><br></pre></td></tr></table></figure>
-<h1 id="Numbers"><a href="#Numbers" class="headerlink" title="Numbers"></a>Numbers</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">1</span></span><br><span class="line">x = <span class="number">1.1</span></span><br><span class="line">x = <span class="number">1</span> + <span class="number">2j</span>  <span class="comment"># complex number</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 	+	 -	 *	 /	 %	 //		 **</span></span><br><span class="line">print(<span class="number">10</span> / <span class="number">3</span>)   	<span class="comment"># 3.3333333333333335</span></span><br><span class="line">print(<span class="number">10</span> // <span class="number">3</span>)		<span class="comment"># 3</span></span><br><span class="line">print(<span class="number">10</span> ** <span class="number">3</span>)		<span class="comment"># 1000</span></span><br><span class="line"></span><br><span class="line">x = <span class="number">10</span></span><br><span class="line">x = x + <span class="number">3</span></span><br><span class="line">x += <span class="number">3</span></span><br></pre></td></tr></table></figure>
-<h2 id="Working-with-Numbers"><a href="#Working-with-Numbers" class="headerlink" title="Working with Numbers"></a>Working with Numbers</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line">print(round(<span class="number">2.9</span>))		<span class="comment"># 3</span></span><br><span class="line">print(abs(<span class="number">-2.9</span>))		<span class="comment"># 2.9</span></span><br><span class="line"></span><br><span class="line">print(math.ceil(<span class="number">2.2</span>))	<span class="comment"># 3</span></span><br></pre></td></tr></table></figure>
-<h2 id="Type-Conversion"><a href="#Type-Conversion" class="headerlink" title="Type Conversion"></a>Type Conversion</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = input(<span class="string">"x: "</span>)</span><br><span class="line">print(type(x))</span><br><span class="line">y = int(x) + <span class="number">1</span>		<span class="comment"># type conversion</span></span><br><span class="line">print(<span class="string">f"x: <span class="subst">&#123;x&#125;</span>, y: <span class="subst">&#123;y&#125;</span>"</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x: <span class="number">2</span></span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">str</span>'&gt;</span></span><br><span class="line"><span class="class"><span class="title">x</span>:</span> <span class="number">2</span>, y: <span class="number">3</span></span><br></pre></td></tr></table></figure>
-<p>对于bool(x)，为 False 的情况<strong>只有</strong>：“”，0，None</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(bool(<span class="string">""</span>))			<span class="comment"># False</span></span><br></pre></td></tr></table></figure>
-<h1 id="Quiz"><a href="#Quiz" class="headerlink" title="Quiz"></a>Quiz</h1><p>👉 What are the primitive types in Python?</p>
-<p>👉 What are the results?</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fruit = <span class="string">"Apple"</span></span><br><span class="line">print(fruit[<span class="number">1</span>])</span><br><span class="line">print(fruit[<span class="number">1</span>:<span class="number">-1</span>])</span><br></pre></td></tr></table></figure>
-<p>👉 What are the results?</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="number">10</span> % <span class="number">3</span>)</span><br><span class="line">print(bool(<span class="string">"False"</span>))</span><br></pre></td></tr></table></figure>
 
         
       
@@ -1837,234 +2091,6 @@
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/20/20210420_SQL001/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Purple M. Stone">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stone's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2021/04/20/20210420_SQL001/" class="post-title-link" itemprop="url">MySQL笔记(1)--基础语句</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2021-04-20 19:50:09 / 修改时间：21:05:45" itemprop="dateCreated datePublished" datetime="2021-04-20T19:50:09+08:00">2021-04-20</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/04/20/20210420_SQL001/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/04/20/20210420_SQL001/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="SELECT-子句"><a href="#SELECT-子句" class="headerlink" title="SELECT 子句"></a>SELECT 子句</h1><p>从一张表（customers）中选取某些列</p>
-<p><img src="/images/SQL1/001.png" style="zoom: 150%;"></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  first_name, </span><br><span class="line">  last_name, </span><br><span class="line">  points, </span><br><span class="line">  points * <span class="number">10</span> + <span class="number">100</span> <span class="keyword">AS</span> <span class="string">"discount factor"</span>   <span class="comment">-- 可以进行数学运算,AS来rename</span></span><br><span class="line"><span class="keyword">FROM</span> customers</span><br></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> state <span class="comment">-- DISTINCT 只保留重复项中的一项</span></span><br><span class="line"><span class="keyword">FROM</span> customers</span><br></pre></td></tr></table></figure>
-<h1 id="WHERE-子句"><a href="#WHERE-子句" class="headerlink" title="WHERE 子句"></a>WHERE 子句</h1><p>过滤作用，根据条件选择records</p>
-<p>(各个WHERE子句只是提供不同的示例，运行时选择一个WHERE子句，其余注释掉，下文同)</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">WHERE</span> state = <span class="string">'va'</span> <span class="comment">-- va大小写一样的</span></span><br><span class="line"><span class="keyword">WHERE</span> state &lt;&gt; <span class="string">'va'</span> <span class="comment">-- not in VA</span></span><br><span class="line"><span class="keyword">WHERE</span> birth_date &gt; <span class="string">'1990-01-01'</span> <span class="comment">-- born after 1990/01/01</span></span><br></pre></td></tr></table></figure>
-<p>运算符有：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;</span><br><span class="line">&gt;=</span><br><span class="line">&lt;</span><br><span class="line">&lt;=</span><br><span class="line">=</span><br><span class="line">(not equal)  !=  or  &lt;&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="AND-OR-NOT-运算符"><a href="#AND-OR-NOT-运算符" class="headerlink" title="AND, OR, NOT 运算符"></a>AND, OR, NOT 运算符</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">NOT</span> (birth_date &gt; <span class="string">'1990-01-01'</span> <span class="keyword">OR</span> points &gt; <span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
-<p>AND优先级高于OR</p>
-<h1 id="IN-运算符"><a href="#IN-运算符" class="headerlink" title="IN 运算符"></a>IN 运算符</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="comment">-- WHERE state = 'VA' OR state = 'GA' OR state = 'FL'</span></span><br><span class="line"><span class="comment">-- 用IN改写：</span></span><br><span class="line"><span class="keyword">WHERE</span> state <span class="keyword">IN</span> (<span class="string">'VA'</span>, <span class="string">'GA'</span>, <span class="string">'FL'</span>)</span><br><span class="line"><span class="comment">-- WHERE state NOT IN ('VA', 'GA', 'FL') -- 返回不在这些州的 records</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 这样是错的：WHERE state = 'VA' OR 'GA' OR 'FL' </span></span><br><span class="line"><span class="comment">-- 因为我们不能用OR连接布尔表达式state = 'VA'和字符串'GA'</span></span><br></pre></td></tr></table></figure>
-<h1 id="BETWEEN-运算符"><a href="#BETWEEN-运算符" class="headerlink" title="BETWEEN 运算符"></a>BETWEEN 运算符</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="comment">-- WHERE points &gt;= 1000 AND points &lt;=3000</span></span><br><span class="line"><span class="comment">-- 改写为：</span></span><br><span class="line"><span class="keyword">WHERE</span> points <span class="keyword">BETWEEN</span> <span class="number">1000</span> <span class="keyword">AND</span> <span class="number">3000</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 也可用于非数值</span></span><br><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">WHERE</span> birth_date <span class="keyword">BETWEEN</span> <span class="string">"1990-01-01"</span> <span class="keyword">AND</span> <span class="string">"2000-01-01"</span></span><br></pre></td></tr></table></figure>
-<h1 id="LIKE-运算符"><a href="#LIKE-运算符" class="headerlink" title="LIKE 运算符"></a>LIKE 运算符</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 字符串模式匹配</span></span><br><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">WHERE</span> last_name <span class="keyword">LIKE</span> <span class="string">'b%'</span> </span><br><span class="line"><span class="comment">-- 得到last name以'B'或'b'开头的records</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name <span class="keyword">LIKE</span> <span class="string">'brush%'</span> </span><br><span class="line"><span class="comment">-- 得到last name以“brush”开头的records</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name <span class="keyword">LIKE</span> <span class="string">'%b%'</span> </span><br><span class="line"><span class="comment">-- 表示'b'前后可以有任意字符数('b'在开头、中间、结尾出现皆可)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name <span class="keyword">LIKE</span> <span class="string">'%y'</span> </span><br><span class="line"><span class="comment">-- 得到last name以'y'结尾的records</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name <span class="keyword">LIKE</span> <span class="string">'_____y'</span> </span><br><span class="line"><span class="comment">-- 得到last name以'y'结尾且只有6个字符('_'填补表示任意字符)的records</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name <span class="keyword">LIKE</span> <span class="string">'b____y'</span> </span><br><span class="line"><span class="comment">-- 运行后得到last name以'b'开头以'y'结尾且只有6个字符的record(本例中为'Boagey')</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/***SUMMARY**/</span> </span><br><span class="line">% any number of characters</span><br><span class="line">_ single character</span><br></pre></td></tr></table></figure>
-<h1 id="REGEXP-运算符"><a href="#REGEXP-运算符" class="headerlink" title="REGEXP 运算符"></a>REGEXP 运算符</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- regular expression (REGEXP) 正则表达式</span></span><br><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name <span class="keyword">LIKE</span> <span class="string">'%field%'</span></span><br><span class="line"><span class="comment">-- WHERE last_name REGEXP 'field'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name REGEXP <span class="string">'^field'</span> </span><br><span class="line"><span class="comment">-- last name must starts with "field"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name REGEXP <span class="string">'field$'</span> </span><br><span class="line"><span class="comment">-- last name must ends with "field"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* use '|' for multiple search pattern */</span> </span><br><span class="line"><span class="keyword">WHERE</span> last_name REGEXP <span class="string">'field|mac|rose'</span> </span><br><span class="line"><span class="comment">-- last name must contains "field" or "mac" or "rose"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name REGEXP <span class="string">'field$|mac|rose'</span> </span><br><span class="line"><span class="comment">-- last name must ends with "field" or contains "mac"/"rose"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name REGEXP <span class="string">'[gim]e'</span> </span><br><span class="line"><span class="comment">-- last name must contains "ge"/"ie"/"me"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name REGEXP <span class="string">'e[gim]'</span> </span><br><span class="line"><span class="comment">-- last name must contains "eg"/"ei"/"em"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name REGEXP <span class="string">'[a-h]e'</span></span><br><span class="line"><span class="comment">-- the same as WHERE last_name REGEXP '[abcdefgh]e'</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">^ 	beginning</span><br><span class="line">$ 	end</span><br><span class="line">| 	logical or</span><br><span class="line">[abcd]</span><br><span class="line">[a-f]</span><br></pre></td></tr></table></figure>
-<h1 id="IS-NULL-运算符"><a href="#IS-NULL-运算符" class="headerlink" title="IS NULL 运算符"></a>IS NULL 运算符</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">WHERE</span> phone <span class="keyword">IS</span> <span class="literal">NULL</span>  <span class="comment">-- 返回没有phone(该字段为NULL)的records</span></span><br><span class="line"><span class="keyword">WHERE</span> phone <span class="keyword">IS</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="comment">-- phone不为空</span></span><br></pre></td></tr></table></figure>
-<h1 id="ORDER-BY-子句"><a href="#ORDER-BY-子句" class="headerlink" title="ORDER BY 子句"></a>ORDER BY 子句</h1><p>默认是按照主键（primary key）排序，使用ORDER BY 子句可以指定排序的键</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> first_name        <span class="comment">-- 根据first_name字段值升序排序</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> first_name <span class="keyword">DESC</span>   <span class="comment">-- 根据first_name字段值降序排序</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> state <span class="keyword">DESC</span>, first_name </span><br><span class="line"><span class="comment">--先根据state降序排列，state相同的根据first_name升序排列</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- birth_date不在选出来的列里，still work</span></span><br><span class="line"><span class="keyword">SELECT</span> first_name, last_name</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> birth_date</span><br></pre></td></tr></table></figure>
-<h1 id="LIMIT-子句"><a href="#LIMIT-子句" class="headerlink" title="LIMIT 子句"></a>LIMIT 子句</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">3</span> 		<span class="comment">-- 返回前3个records</span></span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">300</span> 		<span class="comment">-- 300 &gt; #record, 返回全部records</span></span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">6</span>, <span class="number">3</span>  	<span class="comment">-- 跳过前6个records，返回第7，8，9个records</span></span><br></pre></td></tr></table></figure>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/12/20210312_DongAlgNote/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Purple M. Stone">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stone's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2021/03/12/20210312_DongAlgNote/" class="post-title-link" itemprop="url">数据结构与算法笔记(1)</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2021-03-12 10:50:09 / 修改时间：10:49:37" itemprop="dateCreated datePublished" datetime="2021-03-12T10:50:09+08:00">2021-03-12</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/03/12/20210312_DongAlgNote/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/03/12/20210312_DongAlgNote/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="数组与链表"><a href="#数组与链表" class="headerlink" title="数组与链表"></a>数组与链表</h1><p><strong>数据结构的存储方式只有两种：数组（顺序存储）和链表（链式存储）</strong>。</p>
-<p>那些多样化的数据结构，究其源头，都是在链表或者数组上的特殊操作，API 不同而已</p>
-<p><strong>数组</strong>由于是紧凑连续存储,可以随机访问，通过索引快速找到对应元素，而且相对节约存储空间。但正因为连续存储，内存空间必须一次性分配够，所以说数组如果要扩容，需要重新分配一块更大的空间，再把数据全部复制过去，时间复杂度 O(N)；而且你如果想在数组中间进行插入和删除，每次必须搬移后面的所有数据以保持连续，时间复杂度 O(N)。</p>
-<p><strong>链表</strong>因为元素不连续，而是靠指针指向下一个元素的位置，所以不存在数组的扩容问题；如果知道某一元素的前驱和后驱，操作指针即可删除该元素或者插入新元素，时间复杂度 O(1)。但是正因为存储空间不连续，你无法根据一个索引算出对应元素的地址，所以不能随机访问；而且由于每个元素必须存储指向前后元素位置的指针，会消耗相对更多的储存空间。</p>
-<h1 id="数据结构基本操作"><a href="#数据结构基本操作" class="headerlink" title="数据结构基本操作"></a>数据结构基本操作</h1><p>遍历 + 访问：增删查改（<strong>在不同的应用场景，尽可能高效地增删查改</strong>）</p>
-<p>方式：线性-for/while；非线性-递归</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
@@ -2117,7 +2143,7 @@
         
           <a href="/archives/%20%7C%7C%20archive">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

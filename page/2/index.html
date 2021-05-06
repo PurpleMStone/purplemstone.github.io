@@ -241,6 +241,234 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/20/20210420_SQL001/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Purple M. Stone">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stone's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2021/04/20/20210420_SQL001/" class="post-title-link" itemprop="url">MySQL笔记(1)--基础语句</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2021-04-20 19:50:09 / 修改时间：21:05:45" itemprop="dateCreated datePublished" datetime="2021-04-20T19:50:09+08:00">2021-04-20</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/04/20/20210420_SQL001/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/04/20/20210420_SQL001/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="SELECT-子句"><a href="#SELECT-子句" class="headerlink" title="SELECT 子句"></a>SELECT 子句</h1><p>从一张表（customers）中选取某些列</p>
+<p><img src="/images/SQL1/001.png" style="zoom: 150%;"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  first_name, </span><br><span class="line">  last_name, </span><br><span class="line">  points, </span><br><span class="line">  points * <span class="number">10</span> + <span class="number">100</span> <span class="keyword">AS</span> <span class="string">"discount factor"</span>   <span class="comment">-- 可以进行数学运算,AS来rename</span></span><br><span class="line"><span class="keyword">FROM</span> customers</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> state <span class="comment">-- DISTINCT 只保留重复项中的一项</span></span><br><span class="line"><span class="keyword">FROM</span> customers</span><br></pre></td></tr></table></figure>
+<h1 id="WHERE-子句"><a href="#WHERE-子句" class="headerlink" title="WHERE 子句"></a>WHERE 子句</h1><p>过滤作用，根据条件选择records</p>
+<p>(各个WHERE子句只是提供不同的示例，运行时选择一个WHERE子句，其余注释掉，下文同)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">WHERE</span> state = <span class="string">'va'</span> <span class="comment">-- va大小写一样的</span></span><br><span class="line"><span class="keyword">WHERE</span> state &lt;&gt; <span class="string">'va'</span> <span class="comment">-- not in VA</span></span><br><span class="line"><span class="keyword">WHERE</span> birth_date &gt; <span class="string">'1990-01-01'</span> <span class="comment">-- born after 1990/01/01</span></span><br></pre></td></tr></table></figure>
+<p>运算符有：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;</span><br><span class="line">&gt;=</span><br><span class="line">&lt;</span><br><span class="line">&lt;=</span><br><span class="line">=</span><br><span class="line">(not equal)  !=  or  &lt;&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="AND-OR-NOT-运算符"><a href="#AND-OR-NOT-运算符" class="headerlink" title="AND, OR, NOT 运算符"></a>AND, OR, NOT 运算符</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">NOT</span> (birth_date &gt; <span class="string">'1990-01-01'</span> <span class="keyword">OR</span> points &gt; <span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
+<p>AND优先级高于OR</p>
+<h1 id="IN-运算符"><a href="#IN-运算符" class="headerlink" title="IN 运算符"></a>IN 运算符</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="comment">-- WHERE state = 'VA' OR state = 'GA' OR state = 'FL'</span></span><br><span class="line"><span class="comment">-- 用IN改写：</span></span><br><span class="line"><span class="keyword">WHERE</span> state <span class="keyword">IN</span> (<span class="string">'VA'</span>, <span class="string">'GA'</span>, <span class="string">'FL'</span>)</span><br><span class="line"><span class="comment">-- WHERE state NOT IN ('VA', 'GA', 'FL') -- 返回不在这些州的 records</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 这样是错的：WHERE state = 'VA' OR 'GA' OR 'FL' </span></span><br><span class="line"><span class="comment">-- 因为我们不能用OR连接布尔表达式state = 'VA'和字符串'GA'</span></span><br></pre></td></tr></table></figure>
+<h1 id="BETWEEN-运算符"><a href="#BETWEEN-运算符" class="headerlink" title="BETWEEN 运算符"></a>BETWEEN 运算符</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="comment">-- WHERE points &gt;= 1000 AND points &lt;=3000</span></span><br><span class="line"><span class="comment">-- 改写为：</span></span><br><span class="line"><span class="keyword">WHERE</span> points <span class="keyword">BETWEEN</span> <span class="number">1000</span> <span class="keyword">AND</span> <span class="number">3000</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 也可用于非数值</span></span><br><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">WHERE</span> birth_date <span class="keyword">BETWEEN</span> <span class="string">"1990-01-01"</span> <span class="keyword">AND</span> <span class="string">"2000-01-01"</span></span><br></pre></td></tr></table></figure>
+<h1 id="LIKE-运算符"><a href="#LIKE-运算符" class="headerlink" title="LIKE 运算符"></a>LIKE 运算符</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 字符串模式匹配</span></span><br><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">WHERE</span> last_name <span class="keyword">LIKE</span> <span class="string">'b%'</span> </span><br><span class="line"><span class="comment">-- 得到last name以'B'或'b'开头的records</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name <span class="keyword">LIKE</span> <span class="string">'brush%'</span> </span><br><span class="line"><span class="comment">-- 得到last name以“brush”开头的records</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name <span class="keyword">LIKE</span> <span class="string">'%b%'</span> </span><br><span class="line"><span class="comment">-- 表示'b'前后可以有任意字符数('b'在开头、中间、结尾出现皆可)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name <span class="keyword">LIKE</span> <span class="string">'%y'</span> </span><br><span class="line"><span class="comment">-- 得到last name以'y'结尾的records</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name <span class="keyword">LIKE</span> <span class="string">'_____y'</span> </span><br><span class="line"><span class="comment">-- 得到last name以'y'结尾且只有6个字符('_'填补表示任意字符)的records</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name <span class="keyword">LIKE</span> <span class="string">'b____y'</span> </span><br><span class="line"><span class="comment">-- 运行后得到last name以'b'开头以'y'结尾且只有6个字符的record(本例中为'Boagey')</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/***SUMMARY**/</span> </span><br><span class="line">% any number of characters</span><br><span class="line">_ single character</span><br></pre></td></tr></table></figure>
+<h1 id="REGEXP-运算符"><a href="#REGEXP-运算符" class="headerlink" title="REGEXP 运算符"></a>REGEXP 运算符</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- regular expression (REGEXP) 正则表达式</span></span><br><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name <span class="keyword">LIKE</span> <span class="string">'%field%'</span></span><br><span class="line"><span class="comment">-- WHERE last_name REGEXP 'field'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name REGEXP <span class="string">'^field'</span> </span><br><span class="line"><span class="comment">-- last name must starts with "field"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name REGEXP <span class="string">'field$'</span> </span><br><span class="line"><span class="comment">-- last name must ends with "field"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* use '|' for multiple search pattern */</span> </span><br><span class="line"><span class="keyword">WHERE</span> last_name REGEXP <span class="string">'field|mac|rose'</span> </span><br><span class="line"><span class="comment">-- last name must contains "field" or "mac" or "rose"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name REGEXP <span class="string">'field$|mac|rose'</span> </span><br><span class="line"><span class="comment">-- last name must ends with "field" or contains "mac"/"rose"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name REGEXP <span class="string">'[gim]e'</span> </span><br><span class="line"><span class="comment">-- last name must contains "ge"/"ie"/"me"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name REGEXP <span class="string">'e[gim]'</span> </span><br><span class="line"><span class="comment">-- last name must contains "eg"/"ei"/"em"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name REGEXP <span class="string">'[a-h]e'</span></span><br><span class="line"><span class="comment">-- the same as WHERE last_name REGEXP '[abcdefgh]e'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">^ 	beginning</span><br><span class="line">$ 	end</span><br><span class="line">| 	logical or</span><br><span class="line">[abcd]</span><br><span class="line">[a-f]</span><br></pre></td></tr></table></figure>
+<h1 id="IS-NULL-运算符"><a href="#IS-NULL-运算符" class="headerlink" title="IS NULL 运算符"></a>IS NULL 运算符</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">WHERE</span> phone <span class="keyword">IS</span> <span class="literal">NULL</span>  <span class="comment">-- 返回没有phone(该字段为NULL)的records</span></span><br><span class="line"><span class="keyword">WHERE</span> phone <span class="keyword">IS</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="comment">-- phone不为空</span></span><br></pre></td></tr></table></figure>
+<h1 id="ORDER-BY-子句"><a href="#ORDER-BY-子句" class="headerlink" title="ORDER BY 子句"></a>ORDER BY 子句</h1><p>默认是按照主键（primary key）排序，使用ORDER BY 子句可以指定排序的键</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> first_name        <span class="comment">-- 根据first_name字段值升序排序</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> first_name <span class="keyword">DESC</span>   <span class="comment">-- 根据first_name字段值降序排序</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> state <span class="keyword">DESC</span>, first_name </span><br><span class="line"><span class="comment">--先根据state降序排列，state相同的根据first_name升序排列</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- birth_date不在选出来的列里，still work</span></span><br><span class="line"><span class="keyword">SELECT</span> first_name, last_name</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> birth_date</span><br></pre></td></tr></table></figure>
+<h1 id="LIMIT-子句"><a href="#LIMIT-子句" class="headerlink" title="LIMIT 子句"></a>LIMIT 子句</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">3</span> 		<span class="comment">-- 返回前3个records</span></span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">300</span> 		<span class="comment">-- 300 &gt; #record, 返回全部records</span></span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">6</span>, <span class="number">3</span>  	<span class="comment">-- 跳过前6个records，返回第7，8，9个records</span></span><br></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/12/20210312_DongAlgNote/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Purple M. Stone">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stone's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2021/03/12/20210312_DongAlgNote/" class="post-title-link" itemprop="url">数据结构与算法笔记(1)</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2021-03-12 10:50:09 / 修改时间：10:49:37" itemprop="dateCreated datePublished" datetime="2021-03-12T10:50:09+08:00">2021-03-12</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/03/12/20210312_DongAlgNote/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/03/12/20210312_DongAlgNote/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="数组与链表"><a href="#数组与链表" class="headerlink" title="数组与链表"></a>数组与链表</h1><p><strong>数据结构的存储方式只有两种：数组（顺序存储）和链表（链式存储）</strong>。</p>
+<p>那些多样化的数据结构，究其源头，都是在链表或者数组上的特殊操作，API 不同而已</p>
+<p><strong>数组</strong>由于是紧凑连续存储,可以随机访问，通过索引快速找到对应元素，而且相对节约存储空间。但正因为连续存储，内存空间必须一次性分配够，所以说数组如果要扩容，需要重新分配一块更大的空间，再把数据全部复制过去，时间复杂度 O(N)；而且你如果想在数组中间进行插入和删除，每次必须搬移后面的所有数据以保持连续，时间复杂度 O(N)。</p>
+<p><strong>链表</strong>因为元素不连续，而是靠指针指向下一个元素的位置，所以不存在数组的扩容问题；如果知道某一元素的前驱和后驱，操作指针即可删除该元素或者插入新元素，时间复杂度 O(1)。但是正因为存储空间不连续，你无法根据一个索引算出对应元素的地址，所以不能随机访问；而且由于每个元素必须存储指向前后元素位置的指针，会消耗相对更多的储存空间。</p>
+<h1 id="数据结构基本操作"><a href="#数据结构基本操作" class="headerlink" title="数据结构基本操作"></a>数据结构基本操作</h1><p>遍历 + 访问：增删查改（<strong>在不同的应用场景，尽可能高效地增删查改</strong>）</p>
+<p>方式：线性-for/while；非线性-递归</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/25/20201225_VisualToSound/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1271,258 +1499,6 @@ Var[Y_{AdderNet}]=\sum\limits_{i=0}^{d}\sum\limits_{j=0}^{d}\sum\limits_{k=0}^{c
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/12/08_setup_pyqt%E5%9C%A8pycharm%E4%B8%8A%E9%83%A8%E7%BD%B2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Purple M. Stone">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stone's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2020/05/12/08_setup_pyqt%E5%9C%A8pycharm%E4%B8%8A%E9%83%A8%E7%BD%B2/" class="post-title-link" itemprop="url">PyQt的安装以及在PyCharm上的部署</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2020-05-12 15:24:09 / 修改时间：19:06:57" itemprop="dateCreated datePublished" datetime="2020-05-12T15:24:09+08:00">2020-05-12</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Setup/" itemprop="url" rel="index"><span itemprop="name">Setup</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/05/12/08_setup_pyqt%E5%9C%A8pycharm%E4%B8%8A%E9%83%A8%E7%BD%B2/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/05/12/08_setup_pyqt%E5%9C%A8pycharm%E4%B8%8A%E9%83%A8%E7%BD%B2/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="PyQt5安装"><a href="#PyQt5安装" class="headerlink" title="PyQt5安装"></a>PyQt5安装</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install pyqt5</span><br><span class="line">pip install pyqt5-tools</span><br></pre></td></tr></table></figure>
-<p>第二个命令包含了designer的安装。我的designer.exe安装路径在E:\Anaconda3\Library\bin</p>
-<p>可以用Cotana搜索designer，然后右键打开文件所在位置，直接定位它的安装路径，后面要用到。</p>
-<h1 id="designer在PyCharm上部署"><a href="#designer在PyCharm上部署" class="headerlink" title="designer在PyCharm上部署"></a>designer在PyCharm上部署</h1><p>File-&gt;Settings-&gt;Tools-&gt;External Tools</p>
-<p>点击“+”来增加外部工具。</p>
-<p>(1) 增加QT设计界面“Qt Designer” — 这个就是设计Qt界面的工具</p>
-<ul>
-<li><p>Program选择PyQt安装目录中 designer.exe 的路径</p>
-</li>
-<li><p>Work directory 使用变量 $ProjectFileDir$ （点击后面的Insert Macro…）</p>
-<p><img src="/images/setup/pyqt/1.png" alt="1"></p>
-</li>
-</ul>
-<p>(2) 增加“PyUIC” — 这个主要是用来将 Qt界面 转换成 py代码</p>
-<ul>
-<li><p>Program选择PyQt安装目录中 pyuic5.bat 的路径（我的依然在E:\Anaconda3\Library\bin里）</p>
-</li>
-<li><p>parameters设置为$FileName$ -o $FileNameWithoutExtension$.py</p>
-</li>
-<li><p>Work directory 设置为 $ProjectFileDir$ （点击后面的Insert Macro…）</p>
-<p><img src="/images/setup/pyqt/2.png" alt="2"></p>
-<p>点击确认就设置好了。返回去后通过Tools可以看到：</p>
-<p><img src="/images/setup/pyqt/3.png" alt="3"></p>
-</li>
-</ul>
-<h1 id="设计GUI"><a href="#设计GUI" class="headerlink" title="设计GUI"></a>设计GUI</h1><p>依照上图，点击PyQt Designer, 在弹出来的界面中选择Wdiget，然后点击创建。</p>
-<p><img src="/images/setup/pyqt/4.png" alt="4"></p>
-<p>在窗口添加控件，Lable、pushButton、checkBox、lineEdit等：</p>
-<p><img src="/images/setup/pyqt/5.png" alt="5"></p>
-<p>把.ui文件保存到当前项目目录中，然后右键点击.ui文件：</p>
-<p><img src="/images/setup/pyqt/6.png" alt="6"></p>
-<p>点击PyUIC即可将.ui转成.py文件。</p>
-<p>在login.py中添加：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    <span class="keyword">import</span> sys</span><br><span class="line">    app=QtWidgets.QApplication(sys.argv)</span><br><span class="line">    widget=QtWidgets.QWidget()</span><br><span class="line">    ui=Ui_form()</span><br><span class="line">    ui.setupUi(widget)</span><br><span class="line">    widget.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
-<p>运行login.py，就可以看到这个页面了。</p>
-<p><a href="http://code.py40.com/2540.html" target="_blank" rel="noopener">QtDesigner的安装</a></p>
-<p><a href="http://code.py40.com/2561.html" target="_blank" rel="noopener">设计GUI</a></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/12/07_setup_pip%E9%95%9C%E5%83%8F%E6%BA%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Purple M. Stone">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stone's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2020/05/12/07_setup_pip%E9%95%9C%E5%83%8F%E6%BA%90/" class="post-title-link" itemprop="url">windows更改pip镜像源及解决总是timeout的情况</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2020-05-12 11:31:09 / 修改时间：11:44:30" itemprop="dateCreated datePublished" datetime="2020-05-12T11:31:09+08:00">2020-05-12</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Setup/" itemprop="url" rel="index"><span itemprop="name">Setup</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/05/12/07_setup_pip%E9%95%9C%E5%83%8F%E6%BA%90/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/05/12/07_setup_pip%E9%95%9C%E5%83%8F%E6%BA%90/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="pip安装"><a href="#pip安装" class="headerlink" title="pip安装"></a>pip安装</h1><p>事情的起因是我想安装PyQt5：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install pyqt5</span><br><span class="line">pip install pyqt5-tools</span><br></pre></td></tr></table></figure>
-<p>当然这是最慢的方法，于是可以用镜像源安装：</p>
-<h1 id="pip安装使用国内镜像源"><a href="#pip安装使用国内镜像源" class="headerlink" title="pip安装使用国内镜像源"></a>pip安装使用国内镜像源</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">清华：https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"></span><br><span class="line">阿里云：http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line"></span><br><span class="line">中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/</span><br><span class="line"></span><br><span class="line">华中理工大学：http://pypi.hustunique.com/</span><br><span class="line"></span><br><span class="line">山东理工大学：http://pypi.sdutlinux.org/ </span><br><span class="line"></span><br><span class="line">豆瓣：http://pypi.douban.com/simple/</span><br></pre></td></tr></table></figure>
-<p>临时使用的话加参数-i，例如：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pyqt5</span><br></pre></td></tr></table></figure>
-<p>然而依然总是timeout，于是：</p>
-<h1 id="设置pip配置文件"><a href="#设置pip配置文件" class="headerlink" title="设置pip配置文件"></a>设置pip配置文件</h1><p>配置文件地址：（如果没有pip.ini文件，就自己新建编辑一个）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\ProgramData\pip\pip.ini</span><br></pre></td></tr></table></figure>
-<p>配置文件内容，将召唤timeout的时长设置得长一些</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">global</span>]</span><br><span class="line">timeout = <span class="number">60</span></span><br><span class="line">index-url = http://pypi.douban.com/simple</span><br><span class="line">trusted-host = pypi.douban.com</span><br><span class="line">[install]</span><br><span class="line">use-mirrors = true</span><br><span class="line">mirrors = http://pypi.douban.com</span><br><span class="line">trusted-host = pypi.douban.com</span><br></pre></td></tr></table></figure>
-<p>设置好之后，再用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pyqt5</span><br></pre></td></tr></table></figure>
-<p>会显示现在使用的是豆瓣镜像源，速度也飞起来了。</p>
-<p><a href="https://blog.csdn.net/azuremouse/article/details/90338961" target="_blank" rel="noopener">pip安装PyQt5</a></p>
-<p><a href="https://www.cnblogs.com/cqliu/p/11131092.html" target="_blank" rel="noopener">pip使用国内镜像源</a></p>
-<p><a href="https://blog.csdn.net/weixin_30439067/article/details/98455723" target="_blank" rel="noopener">pip配置文件设置</a></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
@@ -1575,7 +1551,7 @@ Var[Y_{AdderNet}]=\sum\limits_{i=0}^{d}\sum\limits_{j=0}^{d}\sum\limits_{k=0}^{c
         
           <a href="/archives/%20%7C%7C%20archive">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
