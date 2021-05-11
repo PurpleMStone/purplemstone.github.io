@@ -56,21 +56,19 @@
   };
 </script>
 
-  <meta name="description" content="Mosh的课程网址 使用VSCode：用ctrl+&#96;调出terminal 1print(&quot;*&quot; * 10) # print ********** (10 times) on the terminal Python Extension在VSCode下载python扩展 👉 Linting: finding potential errors in our code 👉 Debugging 👉 A">
+  <meta name="description" content="Mosh的课程网址 Handling Exceptions12345678910try:    age &#x3D; int(input(&quot;Age: &quot;))except ValueError as ex:    print(&quot;You didn&#39;t enter a valid age.&quot;)    print(ex)			# 输出错误信息    print(type(ex))		# 显示错误类型else:">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mosh的Python课程笔记(1)--VSCode的Python扩展使用">
-<meta property="og:url" content="http://yoursite.com/2021/05/06/20210506_Python001/index.html">
+<meta property="og:title" content="Mosh的Python课程笔记(6)--Exceptions">
+<meta property="og:url" content="http://yoursite.com/2021/05/11/20210511_Python006/index.html">
 <meta property="og:site_name" content="Stone&#39;s Blog">
-<meta property="og:description" content="Mosh的课程网址 使用VSCode：用ctrl+&#96;调出terminal 1print(&quot;*&quot; * 10) # print ********** (10 times) on the terminal Python Extension在VSCode下载python扩展 👉 Linting: finding potential errors in our code 👉 Debugging 👉 A">
+<meta property="og:description" content="Mosh的课程网址 Handling Exceptions12345678910try:    age &#x3D; int(input(&quot;Age: &quot;))except ValueError as ex:    print(&quot;You didn&#39;t enter a valid age.&quot;)    print(ex)			# 输出错误信息    print(type(ex))		# 显示错误类型else:">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/images/Python/001.png">
-<meta property="article:published_time" content="2021-05-06T04:50:09.000Z">
-<meta property="article:modified_time" content="2021-05-06T06:25:57.984Z">
+<meta property="article:published_time" content="2021-05-11T15:50:09.000Z">
+<meta property="article:modified_time" content="2021-05-11T08:54:04.371Z">
 <meta property="article:author" content="Purple M. Stone">
 <meta property="article:tag" content="job notes-python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/images/Python/001.png">
-  <link rel="canonical" href="http://yoursite.com/2021/05/06/20210506_Python001/">
+  <link rel="canonical" href="http://yoursite.com/2021/05/11/20210511_Python006/">
 
 
 <script id="page-configurations">
@@ -84,7 +82,7 @@
   };
 </script>
 
-  <title>Mosh的Python课程笔记(1)--VSCode的Python扩展使用 | Stone's Blog</title>
+  <title>Mosh的Python课程笔记(6)--Exceptions | Stone's Blog</title>
   
 
 
@@ -249,7 +247,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/05/06/20210506_Python001/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/05/11/20210511_Python006/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Purple M. Stone">
@@ -261,7 +259,7 @@
       <meta itemprop="name" content="Stone's Blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">Mosh的Python课程笔记(1)--VSCode的Python扩展使用
+        <h1 class="post-title" itemprop="name headline">Mosh的Python课程笔记(6)--Exceptions
 
           
         </h1>
@@ -277,7 +275,7 @@
                 
               
 
-              <time title="创建时间：2021-05-06 12:50:09 / 修改时间：14:25:57" itemprop="dateCreated datePublished" datetime="2021-05-06T12:50:09+08:00">2021-05-06</time>
+              <time title="创建时间：2021-05-11 23:50:09 / 修改时间：16:54:04" itemprop="dateCreated datePublished" datetime="2021-05-11T23:50:09+08:00">2021-05-11</time>
             </span>
           
             
@@ -317,7 +315,7 @@
       
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/05/06/20210506_Python001/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/05/06/20210506_Python001/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2021/05/11/20210511_Python006/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/05/11/20210511_Python006/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -332,41 +330,23 @@
 
       
         <p><a href="https://codewithmosh.com/" target="_blank" rel="noopener">Mosh的课程网址</a></p>
-<p>使用<strong>VSCode</strong>：用ctrl+`调出terminal</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"*"</span> * <span class="number">10</span>) <span class="comment"># print ********** (10 times) on the terminal</span></span><br></pre></td></tr></table></figure>
-<h1 id="Python-Extension"><a href="#Python-Extension" class="headerlink" title="Python Extension"></a>Python Extension</h1><p>在VSCode下载python扩展</p>
-<p>👉 Linting: finding potential errors in our code</p>
-<p>👉 Debugging</p>
-<p>👉 Autocompletion: help us write code faster</p>
-<p>👉 Code Formatting</p>
-<p>👉 Unit Testing</p>
-<p>👉 Code Snippets: reusable code blocks</p>
-<h2 id="Linting"><a href="#Linting" class="headerlink" title="Linting"></a>Linting</h2><p>下载pylint，显示错误提示</p>
-<p>ctrl+shift+M：调出problem显示框，可以显示所有错误处</p>
-<p>ctrl+shift+P：搜索</p>
-<h2 id="Formatting-Code"><a href="#Formatting-Code" class="headerlink" title="Formatting Code"></a>Formatting Code</h2><p>Python Enhancement Proposals (<strong>PEPs</strong>)</p>
-<p><a href="https://www.python.org/dev/peps/pep-0008/" target="_blank" rel="noopener">PEP 8</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Example</span></span><br><span class="line">x=<span class="number">1</span> 		<span class="comment">#ugly</span></span><br><span class="line">x = <span class="number">1</span>		<span class="comment">#PEP 8 suggests.</span></span><br></pre></td></tr></table></figure>
-<p>ctrl+shift+P 搜索format，选择 format document，提示下载，就下载</p>
-<p>然后在File &gt; Preference &gt; Setting 搜索 formatOnSave, 勾选。</p>
-<p><img src="/images/Python/001.png" alt="001"></p>
-<p>这样在save python文件的时候，就自动reformat了。</p>
-<h2 id="Running-Python-Code"><a href="#Running-Python-Code" class="headerlink" title="Running Python Code"></a>Running Python Code</h2><p>下载code runner extension, ctrl+alt+n 直接运行</p>
-<h1 id="Python-Implementation"><a href="#Python-Implementation" class="headerlink" title="Python Implementation"></a>Python Implementation</h1><p>Python指一种编程语言，但是python的实现是一个program</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CPython 		C 实现</span><br><span class="line">Jython 			Java 实现</span><br><span class="line">IronPython 		C# 实现</span><br><span class="line">PyPy 			Subset of Python</span><br></pre></td></tr></table></figure>
-<p>比如你想在 python 中加一些 Java 代码，最好用 Jython 而不是 CPython</p>
-<h2 id="How-Python-Code-Is-Executed"><a href="#How-Python-Code-Is-Executed" class="headerlink" title="How Python Code Is Executed"></a>How Python Code Is Executed</h2><p>C → C Compiler → Machine Code → Processor</p>
-<p>Machine Code 对 Processor 特定，windows 机器无法识别 Mac的 machine code.</p>
-<p>Java 则可以在不同的 platform 运行相同的code：</p>
-<p>Java → Compiler → Java Bytecode → Java Virtual Machine → Machine Code</p>
-<p>比如 Windows JVM → Windows Machine Code</p>
-<p>Python 采用了相同的方法：</p>
-<p>Python→ CPython → Python Bytecode → Python Virtual Machine → Machine Code</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">		CPython → Python Bytecode</span><br><span class="line">	   &#x2F;</span><br><span class="line">Python </span><br><span class="line">	   \</span><br><span class="line">		Jython →  Java Bytecode</span><br></pre></td></tr></table></figure>
-<p>所以用 Jython 可以在 python code 中植入一些 Java code.</p>
-<h1 id="Quiz"><a href="#Quiz" class="headerlink" title="Quiz"></a>Quiz</h1><p>👉 What is an expression?</p>
-<p>👉 What is an syntax error?</p>
-<p>👉 What does a linter do?</p>
+<h1 id="Handling-Exceptions"><a href="#Handling-Exceptions" class="headerlink" title="Handling Exceptions"></a>Handling Exceptions</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    age = int(input(<span class="string">"Age: "</span>))</span><br><span class="line"><span class="keyword">except</span> ValueError <span class="keyword">as</span> ex:</span><br><span class="line">    print(<span class="string">"You didn't enter a valid age."</span>)</span><br><span class="line">    print(ex)			<span class="comment"># 输出错误信息</span></span><br><span class="line">    print(type(ex))		<span class="comment"># 显示错误类型</span></span><br><span class="line"><span class="keyword">else</span>:					<span class="comment"># 没有exception就执行这一块</span></span><br><span class="line">    print(<span class="string">"No exceptions were thrown."</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">"Execution continues."</span>)</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;python app.py</span><br><span class="line">Age: <span class="number">10</span></span><br><span class="line">No exceptions were thrown.</span><br><span class="line">Execution continues.</span><br><span class="line"></span><br><span class="line">&gt;python app.py</span><br><span class="line">Age: a</span><br><span class="line">You didn<span class="string">'t enter a valid age.</span></span><br><span class="line"><span class="string">invalid literal for int() with base 10: '</span>a<span class="string">'   </span></span><br><span class="line"><span class="string">&lt;class '</span>ValueErro<span class="string">r'&gt;</span></span><br><span class="line"><span class="string">Execution continues.</span></span><br></pre></td></tr></table></figure>
+<h2 id="Handling-Different-Exceptions"><a href="#Handling-Different-Exceptions" class="headerlink" title="Handling Different Exceptions"></a>Handling Different Exceptions</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    age = int(input(<span class="string">"Age: "</span>))</span><br><span class="line">    xfactor = <span class="number">10</span> / age</span><br><span class="line"><span class="keyword">except</span> (ValueError, ZeroDivisionError):			<span class="comment"># 多种exception之一即执行</span></span><br><span class="line">    print(<span class="string">"You didn't enter a valid age."</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"No exceptions were thrown."</span>)</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; python app.py</span><br><span class="line">Age: <span class="number">0</span></span><br><span class="line">You didn<span class="string">'t enter a valid age.</span></span><br></pre></td></tr></table></figure>
+<h1 id="Cleaning-Up"><a href="#Cleaning-Up" class="headerlink" title="Cleaning Up"></a>Cleaning Up</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    file = open(<span class="string">"app.py"</span>)</span><br><span class="line">    age = int(input(<span class="string">"Age: "</span>))</span><br><span class="line">    xfactor = <span class="number">10</span> / age</span><br><span class="line"><span class="keyword">except</span> (ValueError, ZeroDivisionError):</span><br><span class="line">    print(<span class="string">"You didn't enter a valid age."</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"No exceptions were thrown."</span>)</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    file.close()</span><br></pre></td></tr></table></figure>
+<p>无论有没有出现exception，都要释放资源，那就放在finally块里，无论有没有exception都会执行的。</p>
+<h2 id="The-With-Statement"><a href="#The-With-Statement" class="headerlink" title="The With Statement"></a>The With Statement</h2><p>使用with语句打开文件，随后会自动释放掉，就不用file.close()了：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open(<span class="string">"app.py"</span>) <span class="keyword">as</span> file:</span><br><span class="line">       print(<span class="string">"File opened."</span>)</span><br></pre></td></tr></table></figure>
+<p>file有__enter__和__exit__两个magic function，最后会自动调用__exit__，所以不用手动释放。</p>
+<h1 id="Raising-Exceptions"><a href="#Raising-Exceptions" class="headerlink" title="Raising Exceptions"></a>Raising Exceptions</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calculate_xfactor</span><span class="params">(age)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> age &lt;= <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">"Age cannot be 0 or less."</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">10</span> / age</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    calculate_xfactor(<span class="number">-1</span>)</span><br><span class="line"><span class="keyword">except</span> ValueError <span class="keyword">as</span> error:</span><br><span class="line">    print(error)</span><br></pre></td></tr></table></figure>
+<h1 id="Cost-of-Raising-Exceptions"><a href="#Cost-of-Raising-Exceptions" class="headerlink" title="Cost of Raising Exceptions"></a>Cost of Raising Exceptions</h1><p>Mosh 不建议raise exceptions，因为代价有点大。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> timeit <span class="keyword">import</span> timeit</span><br><span class="line"></span><br><span class="line">code1 = <span class="string">"""</span></span><br><span class="line"><span class="string">def calculate_xfactor(age):</span></span><br><span class="line"><span class="string">    if age &lt;= 0:</span></span><br><span class="line"><span class="string">        raise ValueError("Age cannot be 0 or less.")</span></span><br><span class="line"><span class="string">    return 10 / age</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">try:</span></span><br><span class="line"><span class="string">    calculate_xfactor(-1)</span></span><br><span class="line"><span class="string">except ValueError as error:</span></span><br><span class="line"><span class="string">    pass</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line">code2 = <span class="string">"""</span></span><br><span class="line"><span class="string">def calculate_xfactor(age):</span></span><br><span class="line"><span class="string">    if age &lt;= 0:</span></span><br><span class="line"><span class="string">        return None</span></span><br><span class="line"><span class="string">    return 10 / age</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">xfactor = calculate_xfactor(-1)</span></span><br><span class="line"><span class="string">if xfactor == None:</span></span><br><span class="line"><span class="string">    pass</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"first code="</span>, timeit(code1, number=<span class="number">10000</span>))</span><br><span class="line">print(<span class="string">"second code="</span>, timeit(code2, number=<span class="number">10000</span>))</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">first code= <span class="number">0.0040202000000000016</span></span><br><span class="line">second code= <span class="number">0.0015166999999999958</span></span><br></pre></td></tr></table></figure>
+<p>可以看到raise exception的用时是普通方法的两倍多。</p>
 
     </div>
 
@@ -392,8 +372,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2021/04/29/20210429_Git006/" rel="next" title="Mosh的Git课程笔记(6)--Rewriting History">
-                  <i class="fa fa-chevron-left"></i> Mosh的Git课程笔记(6)--Rewriting History
+                <a href="/2021/05/09/20210509_Python005/" rel="next" title="Mosh的Python课程笔记(5)--Data Structures">
+                  <i class="fa fa-chevron-left"></i> Mosh的Python课程笔记(5)--Data Structures
                 </a>
               
             </div>
@@ -401,10 +381,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2021/05/06/20210506_Python002/" rel="prev" title="Mosh的Python课程笔记(2)--基本类型">
-                  Mosh的Python课程笔记(2)--基本类型 <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -456,7 +432,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Python-Extension"><span class="nav-number">1.</span> <span class="nav-text">Python Extension</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linting"><span class="nav-number">1.1.</span> <span class="nav-text">Linting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Formatting-Code"><span class="nav-number">1.2.</span> <span class="nav-text">Formatting Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Running-Python-Code"><span class="nav-number">1.3.</span> <span class="nav-text">Running Python Code</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python-Implementation"><span class="nav-number">2.</span> <span class="nav-text">Python Implementation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#How-Python-Code-Is-Executed"><span class="nav-number">2.1.</span> <span class="nav-text">How Python Code Is Executed</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Quiz"><span class="nav-number">3.</span> <span class="nav-text">Quiz</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Handling-Exceptions"><span class="nav-number">1.</span> <span class="nav-text">Handling Exceptions</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Handling-Different-Exceptions"><span class="nav-number">1.1.</span> <span class="nav-text">Handling Different Exceptions</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cleaning-Up"><span class="nav-number">2.</span> <span class="nav-text">Cleaning Up</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-With-Statement"><span class="nav-number">2.1.</span> <span class="nav-text">The With Statement</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Raising-Exceptions"><span class="nav-number">3.</span> <span class="nav-text">Raising Exceptions</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cost-of-Raising-Exceptions"><span class="nav-number">4.</span> <span class="nav-text">Cost of Raising Exceptions</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
