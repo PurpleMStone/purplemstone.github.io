@@ -241,6 +241,135 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/20/20210420_SQL002/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Purple M. Stone">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stone's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2021/04/20/20210420_SQL002/" class="post-title-link" itemprop="url">MySQL笔记(2)--连接</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2021-04-20 21:50:09" itemprop="dateCreated datePublished" datetime="2021-04-20T21:50:09+08:00">2021-04-20</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-25 15:06:55" itemprop="dateModified" datetime="2021-04-25T15:06:55+08:00">2021-04-25</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/04/20/20210420_SQL002/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/04/20/20210420_SQL002/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Inner-Joins-内连接"><a href="#Inner-Joins-内连接" class="headerlink" title="Inner Joins (内连接)"></a>Inner Joins (内连接)</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> order_id, o.customer_id, first_name, last_name</span><br><span class="line"><span class="keyword">FROM</span> orders o</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> customers c</span><br><span class="line">	<span class="keyword">ON</span> o.customer_id = c.customer_id</span><br></pre></td></tr></table></figure>
+<p>返回表orders在表customers中有对应record的项</p>
+<p>o和c分别是orders和customers的别名，以简化代码</p>
+<p>关键字INNER可省略</p>
+<h2 id="跨数据库连接"><a href="#跨数据库连接" class="headerlink" title="跨数据库连接"></a>跨数据库连接</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">USE</span> sql_store;  <span class="comment">-- 选择了数据库sql_store为当前数据库</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> order_items oi</span><br><span class="line"><span class="keyword">JOIN</span> sql_inventory.products p   <span class="comment">-- 另一个数据库sql_inventory</span></span><br><span class="line">	<span class="keyword">ON</span> oi.product_id = p.product_id</span><br></pre></td></tr></table></figure>
+<h2 id="自连接"><a href="#自连接" class="headerlink" title="自连接"></a>自连接</h2><p>将表和自己连接，但是给不同的别名以区分。如下，manager也是一名员工，其信息也在表employees中，用自连接可以得到employee和TA的manager的具体员工信息。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">USE</span> sql_hr;  <span class="comment">-- 选择了数据库sql_hr为当前数据库</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	e.employee_id,</span><br><span class="line">    e.first_name,</span><br><span class="line">    m.first_name <span class="keyword">AS</span> manager</span><br><span class="line"><span class="keyword">FROM</span> employees e</span><br><span class="line"><span class="keyword">JOIN</span> employees m  </span><br><span class="line">	<span class="keyword">ON</span> e.reports_to = m.employee_id</span><br></pre></td></tr></table></figure>
+<h2 id="多表连接"><a href="#多表连接" class="headerlink" title="多表连接"></a>多表连接</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">USE</span> sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	o.order_id,</span><br><span class="line">    o.order_date,</span><br><span class="line">    c.first_name,</span><br><span class="line">    c.last_name,</span><br><span class="line">    os.name <span class="keyword">AS</span> <span class="keyword">status</span></span><br><span class="line"><span class="keyword">FROM</span> orders o</span><br><span class="line"><span class="keyword">JOIN</span> customers c</span><br><span class="line">	<span class="keyword">ON</span> o.customer_id = c.customer_id</span><br><span class="line"><span class="keyword">JOIN</span> order_statuses os</span><br><span class="line">	<span class="keyword">ON</span> o.status = os.order_status_id</span><br></pre></td></tr></table></figure>
+<p>表orders先和表customers连接，然后与表order_statuses连接。</p>
+<h1 id="IN-运算符"><a href="#IN-运算符" class="headerlink" title="IN 运算符"></a>IN 运算符</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="comment">-- WHERE state = 'VA' OR state = 'GA' OR state = 'FL'</span></span><br><span class="line"><span class="comment">-- 用IN改写：</span></span><br><span class="line"><span class="keyword">WHERE</span> state <span class="keyword">IN</span> (<span class="string">'VA'</span>, <span class="string">'GA'</span>, <span class="string">'FL'</span>)</span><br><span class="line"><span class="comment">-- WHERE state NOT IN ('VA', 'GA', 'FL') -- 返回不在这些州的 records</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 这样是错的：WHERE state = 'VA' OR 'GA' OR 'FL' </span></span><br><span class="line"><span class="comment">-- 因为我们不能用OR连接布尔表达式state = 'VA'和字符串'GA'</span></span><br></pre></td></tr></table></figure>
+<h1 id="BETWEEN-运算符"><a href="#BETWEEN-运算符" class="headerlink" title="BETWEEN 运算符"></a>BETWEEN 运算符</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="comment">-- WHERE points &gt;= 1000 AND points &lt;=3000</span></span><br><span class="line"><span class="comment">-- 改写为：</span></span><br><span class="line"><span class="keyword">WHERE</span> points <span class="keyword">BETWEEN</span> <span class="number">1000</span> <span class="keyword">AND</span> <span class="number">3000</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 也可用于非数值</span></span><br><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">WHERE</span> birth_date <span class="keyword">BETWEEN</span> <span class="string">"1990-01-01"</span> <span class="keyword">AND</span> <span class="string">"2000-01-01"</span></span><br></pre></td></tr></table></figure>
+<h1 id="LIKE-运算符"><a href="#LIKE-运算符" class="headerlink" title="LIKE 运算符"></a>LIKE 运算符</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 字符串模式匹配</span></span><br><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">WHERE</span> last_name <span class="keyword">LIKE</span> <span class="string">'b%'</span> </span><br><span class="line"><span class="comment">-- 得到last name以'B'或'b'开头的records</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name <span class="keyword">LIKE</span> <span class="string">'brush%'</span> </span><br><span class="line"><span class="comment">-- 得到last name以“brush”开头的records</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name <span class="keyword">LIKE</span> <span class="string">'%b%'</span> </span><br><span class="line"><span class="comment">-- 表示'b'前后可以有任意字符数('b'在开头、中间、结尾出现皆可)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name <span class="keyword">LIKE</span> <span class="string">'%y'</span> </span><br><span class="line"><span class="comment">-- 得到last name以'y'结尾的records</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name <span class="keyword">LIKE</span> <span class="string">'_____y'</span> </span><br><span class="line"><span class="comment">-- 得到last name以'y'结尾且只有6个字符('_'填补表示任意字符)的records</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name <span class="keyword">LIKE</span> <span class="string">'b____y'</span> </span><br><span class="line"><span class="comment">-- 运行后得到last name以'b'开头以'y'结尾且只有6个字符的record(本例中为'Boagey')</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/***SUMMARY**/</span> </span><br><span class="line">% any number of characters</span><br><span class="line">_ single character</span><br></pre></td></tr></table></figure>
+<h1 id="REGEXP-运算符"><a href="#REGEXP-运算符" class="headerlink" title="REGEXP 运算符"></a>REGEXP 运算符</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- regular expression (REGEXP) 正则表达式</span></span><br><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name <span class="keyword">LIKE</span> <span class="string">'%field%'</span></span><br><span class="line"><span class="comment">-- WHERE last_name REGEXP 'field'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name REGEXP <span class="string">'^field'</span> </span><br><span class="line"><span class="comment">-- last name must starts with "field"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name REGEXP <span class="string">'field$'</span> </span><br><span class="line"><span class="comment">-- last name must ends with "field"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* use '|' for multiple search pattern */</span> </span><br><span class="line"><span class="keyword">WHERE</span> last_name REGEXP <span class="string">'field|mac|rose'</span> </span><br><span class="line"><span class="comment">-- last name must contains "field" or "mac" or "rose"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name REGEXP <span class="string">'field$|mac|rose'</span> </span><br><span class="line"><span class="comment">-- last name must ends with "field" or contains "mac"/"rose"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name REGEXP <span class="string">'[gim]e'</span> </span><br><span class="line"><span class="comment">-- last name must contains "ge"/"ie"/"me"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name REGEXP <span class="string">'e[gim]'</span> </span><br><span class="line"><span class="comment">-- last name must contains "eg"/"ei"/"em"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> last_name REGEXP <span class="string">'[a-h]e'</span></span><br><span class="line"><span class="comment">-- the same as WHERE last_name REGEXP '[abcdefgh]e'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">^ 	beginning</span><br><span class="line">$ 	end</span><br><span class="line">| 	logical or</span><br><span class="line">[abcd]</span><br><span class="line">[a-f]</span><br></pre></td></tr></table></figure>
+<h1 id="IS-NULL-运算符"><a href="#IS-NULL-运算符" class="headerlink" title="IS NULL 运算符"></a>IS NULL 运算符</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">WHERE</span> phone <span class="keyword">IS</span> <span class="literal">NULL</span>  <span class="comment">-- 返回没有phone(该字段为NULL)的records</span></span><br><span class="line"><span class="keyword">WHERE</span> phone <span class="keyword">IS</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="comment">-- phone不为空</span></span><br></pre></td></tr></table></figure>
+<h1 id="ORDER-BY-子句"><a href="#ORDER-BY-子句" class="headerlink" title="ORDER BY 子句"></a>ORDER BY 子句</h1><p>默认是按照主键（primary key）排序，使用ORDER BY 子句可以指定排序的键</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> first_name        <span class="comment">-- 根据first_name字段值升序排序</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> first_name <span class="keyword">DESC</span>   <span class="comment">-- 根据first_name字段值降序排序</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> state <span class="keyword">DESC</span>, first_name </span><br><span class="line"><span class="comment">--先根据state降序排列，state相同的根据first_name升序排列</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- birth_date不在选出来的列里，still work</span></span><br><span class="line"><span class="keyword">SELECT</span> first_name, last_name</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> birth_date</span><br></pre></td></tr></table></figure>
+<h1 id="LIMIT-子句"><a href="#LIMIT-子句" class="headerlink" title="LIMIT 子句"></a>LIMIT 子句</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">3</span> 		<span class="comment">-- 返回前3个records</span></span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">300</span> 		<span class="comment">-- 300 &gt; #record, 返回全部records</span></span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">6</span>, <span class="number">3</span>  	<span class="comment">-- 跳过前6个records，返回第7，8，9个records</span></span><br></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/20/20210420_SQL001/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1287,114 +1416,6 @@ Var[Y_{AdderNet}]=\sum\limits_{i=0}^{d}\sum\limits_{j=0}^{d}\sum\limits_{k=0}^{c
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/15/11_latex_python_code/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Purple M. Stone">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stone's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2020/10/15/11_latex_python_code/" class="post-title-link" itemprop="url">在Latex中插入python代码</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2020-10-15 19:20:09 / 修改时间：19:27:40" itemprop="dateCreated datePublished" datetime="2020-10-15T19:20:09+08:00">2020-10-15</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Latex-Trick/" itemprop="url" rel="index"><span itemprop="name">Latex Trick</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/10/15/11_latex_python_code/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/10/15/11_latex_python_code/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在Latex中插入Python代码，需要一个第三发的宏包pythonhighlight:</p>
-<p><a href="https://github.com/olivierverdier/python-latex-highlighting" target="_blank" rel="noopener">https://github.com/olivierverdier/python-latex-highlighting</a></p>
-<p>下载pythonhighlight.sty后，将它放到你的.tex文件所在目录下。</p>
-<p>然后声明要使用pythonhighlight，在tex文件内的导言区：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\usepackage&#123;graphicx&#125;</span><br><span class="line">\usepackage&#123;pythonhighlight&#125;</span><br></pre></td></tr></table></figure>
-<p>之后既可以在正文添加代码了:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;python&#125;</span><br><span class="line">import torch</span><br><span class="line">import torch.nn as nn</span><br><span class="line">import torch.optim as optim</span><br><span class="line">import torch.nn.functional as F</span><br><span class="line">import torchvision</span><br><span class="line">import torchvision.transforms as transforms</span><br><span class="line">import time</span><br><span class="line">import os</span><br><span class="line">\end&#123;python&#125;</span><br></pre></td></tr></table></figure>
-<p>效果如下：</p>
-<p><img src="/images/latex/python/code.png" alt="code"></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/15/12_hexo_valine/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1551,7 +1572,7 @@ Var[Y_{AdderNet}]=\sum\limits_{i=0}^{d}\sum\limits_{j=0}^{d}\sum\limits_{k=0}^{c
         
           <a href="/archives/%20%7C%7C%20archive">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
