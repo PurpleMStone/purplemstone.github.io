@@ -64,7 +64,7 @@
 <meta property="og:description" content="Mosh的课程网址 1234567# sales.pydef calc_tax():    passdef calc_shipping():    pass 12345# app.pyfrom sales import calc_shipping, calc_taxcalc_shipping()calc_tax() 或： 1234import salessales.calc_shipping()s">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-05-12T09:50:09.000Z">
-<meta property="article:modified_time" content="2021-05-12T11:18:17.741Z">
+<meta property="article:modified_time" content="2021-05-12T11:27:29.046Z">
 <meta property="article:author" content="Purple M. Stone">
 <meta property="article:tag" content="job notes-python">
 <meta name="twitter:card" content="summary">
@@ -275,7 +275,7 @@
                 
               
 
-              <time title="创建时间：2021-05-12 17:50:09 / 修改时间：19:18:17" itemprop="dateCreated datePublished" datetime="2021-05-12T17:50:09+08:00">2021-05-12</time>
+              <time title="创建时间：2021-05-12 17:50:09 / 修改时间：19:27:29" itemprop="dateCreated datePublished" datetime="2021-05-12T17:50:09+08:00">2021-05-12</time>
             </span>
           
             
@@ -343,7 +343,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app.py</span></span><br><span class="line"><span class="keyword">from</span> ecommerce <span class="keyword">import</span> sales</span><br><span class="line"></span><br><span class="line">sales.calc_tax()</span><br><span class="line">sales.calc_shipping()</span><br></pre></td></tr></table></figure>
 <h2 id="Sub-packages"><a href="#Sub-packages" class="headerlink" title="Sub-packages"></a>Sub-packages</h2><p>ecommerce 文件夹内有 shopping 文件夹,  shopping 文件夹内有文件__init__.py 和 sales.py，则：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app.py</span></span><br><span class="line"><span class="keyword">from</span> ecommerce.shopping <span class="keyword">import</span> sales</span><br></pre></td></tr></table></figure>
-<h2 id="Intra-package-References"><a href="#Intra-package-References" class="headerlink" title="Intra-package References"></a>Intra-package References</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">                    ecommerce</span><br><span class="line">                 /				\</span><br><span class="line">            customer  			 shopping</span><br><span class="line">           /		 \			/		  \</span><br><span class="line">__init__.py  contact.py   __init__.py	sales.py</span><br></pre></td></tr></table></figure>
+<h2 id="Intra-package-References"><a href="#Intra-package-References" class="headerlink" title="Intra-package References"></a>Intra-package References</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">	ecommerce --------------  shopping</span><br><span class="line">	   |					/		  \</span><br><span class="line">    customer  			__init__.py	 sales.py</span><br><span class="line">	|		\	</span><br><span class="line">	|		 \					</span><br><span class="line">__init__.py  contact.py</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sales.py</span></span><br><span class="line"><span class="keyword">from</span> ecommerce.customer <span class="keyword">import</span> contact</span><br><span class="line"><span class="keyword">from</span> ..customer <span class="keyword">import</span> contact		<span class="comment"># ..表示父目录</span></span><br><span class="line"></span><br><span class="line">contact.contact_customer()</span><br></pre></td></tr></table></figure>
 <h2 id="The-dir-Function"><a href="#The-dir-Function" class="headerlink" title="The dir() Function"></a>The dir() Function</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app.py</span></span><br><span class="line"><span class="keyword">from</span> ecommerce.shopping <span class="keyword">import</span> sales</span><br><span class="line"></span><br><span class="line">print(dir(sales))</span><br></pre></td></tr></table></figure>
 <p>输出sales的各种方法：</p>
