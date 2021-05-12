@@ -241,6 +241,252 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/27/20210427_Git005/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Purple M. Stone">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stone's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2021/04/27/20210427_Git005/" class="post-title-link" itemprop="url">Mosh的Git课程笔记(5)--Collaboration</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2021-04-27 21:50:09" itemprop="dateCreated datePublished" datetime="2021-04-27T21:50:09+08:00">2021-04-27</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-09 16:54:44" itemprop="dateModified" datetime="2021-05-09T16:54:44+08:00">2021-05-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/04/27/20210427_Git005/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/04/27/20210427_Git005/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="https://codewithmosh.com/" target="_blank" rel="noopener">Mosh的课程网址</a></p>
+<h1 id="Workflows"><a href="#Workflows" class="headerlink" title="Workflows"></a>Workflows</h1><p>👉 Centralized: a single repository<br><strong>👉 Distributed：every developer has a repository √</strong></p>
+<h2 id="Centralized-Workflow"><a href="#Centralized-Workflow" class="headerlink" title="Centralized Workflow"></a>Centralized Workflow</h2><p>平时与中央服务器交互，万一中央服务器瘫痪，各repository之间可以交互。</p>
+<p><img src="/images/Git/5_01.png" alt="5_01" style="zoom: 33%;"></p>
+<p><img src="/images/Git/5_02.png" alt="5_02" style="zoom: 33%;"></p>
+<p>中央服务器放在哪？</p>
+<p>👉 private server</p>
+<p>👉 cloud, 如 GitHub，GitLab</p>
+<p>具体场景：</p>
+<ol>
+<li>John 和 Amy 都将 repository 拷贝到本地</li>
+</ol>
+<p><img src="/images/Git/5_03.png" alt="5_03" style="zoom:50%;"></p>
+<ol>
+<li>John commit了一些内容，想 share 给 Amy，就从本地 repository 拷贝到中央 repository</li>
+</ol>
+<p><img src="/images/Git/5_04.png" alt="5_04" style="zoom:50%;"></p>
+<ol>
+<li>Amy 将这些 commit 从中央 repository pull 到本地</li>
+</ol>
+<p><img src="/images/Git/5_05.png" alt="5_05" style="zoom:50%;"></p>
+<ol>
+<li>如果和 Amy 自己的 commit 有 conflict，Amy 解决之后 push 到中央 repository</li>
+</ol>
+<p><img src="/images/Git/5_06.png" alt="5_06" style="zoom:50%;"></p>
+<h2 id="Integration-Manager"><a href="#Integration-Manager" class="headerlink" title="Integration-Manager"></a>Integration-Manager</h2><p>多用于Open-source project。通常有 maintainer 管理 project repository，其他的 contributors 不能直接 commit 到 project repository。</p>
+<ol>
+<li>Fork  project repository 到自己的 repository，然后拷贝到本地</li>
+</ol>
+<p><img src="/images/Git/5_07.png" alt="5_07" style="zoom:50%;"></p>
+<ol>
+<li>Contributor 将自己的 commit push 到  repository</li>
+</ol>
+<p><img src="/images/Git/5_08.png" alt="5_08" style="zoom:50%;"></p>
+<ol>
+<li>Contributor 向 maintainer 发出 pull request，希望在 project repository commit 自己的贡献</li>
+</ol>
+<p><img src="/images/Git/5_09.png" alt="5_09" style="zoom:50%;"></p>
+<ol>
+<li>Maintainer 同意的话就从 contributor 的 repository pull 到自己的本地目录</li>
+</ol>
+<p><img src="/images/Git/5_10.png" alt="5_10" style="zoom:50%;"></p>
+<ol>
+<li>Maintainer review 过这些 commit 觉得没问题，就可以 push 到 project repository 了。</li>
+</ol>
+<p><img src="/images/Git/5_11.png" alt="5_11" style="zoom:50%;"></p>
+<h1 id="Cloning-a-Repository"><a href="#Cloning-a-Repository" class="headerlink" title="Cloning a Repository"></a>Cloning a Repository</h1><p>拷贝远程仓库到本地，仓库目前只有一个commit：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/PurpleMStone/Mars.git MarsProject</span><br><span class="line">Cloning into <span class="string">'MarsProject'</span>...</span><br><span class="line">remote: Enumerating objects: 3, <span class="keyword">done</span>.</span><br><span class="line">remote: Counting objects: 100% (3/3), <span class="keyword">done</span>.</span><br><span class="line">remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0</span><br><span class="line">Receiving objects: 100% (3/3), <span class="keyword">done</span>.</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cd</span> MarsProject/</span><br><span class="line"></span><br><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* 7216ded (HEAD -&gt; master, origin/master, origin/HEAD) Initial commit</span><br></pre></td></tr></table></figure>
+<p>origin 指代的是远程仓库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git remote -v</span><br><span class="line">origin  https:&#x2F;&#x2F;github.com&#x2F;PurpleMStone&#x2F;Mars.git (fetch)</span><br><span class="line">origin  https:&#x2F;&#x2F;github.com&#x2F;PurpleMStone&#x2F;Mars.git (push)</span><br></pre></td></tr></table></figure>
+<h1 id="Fetching"><a href="#Fetching" class="headerlink" title="Fetching"></a>Fetching</h1><p><img src="/images/Git/5_12.png" alt="5_12" style="zoom: 50%;"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* 7216ded (HEAD -&gt; master, origin/master, origin/HEAD) Initial commit</span><br></pre></td></tr></table></figure>
+<p>在 remote repository 进行修改（update README.md，增加了第二行）:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Mars</span><br><span class="line">A new line of code</span><br></pre></td></tr></table></figure>
+<p>用 git fetch 获取到本地，此时 origin/master 前进了，但是本地 master 还没动：</p>
+<p><img src="/images/Git/5_13.png" alt="5_13" style="zoom: 50%;"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git fetch</span><br><span class="line">remote: Enumerating objects: 5, <span class="keyword">done</span>.</span><br><span class="line">remote: Counting objects: 100% (5/5), <span class="keyword">done</span>.</span><br><span class="line">remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0</span><br><span class="line">Unpacking objects: 100% (3/3), 645 bytes | 1024 bytes/s, <span class="keyword">done</span>.</span><br><span class="line">From https://github.com/PurpleMStone/Mars</span><br><span class="line">   7216ded..e27337b  master     -&gt; origin/master</span><br><span class="line"></span><br><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* e27337b (origin/master, origin/HEAD) Update README.md</span><br><span class="line">* 7216ded (HEAD -&gt; master) Initial commit</span><br><span class="line"></span><br><span class="line">(master)$ git branch -vv</span><br><span class="line">* master 7216ded [origin/master: behind 1] Initial commit</span><br></pre></td></tr></table></figure>
+<p>由于没有diverse branch， 直接让本地 master fast-forward merge origin/master 就行了：</p>
+<p><img src="/images/Git/5_14.png" alt="5_14" style="zoom: 50%;"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git merge origin/master</span><br><span class="line">Updating 7216ded..e27337b</span><br><span class="line">Fast-forward</span><br><span class="line"> README.md | 3 ++-</span><br><span class="line"> 1 file changed, 2 insertions(+), 1 deletion(-)</span><br><span class="line"></span><br><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* e27337b (HEAD -&gt; master, origin/master, origin/HEAD) Update README.md</span><br><span class="line">* 7216ded Initial commit</span><br><span class="line"></span><br><span class="line">(master)$ git branch -vv</span><br><span class="line">* master e27337b [origin/master] Update README.md</span><br><span class="line"></span><br><span class="line">(master)$ cat README.md</span><br><span class="line"><span class="comment"># Mars</span></span><br><span class="line">A new line of code</span><br></pre></td></tr></table></figure>
+<p>而如果有 diverse branch，可能 merge 的时候会有 conflict，解决了再 merge 就行了。 </p>
+<h1 id="Pulling"><a href="#Pulling" class="headerlink" title="Pulling"></a>Pulling</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pull &#x3D; fetch + merge</span><br></pre></td></tr></table></figure>
+<p>比如在本地有个commit B, 在 remote repository 有个 commit C：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">(master)$ <span class="built_in">echo</span> hello &gt; file1.txt</span><br><span class="line"></span><br><span class="line">(master)$ git add .</span><br><span class="line">warning: LF will be replaced by CRLF <span class="keyword">in</span> file1.txt.</span><br><span class="line">The file will have its original line endings <span class="keyword">in</span> your working directory</span><br><span class="line"></span><br><span class="line">(master)$ git commit -m <span class="string">"Add file1.txt"</span></span><br><span class="line">[master ce83c2f] Add file1.txt</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 file1.txt</span><br><span class="line"></span><br><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* ce83c2f (HEAD -&gt; master) Add file1.txt</span><br><span class="line">* e27337b (origin/master, origin/HEAD) Update README.md</span><br><span class="line">* 7216ded Initial commit</span><br></pre></td></tr></table></figure>
+<p>在 remote repository 将 README.md update 了两次（commit C ）。</p>
+<p>现在可以用 git pull 获取 commit C 并进行 3-way merge:</p>
+<p><img src="/images/Git/5_15.png" alt="5_15" style="zoom: 50%;"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git pull</span><br><span class="line">remote: Enumerating objects: 8, <span class="keyword">done</span>.</span><br><span class="line">remote: Counting objects: 100% (8/8), <span class="keyword">done</span>.</span><br><span class="line">remote: Compressing objects: 100% (4/4), <span class="keyword">done</span>.</span><br><span class="line">remote: Total 6 (delta 0), reused 0 (delta 0), pack-reused 0</span><br><span class="line">Unpacking objects: 100% (6/6), 1.28 KiB | 1024 bytes/s, <span class="keyword">done</span>.</span><br><span class="line">From https://github.com/PurpleMStone/Mars</span><br><span class="line">   e27337b..4085604  master     -&gt; origin/master</span><br><span class="line">Merge made by the <span class="string">'recursive'</span> strategy.</span><br><span class="line"> README.md | 2 ++</span><br><span class="line"> 1 file changed, 2 insertions(+)</span><br><span class="line"></span><br><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">*   b6e7d23 (HEAD -&gt; master) Merge branch <span class="string">'master'</span> of https://github.com/PurpleMStone/Mars</span><br><span class="line">|\</span><br><span class="line">| * 4085604 (origin/master, origin/HEAD) Update README.md</span><br><span class="line">| * 3e40ffc Update README.md</span><br><span class="line">* | ce83c2f Add file1.txt</span><br><span class="line">|/</span><br><span class="line">* e27337b Update README.md</span><br><span class="line">* 7216ded Initial commit</span><br></pre></td></tr></table></figure>
+<p>也可以用 git pull —rebase 将 B rebase，然后就是 linear history 了：</p>
+<p><img src="/images/Git/5_18.png" alt="5_18" style="zoom: 50%;"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* ce83c2f (HEAD -&gt; master) Add file1.txt</span><br><span class="line">| * 4085604 (origin/master, origin/HEAD) Update README.md</span><br><span class="line">| * 3e40ffc Update README.md</span><br><span class="line">|/</span><br><span class="line">* e27337b Update README.md</span><br><span class="line">* 7216ded Initial commit</span><br><span class="line"></span><br><span class="line">(master)$ git pull --rebase</span><br><span class="line">Successfully rebased and updated refs/heads/master.</span><br><span class="line"></span><br><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* ec68ae1 (HEAD -&gt; master) Add file1.txt</span><br><span class="line">* 4085604 (origin/master, origin/HEAD) Update README.md</span><br><span class="line">* 3e40ffc Update README.md</span><br><span class="line">* e27337b Update README.md</span><br><span class="line">* 7216ded Initial commit</span><br></pre></td></tr></table></figure>
+<h1 id="Pushing"><a href="#Pushing" class="headerlink" title="Pushing"></a>Pushing</h1><p>将本地的 commit push 到 remote repository，然后 remote repository 的 master 会 move forward，然后 origin/master 会 move forward.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git push</span><br></pre></td></tr></table></figure>
+<p>有些情况，push 会被拒绝：</p>
+<p>如想将C push 到 remote，但是此时别人push了个D到remote，Git为了防止你overwrite别人的work，就不让push：</p>
+<p><img src="/images/Git/5_19.png" alt="5_19" style="zoom: 50%;"></p>
+<p><img src="/images/Git/5_17.png" alt="5_17" style="zoom: 50%;"></p>
+<p>如果用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push -f</span><br></pre></td></tr></table></figure>
+<p>remote就会丢掉D，然后让C push到remote, remote 的 master 指向C。（别用，谨慎）</p>
+<p>好的做法是：用 git pull 在本地存下 D，然后用 3-way merge 或 rebase 的方法结合 local master 和 D，有冲突就解决冲突，然后再 git push 到 remote repository。这样，local 和remote 就一致了。 </p>
+<p><img src="/images/Git/5_20.png" alt="5_20" style="zoom:50%;"></p>
+<h1 id="Storing-Credentials"><a href="#Storing-Credentials" class="headerlink" title="Storing Credentials"></a>Storing Credentials</h1><p>windows 在 <a href="https://github.com/Microsoft/Git-Credential-Manager-for-Windows" target="_blank" rel="noopener">https://github.com/Microsoft/Git-Credential-Manager-for-Windows</a> 下载</p>
+<p>不用每次 push 都登录一次。</p>
+<h1 id="Sharing-Tags"><a href="#Sharing-Tags" class="headerlink" title="Sharing Tags"></a>Sharing Tags</h1><p>给最近的一次 commit 加tag，并且share 到 github 上去：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git tag v1.0</span><br><span class="line"></span><br><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* 125409a (HEAD -&gt; master, tag: v1.0, origin/master, origin/HEAD) add file2.txt</span><br><span class="line">* ec68ae1 Add file1.txt</span><br><span class="line">* 4085604 Update README.md</span><br><span class="line">* 3e40ffc Update README.md</span><br><span class="line">* e27337b Update README.md</span><br><span class="line">* 7216ded Initial commit</span><br><span class="line"></span><br><span class="line">(master)$ git push origin v1.0</span><br><span class="line">Total 0 (delta 0), reused 0 (delta 0), pack-reused 0</span><br><span class="line">To https://github.com/PurpleMStone/Mars.git</span><br><span class="line"> * [new tag]         v1.0 -&gt; v1.0</span><br></pre></td></tr></table></figure>
+<p>更新 github 的页面会发现多了一个 tag。</p>
+<p>删除tag:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin --delete v1.0</span><br><span class="line">To https://github.com/PurpleMStone/Mars.git</span><br><span class="line"> - [deleted]         v1.0</span><br></pre></td></tr></table></figure>
+<p>更新 github 的页面会发现这个 tag被删了。但是在本地目录，tag还在：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* 125409a (HEAD -&gt; master, tag: v1.0, origin/master, origin/HEAD) add file2.txt</span><br><span class="line">* ec68ae1 Add file1.txt</span><br><span class="line">* 4085604 Update README.md</span><br><span class="line">* 3e40ffc Update README.md</span><br><span class="line">* e27337b Update README.md</span><br><span class="line">* 7216ded Initial commit</span><br><span class="line"></span><br><span class="line">$ git tag -d v1.0</span><br><span class="line">Deleted tag <span class="string">'v1.0'</span> (was 125409a)</span><br></pre></td></tr></table></figure>
+<h1 id="Releases"><a href="#Releases" class="headerlink" title="Releases"></a>Releases</h1><p>在 github 上release, 会给当前 commit 版本打一个 tag。</p>
+<p>加上Release Notes。</p>
+<p>如果还不是stable的版本，勾上“Pre-release”。</p>
+<p><img src="/images/Git/5_21.png" alt="5_21" style="zoom: 67%;"></p>
+<h1 id="Sharing-branches"><a href="#Sharing-branches" class="headerlink" title="Sharing branches"></a>Sharing branches</h1><h2 id="增加分支"><a href="#增加分支" class="headerlink" title="增加分支"></a>增加分支</h2><p>在本地创建了一个新分支，git push 的报错信息意思是这个branch 没有 link to origin 的 branch：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git switch -C feature/change-password</span><br><span class="line">Switched to a new branch <span class="string">'feature/change-password'</span></span><br><span class="line"></span><br><span class="line">(feature/change-password)$ git push</span><br><span class="line">fatal: The current branch feature/change-password has no upstream branch.</span><br><span class="line">To push the current branch and <span class="built_in">set</span> the remote as upstream, use</span><br><span class="line"></span><br><span class="line">    git push --<span class="built_in">set</span>-upstream origin feature/change-password</span><br></pre></td></tr></table></figure>
+<p>-vv 查看当前的本地分支与远程分支的关联关系</p>
+<p>-r 查看tracked branch (远程分支)：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(feature/change-password)$ git branch -vv</span><br><span class="line">* feature/change-password 125409a add file2.txt</span><br><span class="line">  master                  125409a [origin/master] add file2.txt</span><br><span class="line"></span><br><span class="line">(feature/change-password)$ git branch -r</span><br><span class="line">  origin/HEAD -&gt; origin/master</span><br><span class="line">  origin/master</span><br></pre></td></tr></table></figure>
+<p>将新分支push上去（-u中的u是upstream的意思）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(feature/change-password)$ git push -u origin feature/change-password</span><br><span class="line">Total 0 (delta 0), reused 0 (delta 0), pack-reused 0</span><br><span class="line">remote:</span><br><span class="line">remote: Create a pull request <span class="keyword">for</span> <span class="string">'feature/change-password'</span> on GitHub by visiting:</span><br><span class="line">remote:      https://github.com/PurpleMStone/Mars/pull/new/feature/change-password</span><br><span class="line">remote:</span><br><span class="line">To https://github.com/PurpleMStone/Mars.git</span><br><span class="line"> * [new branch]      feature/change-password -&gt; feature/change-password</span><br><span class="line">Branch <span class="string">'feature/change-password'</span> <span class="built_in">set</span> up to track remote branch <span class="string">'feature/change-password'</span> from <span class="string">'origin'</span>.</span><br></pre></td></tr></table></figure>
+<p>再查看一下：</p>
+<p>本地分支和远程分支关联起来了，github上也能看到新增的分支</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(feature/change-password)$ git branch -vv</span><br><span class="line">* feature/change-password 125409a [origin/feature/change-password] add file2.txt</span><br><span class="line">  master                  125409a [origin/master] add file2.txt</span><br><span class="line"></span><br><span class="line">(feature/change-password)$ git branch -r</span><br><span class="line">  origin/HEAD -&gt; origin/master</span><br><span class="line">  origin/feature/change-password</span><br><span class="line">  origin/master</span><br></pre></td></tr></table></figure>
+<h2 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h2><p>删除远程分支：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(feature/change-password)$ git push -d origin feature/change-password</span><br><span class="line">To https://github.com/PurpleMStone/Mars.git</span><br><span class="line"> - [deleted]         feature/change-password</span><br><span class="line"></span><br><span class="line">(feature/change-password)$ git branch -r</span><br><span class="line">  origin/HEAD -&gt; origin/master</span><br><span class="line">  origin/master</span><br></pre></td></tr></table></figure>
+<p>但是本地分支还在，要切换回master分支删掉：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">(feature/change-password)$ git branch -vv</span><br><span class="line">* feature/change-password 125409a [origin/feature/change-password: gone] add file2.txt</span><br><span class="line">  master                  125409a [origin/master] add file2.txt</span><br><span class="line"></span><br><span class="line">(feature/change-password)$ git switch master</span><br><span class="line">Switched to branch <span class="string">'master'</span></span><br><span class="line">Your branch is up to date with <span class="string">'origin/master'</span>.</span><br><span class="line"></span><br><span class="line">(master)$ git branch -d feature/change-password</span><br><span class="line">Deleted branch feature/change-password (was 125409a).</span><br><span class="line"></span><br><span class="line">(master)$ git branch</span><br><span class="line">* master</span><br></pre></td></tr></table></figure>
+<h1 id="Collaboration-Workflow"><a href="#Collaboration-Workflow" class="headerlink" title="Collaboration Workflow"></a>Collaboration Workflow</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">本Demo展示了两个contributor是如何通过GitHub来协作的</span><br><span class="line">协作者：👉 我 👉 Amy</span><br></pre></td></tr></table></figure>
+<h2 id="1-我来创建新分支"><a href="#1-我来创建新分支" class="headerlink" title="1. 我来创建新分支"></a>1. 我来创建新分支</h2><p>在GitHub上创建一个新分支feature/change-password，然后在本地目录下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git fetch</span><br><span class="line">From https://github.com/PurpleMStone/Mars</span><br><span class="line"> * [new branch]      feature/change-passwork -&gt; origin/feature/change-passwork</span><br><span class="line"> * [new tag]         v1.0                    -&gt; v1.0</span><br><span class="line"></span><br><span class="line">(master)$ git branch</span><br><span class="line">* master</span><br><span class="line"></span><br><span class="line">(master)$ git branch -r</span><br><span class="line">  origin/HEAD -&gt; origin/master</span><br><span class="line">  origin/feature/change-passwork</span><br><span class="line">  origin/master</span><br></pre></td></tr></table></figure>
+<p>我们只得到一个remote tacked branch origin/feature/change-passwork，而本地没有一个branch是feature/change-passwork。</p>
+<p>创建一个feature/change-passwork分支，相当于一个指针指向remote branch origin/feature/change-passwork：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git switch -C feature/change-passwork origin/feature/change-passwork</span><br><span class="line">Switched to a new branch <span class="string">'feature/change-passwork'</span></span><br><span class="line">Branch <span class="string">'feature/change-passwork'</span> <span class="built_in">set</span> up to track remote branch <span class="string">'feature/change-passwork'</span> from <span class="string">'origin'</span>.</span><br></pre></td></tr></table></figure>
+<h2 id="2-另一个contributor"><a href="#2-另一个contributor" class="headerlink" title="2. 另一个contributor"></a>2. 另一个contributor</h2><p>现在比如说有另一个协作者Amy，将这个库clone下来：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Amy$ git <span class="built_in">clone</span> https://github.com/PurpleMStone/Mars.git</span><br><span class="line">Cloning into <span class="string">'Mars'</span>...</span><br><span class="line">remote: Enumerating objects: 17, <span class="keyword">done</span>.</span><br><span class="line">remote: Counting objects: 100% (17/17), <span class="keyword">done</span>.</span><br><span class="line">remote: Compressing objects: 100% (10/10), <span class="keyword">done</span>.</span><br><span class="line">remote: Total 17 (delta 1), reused 4 (delta 0), pack-reused 0</span><br><span class="line">Receiving objects: 100% (17/17), <span class="keyword">done</span>.</span><br><span class="line">Resolving deltas: 100% (1/1), <span class="keyword">done</span>.</span><br><span class="line"></span><br><span class="line">Amy$ <span class="built_in">cd</span> Mars</span><br></pre></td></tr></table></figure>
+<p>查看本地分支，依然只有一个master，所以也要创建一个feature/change-passwork分支，相当于一个指针指向remote branch origin/feature/change-passwork：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Amy/Mars (master)$ git branch</span><br><span class="line">* master</span><br><span class="line"></span><br><span class="line">Amy/Mars (master)$ </span><br><span class="line">git switch -C feature/change-passwork origin/feature/change-passwork</span><br><span class="line">Switched to a new branch <span class="string">'feature/change-passwork'</span></span><br><span class="line">Branch <span class="string">'feature/change-passwork'</span> <span class="built_in">set</span> up to track remote branch <span class="string">'feature/change-passwork'</span> from <span class="string">'origin'</span>.</span><br></pre></td></tr></table></figure>
+<p>在这个分支下进行修改并commit，然后push到github，可以在 github 的该分支下看到这个修改</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Amy/Mars (feature/change-passwork)$ <span class="built_in">echo</span> password &gt; file1.txt</span><br><span class="line"></span><br><span class="line">Amy/Mars (feature/change-passwork)</span><br><span class="line">$ git commit -am <span class="string">"Update file1"</span></span><br><span class="line">[feature/change-passwork 244f7a7] Update file1</span><br><span class="line"> 1 file changed, 1 insertion(+), 1 deletion(-)</span><br><span class="line"></span><br><span class="line">Amy/Mars (feature/change-passwork)$ git push</span><br><span class="line">Enumerating objects: 5, <span class="keyword">done</span>.</span><br><span class="line">Counting objects: 100% (5/5), <span class="keyword">done</span>.</span><br><span class="line">Delta compression using up to 4 threads</span><br><span class="line">Compressing objects: 100% (2/2), <span class="keyword">done</span>.</span><br><span class="line">Writing objects: 100% (3/3), 306 bytes | 306.00 KiB/s, <span class="keyword">done</span>.</span><br><span class="line">Total 3 (delta 0), reused 0 (delta 0), pack-reused 0</span><br><span class="line">To https://github.com/PurpleMStone/Mars.git</span><br><span class="line">   125409a..244f7a7  feature/change-passwork -&gt; feature/change-passwork</span><br></pre></td></tr></table></figure>
+<h2 id="3-我来Merge"><a href="#3-我来Merge" class="headerlink" title="3. 我来Merge"></a>3. 我来Merge</h2><p>这时本人将GitHub的变化pull到本地，并且发现HEAD指向feature/change-passwork分支</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">(feature/change-passwork)$ git pull</span><br><span class="line">remote: Enumerating objects: 5, <span class="keyword">done</span>.</span><br><span class="line">remote: Counting objects: 100% (5/5), <span class="keyword">done</span>.</span><br><span class="line">remote: Compressing objects: 100% (2/2), <span class="keyword">done</span>.</span><br><span class="line">remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0</span><br><span class="line">Unpacking objects: 100% (3/3), 286 bytes | 0 bytes/s, <span class="keyword">done</span>.</span><br><span class="line">From https://github.com/PurpleMStone/Mars</span><br><span class="line">   125409a..244f7a7  feature/change-passwork -&gt; origin/feature/change-passwork</span><br><span class="line">Updating 125409a..244f7a7</span><br><span class="line">Fast-forward</span><br><span class="line"> file1.txt | 2 +-</span><br><span class="line"> 1 file changed, 1 insertion(+), 1 deletion(-)</span><br><span class="line"></span><br><span class="line">(feature/change-passwork)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* 244f7a7 (HEAD -&gt; feature/change-passwork, origin/feature/change-passwork) Update file1</span><br><span class="line">* 125409a (tag: v1.0, origin/master, origin/HEAD, master) add file2.txt</span><br><span class="line">* ec68ae1 Add file1.txt</span><br><span class="line">* 4085604 Update README.md</span><br><span class="line">* 3e40ffc Update README.md</span><br><span class="line">* e27337b Update README.md</span><br><span class="line">* 7216ded Initial commit</span><br></pre></td></tr></table></figure>
+<p>现在希望将分支merge到master，可以发现是一个Fast-forward merge，并且查看log，两个分支在本地确实是merge了，但是origin的远程master分支还是原样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">(feature/change-passwork)$ git switch master</span><br><span class="line">Switched to branch <span class="string">'master'</span></span><br><span class="line">Your branch is up to date with <span class="string">'origin/master'</span>.</span><br><span class="line"></span><br><span class="line">(master)$ git merge feature/change-passwork</span><br><span class="line">Updating 125409a..244f7a7</span><br><span class="line">Fast-forward</span><br><span class="line"> file1.txt | 2 +-</span><br><span class="line"> 1 file changed, 1 insertion(+), 1 deletion(-)</span><br><span class="line"></span><br><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* 244f7a7 (HEAD -&gt; master, origin/feature/change-passwork, feature/change-passwork) Update file1</span><br><span class="line">* 125409a (tag: v1.0, origin/master, origin/HEAD) add file2.txt</span><br><span class="line">* ec68ae1 Add file1.txt</span><br><span class="line">* 4085604 Update README.md</span><br><span class="line">* 3e40ffc Update README.md</span><br><span class="line">* e27337b Update README.md</span><br><span class="line">* 7216ded Initial commit</span><br></pre></td></tr></table></figure>
+<p>这就需要用 git push 提交merge更改。再次查看log，远程分支也merge了。并且github上也可看到merge结果（feature/change-passwork的commit merge到master上了）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git push</span><br><span class="line">Total 0 (delta 0), reused 0 (delta 0), pack-reused 0</span><br><span class="line">To https://github.com/PurpleMStone/Mars.git</span><br><span class="line">   125409a..244f7a7  master -&gt; master</span><br><span class="line"></span><br><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* 244f7a7 (HEAD -&gt; master, origin/master, origin/feature/change-passwork, origin/HEAD, feature/change-passwork) Update file1</span><br><span class="line">* 125409a (tag: v1.0) add file2.txt</span><br><span class="line">* ec68ae1 Add file1.txt</span><br><span class="line">* 4085604 Update README.md</span><br><span class="line">* 3e40ffc Update README.md</span><br><span class="line">* e27337b Update README.md</span><br><span class="line">* 7216ded Initial commit</span><br></pre></td></tr></table></figure>
+<h2 id="4-我来删除分支"><a href="#4-我来删除分支" class="headerlink" title="4. 我来删除分支"></a>4. 我来删除分支</h2><p>既然 merge 了，分支留着也没用了，咱就把这分支删了吧，先删 remote branch，再删 local branch：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git push -d origin feature/change-passwork</span><br><span class="line">To https://github.com/PurpleMStone/Mars.git</span><br><span class="line"> - [deleted]         feature/change-passwork</span><br><span class="line"></span><br><span class="line">(master)$ git branch</span><br><span class="line">  feature/change-passwork</span><br><span class="line">* master</span><br><span class="line"></span><br><span class="line">(master)$ git branch -d feature/change-passwork</span><br><span class="line">Deleted branch feature/change-passwork (was 244f7a7).</span><br></pre></td></tr></table></figure>
+<p>看看是不是真的删了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git branch</span><br><span class="line">* master</span><br><span class="line"></span><br><span class="line">(master)$ git branch -r</span><br><span class="line">  origin/HEAD -&gt; origin/master</span><br><span class="line">  origin/master</span><br></pre></td></tr></table></figure>
+<p>NICE.</p>
+<h2 id="5-另一个contributor的同步"><a href="#5-另一个contributor的同步" class="headerlink" title="5. 另一个contributor的同步"></a>5. 另一个contributor的同步</h2><p>git pull 获取GitHub变化：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Amy/Mars (master)$ git pull</span><br><span class="line">From https://github.com/PurpleMStone/Mars</span><br><span class="line">   125409a..244f7a7  master     -&gt; origin/master</span><br><span class="line">Updating 125409a..244f7a7</span><br><span class="line">Fast-forward</span><br><span class="line"> file1.txt | 2 +-</span><br><span class="line"> 1 file changed, 1 insertion(+), 1 deletion(-)</span><br></pre></td></tr></table></figure>
+<p>本地还有这个branch，删掉：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Amy/Mars (master)$ git branch</span><br><span class="line">  feature/change-passwork</span><br><span class="line">* master</span><br><span class="line"></span><br><span class="line">Amy/Mars (master)$ git branch -d feature/change-passwork</span><br><span class="line">Deleted branch feature/change-passwork (was 244f7a7).</span><br></pre></td></tr></table></figure>
+<p>会发现origin还有这个branch：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Amy/Mars (master)$ git branch -r</span><br><span class="line">  origin/HEAD -&gt; origin/master</span><br><span class="line">  origin/feature/change-passwork</span><br><span class="line">  origin/master</span><br></pre></td></tr></table></figure>
+<p>可以这样移除（可以刷新本地仓库与远程仓库，保持这些改动的同步）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Amy/Mars (master)$ git remote prune origin</span><br><span class="line">Pruning origin</span><br><span class="line">URL: https://github.com/PurpleMStone/Mars.git</span><br><span class="line"> * [pruned] origin/feature/change-passwork</span><br><span class="line"></span><br><span class="line">Amy/Mars (master)$ git branch -r</span><br><span class="line">  origin/HEAD -&gt; origin/master</span><br><span class="line">  origin/master</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/26/20210426_Git004/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1766,147 +2012,6 @@ D_{mm}(\omega)\approx \boldsymbol{A}(\omega)S(\omega)</script><p>$\boldsymbol{A}
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/04/20201204_CNNinFrequence2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Purple M. Stone">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stone's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2020/12/04/20201204_CNNinFrequence2/" class="post-title-link" itemprop="url">论文阅读笔记(4)：CNN频域学习(2)</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2020-12-04 11:50:09 / 修改时间：13:23:42" itemprop="dateCreated datePublished" datetime="2020-12-04T11:50:09+08:00">2020-12-04</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/12/04/20201204_CNNinFrequence2/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/04/20201204_CNNinFrequence2/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Faster-Neural-Networks-Straight-from-JPEG"><a href="#Faster-Neural-Networks-Straight-from-JPEG" class="headerlink" title="Faster Neural Networks Straight from JPEG"></a>Faster Neural Networks Straight from JPEG</h2><h3 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h3><p>1、缩短图像解码时间。大部分图片都是通过JPEG格式进行存储，JPEG格式转换为RGB需要解码。而如果通过频域学习，解码时只需要从霍夫曼编码中获取DCT系数即可，不需要完全解码得到RGB图像；</p>
-<p>2、让模型更高效。CNN模型的优势是表达能力强（参数很多），所需先验少。但是先验少，所以需要大量参数，使得CNN模型中存在大量冗余计算。频域学习其实是一个先验，如果数据分布和该先验一致，那么达到同样的效果，模型可以更简单，所需要的训练数据可以更少。</p>
-<h3 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h3><p><img src="/images/CNNinFrequence/02_method.png" alt="02_method"></p>
-<h3 id="Evaluation"><a href="#Evaluation" class="headerlink" title="Evaluation"></a>Evaluation</h3><p>在<strong>ImageNet</strong>上实验。目标是准确率高且运行速度快。</p>
-<h4 id="Baseline"><a href="#Baseline" class="headerlink" title="Baseline"></a>Baseline</h4><p>Vanilla ResNet-50, 输入为RGB图像。Top-5错误率7.4%左右，速度200 image/s：</p>
-<p><img src="/images/CNNinFrequence/02_result1.png" alt="02_result1" style="zoom: 33%;"></p>
-<p>以YCbCr为输入，效果与RGB差不多。期望的效果是在图中往右下发展（右：速度快；下：错误率低）。</p>
-<p>希望运行速度更快：1）shorter ResNet-50 (减少网络层数)；2）thinner ResNet-50 (减少每层的通道数)</p>
-<p><img src="/images/CNNinFrequence/02_result2.png" alt="02_result2"></p>
-<p>结论：shorter ResNet-50优于thinner ResNet-50。浅灰色的“Remove N ID Blocks”的线形成了帕累托前沿(Pareto front)，显示了“non-dominated”网络的集合，或者是那些在速度和准确性之间做出最佳权衡的网络。</p>
-<h4 id="Training-networks-on-DCT-inputs"><a href="#Training-networks-on-DCT-inputs" class="headerlink" title="Training networks on DCT inputs"></a>Training networks on DCT inputs</h4><hr>
-<p><strong>问题1</strong>：针对不同的输入尺寸如何处理？</p>
-<p>RGB图像大小：(224, 224, 3)</p>
-<p>DCT系数： 1)  Y-(28, 28, 64)；</p>
-<p>​                    2)  Cb/Cr-(14, 14, 64)</p>
-<p><strong>解决</strong>：在进入网络之前combine Y和Cb、Cr</p>
-<p><img src="/images/CNNinFrequence/02_net1.png" alt="02_net1" style="zoom:50%;"></p>
-<hr>
-<p><strong>1.    DCT Early Merge architectures</strong>：1）下采Y（“DownSampling”）；2）上采Cb、Cr（“UpSampling”）</p>
-<p><img src="/images/CNNinFrequence/02_result3.png" alt="02_result3"></p>
-<p>结论： 1）DownSampling：fast (450 image/s) but high error；</p>
-<p>​            2） UpSampling：slower but lower error; </p>
-<hr>
-<p><strong>问题2</strong>：UpSampling的错误率比baseline高</p>
-<p><strong>可能的原因</strong>：感受野过大。传到baseline ResNet-50的中间层时感受野约为70像素；而UpSampling模型的相应感受野达到了110像素。这是因为DCT输入层的[stride, receptive field]是[8, 8]，而经典输入层该值为 [1, 1]。 直观地说，要求网络学习110px宽的感受野，但没有给它足够的层或计算能力来做到这一点。</p>
-<p><strong>解决</strong>：创造了一个Receptive Field Aware (RFA) 模型→UpSampling-RFA。做法是给神经网络的前层增加额外的步长1模块。此时逐层的感受野增长变得更平滑，近似与baseline ResNet-50相匹配。</p>
-<p>如果UpSampling通过可学反卷积而非像素复制得到，则错误率可以进一步降低，达到目前为止最好的模型：Deconvolution-RFA（错误率6.98%；加速1.29倍）。</p>
-<hr>
-<p>效果：沿着DCT Early Merge线的其他模型现在形成了新的帕累托前沿，在误差和速度的权衡方面超越了以前的模型。</p>
-<p><strong>2.    DCT Late Merge architectures</strong></p>
-<p>实验发现允许亮度分支多层计算才能获得较高的准确率，而色度路径可以在较少的计算层数下不损害准确率。换句话说，1) 将Y通道放到网络的前面，而Cb/Cr信息在中途注入，其效果与 2) 从前面开始全部三个通道的运算 一样好，而方法1)节省了计算。</p>
-<p><img src="/images/CNNinFrequence/02_result4.png" alt="02_result4" style="zoom: 50%;"></p>
-<p>Late-Concat-RFA：receptive field aware version；</p>
-<p>Late-Concat-RFA-Thinner：通过使用更少过滤器而调整速度的版本。加速1.77倍，错误率相近。</p>
-<p>结论：帕累托前沿再次前移。</p>
-<h3 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h3><p>有趣的是，颜色信息在网络后期（当它与从亮度中学到的更高层次的概念相结合时）才被需要。在这一点上猜测可能是学习中级概念（例如:草或狗毛）需要在其与空间上不那么精确的颜色信息（例如:绿色或棕色）结合之前，精细的亮度边缘进行了好几层处理变成纹理。可以从ResNet-50从RGB像素学习到的更高频率的黑白边缘和更低频率（或常数）的颜色检测器中预期这个结果。</p>
-<p><img src="/images/CNNinFrequence/02_result5.png" alt="02_result5"></p>
-<p>许多边缘检测器基本上都是黑白的，在亮度空间中操作。许多颜色特征要么在空间上是恒定的，要么在频率上是较低的，它们可能只是用来将粗略的颜色信息传递给需要它的更高层次。我们从2012年就看到过这样的滤波器;我们是否应该期望直到网络后期才需要颜色?</p>
-<p><strong>速度与准确率</strong>：速度的提升是由于输入层和后续层上的数据量较小。准确率提升的主要原因是 DCT 表示的具体使用，结果对图像分类非常有效。只需将 ResNet-50 的第一个卷积层替换为stride为 8 的DCT 变换，即可获得更好的性能。它甚至比完全相同形状的学习得到的变换（learned transform）效果更好。使用更大的感受野和stride（8）表现更好，而硬编码第一层比学习得到第一层效果更好。残差网络在 2015 年得到 ImageNet 上最先进的性能，只需用DCT 替换第一层，就会进一步提高SOTA。</p>
-<p><a href="https://zhuanlan.zhihu.com/p/115584408" target="_blank" rel="noopener">CNN频域学习博客讲解</a></p>
-<p><a href="https://papers.nips.cc/paper/2018/file/7af6266cc52234b5aa339b16695f7fc4-Paper.pdf" target="_blank" rel="noopener">Faster Neural Networks Straight from JPEG</a></p>
-<p><a href="https://eng.uber.com/neural-networks-jpeg/?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="noopener">Faster Neural Networks Straight from JPEG 博客讲解</a></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
@@ -1959,7 +2064,7 @@ D_{mm}(\omega)\approx \boldsymbol{A}(\omega)S(\omega)</script><p>$\boldsymbol{A}
         
           <a href="/archives/%20%7C%7C%20archive">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
