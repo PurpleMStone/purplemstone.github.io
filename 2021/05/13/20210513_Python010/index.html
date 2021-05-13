@@ -63,11 +63,13 @@
 <meta property="og:site_name" content="Stone&#39;s Blog">
 <meta property="og:description" content="Mosh的课程网址 Python标准库不一定够用。所以有： pypi官网 Pip123456pip install requests				(安装包)pip list							(查看已安装列表)pip install requests&#x3D;&#x3D;2.9.0			(安装早前版本的包)pip install requests&#x3D;&#x3D;2.9.*			(安装早前版本中符合条件的最近的包)pip install r">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/images/Python/003.png">
 <meta property="article:published_time" content="2021-05-13T15:50:09.000Z">
-<meta property="article:modified_time" content="2021-05-13T12:30:41.836Z">
+<meta property="article:modified_time" content="2021-05-13T14:45:23.797Z">
 <meta property="article:author" content="Purple M. Stone">
 <meta property="article:tag" content="job notes-python">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/Python/003.png">
   <link rel="canonical" href="http://yoursite.com/2021/05/13/20210513_Python010/">
 
 
@@ -275,7 +277,7 @@
                 
               
 
-              <time title="创建时间：2021-05-13 23:50:09 / 修改时间：20:30:41" itemprop="dateCreated datePublished" datetime="2021-05-13T23:50:09+08:00">2021-05-13</time>
+              <time title="创建时间：2021-05-13 23:50:09 / 修改时间：22:45:23" itemprop="dateCreated datePublished" datetime="2021-05-13T23:50:09+08:00">2021-05-13</time>
             </span>
           
             
@@ -338,7 +340,87 @@
 <p>输出：</p>
 <p>&lt;Response [200]&gt;</p>
 <p>200表示成功。</p>
-<h1 id="Virtual-Environments"><a href="#Virtual-Environments" class="headerlink" title="Virtual Environments"></a>Virtual Environments</h1>
+<h1 id="Virtual-Environments"><a href="#Virtual-Environments" class="headerlink" title="Virtual Environments"></a>Virtual Environments</h1><p>创建虚拟环境：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; python -m venv env</span><br></pre></td></tr></table></figure>
+<p>可以看到当前目录下有一个env文件夹，里面有个pyvenv.cfg，内容如下:</p>
+<blockquote>
+<p>home = D:\Python39<br>include-system-site-packages = false<br>version = 3.9.4</p>
+</blockquote>
+<p>进入虚拟环境：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; env\Scripts\activate.bat</span><br></pre></td></tr></table></figure>
+<p>退出虚拟环境：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; deactivate</span><br></pre></td></tr></table></figure>
+<h2 id="Pipenv"><a href="#Pipenv" class="headerlink" title="Pipenv"></a>Pipenv</h2><p>先安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; pip install pipenv</span><br></pre></td></tr></table></figure>
+<p>查看虚拟环境在哪（一般不在当前工作目录下，为了节省空间）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; pipenv --venv</span><br></pre></td></tr></table></figure>
+<p>进入虚拟环境：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; pipenv shell</span><br></pre></td></tr></table></figure>
+<p>退出虚拟环境:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+<h2 id="Virtual-Environments-in-VSCode"><a href="#Virtual-Environments-in-VSCode" class="headerlink" title="Virtual Environments in VSCode"></a>Virtual Environments in VSCode</h2><p>查看虚拟环境在哪：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; pipenv --venv</span><br></pre></td></tr></table></figure>
+<p>得到路径: C:/Users/11405/.virtualenvs/HelloWorldBjQZ8Ory</p>
+<p>在VSCode中，File→Preference→settings，打开settings.json，改这两项（没有就自己加）：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">"python.pythonPath": "C:/Users/11405/.virtualenvs/HelloWorldBjQZ8Ory/Scripts/python.exe",</span><br><span class="line">"code-runner.executorMap": &#123;</span><br><span class="line">    "python": "C:/Users/11405/.virtualenvs/HelloWorldBjQZ8Ory/Scripts/python.exe",</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>点击VSCode左下角，然后选择pipenv为解释器,即可。</p>
+<h2 id="Pipfile"><a href="#Pipfile" class="headerlink" title="Pipfile"></a>Pipfile</h2><p>在用pipenv创建虚拟环境时，当前目录（不是虚拟环境所在目录）下会生成两个文件：</p>
+<blockquote>
+<p>Pipfile</p>
+<p>Pipfile.lock</p>
+</blockquote>
+<p>Pipfile文件：</p>
+<blockquote>
+<p>[[source]]<br>url = “<a href="https://pypi.org/simple" target="_blank" rel="noopener">https://pypi.org/simple</a>“<br>verify_ssl = true<br>name = “pypi”</p>
+<p>[packages]<br>requests = “*”</p>
+<p>[dev-packages]<br>pylint = “*”</p>
+<p>[requires]<br>python_version = “3.9”</p>
+</blockquote>
+<p>Pipfile.lock是一个json文件，存了所有包的版本，所以换一台机器跑这个代码，依赖的还是这些版本的包，就不会出问题。</p>
+<p>在另一台机器，只要：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; pipenv install</span><br></pre></td></tr></table></figure>
+<p>就会根据Pipfile创建一样的环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; pipenv install --ignore-pipfile</span><br></pre></td></tr></table></figure>
+<p>就会根据Pipfile.lock安装依赖包。</p>
+<h2 id="Managing-the-Dependencies"><a href="#Managing-the-Dependencies" class="headerlink" title="Managing the Dependencies"></a>Managing the Dependencies</h2><p>可以用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; pipenv graph</span><br></pre></td></tr></table></figure>
+<p>看已安装的包及其依赖项。</p>
+<p>卸载某个包后，再用上述命令查看，会发现依赖项还在（因为这些依赖项可能在别的地方有用的）。</p>
+<p>更新包和依赖项(想安装最新的，就改Pipfile中的版本号为*)：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; pipenv update requests</span><br></pre></td></tr></table></figure>
+<p>更新所有包的依赖项：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; pipenv update --outdated</span><br></pre></td></tr></table></figure>
+<h1 id="Publishing-Packages"><a href="#Publishing-Packages" class="headerlink" title="Publishing Packages"></a>Publishing Packages</h1><p>在pypi官网上注册一个账号（记得激活邮箱）。</p>
+<p>然后安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; pip install setuptools wheel twine</span><br></pre></td></tr></table></figure>
+<p>新建一个项目，包含 stonepdf，test（单元测试），data（各种数据） 三个文件夹。</p>
+<p>需要以下文件：</p>
+<ol>
+<li><p><strong>LICENSE</strong>：到 <a href="https://choosealicense.com/" target="_blank" rel="noopener">https://choosealicense.com/</a> copy一个</p>
+</li>
+<li><p><strong>README.md</strong>：介绍你的项目</p>
+</li>
+<li><p><strong>setup.py</strong></p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># setup.py</span></span><br><span class="line"><span class="keyword">import</span> setuptools</span><br><span class="line"><span class="keyword">import</span> setuptools</span><br><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line"></span><br><span class="line">setuptools.setup(</span><br><span class="line">    name=<span class="string">"stonepdf"</span>,</span><br><span class="line">    version=<span class="number">1.0</span>,</span><br><span class="line">    long_description=Path(<span class="string">"README.md"</span>).read_text(),</span><br><span class="line">    packages=setuptools.find_packages(exclude=[<span class="string">"tests"</span>, <span class="string">"data"</span>]) <span class="comment"># 忽略这两个</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>然后运行（sdist表示source distribution, bdist表示built distribution）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; python setup.py sdist bdist_wheel</span><br></pre></td></tr></table></figure>
+<p>然后上传：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; twine upload dist/*</span><br></pre></td></tr></table></figure>
+<p>*表示上传dist目录下所有文件。</p>
+<p>然后就可以像用其他包一样用我们的包啦。</p>
+<h1 id="Docstrings"><a href="#Docstrings" class="headerlink" title="Docstrings"></a>Docstrings</h1><p>其他人提供的module在VSCode中有许多提示性信息显示出来，这就需要Docstrings。</p>
+<p>比如（用”””  “””包含的部分）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">""" This module provides functions to convert a PDF to text. """</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Converter</span>:</span></span><br><span class="line">    <span class="string">""" A simple converter for converting PDFs to text. """</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">convert</span><span class="params">(self, path)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Convert the given PDF to text. </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        Parameters:</span></span><br><span class="line"><span class="string">        path (str): The path to a PDF file.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        Returns:</span></span><br><span class="line"><span class="string">        str: The content of the PDF file as text.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line"></span><br><span class="line">        print(<span class="string">"pdf2text"</span>)</span><br></pre></td></tr></table></figure>
+<p>这些信息在 VSCode 调用这些 module 的 method、class 时会显示出来，便于别人使用。</p>
+<p><img src="/images/Python/003.png" alt="003"></p>
+<h1 id="Pydoc"><a href="#Pydoc" class="headerlink" title="Pydoc"></a>Pydoc</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; pydoc math</span><br><span class="line">&gt; pydoc stonepdf.pdf2text</span><br><span class="line">&gt; pydoc -w stonepdf.pdf2text</span><br><span class="line">&gt; pydoc -p 1234</span><br></pre></td></tr></table></figure>
+<p>查看包的介绍文件。-w在html中显示。-p会提供网址。</p>
+<p>在 Windows 用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; python -m pydoc math</span><br></pre></td></tr></table></figure>
+<p>其余同理。</p>
+
     </div>
 
     
@@ -423,7 +505,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Pip"><span class="nav-number">1.</span> <span class="nav-text">Pip</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Virtual-Environments"><span class="nav-number">2.</span> <span class="nav-text">Virtual Environments</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Pip"><span class="nav-number">1.</span> <span class="nav-text">Pip</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Virtual-Environments"><span class="nav-number">2.</span> <span class="nav-text">Virtual Environments</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pipenv"><span class="nav-number">2.1.</span> <span class="nav-text">Pipenv</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Virtual-Environments-in-VSCode"><span class="nav-number">2.2.</span> <span class="nav-text">Virtual Environments in VSCode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pipfile"><span class="nav-number">2.3.</span> <span class="nav-text">Pipfile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Managing-the-Dependencies"><span class="nav-number">2.4.</span> <span class="nav-text">Managing the Dependencies</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Publishing-Packages"><span class="nav-number">3.</span> <span class="nav-text">Publishing Packages</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docstrings"><span class="nav-number">4.</span> <span class="nav-text">Docstrings</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pydoc"><span class="nav-number">5.</span> <span class="nav-text">Pydoc</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
