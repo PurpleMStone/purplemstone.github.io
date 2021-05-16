@@ -56,19 +56,19 @@
   };
 </script>
 
-  <meta name="description" content="数组与链表数据结构的存储方式只有两种：数组（顺序存储）和链表（链式存储）。 那些多样化的数据结构，究其源头，都是在链表或者数组上的特殊操作，API 不同而已 数组由于是紧凑连续存储,可以随机访问，通过索引快速找到对应元素，而且相对节约存储空间。但正因为连续存储，内存空间必须一次性分配够，所以说数组如果要扩容，需要重新分配一块更大的空间，再把数据全部复制过去，时间复杂度 O(N)；而且你如果想在数组">
+  <meta name="description" content="1 Inner Joins (内连接)1234SELECT order_id, o.customer_id, first_name, last_nameFROM orders oINNER JOIN customers c	ON o.customer_id &#x3D; c.customer_id 返回表orders在表customers中有对应record的项 o和c分别是orders和customers">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构与算法笔记(1)">
-<meta property="og:url" content="http://yoursite.com/2021/03/12/20210312_DongAlgNote/index.html">
+<meta property="og:title" content="MySQL笔记(2)--连接">
+<meta property="og:url" content="http://yoursite.com/2021/05/17/20210420_SQL002/index.html">
 <meta property="og:site_name" content="Stone&#39;s Blog">
-<meta property="og:description" content="数组与链表数据结构的存储方式只有两种：数组（顺序存储）和链表（链式存储）。 那些多样化的数据结构，究其源头，都是在链表或者数组上的特殊操作，API 不同而已 数组由于是紧凑连续存储,可以随机访问，通过索引快速找到对应元素，而且相对节约存储空间。但正因为连续存储，内存空间必须一次性分配够，所以说数组如果要扩容，需要重新分配一块更大的空间，再把数据全部复制过去，时间复杂度 O(N)；而且你如果想在数组">
+<meta property="og:description" content="1 Inner Joins (内连接)1234SELECT order_id, o.customer_id, first_name, last_nameFROM orders oINNER JOIN customers c	ON o.customer_id &#x3D; c.customer_id 返回表orders在表customers中有对应record的项 o和c分别是orders和customers">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-03-12T02:50:09.000Z">
-<meta property="article:modified_time" content="2021-03-12T02:49:37.248Z">
+<meta property="article:published_time" content="2021-05-17T13:50:09.000Z">
+<meta property="article:modified_time" content="2021-05-16T08:49:49.235Z">
 <meta property="article:author" content="Purple M. Stone">
-<meta property="article:tag" content="job notes-algorithm">
+<meta property="article:tag" content="job notes-database">
 <meta name="twitter:card" content="summary">
-  <link rel="canonical" href="http://yoursite.com/2021/03/12/20210312_DongAlgNote/">
+  <link rel="canonical" href="http://yoursite.com/2021/05/17/20210420_SQL002/">
 
 
 <script id="page-configurations">
@@ -82,7 +82,7 @@
   };
 </script>
 
-  <title>数据结构与算法笔记(1) | Stone's Blog</title>
+  <title>MySQL笔记(2)--连接 | Stone's Blog</title>
   
 
 
@@ -247,7 +247,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/12/20210312_DongAlgNote/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/05/17/20210420_SQL002/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Purple M. Stone">
@@ -259,7 +259,7 @@
       <meta itemprop="name" content="Stone's Blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">数据结构与算法笔记(1)
+        <h1 class="post-title" itemprop="name headline">MySQL笔记(2)--连接
 
           
         </h1>
@@ -275,11 +275,19 @@
                 
               
 
-              <time title="创建时间：2021-03-12 10:50:09 / 修改时间：10:49:37" itemprop="dateCreated datePublished" datetime="2021-03-12T10:50:09+08:00">2021-03-12</time>
+              <time title="创建时间：2021-05-17 21:50:09" itemprop="dateCreated datePublished" datetime="2021-05-17T21:50:09+08:00">2021-05-17</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-16 16:49:49" itemprop="dateModified" datetime="2021-05-16T16:49:49+08:00">2021-05-16</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -288,7 +296,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a></span>
 
                 
                 
@@ -315,7 +323,7 @@
       
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/03/12/20210312_DongAlgNote/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/03/12/20210312_DongAlgNote/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2021/05/17/20210420_SQL002/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/05/17/20210420_SQL002/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -329,12 +337,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="数组与链表"><a href="#数组与链表" class="headerlink" title="数组与链表"></a>数组与链表</h1><p><strong>数据结构的存储方式只有两种：数组（顺序存储）和链表（链式存储）</strong>。</p>
-<p>那些多样化的数据结构，究其源头，都是在链表或者数组上的特殊操作，API 不同而已</p>
-<p><strong>数组</strong>由于是紧凑连续存储,可以随机访问，通过索引快速找到对应元素，而且相对节约存储空间。但正因为连续存储，内存空间必须一次性分配够，所以说数组如果要扩容，需要重新分配一块更大的空间，再把数据全部复制过去，时间复杂度 O(N)；而且你如果想在数组中间进行插入和删除，每次必须搬移后面的所有数据以保持连续，时间复杂度 O(N)。</p>
-<p><strong>链表</strong>因为元素不连续，而是靠指针指向下一个元素的位置，所以不存在数组的扩容问题；如果知道某一元素的前驱和后驱，操作指针即可删除该元素或者插入新元素，时间复杂度 O(1)。但是正因为存储空间不连续，你无法根据一个索引算出对应元素的地址，所以不能随机访问；而且由于每个元素必须存储指向前后元素位置的指针，会消耗相对更多的储存空间。</p>
-<h1 id="数据结构基本操作"><a href="#数据结构基本操作" class="headerlink" title="数据结构基本操作"></a>数据结构基本操作</h1><p>遍历 + 访问：增删查改（<strong>在不同的应用场景，尽可能高效地增删查改</strong>）</p>
-<p>方式：线性-for/while；非线性-递归</p>
+        <h1 id="1-Inner-Joins-内连接"><a href="#1-Inner-Joins-内连接" class="headerlink" title="1 Inner Joins (内连接)"></a>1 Inner Joins (内连接)</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> order_id, o.customer_id, first_name, last_name</span><br><span class="line"><span class="keyword">FROM</span> orders o</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> customers c</span><br><span class="line">	<span class="keyword">ON</span> o.customer_id = c.customer_id</span><br></pre></td></tr></table></figure>
+<p>返回表orders在表customers中有对应record的项</p>
+<p>o和c分别是orders和customers的别名，以简化代码</p>
+<p>关键字INNER可省略</p>
+<h2 id="1-1-跨数据库连接"><a href="#1-1-跨数据库连接" class="headerlink" title="1.1 跨数据库连接"></a>1.1 跨数据库连接</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">USE</span> sql_store;  <span class="comment">-- 选择了数据库sql_store为当前数据库</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> order_items oi</span><br><span class="line"><span class="keyword">JOIN</span> sql_inventory.products p   <span class="comment">-- 另一个数据库sql_inventory</span></span><br><span class="line">	<span class="keyword">ON</span> oi.product_id = p.product_id</span><br></pre></td></tr></table></figure>
+<h2 id="1-2-自连接"><a href="#1-2-自连接" class="headerlink" title="1.2 自连接"></a>1.2 自连接</h2><p>将表和自己连接，但是给不同的别名以区分。如下，manager也是一名员工，其信息也在表employees中，用自连接可以得到employee和TA的manager的具体员工信息。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">USE</span> sql_hr;  <span class="comment">-- 选择了数据库sql_hr为当前数据库</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	e.employee_id,</span><br><span class="line">    e.first_name,</span><br><span class="line">    m.first_name <span class="keyword">AS</span> manager</span><br><span class="line"><span class="keyword">FROM</span> employees e</span><br><span class="line"><span class="keyword">JOIN</span> employees m  </span><br><span class="line">	<span class="keyword">ON</span> e.reports_to = m.employee_id</span><br></pre></td></tr></table></figure>
+<h2 id="1-3-多表连接"><a href="#1-3-多表连接" class="headerlink" title="1.3 多表连接"></a>1.3 多表连接</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">USE</span> sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	o.order_id,</span><br><span class="line">    o.order_date,</span><br><span class="line">    c.first_name,</span><br><span class="line">    c.last_name,</span><br><span class="line">    os.name <span class="keyword">AS</span> <span class="keyword">status</span></span><br><span class="line"><span class="keyword">FROM</span> orders o</span><br><span class="line"><span class="keyword">JOIN</span> customers c</span><br><span class="line">	<span class="keyword">ON</span> o.customer_id = c.customer_id</span><br><span class="line"><span class="keyword">JOIN</span> order_statuses os</span><br><span class="line">	<span class="keyword">ON</span> o.status = os.order_status_id</span><br></pre></td></tr></table></figure>
+<p>表orders先和表customers连接，然后与表order_statuses连接。</p>
 
     </div>
 
@@ -350,7 +361,7 @@
           
           <div class="post-tags">
             
-              <a href="/tags/job-notes-algorithm/" rel="tag"># job notes-algorithm</a>
+              <a href="/tags/job-notes-database/" rel="tag"># job notes-database</a>
             
           </div>
         
@@ -360,8 +371,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2020/12/25/20201225_VisualToSound/" rel="next" title="论文阅读笔记(7)-Visual to Sound Generating Natural Sound for Videos in the Wild">
-                  <i class="fa fa-chevron-left"></i> 论文阅读笔记(7)-Visual to Sound Generating Natural Sound for Videos in the Wild
+                <a href="/2021/05/16/20210420_SQL001/" rel="next" title="MySQL笔记(1)--基础语句">
+                  <i class="fa fa-chevron-left"></i> MySQL笔记(1)--基础语句
                 </a>
               
             </div>
@@ -369,10 +380,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2021/04/21/20210421_Git002/" rel="prev" title="Mosh的Git课程笔记(2)--Creating Snapshots">
-                  Mosh的Git课程笔记(2)--Creating Snapshots <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -424,7 +431,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数组与链表"><span class="nav-number">1.</span> <span class="nav-text">数组与链表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据结构基本操作"><span class="nav-number">2.</span> <span class="nav-text">数据结构基本操作</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Inner-Joins-内连接"><span class="nav-number">1.</span> <span class="nav-text">1 Inner Joins (内连接)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-跨数据库连接"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 跨数据库连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-自连接"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 自连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-多表连接"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 多表连接</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
