@@ -270,7 +270,7 @@
                 
               
 
-              <time title="创建时间：2021-05-17 21:50:09 / 修改时间：15:52:03" itemprop="dateCreated datePublished" datetime="2021-05-17T21:50:09+08:00">2021-05-17</time>
+              <time title="创建时间：2021-05-17 21:50:09 / 修改时间：15:59:22" itemprop="dateCreated datePublished" datetime="2021-05-17T21:50:09+08:00">2021-05-17</time>
             </span>
           
             
@@ -316,7 +316,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="1-Inner-Joins-内连接"><a href="#1-Inner-Joins-内连接" class="headerlink" title="1 Inner Joins (内连接)"></a>1 Inner Joins (内连接)</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> order_id, o.customer_id, first_name, last_name</span><br><span class="line"><span class="keyword">FROM</span> orders o</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> customers c</span><br><span class="line">	<span class="keyword">ON</span> o.customer_id = c.customer_id</span><br></pre></td></tr></table></figure>
+          <p><img src="/images/SQL1/002_sql-join.png" alt="002_sql-join"></p>
+<h1 id="1-Inner-Joins-内连接"><a href="#1-Inner-Joins-内连接" class="headerlink" title="1 Inner Joins (内连接)"></a>1 Inner Joins (内连接)</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> order_id, o.customer_id, first_name, last_name</span><br><span class="line"><span class="keyword">FROM</span> orders o</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> customers c</span><br><span class="line">	<span class="keyword">ON</span> o.customer_id = c.customer_id</span><br></pre></td></tr></table></figure>
 <p>返回表orders在表customers中有对应record的项</p>
 <p>o和c分别是orders和customers的别名，以简化代码</p>
 <p>关键字INNER可省略</p>
