@@ -241,6 +241,155 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/02/20201202_AdderNet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Purple M. Stone">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stone's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/12/02/20201202_AdderNet/" class="post-title-link" itemprop="url">论文阅读笔记(2)：AdderNet</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-12-02 19:20:09" itemprop="dateCreated datePublished" datetime="2020-12-02T19:20:09+08:00">2020-12-02</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-17 12:24:22" itemprop="dateModified" datetime="2021-05-17T12:24:22+08:00">2021-05-17</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/12/02/20201202_AdderNet/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/02/20201202_AdderNet/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p><strong>目标</strong>：设计更加高效的深度神经网络，可以在资源有限的移动设备运行。</p>
+<p><strong>现有工作的局限性</strong>：常规的卷积基于乘法，代价较高；用二值滤波器替换卷积的工作如BNN等会带来较大的识别准确率下降。</p>
+<p><strong>文章思路</strong>：常规卷积本质上是一种互相关（输入图像与卷积核之间的相似度度量）。可以用更高效的相似度度量方法来替换常规卷积，使得度量中只包含代价较小的加法操作→AdderNet</p>
+<h2 id="AdderNet"><a href="#AdderNet" class="headerlink" title="AdderNet"></a>AdderNet</h2><p>开局公式</p>
+<script type="math/tex; mode=display">
+Y(m,n,t)=\sum\limits_{i=0}^{d}\sum\limits_{j=0}^{d}\sum\limits_{k=0}^{c_{in}}S(X(m+i,n+j,k),F(i,j,k,t))</script><p>F： 卷积核（滤波器）(尺寸$d×d$) 当d=1时，该公式表示全连接层的计算</p>
+<p>X：特征图</p>
+<p>S：预定义的相似度测量方法，例如互相关中$S(x,y)=x\times y$</p>
+<p>从上述公式出发，文章改变S，使用L1距离测量F和X的相似度，使得测量中只有加法没有乘法：</p>
+<script type="math/tex; mode=display">
+Y(m,n,t)=-\sum\limits_{i=0}^{d}\sum\limits_{j=0}^{d}\sum\limits_{k=0}^{c_{in}}|X(m+i,n+j,k)-F(i,j,k,t)|</script><h3 id="使用L1距离存在的问题及解决："><a href="#使用L1距离存在的问题及解决：" class="headerlink" title="使用L1距离存在的问题及解决："></a>使用L1距离存在的问题及解决：</h3><p><strong>问题1</strong>：加法滤波器的输出总为负数（会影响激活函数如ReLU的使用）</p>
+<p><strong>解决方法</strong>：使用Batch Normalization→输出被归一化到适当的范围→CNN中的激活函数在AdderNet中也适用            （BN中存在乘法，但是数量太少可以忽略）</p>
+<p><strong>问题2.1</strong>：优化方法中滤波器F梯度的计算</p>
+<p>AdderNet中计算偏微分：</p>
+<script type="math/tex; mode=display">
+\frac{\partial Y(m,n,t)}{\partial F(i,j,k,t)}=sgn(X(m+i,n+j,k)-F(i,j,k,t))</script><p>所以梯度取值只有+1，0，-1。由此进行优化的方法为signSGD，但是，signSGD几乎永远不会沿着最陡的下降方向，并且方向性只会随着维数的增长而变差。</p>
+<p><strong>解决方法</strong>：使用另一种形式的梯度（实际上是L2范数的梯度）：</p>
+<script type="math/tex; mode=display">
+\frac{\partial Y(m,n,t)}{\partial F(i,j,k,t)}=X(m+i,n+j,k)-F(i,j,k,t)</script><p><strong>问题2.2</strong>：优化方法中特征图X梯度的计算</p>
+<p>同样使用L2范数的梯度，但是梯度值可能会在[-1，+1]的范围之外→由于chain rule，Y对X的偏导数不仅影响当前层的梯度，还会影响当前层之前的所有层的梯度→梯度爆炸</p>
+<p><strong>解决方法</strong>：使用HardTanh函数（HT(x)）将X的梯度clip到[-1,+1]的范围。</p>
+<script type="math/tex; mode=display">
+\frac{\partial Y(m,n,t)}{\partial X(i,j,k,t)}=HT(F(m+i,n+j,k)-X(i,j,k,t))</script><p><strong>问题3</strong>：AdderNet使用L1范数得到的Y方差更大，导致滤波器权重的梯度消失问题</p>
+<p>假设F和X服从正太分布</p>
+<p>CNN中有</p>
+<script type="math/tex; mode=display">
+Var[Y_{CNN}]=\sum\limits_{i=0}^{d}\sum\limits_{j=0}^{d}\sum\limits_{k=0}^{c_{in}}Var[X\times F]=d^{2}c_{in}Var[X]Var[F]</script><p>而AdderNet中则是</p>
+<script type="math/tex; mode=display">
+Var[Y_{AdderNet}]=\sum\limits_{i=0}^{d}\sum\limits_{j=0}^{d}\sum\limits_{k=0}^{c_{in}}Var[|X-F|]=(1-\frac{2}{\pi})d^{2}c_{in}(Var[X]+Var[F])</script><p>实际情况中Var[F]非常小，所以$Var[Y_{AdderNet}]$会比$Var[Y_{CNN}]$大。在加法层后面会接一个BN层，大方差会导致X的梯度幅值小，经过chain rule的作用，滤波器的权重梯度幅值会越来越小。</p>
+<p><img src="/images/addernet/gradient_disappear.png" alt="gradient_disappear" style="zoom: 33%;"></p>
+<p><strong>解决方法</strong>：adaptive learning rate</p>
+<script type="math/tex; mode=display">
+\triangle F_{l}=\gamma \times \alpha_{l}\times \triangle L(F_{l})</script><p>$l$：表示第$l$层；$\triangle L(F_{l})$第$l$层F的梯度；$\gamma$：全局学习率</p>
+<p>局部学习率：</p>
+<script type="math/tex; mode=display">
+\alpha_{l}=\frac{\eta \sqrt k}{||\triangle L(F_{l})||_{2}}</script><p>k：F中的元素数量，用于对L2范数求平均</p>
+<h2 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h2><p>在MNIST、CIFAR10、CIFAR100、ImageNet上达到与CNN相近的准确率。</p>
+<p><img src="/images/addernet/v1_imagenet_result.png" alt="v1_imagenet_result" style="zoom: 33%;"></p>
+<p>AdderNet的权重服从拉普拉斯分布，而CNN的权重服从高斯分布。</p>
+<p><img src="/images/addernet/v1_histogram.png" alt="v1_histogram" style="zoom: 33%;"></p>
+<p><a href="https://arxiv.org/abs/1912.13200v2" target="_blank" rel="noopener">AdderNet: DoWe Really Need Multiplications in Deep Learning?</a></p>
+<p><a href="https://github.com/huawei-noah/AdderNet" target="_blank" rel="noopener">AdderNet代码</a></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/15/11_latex_python_code/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1043,7 +1192,7 @@ s.t. w^{*}(\alpha)=argmin_{w}L_{train}(w,\alpha)</script><p>即找到最优结�
         
           <a href="/archives/%20%7C%7C%20archive">
         
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1253,11 +1402,13 @@ window.addEventListener('pjax:success', () => {
   
     
       
-    
-      
-    
-      
         
+      
+    
+      
+    
+      
+    
       
     
       

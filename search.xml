@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[MySQL笔记(8)--存储过程(Stored Procedures)]]></title>
+    <url>%2F2021%2F05%2F19%2F20210519_SQL008%2F</url>
+    <content type="text"><![CDATA[1 优点 Store and organize SQLFaster executionData security 2 创建一个存储过程1234567DELIMITER $$CREATE PROCEDURE get_clients()BEGIN SELECT * FROM clients; -- body of procedureEND$$DELIMITER ; -- 将分隔符定义回分号 DELIMITER 定义分隔符为, 也就是将...视为一个unit, 而不是将”;”结束的一个个语句视为unit. 调用存储过程: 1CALL get_clients() 3 删除存储过程1DROP PROCEDURE IF EXISTS get_clients; 创建存储过程的基本框架 123456789DROP PROCEDURE IF EXISTS get_clients;DELIMITER $$CREATE PROCEDURE get_clients()BEGIN SELECT * FROM clients; END$$DELIMITER ; 4 参数12345678910111213DROP PROCEDURE IF EXISTS get_clients_by_state;DELIMITER $$CREATE PROCEDURE get_clients_by_state( state CHAR(2))BEGIN SELECT * FROM clients c WHERE c.state = state;END$$DELIMITER ; 调用: 1CALL get_clients_by_state('CA')]]></content>
+      <categories>
+        <category>Database</category>
+      </categories>
+      <tags>
+        <tag>job notes-database</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[MySQL笔记(7)--视图(Views)]]></title>
     <url>%2F2021%2F05%2F19%2F20210519_SQL007%2F</url>
     <content type="text"><![CDATA[1 创建视图12345678910USE sql_invoicing;CREATE VIEW sales_by_client ASSELECT c.client_id, c.name, SUM(invoice_total) AS total_salesFROM clients cJOIN invoices i USING (client_id)GROUP BY client_id, name 可以在”Views”看到这个视图.可以像使用table一样用视图. 2 更改或删除视图删除视图 1DROP VIEW sales_by_client 更改视图 12345678910USE sql_invoicing;CREATE OR REPLACE VIEW sales_by_client AS -- create or replaceSELECT c.client_id, c.name, SUM(invoice_total) AS total_salesFROM clients cJOIN invoices i USING (client_id)GROUP BY client_id, name 3 可更新视图如果视图中没有: DISTINCTAggregate Functions (MIN, MAX, SUM)GROUP BY / HAVINGUNION 就是可更新视图,就可以增删改: 比如: 123456789101112CREATE OR REPLACE VIEW invoices_with_balance ASSELECT invoice_id, number, client_id, invoice_total, payment_total, invoice_total - payment_total AS balance, due_date, payment_dateFROM invoicesWHERE (invoice_total - payment_total) &gt; 0 invoices_with_balance 就是可更新视图,可以增删改: 12DELETE FROM invoices_with_balanceWHERE invoice_id = 1 123UPDATE invoices_with_balanceSET due_date = DATE_ADD(due_date, INTERVAL 5 DAY)WHERE invoice_id = 2 4 WITH OPTION CHECK 子句上例中,进行如下更改: 123UPDATE invoices_with_balanceSET payment_total = invoice_totalWHERE invoice_id = 2 该视图中 invoice_id = 2 的行消失了(因为不再满足(invoice_total - payment_total) &gt; 0的条件) 如果不想 UPDATE 或 DELETE 语句使得某些行从视图中删除, 就这样: 12345678910111213CREATE OR REPLACE VIEW invoices_with_balance ASSELECT invoice_id, number, client_id, invoice_total, payment_total, invoice_total - payment_total AS balance, due_date, payment_dateFROM invoicesWHERE (invoice_total - payment_total) &gt; 0WITH CHECK OPTION -- 增加这个子句,防止删除行 后面再执行这样的: 123UPDATE invoices_with_balanceSET payment_total = invoice_totalWHERE invoice_id = 3 就会报错: Error Code: 1369. CHECK OPTION failed 5 视图的优点 Simplify queriesReduce the impact of changesRestrict access to the data]]></content>
