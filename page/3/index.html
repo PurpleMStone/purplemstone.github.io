@@ -241,6 +241,305 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/26/20210426_Git004/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Purple M. Stone">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stone's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2021/04/26/20210426_Git004/" class="post-title-link" itemprop="url">Mosh的Git课程笔记(4)--Branching</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2021-04-26 21:50:09" itemprop="dateCreated datePublished" datetime="2021-04-26T21:50:09+08:00">2021-04-26</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-17 12:24:22" itemprop="dateModified" datetime="2021-05-17T12:24:22+08:00">2021-05-17</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/04/26/20210426_Git004/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/04/26/20210426_Git004/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="https://codewithmosh.com/" target="_blank" rel="noopener">Mosh的课程网址</a></p>
+<h1 id="What-are-Branches"><a href="#What-are-Branches" class="headerlink" title="What are Branches?"></a>What are Branches?</h1><ul>
+<li>master分支一般存着stable的commit版本，另一个分支如feature存着还不stable的版本，等到改到完善了，才将feature分支merge到master中。</li>
+<li>MASTER指针指向master分支中最近commit的版本，其他分支同理。</li>
+<li>HEAD指针可以指向master，也可以指向feature，用于方便地调整working branch。</li>
+</ul>
+<p><img src="/images/Git/4_01.png" alt="4_01" style="zoom: 50%;"></p>
+<h1 id="Working-with-Branches"><a href="#Working-with-Branches" class="headerlink" title="Working with Branches"></a>Working with Branches</h1><p>创建分支：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch bugfix</span><br></pre></td></tr></table></figure>
+<p>查看现有分支，其中标*的表示当前working branch：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git branch</span><br><span class="line">  bugfix</span><br><span class="line">* master</span><br></pre></td></tr></table></figure>
+<p>也可以这样查看当前working branch：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">nothing to commit, working tree clean</span><br></pre></td></tr></table></figure>
+<p>切换到bugfix branch：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git switch bugfix</span><br><span class="line">Switched to branch <span class="string">'bugfix'</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>Shortcut：创建并切换分支</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git switch -C bugfix</span><br></pre></td></tr></table></figure>
+<p>-C表示creating</p>
+<hr>
+<p>重命名分支：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(bugfix)$ git branch -m bugfix bugfix-signup-form</span><br><span class="line"></span><br><span class="line">(bugfix-signup-form)$</span><br></pre></td></tr></table></figure>
+<p>假如在创建这个bugfix-signup-form分支之前，在master创建了一个audience.txt文件，内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">AUDIENCE</span><br><span class="line"></span><br><span class="line">This course is <span class="keyword">for</span> anyone who wants to learn Git.</span><br><span class="line">No prior experience is required.</span><br></pre></td></tr></table></figure>
+<p>创建并切换当前分支为bugfix-signup-form分支之后将该文件的内容改为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">WHO THIS COURSE IS FOR </span><br><span class="line">======================</span><br><span class="line">This course is <span class="keyword">for</span> anyone who wants to learn Git.</span><br></pre></td></tr></table></figure>
+<p>并提交更改：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(bugfix-signup-form)$ code audience.txt</span><br><span class="line"></span><br><span class="line">(bugfix-signup-form)$ git add .</span><br><span class="line"></span><br><span class="line">(bugfix-signup-form)$ git commit -m <span class="string">"fix the bug that prevented the users from signing up"</span></span><br><span class="line">[bugfix-signup-form 7a5cdb3] fix the bug that prevented the users from signing up</span><br><span class="line"> 1 file changed, 3 insertions(+), 4 deletions(-)</span><br></pre></td></tr></table></figure>
+<p>查看一下，HEAD指向当前分支：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(bugfix-signup-form)$ git <span class="built_in">log</span> --oneline</span><br><span class="line">7a5cdb3 (HEAD -&gt; bugfix-signup-form) fix the bug that prevented the users from signing up</span><br><span class="line">82ca774 (master) add audience.txt</span><br></pre></td></tr></table></figure>
+<p>切换回master分支并查看audience.txt内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(bugfix-signup-form)$ git switch master</span><br><span class="line">Switched to branch <span class="string">'master‘</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">(master)$ code audience.txt</span></span><br></pre></td></tr></table></figure>
+<p>发现audience.txt内容依然是旧版的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">AUDIENCE</span><br><span class="line"></span><br><span class="line">This course is <span class="keyword">for</span> anyone who wants to learn Git.</span><br><span class="line">No prior experience is required.</span><br></pre></td></tr></table></figure>
+<p>查看修改log，会发现看不到bugfix-signup-form分支的更改log：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git <span class="built_in">log</span> --oneline</span><br><span class="line">82ca774 (HEAD -&gt; master) add audience.txt</span><br></pre></td></tr></table></figure>
+<p>除非用—all：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all</span><br><span class="line">7a5cdb3 (bugfix-signup-form) fix the bug that prevented the users from signing up</span><br><span class="line">82ca774 (HEAD -&gt; master) add audience.txt</span><br></pre></td></tr></table></figure>
+<p>如果想删除bugfix-signup-form分支，由于还没merge，所以会报错。若确定真的要删，用-D：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git branch -d bugfix-signup-form</span><br><span class="line">error: The branch <span class="string">'bugfix-signup-form'</span> is not fully merged.</span><br><span class="line">If you are sure you want to delete it, run <span class="string">'git branch -D bugfix-signup-form'</span>.</span><br></pre></td></tr></table></figure>
+<h1 id="Comparing-Branches"><a href="#Comparing-Branches" class="headerlink" title="Comparing Branches"></a>Comparing Branches</h1><p>在将分支merge到master之前，先看看改了啥：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git <span class="built_in">log</span> master..bugfix-signup-form</span><br><span class="line">commit 7a5cdb3ea29a72530f598fa7fee1358a6c4dcb23 (bugfix-signup-form)</span><br><span class="line">Author: Stone &lt;masaike@qq.com&gt;</span><br><span class="line">Date:   Fri Apr 23 21:56:15 2021 +0800</span><br><span class="line"></span><br><span class="line">    fix the bug that prevented the users from signing up</span><br></pre></td></tr></table></figure>
+<p>查看具体改了啥内容（由于当前分支就是master, master..也可以省略不写）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git diff master..bugfix-signup-form</span><br><span class="line">diff --git a/audience.txt b/audience.txt</span><br><span class="line">index 01fd2e1..ecbc229 100644</span><br><span class="line">--- a/audience.txt</span><br><span class="line">+++ b/audience.txt</span><br><span class="line">@@ -1,4 +1,3 @@</span><br><span class="line">-AUDIENCE</span><br><span class="line">-</span><br><span class="line">-This course is <span class="keyword">for</span> anyone who wants to learn Git.</span><br><span class="line">-No prior experience is required.</span><br><span class="line">\ No newline at end of file</span><br><span class="line">+WHO THIS COURSE IS FOR</span><br><span class="line">+======================</span><br><span class="line">+This course is <span class="keyword">for</span> anyone who wants to learn Git.</span><br><span class="line">\ No newline at end of file</span><br></pre></td></tr></table></figure>
+<p>看简略的修改状态信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git diff --name-status bugfix-signup-form</span><br><span class="line">M       audience.txt</span><br></pre></td></tr></table></figure>
+<h1 id="Stashing"><a href="#Stashing" class="headerlink" title="Stashing"></a>Stashing</h1><p>bugfix-signup-form分支对audience.txt修改后，该分支尚未merge到master分支，此时master分支却又对audience.txt进行了修改，此时不允许切换到分支：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git switch bugfix-signup-form</span><br><span class="line">error: Your <span class="built_in">local</span> changes to the following files would be overwritten by checkout:</span><br><span class="line">        audience.txt</span><br><span class="line">Please commit your changes or stash them before you switch branches.</span><br><span class="line">Aborting</span><br><span class="line"></span><br><span class="line">(master)$</span><br></pre></td></tr></table></figure>
+<p>如果我们还不想commit在master分支对audience.txt的修改，可以先用stash保存工作现场：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git stash push -m <span class="string">"New tax rules."</span></span><br><span class="line">Saved working directory and index state On master: New tax rules.</span><br></pre></td></tr></table></figure>
+<p>By default, new untracked files are not included in the stash, 要用-a放入stash:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(master)$ <span class="built_in">echo</span> hello &gt; newfile.txt</span><br><span class="line"></span><br><span class="line">(master)$ git status -s</span><br><span class="line">?? newfile.txt</span><br><span class="line"></span><br><span class="line">(master)$ git stash push -m <span class="string">"My new stash with newfile1.txt"</span></span><br><span class="line">No <span class="built_in">local</span> changes to save			//------这样不行的--------------</span><br><span class="line"></span><br><span class="line">(master)$ git stash push -am <span class="string">"My new stash"</span></span><br><span class="line">Saved working directory and index state On master: My new stash</span><br></pre></td></tr></table></figure>
+<p>查看stash:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git stash list</span><br><span class="line">stash@&#123;0&#125;: On master: My new stash</span><br><span class="line">stash@&#123;1&#125;: On master: New tax rules.</span><br></pre></td></tr></table></figure>
+<p>Stashing了就可以成功切换分支了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git switch bugfix-signup-form</span><br><span class="line">Switched to branch <span class="string">'bugfix-signup-form'</span></span><br></pre></td></tr></table></figure>
+<p>在分支的工作做完，换回master分支，想恢复工作现场，先看看改了啥（根据stash号）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git stash show 1</span><br><span class="line"> audience.txt | 2 +-</span><br><span class="line"> 1 file changed, 1 insertion(+), 1 deletion(-)</span><br></pre></td></tr></table></figure>
+<p>可以的话就apply到本地目录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git stash apply 1</span><br></pre></td></tr></table></figure>
+<p>用 git stash apply恢复后，保存的现场并不删除，需要用git stash drop 删除：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git stash drop 1</span><br><span class="line">Dropped refs/stash@&#123;1&#125; (92b61ede11aa9f3c076aed7c1409c7cc683e4efb)</span><br></pre></td></tr></table></figure>
+<p>清除全部stash：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git stash clear</span><br></pre></td></tr></table></figure>
+<h1 id="Merging"><a href="#Merging" class="headerlink" title="Merging"></a>Merging</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;******Merges*******&#x2F;</span><br><span class="line">👉 Fast-forward merges (if branches have not diverged)</span><br><span class="line">👉 3-way merges (if branches have diverged)</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>Fast-forward merges</strong></p>
+<p>当前分支合并另一个分支的时候，如果合并的过程中没有冲突，则会通过直接移动两个分支的指针，来达到合并。</p>
+<p><img src="/images/Git/4_02.png" alt="4_02" style="zoom: 67%;"></p>
+<p>只有bugfix分支在改动，改到stable了，直接移动master指针到bugfix指向的位置，然后丢弃bugfix指针就行了。</p>
+<hr>
+<p><strong>3-way merges</strong></p>
+<p><img src="/images/Git/4_03.png" alt="4_03" style="zoom: 50%;"></p>
+<p>两个分支都在改动，最后merge到一起。</p>
+<hr>
+<h2 id="Fast-forward-Merges"><a href="#Fast-forward-Merges" class="headerlink" title="Fast-forward Merges"></a>Fast-forward Merges</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* 7a5cdb3 (bugfix-signup-form) fix the bug that prevented the users from signing up</span><br><span class="line">* 82ca774 (HEAD -&gt; master) add audience.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git merge bugfix-signup-form</span><br><span class="line">Updating 82ca774..7a5cdb3</span><br><span class="line">Fast-forward</span><br><span class="line"> audience.txt | 7 +++----</span><br><span class="line"> 1 file changed, 3 insertions(+), 4 deletions(-)</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* 7a5cdb3 (HEAD -&gt; master, bugfix-signup-form) fix the bug that prevented the users from signing up</span><br><span class="line">* 82ca774 add audience.txt</span><br></pre></td></tr></table></figure>
+<p><strong>No fast-forward merges</strong></p>
+<p>merge 了 master 和 bugfix-signup-form 分支后，创建并切换到新分支bugfix-login-form。此时假如对已有文件 file1.js 进行 modify 并 commit：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git switch -C bugfix-login-form</span><br><span class="line">Switched to and reset branch <span class="string">'bugfix-login-form'</span></span><br><span class="line"></span><br><span class="line">(bugfix-login-form)$ code file1.js</span><br><span class="line"></span><br><span class="line">(bugfix-login-form)$ git add .</span><br><span class="line"></span><br><span class="line">(bugfix-login-form)$ git commit -m <span class="string">"update file1.js"</span></span><br><span class="line">[bugfix-login-form 1ad00a7] update file1.js</span><br><span class="line"> 1 file changed, 1 insertion(+), 1 deletion(-)</span><br><span class="line"></span><br><span class="line">(bugfix-login-form)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* 1ad00a7 (HEAD -&gt; bugfix-login-form) update file1.js</span><br><span class="line">* 7a5cdb3 (master, bugfix-signup-form) fix the bug that prevented the users from signing up</span><br><span class="line">* 82ca774 add audience.txt</span><br></pre></td></tr></table></figure>
+<p>此时master和bugfix-signup-form指向同一commit，bugfix-login-form 指向本 modify commit。然后用 No fast-forward 的方式来合并两分支，可以看到 git merge 命令的返回结果中不再有“Fast-forward”出现。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">(bugfix-login-form)$ git switch master</span><br><span class="line">Switched to branch <span class="string">'master'</span></span><br><span class="line"></span><br><span class="line">(master)$ git merge --no-ff bugfix-login-form</span><br><span class="line">Merge made by the <span class="string">'recursive'</span> strategy.</span><br><span class="line"> file1.js | 2 +-</span><br><span class="line"> 1 file changed, 1 insertion(+), 1 deletion(-)</span><br><span class="line"></span><br><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">*   9612ab4 (HEAD -&gt; master) Merge branch <span class="string">'bugfix-login-form'</span></span><br><span class="line">|\</span><br><span class="line">| * 1ad00a7 (bugfix-login-form) update file1.js</span><br><span class="line">|/</span><br><span class="line">* 7a5cdb3 (bugfix-signup-form) fix the bug that prevented the users from signing up</span><br><span class="line">* 82ca774 add audience.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/**使用No fast-forward merges的优缺点（两派观点）**/</span><br><span class="line">👉 CONS：pollutes the <span class="built_in">history</span> (those who prefer linear <span class="built_in">history</span>)</span><br><span class="line">👉 PROS：1) True reflection of <span class="built_in">history</span></span><br><span class="line">		 2) Allow reverting a feature (easier <span class="keyword">for</span> us to undo a feature)</span><br></pre></td></tr></table></figure>
+<p>如果使用No fast-forward merges：</p>
+<p><img src="/images/Git/4_04.png" alt="4_04" style="zoom:50%;"></p>
+<p>红色标记的commit 是F1和F2的结合，如果红标的commit是个bad commit, 蓝标的commit 是和红标完全相反的commit，我们只需要revert 一个commit就行了。</p>
+<p>而如果使用fast-forward merges：</p>
+<p><img src="/images/Git/4_05.png" alt="4_05" style="zoom:75%;"></p>
+<p>要revert两个commit，会更加复杂。</p>
+<h2 id="3-way-merges"><a href="#3-way-merges" class="headerlink" title="3-way merges"></a>3-way merges</h2><p>创建新分支并在此分支commit新修改：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git switch -C feature-change-password</span><br><span class="line">Switched to a new branch <span class="string">'feature-change-password'</span></span><br><span class="line"></span><br><span class="line">(feature-change-password)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">*   9612ab4 (HEAD -&gt; feature-change-password, master) Merge branch <span class="string">'bugfix-login-form'</span></span><br><span class="line">|\</span><br><span class="line">| * 1ad00a7 (bugfix-login-form) update file1.js</span><br><span class="line">|/</span><br><span class="line">* 7a5cdb3 (bugfix-signup-form) fix the bug that prevented the users from signing up</span><br><span class="line">* 82ca774 add audience.txt</span><br><span class="line"></span><br><span class="line">(feature-change-password)$ <span class="built_in">echo</span> hello &gt; change-password.txt</span><br><span class="line"></span><br><span class="line">(feature-change-password)$ git add .</span><br><span class="line"></span><br><span class="line">(feature-change-password)$ git commit -m <span class="string">"Build the change password form."</span></span><br><span class="line">[feature-change-password 49f4f13] Build the change password form.</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 change-password.txt</span><br><span class="line"></span><br><span class="line">(feature-change-password)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* 49f4f13 (HEAD -&gt; feature-change-password) Build the change password form.</span><br><span class="line">*   9612ab4 (master) Merge branch <span class="string">'bugfix-login-form'</span></span><br><span class="line">|\</span><br><span class="line">| * 1ad00a7 (bugfix-login-form) update file1.js</span><br><span class="line">|/</span><br><span class="line">* 7a5cdb3 (bugfix-signup-form) fix the bug that prevented the users from signing up</span><br><span class="line">* 82ca774 add audience.txt</span><br></pre></td></tr></table></figure>
+<p>返回master分支并在此分支commit新修改：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">(feature-change-password)$ git switch master</span><br><span class="line">Switched to branch <span class="string">'master'</span></span><br><span class="line"></span><br><span class="line">(master)$ code audience.txt</span><br><span class="line"></span><br><span class="line">(master)$ git commit -am <span class="string">"Update audience.txt"</span></span><br><span class="line">[master 4aa3534] Update audience.txt</span><br><span class="line"> 1 file changed, 1 insertion(+), 1 deletion(-)</span><br><span class="line"></span><br><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* 4aa3534 (HEAD -&gt; master) Update audience.txt</span><br><span class="line">| * 49f4f13 (feature-change-password) Build the change password form.</span><br><span class="line">|/</span><br><span class="line">*   9612ab4 Merge branch <span class="string">'bugfix-login-form'</span></span><br><span class="line">|\</span><br><span class="line">| * 1ad00a7 (bugfix-login-form) update file1.js</span><br><span class="line">|/</span><br><span class="line">* 7a5cdb3 (bugfix-signup-form) fix the bug that prevented the users from signing up</span><br><span class="line">* 82ca774 add audience.txt</span><br></pre></td></tr></table></figure>
+<p>Merge这两个分支：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git merge feature-change-password</span><br><span class="line">Merge made by the <span class="string">'recursive'</span> strategy.</span><br><span class="line"> change-password.txt | 1 +</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 change-password.txt</span><br><span class="line"></span><br><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">*   91dd8b9 (HEAD -&gt; master) Merge branch <span class="string">'feature-change-password'</span></span><br><span class="line">|\</span><br><span class="line">| * 49f4f13 (feature-change-password) Build the change password form.</span><br><span class="line">* | 4aa3534 Update audience.txt</span><br><span class="line">|/</span><br><span class="line">*   9612ab4 Merge branch <span class="string">'bugfix-login-form'</span></span><br><span class="line">|\</span><br><span class="line">| * 1ad00a7 (bugfix-login-form) update file1.js</span><br><span class="line">|/</span><br><span class="line">* 7a5cdb3 (bugfix-signup-form) fix the bug that prevented the users from signing up</span><br><span class="line">* 82ca774 add audience.txt</span><br></pre></td></tr></table></figure>
+<h2 id="Viewing-the-Merged-Branches"><a href="#Viewing-the-Merged-Branches" class="headerlink" title="Viewing the Merged Branches"></a>Viewing the Merged Branches</h2><p>查看merge到master的branch：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git branch --merged</span><br><span class="line">  bugfix-login-form</span><br><span class="line">  bugfix-signup-form</span><br><span class="line">  feature-change-password</span><br><span class="line">* master</span><br></pre></td></tr></table></figure>
+<p>这些分支已经merge了，就可以安全地删除了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git branch -d bugfix-login-form</span><br><span class="line">Deleted branch bugfix-login-form (was 1ad00a7).</span><br></pre></td></tr></table></figure>
+<p>查看还没merge的分支：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git branch --no-merged</span><br></pre></td></tr></table></figure>
+<h2 id="Merge-Conflicts"><a href="#Merge-Conflicts" class="headerlink" title="Merge Conflicts"></a>Merge Conflicts</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Conflicts (difference <span class="keyword">in</span> two branches)</span><br><span class="line">👉 Change1, Change2</span><br><span class="line">👉 Change, Delete</span><br><span class="line">👉 Add1, Add2</span><br></pre></td></tr></table></figure>
+<p>Demo:</p>
+<ol>
+<li>创建新分支bugfix-change-password并提交对change-password.txt的修改</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git switch -C bugfix-change-password</span><br><span class="line">Switched to a new branch <span class="string">'bugfix-change-password'</span></span><br><span class="line"></span><br><span class="line">(bugfix-change-password)$ code change-password.txt</span><br><span class="line"></span><br><span class="line">(bugfix-change-password)$ git commit -am <span class="string">"Update change-password.txt"</span></span><br><span class="line">[bugfix-change-password.txt 7e3da10] Update change-password.txt</span><br><span class="line"> 1 file changed, 2 insertions(+)</span><br></pre></td></tr></table></figure>
+<ol>
+<li>切换到master分支，提交对change-password.txt的修改</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(bugfix-change-password)$ git switch master</span><br><span class="line">Switched to branch <span class="string">'master'</span></span><br><span class="line"></span><br><span class="line">(master)$ code change-password.txt</span><br><span class="line"></span><br><span class="line">(master)$ git commit -am <span class="string">"Update change-password.txt"</span></span><br><span class="line">[master adebbcf] Update change-password.txt</span><br><span class="line"> 1 file changed, 2 insertions(+)</span><br></pre></td></tr></table></figure>
+<ol>
+<li>Merge两个分支时出现conflict:</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git merge bugfix-change-password</span><br><span class="line">merge: bugfix-change-password - not something we can merge</span><br><span class="line"></span><br><span class="line">(master)$ git merge bugfix-change-password.txt</span><br><span class="line">Auto-merging change-password.txt</span><br><span class="line">CONFLICT (content): Merge conflict <span class="keyword">in</span> change-password.txt</span><br><span class="line">Automatic merge failed; fix conflicts and <span class="keyword">then</span> commit the result.</span><br><span class="line"></span><br><span class="line">(master|MERGING)$ git status</span><br><span class="line">On branch master</span><br><span class="line">You have unmerged paths.</span><br><span class="line">  (fix conflicts and run <span class="string">"git commit"</span>)</span><br><span class="line">  (use <span class="string">"git merge --abort"</span> to abort the merge)</span><br><span class="line"></span><br><span class="line">Unmerged paths:      //---------merge失败的原因所在------------------</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to mark resolution)</span><br><span class="line">        both modified:   change-password.txt</span><br><span class="line"></span><br><span class="line">no changes added to commit (use <span class="string">"git add"</span> and/or <span class="string">"git commit -a"</span>)</span><br></pre></td></tr></table></figure>
+<p>看看文件：</p>
+<p><img src="/images/Git/4_06.png" alt="4_06"></p>
+<p>VSCode提供了几种（可以直接点击的）：Accept Current Change等三种方法消除conflict</p>
+<p>也可以手动改，但此时不能增加新的内容，只能选择两个分支的修改内容。最后改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hello</span><br><span class="line"></span><br><span class="line">change in the master branch.</span><br><span class="line">change in the bugfix branch.</span><br></pre></td></tr></table></figure>
+<p>这回就可以成功提交：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">(master|MERGING)$ git add change-password.txt</span><br><span class="line"></span><br><span class="line">(master|MERGING)$ git status</span><br><span class="line">On branch master</span><br><span class="line">All conflicts fixed but you are still merging.</span><br><span class="line">  (use <span class="string">"git commit"</span> to conclude merge)</span><br><span class="line"></span><br><span class="line">Changes to be committed:</span><br><span class="line">        modified:   change-password.txt</span><br><span class="line">        </span><br><span class="line">(master|MERGING)$ git commit</span><br><span class="line">[master 74c5e1c] Merge branch <span class="string">'bugfix-change-password.txt'</span></span><br><span class="line"></span><br><span class="line">(master)$</span><br></pre></td></tr></table></figure>
+<h2 id="Visual-Merge-Tools"><a href="#Visual-Merge-Tools" class="headerlink" title="Visual Merge Tools"></a>Visual Merge Tools</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">👉 Kdiff </span><br><span class="line">👉 P4Merge</span><br><span class="line">👉 WinMerge (Windows Only)</span><br></pre></td></tr></table></figure>
+<p>在官网下载P4Merge并安装，然后配置（安装路径）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global merge.tool p4merge</span><br><span class="line"></span><br><span class="line">$ git config --global mergetool.p4merge.path &quot;D:&#x2F;Program Files&#x2F;P4Merge&#x2F;p4merge.exe&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/Git/4_07.png" alt="4_07" style="zoom: 50%;"></p>
+<h2 id="Aborting-a-Merge"><a href="#Aborting-a-Merge" class="headerlink" title="Aborting a Merge"></a>Aborting a Merge</h2><p>想merge却发现有冲突，此时没有时间处理冲突，要回到merge之前的状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git merge bugfix-change-password</span><br><span class="line">Auto-merging change-password.txt</span><br><span class="line">CONFLICT (content): Merge conflict <span class="keyword">in</span> change-password.txt</span><br><span class="line">Automatic merge failed; fix conflicts and <span class="keyword">then</span> commit the result.</span><br><span class="line"></span><br><span class="line">(master|MERGING)$ git merge --abort</span><br><span class="line"></span><br><span class="line">(master)$</span><br></pre></td></tr></table></figure>
+<h2 id="Undoing-a-Faulty-Merge"><a href="#Undoing-a-Faulty-Merge" class="headerlink" title="Undoing a Faulty Merge"></a>Undoing a Faulty Merge</h2><p>merge了之后发现这个merge不合适，又不想merge了：</p>
+<p><img src="/images/Git/4_08.png" alt="4_08" style="zoom: 50%;"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">*   bbf6499 (HEAD -&gt; master) Merge branch <span class="string">'bugfix-change-password'</span></span><br><span class="line">|\</span><br><span class="line">| * fdfcee5 (bugfix-change-password) Update change-password.txt</span><br><span class="line">* | 5975f40 Update change-password.txt</span><br><span class="line">|/</span><br><span class="line">* 3c6ba48 Update change-password.txt</span><br></pre></td></tr></table></figure>
+<p><img src="/images/Git/4_09.png" alt="4_09" style="zoom:50%;"></p>
+<p>用reset回到上一个master指向的commit，这之后的commit都会消失（看log）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git reset --hard HEAD~1</span><br><span class="line">HEAD is now at 5975f40 Update change-password.txt</span><br><span class="line"></span><br><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* 5975f40 (HEAD -&gt; master) Update change-password.txt</span><br><span class="line">| * fdfcee5 (bugfix-change-password) Update change-password.txt</span><br><span class="line">|/</span><br><span class="line">* 3c6ba48 Update change-password.txt</span><br></pre></td></tr></table></figure>
+<p>现在没有一个指针指向红标的commit，Git会将其视为垃圾，一段时间后自动将其删除：</p>
+<p><img src="/images/Git/4_10.png" alt="4_10" style="zoom:50%;"></p>
+<p> 但是在Git删除前它还在，还可以恢复出来：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git reset --hard bbf6499</span><br><span class="line">HEAD is now at bbf6499 Merge branch <span class="string">'bugfix-change-password'</span></span><br><span class="line"></span><br><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">*   bbf6499 (HEAD -&gt; master) Merge branch <span class="string">'bugfix-change-password'</span></span><br><span class="line">|\</span><br><span class="line">| * fdfcee5 (bugfix-change-password) Update change-password.txt</span><br><span class="line">* | 5975f40 Update change-password.txt</span><br><span class="line">|/</span><br><span class="line">* 3c6ba48 Update change-password.txt</span><br></pre></td></tr></table></figure>
+<p><img src="/images/Git/4_11.png" alt="4_11" style="zoom:50%;"></p>
+<p><img src="/images/Git/4_12.png" alt="4_12" style="zoom:50%;"></p>
+<p><img src="/images/Git/4_13.png" alt="4_13" style="zoom:50%;"></p>
+<p>git revert是用于“反做”某一个版本，以达到撤销该版本的修改的目的。比如，我们commit了三个版本（版本一、版本二、 版本三），突然发现版本二不行（如：有bug），想要撤销版本二，但又不想影响撤销版本三的提交，就可以用 git revert 命令来反做版本二，生成新的版本四，这个版本四里会保留版本三的东西，但撤销了版本二的东西。</p>
+<p><strong>适用场景：</strong> 如果我们想撤销之前的某一版本，但是又想保留该目标版本后面的版本，记录下这整个版本变动流程，就可以用这种方法</p>
+<p>Demo:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">*   bbf6499 (HEAD -&gt; master) Merge branch <span class="string">'bugfix-change-password'</span></span><br><span class="line">|\</span><br><span class="line">| * fdfcee5 (bugfix-change-password) Update change-password.txt</span><br><span class="line">* | 5975f40 Update change-password.txt</span><br><span class="line">|/</span><br><span class="line">* 3c6ba48 Update change-password.txt</span><br><span class="line"></span><br><span class="line">(master)$ git revert -m 1 HEAD</span><br><span class="line">[master 5f99ab9] Revert <span class="string">"Merge branch 'bugfix-change-password'"</span></span><br><span class="line"> 1 file changed, 1 deletion(-)</span><br><span class="line"></span><br><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* 5f99ab9 (HEAD -&gt; master) Revert <span class="string">"Merge branch 'bugfix-change-password'"</span></span><br><span class="line">*   bbf6499 Merge branch <span class="string">'bugfix-change-password'</span></span><br><span class="line">|\</span><br><span class="line">| * fdfcee5 (bugfix-change-password) Update change-password.txt</span><br><span class="line">* | 5975f40 Update change-password.txt</span><br><span class="line">|/</span><br><span class="line">* 3c6ba48 Update change-password.txt</span><br></pre></td></tr></table></figure>
+<p>由于当前commit有两个parent commit (因为有两分支)，所以用 -m 1 表示回到第一个parent commit (即上一个master指向的commit)，可以看到所有的commit都保留了。</p>
+<p><strong>参考</strong></p>
+<p><a href="https://blog.csdn.net/yxlshk/article/details/79944535" target="_blank" rel="noopener">https://blog.csdn.net/yxlshk/article/details/79944535</a></p>
+<h2 id="Squash-Merging"><a href="#Squash-Merging" class="headerlink" title="Squash Merging"></a>Squash Merging</h2><p><img src="/images/Git/4_14.png" alt="4_14" style="zoom: 50%;"></p>
+<p>可能B1和B2只是小改动，checkpoint之类的，我们不想让它们pollute了commit history, 所以用一个总的commit结合了这两个commit。而事实上并没有merge两个分支。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git switch -C bugfix-photo-upload</span><br><span class="line">Switched to a new branch <span class="string">'bugfix-photo-upload'</span></span><br><span class="line"></span><br><span class="line">(bugfix-photo-upload)$ <span class="built_in">echo</span> bigfix &gt;&gt; audience.txt</span><br><span class="line"></span><br><span class="line">(bugfix-photo-upload)$ git commit -am <span class="string">"Update audience.txt"</span></span><br><span class="line">[bugfix-photo-upload c699541] Update audience.txt</span><br><span class="line"> 1 file changed, 1 insertion(+), 1 deletion(-)</span><br><span class="line"></span><br><span class="line">(bugfix-photo-upload)$ <span class="built_in">echo</span> bigfix &gt;&gt; file1.js</span><br><span class="line"></span><br><span class="line">(bugfix-photo-upload)$ git commit -am <span class="string">"Update file1.js"</span></span><br><span class="line">[bugfix-photo-upload abb7001] Update file1.js</span><br><span class="line"> 1 file changed, 1 insertion(+), 1 deletion(-)</span><br><span class="line"></span><br><span class="line">(bugfix-photo-upload)$ git switch master</span><br><span class="line">Switched to branch <span class="string">'master'</span></span><br><span class="line"></span><br><span class="line">(master)$ git merge --squash bugfix-photo-upload</span><br><span class="line">Updating 5f99ab9..abb7001</span><br><span class="line">Fast-forward</span><br><span class="line">Squash commit -- not updating HEAD</span><br><span class="line"> audience.txt | 2 +-</span><br><span class="line"> file1.js     | 2 +-</span><br><span class="line"> 2 files changed, 2 insertions(+), 2 deletions(-)</span><br><span class="line"></span><br><span class="line">(master)$ git status -s</span><br><span class="line">M  audience.txt</span><br><span class="line">M  file1.js</span><br><span class="line"></span><br><span class="line">(master)$ git commit -m <span class="string">"Fix the bug on the photo upload page"</span></span><br><span class="line">[master 3a99538] Fix the bug on the photo upload page</span><br><span class="line"> 2 files changed, 2 insertions(+), 2 deletions(-)</span><br><span class="line"></span><br><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* 3a99538 (HEAD -&gt; master) Fix the bug on the photo upload page</span><br><span class="line">| * abb7001 (bugfix-photo-upload) Update file1.js</span><br><span class="line">| * c699541 Update audience.txt</span><br><span class="line">|/</span><br><span class="line">* 5f99ab9 Revert <span class="string">"Merge branch 'bugfix-change-password'"</span></span><br></pre></td></tr></table></figure>
+<p>实际上并没有merge:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git branch</span><br><span class="line">  bugfix-change-password</span><br><span class="line">  bugfix-photo-upload</span><br><span class="line">  bugfix-signup-form</span><br><span class="line">* master</span><br><span class="line"></span><br><span class="line">(master)$ git branch --merge</span><br><span class="line">  bugfix-change-password</span><br><span class="line">  bugfix-signup-form</span><br><span class="line">* master</span><br><span class="line"></span><br><span class="line">(master)$ git branch --no-merge</span><br><span class="line">  bugfix-photo-upload</span><br></pre></td></tr></table></figure>
+<p>删除bugfix-photo-upload后可以看到，只剩一个总的commit记录了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git branch -D bugfix-photo-upload</span><br><span class="line">Deleted branch bugfix-photo-upload (was abb7001).</span><br><span class="line"></span><br><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* 3a99538 (HEAD -&gt; master) Fix the bug on the photo upload page</span><br><span class="line">* 5f99ab9 Revert <span class="string">"Merge branch 'bugfix-change-password'"</span></span><br></pre></td></tr></table></figure>
+<h1 id="Rebasing"><a href="#Rebasing" class="headerlink" title="Rebasing"></a>Rebasing</h1><p>（图与 demo 不十分吻合，在 demo 中 feature 分支只有一个 commit）</p>
+<ol>
+<li>初始状态：master 和 feature-shopping-cart 是 diverse 的，要么用 3-way merge,要么将feature-shopping-cart 分支 rebase，总之是不能 fast-forward merge 的</li>
+</ol>
+<p><img src="/images/Git/4_15.png" alt="4_15" style="zoom: 50%;"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* 4026973 (HEAD -&gt; master) update toc.txt</span><br><span class="line">| * 34112c9 (feature-shopping-cart) add cart.txt</span><br><span class="line">|/</span><br><span class="line">* 7370c4a update</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>将 feature-shopping-cart 分支 rebase 到 master 指向的 commit:</p>
+<p><img src="/images/Git/4_17.png" alt="4_17" style="zoom:50%;"></p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git switch feature-shopping-cart</span><br><span class="line">Switched to branch <span class="string">'feature-shopping-cart'</span></span><br><span class="line"></span><br><span class="line">(feature-shopping-cart)$ git rebase master</span><br><span class="line">Successfully rebased and updated refs/heads/feature-shopping-cart.</span><br><span class="line"></span><br><span class="line">(feature-shopping-cart)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* 21dc4d0 (HEAD -&gt; feature-shopping-cart) add cart.txt</span><br><span class="line">* 4026973 (master) update toc.txt</span><br><span class="line">* 7370c4a update</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>现在可以 fast-forward merge 了：</p>
+<p><img src="/images/Git/4_18.png" alt="4_18" style="zoom:50%;"></p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">(feature-shopping-cart)</span><br><span class="line">$ git switch master</span><br><span class="line">Switched to branch <span class="string">'master'</span></span><br><span class="line"></span><br><span class="line">(master)$ git merge feature-shopping-cart</span><br><span class="line">Updating 4026973..21dc4d0</span><br><span class="line">Fast-forward</span><br><span class="line"> cart.txt | 1 +</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 cart.txt</span><br><span class="line"></span><br><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* 21dc4d0 (HEAD -&gt; master, feature-shopping-cart) add cart.txt</span><br><span class="line">* 4026973 update toc.txt</span><br><span class="line">* 7370c4a update</span><br></pre></td></tr></table></figure>
+<hr>
+<p>但是，rebasing 很有可能会有 conflict，如下例中 master 和 feature-shopping-cart 各自更改toc.txt，就不能将 feature-shopping-cart rebase 到 master：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">(master)$ <span class="built_in">echo</span> ocean &gt; toc.txt</span><br><span class="line"></span><br><span class="line">(master)$ git commit -am <span class="string">"Update toc.txt"</span></span><br><span class="line">[master f2e571a] Update toc.txt</span><br><span class="line"> 1 file changed, 1 insertion(+), 2 deletions(-)</span><br><span class="line"></span><br><span class="line">(master)$ git switch feature-shopping-cart</span><br><span class="line">Switched to branch <span class="string">'feature-shopping-cart'</span></span><br><span class="line"></span><br><span class="line">(feature-shopping-cart)$ <span class="built_in">echo</span> mountain &gt; toc.txt</span><br><span class="line"></span><br><span class="line">(feature-shopping-cart)$ git commit -am <span class="string">"add mountain to toc.txt"</span></span><br><span class="line">[feature-shopping-cart 06ee042] add mountain to toc.txt</span><br><span class="line"> 1 file changed, 1 insertion(+), 2 deletions(-)</span><br><span class="line"></span><br><span class="line">(feature-shopping-cart)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* 06ee042 (HEAD -&gt; feature-shopping-cart) add mountain to toc.txt</span><br><span class="line">| * f2e571a (master) Update toc.txt</span><br><span class="line">|/</span><br><span class="line">* 21dc4d0 add cart.txt</span><br><span class="line"></span><br><span class="line">(feature-shopping-cart)$ git rebase master</span><br><span class="line">error: could not apply 06ee042... add mountain to toc.txt</span><br><span class="line">Resolve all conflicts manually, mark them as resolved with</span><br><span class="line"><span class="string">"git add/rm &lt;conflicted_files&gt;"</span>, <span class="keyword">then</span> run <span class="string">"git rebase --continue"</span>.</span><br><span class="line">You can instead skip this commit: run <span class="string">"git rebase --skip"</span>.</span><br><span class="line">To abort and get back to the state before <span class="string">"git rebase"</span>, run <span class="string">"git rebase --abort"</span>.</span><br><span class="line">Could not apply 06ee042... add mountain to toc.txt</span><br><span class="line">Auto-merging toc.txt</span><br><span class="line">CONFLICT (content): Merge conflict <span class="keyword">in</span> toc.txt</span><br></pre></td></tr></table></figure>
+<p>用p4merge解决一下conflict：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(feature-shopping-cart|REBASE 1/1)$ git mergetool</span><br><span class="line">Merging:</span><br><span class="line">toc.txt</span><br><span class="line"></span><br><span class="line">Normal merge conflict <span class="keyword">for</span> <span class="string">'toc.txt'</span>:</span><br><span class="line">  &#123;<span class="built_in">local</span>&#125;: modified file</span><br><span class="line">  &#123;remote&#125;: modified file</span><br><span class="line"></span><br><span class="line">(feature-shopping-cart|REBASE 1/1)$ git rebase --abort</span><br></pre></td></tr></table></figure>
+<p>toc.txt.orig 是解决冲突的时候产生的额外文件，删掉就好了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">(feature-shopping-cart)$ git status</span><br><span class="line">On branch feature-shopping-cart</span><br><span class="line">Untracked files:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to include <span class="keyword">in</span> what will be committed)</span><br><span class="line">        toc.txt.orig</span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use <span class="string">"git add"</span> to track)</span><br><span class="line"></span><br><span class="line">(feature-shopping-cart)$ cat toc.txt.orig</span><br><span class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span><br><span class="line">ocean</span><br><span class="line">=======</span><br><span class="line">mountain</span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt; 06ee042 (add mountain to toc.txt)</span><br><span class="line"></span><br><span class="line">(feature-shopping-cart)$ git clean -fd</span><br><span class="line">Removing toc.txt.orig</span><br></pre></td></tr></table></figure>
+<p>为了不产生这种文件，可以设置一下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(feature-shopping-cart)$ git config --global mergetool.keepBackup <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<h1 id="Cherry-Picking"><a href="#Cherry-Picking" class="headerlink" title="Cherry Picking"></a>Cherry Picking</h1><p><img src="/images/Git/4_19.png" alt="4_19" style="zoom:50%;"></p>
+<p>比如 F1 是有意思的commit，我们想要提交到master，但是我们还没有准备好将feature分支merge 到 master 分支，可以 cherry picking F1 到 master。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* 06ee042 (feature-shopping-cart) add mountain to toc.txt</span><br><span class="line">| * f2e571a (HEAD -&gt; master) Update toc.txt</span><br><span class="line">|/</span><br><span class="line">* dc9b37f add toc.txt</span><br><span class="line"></span><br><span class="line">(master)$ git cherry-pick 06ee042</span><br><span class="line">Auto-merging toc.txt</span><br><span class="line">CONFLICT (content): Merge conflict <span class="keyword">in</span> toc.txt</span><br><span class="line">error: could not apply 06ee042... add mountain to toc.txt</span><br><span class="line">hint: after resolving the conflicts, mark the corrected paths</span><br><span class="line">hint: with <span class="string">'git add &lt;paths&gt;'</span> or <span class="string">'git rm &lt;paths&gt;'</span></span><br><span class="line">hint: and commit the result with <span class="string">'git commit'</span></span><br><span class="line"></span><br><span class="line">(master|CHERRY-PICKING)$ git mergetool</span><br><span class="line">Merging:</span><br><span class="line">toc.txt</span><br><span class="line"></span><br><span class="line">Normal merge conflict <span class="keyword">for</span> <span class="string">'toc.txt'</span>:</span><br><span class="line">  &#123;<span class="built_in">local</span>&#125;: modified file</span><br><span class="line">  &#123;remote&#125;: modified file</span><br><span class="line"></span><br><span class="line">(master|CHERRY-PICKING)$ git status -s</span><br><span class="line">M  toc.txt</span><br><span class="line"></span><br><span class="line">(master|CHERRY-PICKING)$ git commit</span><br><span class="line">[master 3fcca9a] add mountain to toc.txt</span><br><span class="line"> Date: Mon Apr 26 21:54:11 2021 +0800</span><br><span class="line"> 1 file changed, 1 insertion(+), 1 deletion(-)</span><br><span class="line"></span><br><span class="line">(master)$ git <span class="built_in">log</span> --oneline --all --graph</span><br><span class="line">* 3fcca9a (HEAD -&gt; master) add mountain to toc.txt</span><br><span class="line">* f2e571a Update toc.txt</span><br><span class="line">| * 06ee042 (feature-shopping-cart) add mountain to toc.txt</span><br><span class="line">|/</span><br><span class="line">* dc9b37f add toc.txt</span><br></pre></td></tr></table></figure>
+<p>最后可以看到master前进了一个commit，而且是pick了feature-shopping-cart分支的commit。</p>
+<h1 id="Picking-Files-from-Another-Branch"><a href="#Picking-Files-from-Another-Branch" class="headerlink" title="Picking Files from Another Branch"></a>Picking Files from Another Branch</h1><p>是 picking files, 而不是 picking commit 了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git switch -C feature-send-email</span><br><span class="line">Switched to a new branch <span class="string">'feature-send-email'</span></span><br><span class="line"></span><br><span class="line">(feature-send-email)$ <span class="built_in">echo</span> river &gt; toc.txt</span><br><span class="line"></span><br><span class="line">(feature-send-email)$ git commit -am <span class="string">"Update toc.txt"</span></span><br><span class="line">[feature-send-email 4680781] Update toc.txt</span><br><span class="line"> 1 file changed, 1 insertion(+), 1 deletion(-)</span><br><span class="line"></span><br><span class="line">(feature-send-email)$ git switch master</span><br><span class="line">Switched to branch <span class="string">'master'</span></span><br></pre></td></tr></table></figure>
+<p>使用 git restore：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(master)$ git restore --<span class="built_in">source</span>=feature-send-email -- toc.txt</span><br><span class="line"></span><br><span class="line">(master)$ git status -s</span><br><span class="line"> M toc.txt</span><br><span class="line"></span><br><span class="line">(master)$ cat toc.txt</span><br><span class="line">river</span><br></pre></td></tr></table></figure>
+<p>然后就可以在 master 分支上提交了。</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/23/20210423_Git003/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1650,122 +1949,6 @@ Var[Y_{AdderNet}]=\sum\limits_{i=0}^{d}\sum\limits_{j=0}^{d}\sum\limits_{k=0}^{c
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/15/11_latex_python_code/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Purple M. Stone">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stone's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2020/10/15/11_latex_python_code/" class="post-title-link" itemprop="url">在Latex中插入python代码</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2020-10-15 19:20:09" itemprop="dateCreated datePublished" datetime="2020-10-15T19:20:09+08:00">2020-10-15</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-17 12:24:22" itemprop="dateModified" datetime="2021-05-17T12:24:22+08:00">2021-05-17</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Latex-Trick/" itemprop="url" rel="index"><span itemprop="name">Latex Trick</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/10/15/11_latex_python_code/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/10/15/11_latex_python_code/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在Latex中插入Python代码，需要一个第三发的宏包pythonhighlight:</p>
-<p><a href="https://github.com/olivierverdier/python-latex-highlighting" target="_blank" rel="noopener">https://github.com/olivierverdier/python-latex-highlighting</a></p>
-<p>下载pythonhighlight.sty后，将它放到你的.tex文件所在目录下。</p>
-<p>然后声明要使用pythonhighlight，在tex文件内的导言区：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\usepackage&#123;graphicx&#125;</span><br><span class="line">\usepackage&#123;pythonhighlight&#125;</span><br></pre></td></tr></table></figure>
-<p>之后既可以在正文添加代码了:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;python&#125;</span><br><span class="line">import torch</span><br><span class="line">import torch.nn as nn</span><br><span class="line">import torch.optim as optim</span><br><span class="line">import torch.nn.functional as F</span><br><span class="line">import torchvision</span><br><span class="line">import torchvision.transforms as transforms</span><br><span class="line">import time</span><br><span class="line">import os</span><br><span class="line">\end&#123;python&#125;</span><br></pre></td></tr></table></figure>
-<p>效果如下：</p>
-<p><img src="/images/latex/python/code.png" alt="code"></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
@@ -1817,7 +2000,7 @@ Var[Y_{AdderNet}]=\sum\limits_{i=0}^{d}\sum\limits_{j=0}^{d}\sum\limits_{k=0}^{c
         
           <a href="/archives/%20%7C%7C%20archive">
         
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -241,6 +241,435 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/05/19/20210519_SQL007/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Purple M. Stone">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stone's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2021/05/19/20210519_SQL007/" class="post-title-link" itemprop="url">MySQL笔记(7)--视图(Views)</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2021-05-19 21:00:09 / 修改时间：22:24:01" itemprop="dateCreated datePublished" datetime="2021-05-19T21:00:09+08:00">2021-05-19</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/05/19/20210519_SQL007/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/05/19/20210519_SQL007/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-创建视图"><a href="#1-创建视图" class="headerlink" title="1 创建视图"></a>1 创建视图</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">USE</span> sql_invoicing;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> sales_by_client <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    c.client_id,</span><br><span class="line">    c.name,</span><br><span class="line">    <span class="keyword">SUM</span>(invoice_total) <span class="keyword">AS</span> total_sales</span><br><span class="line"><span class="keyword">FROM</span> clients c</span><br><span class="line"><span class="keyword">JOIN</span> invoices i <span class="keyword">USING</span> (client_id)</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> client_id, <span class="keyword">name</span></span><br></pre></td></tr></table></figure>
+<p>可以在”Views”看到这个视图.可以像使用table一样用视图.</p>
+<h1 id="2-更改或删除视图"><a href="#2-更改或删除视图" class="headerlink" title="2 更改或删除视图"></a>2 更改或删除视图</h1><p><strong>删除视图</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">VIEW</span> sales_by_client</span><br></pre></td></tr></table></figure>
+<p><strong>更改视图</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">USE</span> sql_invoicing;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">VIEW</span> sales_by_client <span class="keyword">AS</span> 	<span class="comment">-- create or replace</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    c.client_id,</span><br><span class="line">    c.name,</span><br><span class="line">    <span class="keyword">SUM</span>(invoice_total) <span class="keyword">AS</span> total_sales</span><br><span class="line"><span class="keyword">FROM</span> clients c</span><br><span class="line"><span class="keyword">JOIN</span> invoices i <span class="keyword">USING</span> (client_id)</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> client_id, <span class="keyword">name</span></span><br></pre></td></tr></table></figure>
+<h1 id="3-可更新视图"><a href="#3-可更新视图" class="headerlink" title="3 可更新视图"></a>3 可更新视图</h1><p>如果视图中没有:</p>
+<blockquote>
+<p>DISTINCT<br>Aggregate Functions (MIN, MAX, SUM)<br>GROUP BY / HAVING<br>UNION</p>
+</blockquote>
+<p>就是可更新视图,就可以增删改:</p>
+<p>比如:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">VIEW</span> invoices_with_balance <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    invoice_id,</span><br><span class="line">    <span class="built_in">number</span>,</span><br><span class="line">    client_id,</span><br><span class="line">    invoice_total,</span><br><span class="line">    payment_total,</span><br><span class="line">    invoice_total - payment_total <span class="keyword">AS</span> balance,</span><br><span class="line">    due_date,</span><br><span class="line">    payment_date</span><br><span class="line"><span class="keyword">FROM</span> invoices</span><br><span class="line"><span class="keyword">WHERE</span> (invoice_total - payment_total) &gt; <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>invoices_with_balance 就是可更新视图,可以增删改:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> invoices_with_balance</span><br><span class="line"><span class="keyword">WHERE</span> invoice_id = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> invoices_with_balance</span><br><span class="line"><span class="keyword">SET</span> due_date = <span class="keyword">DATE_ADD</span>(due_date, <span class="built_in">INTERVAL</span> <span class="number">5</span> <span class="keyword">DAY</span>)</span><br><span class="line"><span class="keyword">WHERE</span> invoice_id = <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h1 id="4-WITH-OPTION-CHECK-子句"><a href="#4-WITH-OPTION-CHECK-子句" class="headerlink" title="4 WITH OPTION CHECK 子句"></a>4 WITH OPTION CHECK 子句</h1><p>上例中,进行如下更改:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> invoices_with_balance</span><br><span class="line"><span class="keyword">SET</span> payment_total = invoice_total</span><br><span class="line"><span class="keyword">WHERE</span> invoice_id = <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>该视图中 invoice_id = 2 的行消失了(因为不再满足(invoice_total - payment_total) &gt; 0的条件)</p>
+<p>如果不想 UPDATE 或 DELETE 语句使得某些行从视图中删除, 就这样:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">VIEW</span> invoices_with_balance <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    invoice_id,</span><br><span class="line">    <span class="built_in">number</span>,</span><br><span class="line">    client_id,</span><br><span class="line">    invoice_total,</span><br><span class="line">    payment_total,</span><br><span class="line">    invoice_total - payment_total <span class="keyword">AS</span> balance,</span><br><span class="line">    due_date,</span><br><span class="line">    payment_date</span><br><span class="line"><span class="keyword">FROM</span> invoices</span><br><span class="line"><span class="keyword">WHERE</span> (invoice_total - payment_total) &gt; <span class="number">0</span></span><br><span class="line"><span class="keyword">WITH</span> <span class="keyword">CHECK</span> <span class="keyword">OPTION</span>			<span class="comment">-- 增加这个子句,防止删除行</span></span><br></pre></td></tr></table></figure>
+<p>后面再执行这样的:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> invoices_with_balance</span><br><span class="line"><span class="keyword">SET</span> payment_total = invoice_total</span><br><span class="line"><span class="keyword">WHERE</span> invoice_id = <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<p>就会报错: </p>
+<blockquote>
+<p>Error Code: 1369. CHECK OPTION failed</p>
+</blockquote>
+<h1 id="5-视图的优点"><a href="#5-视图的优点" class="headerlink" title="5 视图的优点"></a>5 视图的优点</h1><blockquote>
+<p>Simplify queries<br>Reduce the impact of changes<br>Restrict access to the data</p>
+</blockquote>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/05/19/20210519_SQL006/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Purple M. Stone">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stone's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2021/05/19/20210519_SQL006/" class="post-title-link" itemprop="url">MySQL笔记(6)--MySQL的基本函数</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2021-05-19 19:50:09 / 修改时间：20:14:20" itemprop="dateCreated datePublished" datetime="2021-05-19T19:50:09+08:00">2021-05-19</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/05/19/20210519_SQL006/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/05/19/20210519_SQL006/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-数值函数"><a href="#1-数值函数" class="headerlink" title="1 数值函数"></a>1 数值函数</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">ROUND</span>(<span class="number">5.7355</span>, <span class="number">2</span>) 		<span class="comment">-- 保留小数点后2位, 四舍五入: 5.74</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">TRUNCATE</span>(<span class="number">5.7355</span>, <span class="number">2</span>) 		<span class="comment">-- 保留小数点后2位: 5.73</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">CEILING</span>(<span class="number">5.2</span>)				<span class="comment">-- 6 (上取整)</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">FLOOR</span>(<span class="number">5.7</span>)				<span class="comment">-- 5 (下取整)</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">ABS</span>(<span class="number">-5.2</span>)				<span class="comment">-- 求绝对值</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">RAND</span>()					<span class="comment">-- 得到0~1的随机值</span></span><br></pre></td></tr></table></figure>
+<h1 id="2-字符串函数"><a href="#2-字符串函数" class="headerlink" title="2 字符串函数"></a>2 字符串函数</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">LENGTH</span>(<span class="string">'sky'</span>) 				<span class="comment">-- 3</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">UPPER</span>(<span class="string">'sky'</span>) 				<span class="comment">-- SKY</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">LOWER</span>(<span class="string">'Sky'</span>)					<span class="comment">-- sky</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">LTRIM</span>(<span class="string">'     Sky'</span>)			<span class="comment">-- 去除左边的空格：Sky</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">RTRIM</span>(<span class="string">'Sky     '</span>)			<span class="comment">-- 去除右边的空格：Sky</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">TRIM</span>(<span class="string">'    Sky  '</span>)			<span class="comment">-- 去除两边的空格：Sky</span></span><br></pre></td></tr></table></figure>
+<p><strong>子串</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">LEFT</span>(<span class="string">'Kindergarten'</span>, <span class="number">4</span>)			<span class="comment">-- Kind</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">RIGHT</span>(<span class="string">'Kindergarten'</span>, <span class="number">6</span>)			<span class="comment">-- garten</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">SUBSTRING</span>(<span class="string">'Kindergarten'</span>, <span class="number">3</span>, <span class="number">5</span>)	<span class="comment">-- nderg</span></span><br></pre></td></tr></table></figure>
+<p><strong>查找位置</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">LOCATE</span>(<span class="string">'N'</span>, <span class="string">'Kindergarten'</span>)  	<span class="comment">-- 3 不区分大小写，若不在字符串中则返回0</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">LOCATE</span>(<span class="string">'garten'</span>, <span class="string">'Kindergarten'</span>)	<span class="comment">-- 7</span></span><br></pre></td></tr></table></figure>
+<p><strong>替换</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">REPLACE</span>(<span class="string">'Kindergarten'</span>, <span class="string">'garten'</span>, <span class="string">'garden'</span>)	<span class="comment">-- Kindergarden</span></span><br></pre></td></tr></table></figure>
+<p><strong>拼接</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">CONCAT</span>(<span class="string">'first'</span>, <span class="string">'last'</span>)		<span class="comment">-- firstlast</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">USE</span> sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">CONCAT</span>(first_name, <span class="string">' '</span>, last_name) <span class="keyword">AS</span> full_name</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br></pre></td></tr></table></figure>
+<h1 id="3-日期"><a href="#3-日期" class="headerlink" title="3 日期"></a>3 日期</h1><h2 id="3-1-日期函数"><a href="#3-1-日期函数" class="headerlink" title="3.1 日期函数"></a>3.1 日期函数</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">NOW</span>(), <span class="keyword">CURDATE</span>(), <span class="keyword">CURTIME</span>()</span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>NOW()</th>
+<th>CURDATE()</th>
+<th>CURTIME()</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2021-05-19 19:08:56</td>
+<td>2021-05-19</td>
+<td>19:08:56</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>获取指定的时间构成元素</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">YEAR</span>(<span class="keyword">NOW</span>())		<span class="comment">-- 2021</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">MONTH</span>(<span class="keyword">NOW</span>())		<span class="comment">-- 5</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DAY</span>(<span class="keyword">NOW</span>())		<span class="comment">-- 19</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">HOUR</span>(<span class="keyword">NOW</span>())		<span class="comment">-- 19</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">MINUTE</span>(<span class="keyword">NOW</span>())	<span class="comment">-- 08</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">SECOND</span>(<span class="keyword">NOW</span>())	<span class="comment">-- 56</span></span><br></pre></td></tr></table></figure>
+<p><strong>获取时间的字符串</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DAYNAME</span>(<span class="keyword">NOW</span>()), MONTHNAME(<span class="keyword">NOW</span>())</span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>DAYNAME(NOW())</th>
+<th>MONTHNAME(NOW())</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wednesday</td>
+<td>May</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>EXTRACT</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">EXTRACT</span>(<span class="keyword">DAY</span> <span class="keyword">FROM</span> <span class="keyword">NOW</span>()) 		<span class="comment">-- 19</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-2-格式化日期和时间"><a href="#3-2-格式化日期和时间" class="headerlink" title="3.2 格式化日期和时间"></a>3.2 格式化日期和时间</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DATE_FORMAT</span>(<span class="keyword">NOW</span>(), <span class="string">'%M %d %Y'</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>May 19 2021</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DATE_FORMAT</span>(<span class="keyword">NOW</span>(), <span class="string">'%H:%i %p'</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>19:17 PM</p>
+</blockquote>
+<h2 id="3-3-计算日期和时间"><a href="#3-3-计算日期和时间" class="headerlink" title="3.3 计算日期和时间"></a>3.3 计算日期和时间</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DATE_ADD</span>(<span class="keyword">NOW</span>(), <span class="built_in">INTERVAL</span> <span class="number">1</span> <span class="keyword">DAY</span>)		<span class="comment">-- 	2021-05-20 19:21:32</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DATE_ADD</span>(<span class="keyword">NOW</span>(), <span class="built_in">INTERVAL</span> <span class="number">1</span> <span class="keyword">YEAR</span>)		<span class="comment">-- 	2022-05-19 19:21:32</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DATE_SUB</span>(<span class="keyword">NOW</span>(), <span class="built_in">INTERVAL</span> <span class="number">1</span> <span class="keyword">YEAR</span>)		<span class="comment">-- 	2020-05-19 19:21:32</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DATEDIFF</span>(<span class="string">'2021-01-05'</span>, <span class="string">'2021-01-01'</span>)				<span class="comment">--  4</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> TIME_TO_SEC(<span class="string">'09:00'</span>) - TIME_TO_SEC(<span class="string">'09:02'</span>) 		<span class="comment">-- 	-120 (单位:秒)</span></span><br></pre></td></tr></table></figure>
+<h1 id="4-IFNULL-和-COALESCE"><a href="#4-IFNULL-和-COALESCE" class="headerlink" title="4 IFNULL 和 COALESCE"></a>4 IFNULL 和 COALESCE</h1><p><strong>IFNULL</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">USE</span> sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    order_id,</span><br><span class="line">    <span class="keyword">IFNULL</span>(shipper_id, <span class="string">'Not assigned'</span>) <span class="keyword">AS</span> shipper</span><br><span class="line"><span class="keyword">FROM</span> orders</span><br></pre></td></tr></table></figure>
+<p>IFNULL(shipper_id, ‘Not assigned’) 即如果shipper_id为NULL, 就改为’Not assigned’</p>
+<p>输出:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>order_id</th>
+<th>shipper</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Not assigned</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Not assigned</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Not assigned</td>
+</tr>
+<tr>
+<td>9</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>COALESCE</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">USE</span> sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    order_id,</span><br><span class="line">    <span class="keyword">COALESCE</span>(shipper_id, comments, <span class="string">'Not assigned'</span>) <span class="keyword">AS</span> shipper</span><br><span class="line"><span class="keyword">FROM</span> orders</span><br></pre></td></tr></table></figure>
+<p>如果shipper_id为空,就返回comments中的值,如果comments也为空,则返回’Not assigned’.</p>
+<h1 id="5-IF-函数"><a href="#5-IF-函数" class="headerlink" title="5 IF 函数"></a>5 IF 函数</h1><p>格式:</p>
+<blockquote>
+<p>IF(expression, first, second)<br>如果expression为真,返回first, 为假则返回second</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    order_id,</span><br><span class="line">    order_date,</span><br><span class="line">    <span class="keyword">IF</span>(</span><br><span class="line">        <span class="keyword">YEAR</span>(order_date) = <span class="keyword">YEAR</span>(<span class="keyword">DATE_SUB</span>(<span class="keyword">NOW</span>(), <span class="built_in">INTERVAL</span> <span class="number">2</span> <span class="keyword">YEAR</span>)),</span><br><span class="line">        <span class="string">'Active'</span>,</span><br><span class="line">        <span class="string">'Archived'</span>) <span class="keyword">AS</span> <span class="keyword">category</span></span><br><span class="line"><span class="keyword">FROM</span> orders</span><br></pre></td></tr></table></figure>
+<p>当前年份为2021, 所以2019的为’Active’ (Mosh制作视频时为2019), 其他都是’Archived’:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>order_id</th>
+<th>order_date</th>
+<th>category</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>2019-01-30</td>
+<td>Active</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2018-08-02</td>
+<td>Archived</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2017-12-01</td>
+<td>Archived</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2017-01-22</td>
+<td>Archived</td>
+</tr>
+<tr>
+<td>5</td>
+<td>2017-08-25</td>
+<td>Archived</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="6-CASE-运算符"><a href="#6-CASE-运算符" class="headerlink" title="6 CASE 运算符"></a>6 CASE 运算符</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    order_id,</span><br><span class="line">    <span class="keyword">CASE</span></span><br><span class="line">        <span class="keyword">WHEN</span> <span class="keyword">YEAR</span>(order_date) = <span class="keyword">YEAR</span>(<span class="keyword">NOW</span>()) - <span class="number">2</span> <span class="keyword">THEN</span> <span class="string">'Active'</span></span><br><span class="line">        <span class="keyword">WHEN</span> <span class="keyword">YEAR</span>(order_date) = <span class="keyword">YEAR</span>(<span class="keyword">NOW</span>()) - <span class="number">3</span> <span class="keyword">THEN</span> <span class="string">'Last Year'</span></span><br><span class="line">        <span class="keyword">WHEN</span> <span class="keyword">YEAR</span>(order_date) &lt; <span class="keyword">YEAR</span>(<span class="keyword">NOW</span>()) - <span class="number">3</span> <span class="keyword">THEN</span> <span class="string">'Archived'</span></span><br><span class="line">        <span class="keyword">ELSE</span> <span class="string">'Future'</span></span><br><span class="line">	<span class="keyword">END</span> <span class="keyword">AS</span> <span class="keyword">category</span></span><br><span class="line"><span class="keyword">FROM</span> orders</span><br></pre></td></tr></table></figure>
+<p>输出:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>order_id</th>
+<th>category</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Active</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Last Year</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Archived</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Archived</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Archived</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Last Year</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Last Year</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Last Year</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Archived</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Last Year</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/05/18/20210518_SQL005/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -502,314 +931,6 @@
 <td>980.02</td>
 <td>152.388235</td>
 <td>827.631765</td>
-</tr>
-</tbody>
-</table>
-</div>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/05/18/20210519_SQL006/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Purple M. Stone">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stone's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2021/05/18/20210519_SQL006/" class="post-title-link" itemprop="url">MySQL笔记(6)--MySQL的基本函数</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2021-05-18 21:50:09" itemprop="dateCreated datePublished" datetime="2021-05-18T21:50:09+08:00">2021-05-18</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-19 19:59:52" itemprop="dateModified" datetime="2021-05-19T19:59:52+08:00">2021-05-19</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/05/18/20210519_SQL006/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/05/18/20210519_SQL006/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="1-数值函数"><a href="#1-数值函数" class="headerlink" title="1 数值函数"></a>1 数值函数</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">ROUND</span>(<span class="number">5.7355</span>, <span class="number">2</span>) 		<span class="comment">-- 保留小数点后2位, 四舍五入: 5.74</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">TRUNCATE</span>(<span class="number">5.7355</span>, <span class="number">2</span>) 		<span class="comment">-- 保留小数点后2位: 5.73</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">CEILING</span>(<span class="number">5.2</span>)				<span class="comment">-- 6 (上取整)</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">FLOOR</span>(<span class="number">5.7</span>)				<span class="comment">-- 5 (下取整)</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">ABS</span>(<span class="number">-5.2</span>)				<span class="comment">-- 求绝对值</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">RAND</span>()					<span class="comment">-- 得到0~1的随机值</span></span><br></pre></td></tr></table></figure>
-<h1 id="2-字符串函数"><a href="#2-字符串函数" class="headerlink" title="2 字符串函数"></a>2 字符串函数</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">LENGTH</span>(<span class="string">'sky'</span>) 				<span class="comment">-- 3</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">UPPER</span>(<span class="string">'sky'</span>) 				<span class="comment">-- SKY</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">LOWER</span>(<span class="string">'Sky'</span>)					<span class="comment">-- sky</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">LTRIM</span>(<span class="string">'     Sky'</span>)			<span class="comment">-- 去除左边的空格：Sky</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">RTRIM</span>(<span class="string">'Sky     '</span>)			<span class="comment">-- 去除右边的空格：Sky</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">TRIM</span>(<span class="string">'    Sky  '</span>)			<span class="comment">-- 去除两边的空格：Sky</span></span><br></pre></td></tr></table></figure>
-<p><strong>子串</strong></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">LEFT</span>(<span class="string">'Kindergarten'</span>, <span class="number">4</span>)			<span class="comment">-- Kind</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">RIGHT</span>(<span class="string">'Kindergarten'</span>, <span class="number">6</span>)			<span class="comment">-- garten</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">SUBSTRING</span>(<span class="string">'Kindergarten'</span>, <span class="number">3</span>, <span class="number">5</span>)	<span class="comment">-- nderg</span></span><br></pre></td></tr></table></figure>
-<p><strong>查找位置</strong></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">LOCATE</span>(<span class="string">'N'</span>, <span class="string">'Kindergarten'</span>)  	<span class="comment">-- 3 不区分大小写，若不在字符串中则返回0</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">LOCATE</span>(<span class="string">'garten'</span>, <span class="string">'Kindergarten'</span>)	<span class="comment">-- 7</span></span><br></pre></td></tr></table></figure>
-<p><strong>替换</strong></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">REPLACE</span>(<span class="string">'Kindergarten'</span>, <span class="string">'garten'</span>, <span class="string">'garden'</span>)	<span class="comment">-- Kindergarden</span></span><br></pre></td></tr></table></figure>
-<p><strong>拼接</strong></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">CONCAT</span>(<span class="string">'first'</span>, <span class="string">'last'</span>)		<span class="comment">-- firstlast</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">USE</span> sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">CONCAT</span>(first_name, <span class="string">' '</span>, last_name) <span class="keyword">AS</span> full_name</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br></pre></td></tr></table></figure>
-<h1 id="3-日期"><a href="#3-日期" class="headerlink" title="3 日期"></a>3 日期</h1><h2 id="3-1-日期函数"><a href="#3-1-日期函数" class="headerlink" title="3.1 日期函数"></a>3.1 日期函数</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">NOW</span>(), <span class="keyword">CURDATE</span>(), <span class="keyword">CURTIME</span>()</span><br></pre></td></tr></table></figure>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>NOW()</th>
-<th>CURDATE()</th>
-<th>CURTIME()</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2021-05-19 19:08:56</td>
-<td>2021-05-19</td>
-<td>19:08:56</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><strong>获取指定的时间构成元素</strong></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">YEAR</span>(<span class="keyword">NOW</span>())		<span class="comment">-- 2021</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">MONTH</span>(<span class="keyword">NOW</span>())		<span class="comment">-- 5</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DAY</span>(<span class="keyword">NOW</span>())		<span class="comment">-- 19</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">HOUR</span>(<span class="keyword">NOW</span>())		<span class="comment">-- 19</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">MINUTE</span>(<span class="keyword">NOW</span>())	<span class="comment">-- 08</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">SECOND</span>(<span class="keyword">NOW</span>())	<span class="comment">-- 56</span></span><br></pre></td></tr></table></figure>
-<p><strong>获取时间的字符串</strong></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DAYNAME</span>(<span class="keyword">NOW</span>()), MONTHNAME(<span class="keyword">NOW</span>())</span><br></pre></td></tr></table></figure>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>DAYNAME(NOW())</th>
-<th>MONTHNAME(NOW())</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Wednesday</td>
-<td>May</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><strong>EXTRACT</strong></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">EXTRACT</span>(<span class="keyword">DAY</span> <span class="keyword">FROM</span> <span class="keyword">NOW</span>()) 		<span class="comment">-- 19</span></span><br></pre></td></tr></table></figure>
-<h2 id="3-2-格式化日期和时间"><a href="#3-2-格式化日期和时间" class="headerlink" title="3.2 格式化日期和时间"></a>3.2 格式化日期和时间</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DATE_FORMAT</span>(<span class="keyword">NOW</span>(), <span class="string">'%M %d %Y'</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>May 19 2021</p>
-</blockquote>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DATE_FORMAT</span>(<span class="keyword">NOW</span>(), <span class="string">'%H:%i %p'</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>19:17 PM</p>
-</blockquote>
-<h2 id="3-3-计算日期和时间"><a href="#3-3-计算日期和时间" class="headerlink" title="3.3 计算日期和时间"></a>3.3 计算日期和时间</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DATE_ADD</span>(<span class="keyword">NOW</span>(), <span class="built_in">INTERVAL</span> <span class="number">1</span> <span class="keyword">DAY</span>)		<span class="comment">-- 	2021-05-20 19:21:32</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DATE_ADD</span>(<span class="keyword">NOW</span>(), <span class="built_in">INTERVAL</span> <span class="number">1</span> <span class="keyword">YEAR</span>)		<span class="comment">-- 	2022-05-19 19:21:32</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DATE_SUB</span>(<span class="keyword">NOW</span>(), <span class="built_in">INTERVAL</span> <span class="number">1</span> <span class="keyword">YEAR</span>)		<span class="comment">-- 	2020-05-19 19:21:32</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DATEDIFF</span>(<span class="string">'2021-01-05'</span>, <span class="string">'2021-01-01'</span>)				<span class="comment">--  4</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> TIME_TO_SEC(<span class="string">'09:00'</span>) - TIME_TO_SEC(<span class="string">'09:02'</span>) 		<span class="comment">-- 	-120 (单位:秒)</span></span><br></pre></td></tr></table></figure>
-<h1 id="4-IFNULL-和-COALESCE"><a href="#4-IFNULL-和-COALESCE" class="headerlink" title="4 IFNULL 和 COALESCE"></a>4 IFNULL 和 COALESCE</h1><p><strong>IFNULL</strong></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">USE</span> sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    order_id,</span><br><span class="line">    <span class="keyword">IFNULL</span>(shipper_id, <span class="string">'Not assigned'</span>) <span class="keyword">AS</span> shipper</span><br><span class="line"><span class="keyword">FROM</span> orders</span><br></pre></td></tr></table></figure>
-<p>IFNULL(shipper_id, ‘Not assigned’) 即如果shipper_id为NULL, 就改为’Not assigned’</p>
-<p>输出:</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>order_id</th>
-<th>shipper</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Not assigned</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Not assigned</td>
-</tr>
-<tr>
-<td>8</td>
-<td>Not assigned</td>
-</tr>
-<tr>
-<td>9</td>
-<td>1</td>
-</tr>
-<tr>
-<td>2</td>
-<td>4</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><strong>COALESCE</strong></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">USE</span> sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    order_id,</span><br><span class="line">    <span class="keyword">COALESCE</span>(shipper_id, comments, <span class="string">'Not assigned'</span>) <span class="keyword">AS</span> shipper</span><br><span class="line"><span class="keyword">FROM</span> orders</span><br></pre></td></tr></table></figure>
-<p>如果shipper_id为空,就返回comments中的值,如果comments也为空,则返回’Not assigned’.</p>
-<h1 id="5-IF-函数"><a href="#5-IF-函数" class="headerlink" title="5 IF 函数"></a>5 IF 函数</h1><p>格式:</p>
-<blockquote>
-<p>IF(expression, first, second)<br>如果expression为真,返回first, 为假则返回second</p>
-</blockquote>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    order_id,</span><br><span class="line">    order_date,</span><br><span class="line">    <span class="keyword">IF</span>(</span><br><span class="line">        <span class="keyword">YEAR</span>(order_date) = <span class="keyword">YEAR</span>(<span class="keyword">DATE_SUB</span>(<span class="keyword">NOW</span>(), <span class="built_in">INTERVAL</span> <span class="number">2</span> <span class="keyword">YEAR</span>)),</span><br><span class="line">        <span class="string">'Active'</span>,</span><br><span class="line">        <span class="string">'Archived'</span>) <span class="keyword">AS</span> <span class="keyword">category</span></span><br><span class="line"><span class="keyword">FROM</span> orders</span><br></pre></td></tr></table></figure>
-<p>当前年份为2021, 所以2019的为’Active’ (Mosh制作视频时为2019), 其他都是’Archived’:</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>order_id</th>
-<th>order_date</th>
-<th>category</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>2019-01-30</td>
-<td>Active</td>
-</tr>
-<tr>
-<td>2</td>
-<td>2018-08-02</td>
-<td>Archived</td>
-</tr>
-<tr>
-<td>3</td>
-<td>2017-12-01</td>
-<td>Archived</td>
-</tr>
-<tr>
-<td>4</td>
-<td>2017-01-22</td>
-<td>Archived</td>
-</tr>
-<tr>
-<td>5</td>
-<td>2017-08-25</td>
-<td>Archived</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h1 id="6-CASE-运算符"><a href="#6-CASE-运算符" class="headerlink" title="6 CASE 运算符"></a>6 CASE 运算符</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    order_id,</span><br><span class="line">    <span class="keyword">CASE</span></span><br><span class="line">        <span class="keyword">WHEN</span> <span class="keyword">YEAR</span>(order_date) = <span class="keyword">YEAR</span>(<span class="keyword">NOW</span>()) - <span class="number">2</span> <span class="keyword">THEN</span> <span class="string">'Active'</span></span><br><span class="line">        <span class="keyword">WHEN</span> <span class="keyword">YEAR</span>(order_date) = <span class="keyword">YEAR</span>(<span class="keyword">NOW</span>()) - <span class="number">3</span> <span class="keyword">THEN</span> <span class="string">'Last Year'</span></span><br><span class="line">        <span class="keyword">WHEN</span> <span class="keyword">YEAR</span>(order_date) &lt; <span class="keyword">YEAR</span>(<span class="keyword">NOW</span>()) - <span class="number">3</span> <span class="keyword">THEN</span> <span class="string">'Archived'</span></span><br><span class="line">        <span class="keyword">ELSE</span> <span class="string">'Future'</span></span><br><span class="line">	<span class="keyword">END</span> <span class="keyword">AS</span> <span class="keyword">category</span></span><br><span class="line"><span class="keyword">FROM</span> orders</span><br></pre></td></tr></table></figure>
-<p>输出:</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>order_id</th>
-<th>category</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Active</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Last Year</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Archived</td>
-</tr>
-<tr>
-<td>4</td>
-<td>Archived</td>
-</tr>
-<tr>
-<td>5</td>
-<td>Archived</td>
-</tr>
-<tr>
-<td>6</td>
-<td>Last Year</td>
-</tr>
-<tr>
-<td>7</td>
-<td>Last Year</td>
-</tr>
-<tr>
-<td>8</td>
-<td>Last Year</td>
-</tr>
-<tr>
-<td>9</td>
-<td>Archived</td>
-</tr>
-<tr>
-<td>10</td>
-<td>Last Year</td>
 </tr>
 </tbody>
 </table>
@@ -2258,147 +2379,6 @@
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/05/12/20210512_Python008/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Purple M. Stone">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stone's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2021/05/12/20210512_Python008/" class="post-title-link" itemprop="url">Mosh的Python课程笔记(8)--Modules</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2021-05-12 17:50:09" itemprop="dateCreated datePublished" datetime="2021-05-12T17:50:09+08:00">2021-05-12</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-17 12:24:23" itemprop="dateModified" datetime="2021-05-17T12:24:23+08:00">2021-05-17</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/05/12/20210512_Python008/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/05/12/20210512_Python008/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a href="https://codewithmosh.com/" target="_blank" rel="noopener">Mosh的课程网址</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sales.py</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calc_tax</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calc_shipping</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app.py</span></span><br><span class="line"><span class="keyword">from</span> sales <span class="keyword">import</span> calc_shipping, calc_tax</span><br><span class="line"></span><br><span class="line">calc_shipping()</span><br><span class="line">calc_tax()</span><br></pre></td></tr></table></figure>
-<p>或：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sales</span><br><span class="line"></span><br><span class="line">sales.calc_shipping()</span><br><span class="line">sales.calc_tax()</span><br></pre></td></tr></table></figure>
-<h1 id="Compiled-Python-Files"><a href="#Compiled-Python-Files" class="headerlink" title="Compiled Python Files"></a>Compiled Python Files</h1><p>编译后在__pycache__生成 sales.cpython-39.pyc 文件，如果sales.py未作更改，则此文件直接用（相当于缓存），可以加快程序执行。如果sales.py改了，则要重新生成此文件。</p>
-<h1 id="Module-Search-Path"><a href="#Module-Search-Path" class="headerlink" title="Module Search Path"></a>Module Search Path</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">print(sys.path)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">'e:\\Stone\\Python\\HelloWorld'</span>, <span class="string">'D:\\Python39\\python39.zip'</span>, <span class="string">'D:\\Python39\\DLLs'</span>, <span class="string">'D:\\Python39\\lib'</span>, <span class="string">'D:\\Python39'</span>, <span class="string">'C:\\Users\\11405\\AppData\\Roaming\\Python\\Python39\\site-packages'</span>, <span class="string">'D:\\Python39\\lib\\site-packages'</span>]</span><br></pre></td></tr></table></figure>
-<h1 id="Packages"><a href="#Packages" class="headerlink" title="Packages"></a>Packages</h1><p>package 对应于文件夹；module 对应于文件</p>
-<p>比如在 app.py 所在目录下有个 ecommerce 文件夹，ecommerce 文件夹内有多个文件，包括 sales.py，假如改文件夹内有文件__init__.py，则 python 会将此文件夹视为 package.</p>
-<p>那么可以这样用：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app.py</span></span><br><span class="line"><span class="keyword">from</span> ecommerce <span class="keyword">import</span> sales</span><br><span class="line"></span><br><span class="line">sales.calc_tax()</span><br><span class="line">sales.calc_shipping()</span><br></pre></td></tr></table></figure>
-<h2 id="Sub-packages"><a href="#Sub-packages" class="headerlink" title="Sub-packages"></a>Sub-packages</h2><p>ecommerce 文件夹内有 shopping 文件夹,  shopping 文件夹内有文件__init__.py 和 sales.py，则：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app.py</span></span><br><span class="line"><span class="keyword">from</span> ecommerce.shopping <span class="keyword">import</span> sales</span><br></pre></td></tr></table></figure>
-<h2 id="Intra-package-References"><a href="#Intra-package-References" class="headerlink" title="Intra-package References"></a>Intra-package References</h2><p><img src="/images/Python/002.png" alt="002"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sales.py</span></span><br><span class="line"><span class="keyword">from</span> ecommerce.customer <span class="keyword">import</span> contact</span><br><span class="line"><span class="keyword">from</span> ..customer <span class="keyword">import</span> contact		<span class="comment"># ..表示父目录</span></span><br><span class="line"></span><br><span class="line">contact.contact_customer()</span><br></pre></td></tr></table></figure>
-<h2 id="The-dir-Function"><a href="#The-dir-Function" class="headerlink" title="The dir() Function"></a>The dir() Function</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app.py</span></span><br><span class="line"><span class="keyword">from</span> ecommerce.shopping <span class="keyword">import</span> sales</span><br><span class="line"></span><br><span class="line">print(dir(sales))</span><br></pre></td></tr></table></figure>
-<p>输出sales的各种方法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">'__builtins__'</span>, <span class="string">'__cached__'</span>, <span class="string">'__doc__'</span>, <span class="string">'__file__'</span>, <span class="string">'__loader__'</span>, <span class="string">'__name__'</span>, <span class="string">'__package__'</span>, <span class="string">'__spec__'</span>, <span class="string">'calc_shipping'</span>, <span class="string">'calc_tax'</span>, <span class="string">'contact'</span>]</span><br></pre></td></tr></table></figure>
-<p>比如：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app.py</span></span><br><span class="line"><span class="keyword">from</span> ecommerce.shopping <span class="keyword">import</span> sales</span><br><span class="line"></span><br><span class="line">print(sales.__name__)</span><br><span class="line">print(sales.__package__)</span><br><span class="line">print(sales.__file__)</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ecommerce.shopping.sales</span><br><span class="line">ecommerce.shopping</span><br><span class="line">e:\Stone\Python\HelloWorld\ecommerce\shopping\sales.py</span><br></pre></td></tr></table></figure>
-<h1 id="Executing-Modules-as-Scripts"><a href="#Executing-Modules-as-Scripts" class="headerlink" title="Executing Modules as Scripts"></a>Executing Modules as Scripts</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ecommerce/shopping/sales.py</span></span><br><span class="line">print(<span class="string">"Sales initialized"</span>, __name__)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calc_tax</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calc_shipping</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ecommerce/__init__.py</span></span><br><span class="line">print(<span class="string">"Ecommerce initialized"</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app.py</span></span><br><span class="line"><span class="keyword">from</span> ecommerce.shopping <span class="keyword">import</span> sales</span><br></pre></td></tr></table></figure>
-<p>执行 app.py，输出：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Ecommerce initialized</span><br><span class="line">Sales initialized ecommerce.shopping.sales</span><br></pre></td></tr></table></figure>
-<p>如果执行sales.py, 输出：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Sales initialized __main__</span><br></pre></td></tr></table></figure>
-<p>可见__name__对于不同py文件是不同的。</p>
-<p>如果加上：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    <span class="comment"># bla bla bla</span></span><br></pre></td></tr></table></figure>
-<p>则只在当前py文件运行时执行这些 # blablabla 的code。</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
@@ -2450,7 +2430,7 @@
         
           <a href="/archives/%20%7C%7C%20archive">
         
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
