@@ -241,6 +241,129 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/05/14/20210514_Python011/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Purple M. Stone">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stone's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2021/05/14/20210514_Python011/" class="post-title-link" itemprop="url">Mosh的Python课程笔记(11)--Popular Python Package</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2021-05-14 16:50:09" itemprop="dateCreated datePublished" datetime="2021-05-14T16:50:09+08:00">2021-05-14</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-17 12:24:23" itemprop="dateModified" datetime="2021-05-17T12:24:23+08:00">2021-05-17</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/05/14/20210514_Python011/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/05/14/20210514_Python011/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="https://codewithmosh.com/" target="_blank" rel="noopener">Mosh的课程网址</a></p>
+<h1 id="Web-Scraping"><a href="#Web-Scraping" class="headerlink" title="Web Scraping"></a>Web Scraping</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line">response = requests.get(<span class="string">"https://stackoverflow.com/questions"</span>)</span><br><span class="line">soup = BeautifulSoup(response.text, <span class="string">"html.parser"</span>)</span><br><span class="line"></span><br><span class="line">questions = soup.select(<span class="string">".question-summary"</span>)</span><br><span class="line">print(questions[<span class="number">0</span>].attrs)</span><br><span class="line">print(questions[<span class="number">0</span>].get(<span class="string">"id"</span>, <span class="number">0</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> question <span class="keyword">in</span> questions:</span><br><span class="line">    print(question.select_one(<span class="string">".question-hyperlink"</span>).getText())</span><br><span class="line">    print(question.select_one(<span class="string">".vote-count-post"</span>).getText())</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>{‘class’: [‘question-summary’], ‘id’: ‘question-summary-67532680’}<br>question-summary-67532680<br>GKE Nginx Ingress Controller Oauth2 Proxy redirect<br>0<br>Workaround on nested async completion blocks from network calls? Without using PromiseKit<br>0<br>ax.text not being printed when using transform<br>0<br>Using html &amp; javascript Populate textbox<br>0<br>How to pass JSON data through the Django backend to frontend view using Angular<br>0<br>Gitlab CI cannot pull private registry with DOCKER_AUTH_CONFIG<br>0<br>Shopify SKU Lookup using GraphQL<br>0</p>
+</blockquote>
+<h1 id="Browser-Automation"><a href="#Browser-Automation" class="headerlink" title="Browser Automation"></a>Browser Automation</h1><p>自动打开chrome，跳转到github.com，登录。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">browser = webdriver.Chrome()</span><br><span class="line">browser.set_window_size(<span class="number">1920</span>, <span class="number">1080</span>)      <span class="comment"># 设置窗口大小</span></span><br><span class="line"></span><br><span class="line">browser.get(<span class="string">"https://github.com"</span>)</span><br><span class="line"></span><br><span class="line">signin_link = browser.find_element_by_link_text(<span class="string">"Sign in"</span>)</span><br><span class="line">signin_link.click()</span><br><span class="line"></span><br><span class="line">username_box = browser.find_element_by_id(<span class="string">"login_field"</span>)</span><br><span class="line">username_box.send_keys(<span class="string">"PurpleMStone"</span>)</span><br><span class="line">password_box = browser.find_element_by_id(<span class="string">"password"</span>)</span><br><span class="line">password_box.send_keys(<span class="string">"zq15071452268"</span>)</span><br><span class="line">password_box.submit()</span><br><span class="line"></span><br><span class="line"><span class="keyword">assert</span> <span class="string">"PurpleMStone"</span> <span class="keyword">in</span> browser.page_source</span><br><span class="line"></span><br><span class="line">time.sleep(<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># profile_link = browser.find_element_by_class_name("user-profile-link")</span></span><br><span class="line"><span class="comment"># link_label = profile_link.get_attribute("innerHTML")</span></span><br><span class="line"><span class="comment"># assert "PurpleMStone" in link_label</span></span><br><span class="line"></span><br><span class="line">browser.quit()</span><br></pre></td></tr></table></figure>
+<h1 id="Working-with-PDFs"><a href="#Working-with-PDFs" class="headerlink" title="Working with PDFs"></a>Working with PDFs</h1><p><strong>Demo 1</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> PyPDF2</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"first.pdf"</span>, <span class="string">"rb"</span>) <span class="keyword">as</span> file:</span><br><span class="line">    reader = PyPDF2.PdfFileReader(file)</span><br><span class="line">    print(reader.numPages)</span><br><span class="line">    page = reader.getPage(<span class="number">0</span>)        <span class="comment"># 获取第一页</span></span><br><span class="line">    page.rotateClockwise(<span class="number">90</span>)        <span class="comment"># 页面旋转90度</span></span><br><span class="line">    </span><br><span class="line">    writer = PyPDF2.PdfFileWriter()</span><br><span class="line">    writer.addPage(page)</span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">"rotated.pdf"</span>, <span class="string">"wb"</span>) <span class="keyword">as</span> output:</span><br><span class="line">        writer.write(output)</span><br></pre></td></tr></table></figure>
+<p><strong>Demo 2: 合并PDF</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> PyPDF2</span><br><span class="line"></span><br><span class="line">merger = PyPDF2.PdfFileMerger()</span><br><span class="line">file_names = [<span class="string">"first.pdf"</span>, <span class="string">"second.pdf"</span>]</span><br><span class="line"><span class="keyword">for</span> file_name <span class="keyword">in</span> file_names:</span><br><span class="line">    merger.append(file_name)</span><br><span class="line">merger.write(<span class="string">"combined.pdf"</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="Excel-Spreadsheets"><a href="#Excel-Spreadsheets" class="headerlink" title="Excel Spreadsheets"></a>Excel Spreadsheets</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> openpyxl</span><br><span class="line"></span><br><span class="line">wb = openpyxl.load_workbook(<span class="string">"transactions.xlsx"</span>)</span><br><span class="line">print(wb.sheetnames)</span><br><span class="line"></span><br><span class="line">sheet = wb[<span class="string">"Sheet1"</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># wb.create_sheet(["Sheet2", 0])</span></span><br><span class="line"><span class="comment"># wb.remove_sheet(sheet)</span></span><br><span class="line"></span><br><span class="line">cell = sheet[<span class="string">"a1"</span>]</span><br><span class="line"><span class="comment"># print(cell.row)</span></span><br><span class="line"><span class="comment"># print(cell.column)</span></span><br><span class="line"><span class="comment"># print(cell.coordinate)</span></span><br><span class="line"><span class="comment"># cell = sheet.cell(row=1, column=1)</span></span><br><span class="line"></span><br><span class="line">print(sheet.max_row)</span><br><span class="line">print(sheet.max_column)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> range(<span class="number">1</span>, sheet.max_row + <span class="number">1</span>):</span><br><span class="line">    <span class="keyword">for</span> column <span class="keyword">in</span> range(<span class="number">1</span>, sheet.max_column + <span class="number">1</span>):</span><br><span class="line">        cell = sheet.cell(row, column)</span><br><span class="line">        <span class="comment"># print(cell.value)</span></span><br><span class="line"></span><br><span class="line">column = sheet[<span class="string">"a"</span>]</span><br><span class="line">print(column)</span><br><span class="line">cells = sheet[<span class="string">"a:c"</span>]    <span class="comment"># column</span></span><br><span class="line">print(cells)</span><br><span class="line"></span><br><span class="line">print(sheet[<span class="number">1</span>:<span class="number">3</span>])       <span class="comment"># row</span></span><br><span class="line"></span><br><span class="line">sheet.append([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])  <span class="comment"># add a row at the end of the sheet</span></span><br><span class="line"><span class="comment"># sheet.insert_rows insert_columns, delete_rows, delete_columns</span></span><br><span class="line"></span><br><span class="line">wb.save(<span class="string">"transaction2.xlsx"</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">array = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</span><br><span class="line">print(array)</span><br><span class="line">print(type(np.array))</span><br><span class="line">print(array.shape)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">array = np.zeros((<span class="number">3</span>, <span class="number">4</span>), dtype=int)</span><br><span class="line">print(array)</span><br><span class="line"></span><br><span class="line">array = np.ones((<span class="number">3</span>, <span class="number">4</span>), dtype=int)</span><br><span class="line">print(array)</span><br><span class="line"></span><br><span class="line">array = np.full((<span class="number">3</span>, <span class="number">4</span>), <span class="number">5</span>, dtype=int)</span><br><span class="line">print(array)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">array = np.random.random((<span class="number">3</span>, <span class="number">4</span>))</span><br><span class="line">print(array)</span><br><span class="line">print(array[<span class="number">0</span>, <span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">print(array &gt; <span class="number">0.2</span>)</span><br><span class="line"></span><br><span class="line">print(array[array &gt; <span class="number">0.2</span>])</span><br><span class="line"></span><br><span class="line">print(np.sum(array))</span><br><span class="line">print(np.floor(array))</span><br><span class="line">print(np.ceil(array))</span><br><span class="line">print(np.round(array))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">first = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">second = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">print(first + second)</span><br></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/05/13/20210513_Python010/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1764,149 +1887,6 @@
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/05/06/20210506_Python001/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Purple M. Stone">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stone's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2021/05/06/20210506_Python001/" class="post-title-link" itemprop="url">Mosh的Python课程笔记(1)--VSCode的Python扩展使用</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2021-05-06 12:50:09" itemprop="dateCreated datePublished" datetime="2021-05-06T12:50:09+08:00">2021-05-06</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-17 12:24:22" itemprop="dateModified" datetime="2021-05-17T12:24:22+08:00">2021-05-17</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/05/06/20210506_Python001/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/05/06/20210506_Python001/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a href="https://codewithmosh.com/" target="_blank" rel="noopener">Mosh的课程网址</a></p>
-<p>使用<strong>VSCode</strong>：用ctrl+`调出terminal</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"*"</span> * <span class="number">10</span>) <span class="comment"># print ********** (10 times) on the terminal</span></span><br></pre></td></tr></table></figure>
-<h1 id="Python-Extension"><a href="#Python-Extension" class="headerlink" title="Python Extension"></a>Python Extension</h1><p>在VSCode下载python扩展</p>
-<p>👉 Linting: finding potential errors in our code</p>
-<p>👉 Debugging</p>
-<p>👉 Autocompletion: help us write code faster</p>
-<p>👉 Code Formatting</p>
-<p>👉 Unit Testing</p>
-<p>👉 Code Snippets: reusable code blocks</p>
-<h2 id="Linting"><a href="#Linting" class="headerlink" title="Linting"></a>Linting</h2><p>下载pylint，显示错误提示</p>
-<p>ctrl+shift+M：调出problem显示框，可以显示所有错误处</p>
-<p>ctrl+shift+P：搜索</p>
-<h2 id="Formatting-Code"><a href="#Formatting-Code" class="headerlink" title="Formatting Code"></a>Formatting Code</h2><p>Python Enhancement Proposals (<strong>PEPs</strong>)</p>
-<p><a href="https://www.python.org/dev/peps/pep-0008/" target="_blank" rel="noopener">PEP 8</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Example</span></span><br><span class="line">x=<span class="number">1</span> 		<span class="comment">#ugly</span></span><br><span class="line">x = <span class="number">1</span>		<span class="comment">#PEP 8 suggests.</span></span><br></pre></td></tr></table></figure>
-<p>ctrl+shift+P 搜索format，选择 format document，提示下载，就下载</p>
-<p>然后在File &gt; Preference &gt; Setting 搜索 formatOnSave, 勾选。</p>
-<p><img src="/images/Python/001.png" alt="001"></p>
-<p>这样在save python文件的时候，就自动reformat了。</p>
-<h2 id="Running-Python-Code"><a href="#Running-Python-Code" class="headerlink" title="Running Python Code"></a>Running Python Code</h2><p>下载code runner extension, ctrl+alt+n 直接运行</p>
-<h1 id="Python-Implementation"><a href="#Python-Implementation" class="headerlink" title="Python Implementation"></a>Python Implementation</h1><p>Python指一种编程语言，但是python的实现是一个program</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CPython 		C 实现</span><br><span class="line">Jython 			Java 实现</span><br><span class="line">IronPython 		C# 实现</span><br><span class="line">PyPy 			Subset of Python</span><br></pre></td></tr></table></figure>
-<p>比如你想在 python 中加一些 Java 代码，最好用 Jython 而不是 CPython</p>
-<h2 id="How-Python-Code-Is-Executed"><a href="#How-Python-Code-Is-Executed" class="headerlink" title="How Python Code Is Executed"></a>How Python Code Is Executed</h2><p>C → C Compiler → Machine Code → Processor</p>
-<p>Machine Code 对 Processor 特定，windows 机器无法识别 Mac的 machine code.</p>
-<p>Java 则可以在不同的 platform 运行相同的code：</p>
-<p>Java → Compiler → Java Bytecode → Java Virtual Machine → Machine Code</p>
-<p>比如 Windows JVM → Windows Machine Code</p>
-<p>Python 采用了相同的方法：</p>
-<p>Python→ CPython → Python Bytecode → Python Virtual Machine → Machine Code</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">		CPython → Python Bytecode</span><br><span class="line">	   &#x2F;</span><br><span class="line">Python </span><br><span class="line">	   \</span><br><span class="line">		Jython →  Java Bytecode</span><br></pre></td></tr></table></figure>
-<p>所以用 Jython 可以在 python code 中植入一些 Java code.</p>
-<h1 id="Quiz"><a href="#Quiz" class="headerlink" title="Quiz"></a>Quiz</h1><p>👉 What is an expression?</p>
-<p>👉 What is an syntax error?</p>
-<p>👉 What does a linter do?</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
@@ -1958,7 +1938,7 @@
         
           <a href="/archives/%20%7C%7C%20archive">
         
-          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
